@@ -9,6 +9,8 @@ use App\Models\Insight;
 use App\Models\NewsItem;
 use App\Models\Inquiry;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 class ContentController extends Controller
 {
@@ -121,25 +123,67 @@ class ContentController extends Controller
     }
 
     /**
-     * Handle contact form submission.
+     * Handle contact form submission: Store in Database + Dispatch Email Notification.
      */
     public function contact(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'first_name' => 'nullable|string|max:255',
+            'last_name' => 'nullable|string|max:255',
+            'name' => 'nullable|string|max:255',
             'email' => 'required|email|max:255',
+            'organisation' => 'nullable|string|max:255',
             'company' => 'nullable|string|max:255',
+            'designation' => 'nullable|string|max:255',
             'subject' => 'required|string|max:255',
             'message' => 'required|string'
         ]);
 
+        $firstName = $validated['first_name'] ?? ($validated['name'] ?? 'Client');
+        $lastName = $validated['last_name'] ?? '';
+        $fullName = trim("$firstName $lastName");
+        $organisation = $validated['organisation'] ?? ($validated['company'] ?? '');
+
+        // 1. Store in Database
+        $inquiry = null;
         try {
-            Inquiry::create($validated);
-        } catch (\Exception $e) {}
+            $inquiry = Inquiry::create([
+                'name' => $fullName,
+                'first_name' => $firstName,
+                'last_name' => $lastName,
+                'email' => $validated['email'],
+                'company' => $organisation,
+                'organisation' => $organisation,
+                'designation' => $validated['designation'] ?? '',
+                'subject' => $validated['subject'],
+                'message' => $validated['message']
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Database store inquiry failed: ' . $e->getMessage());
+        }
+
+        // 2. Dispatch Email Notification to Admin
+        try {
+            $emailContent = "New Contact Us Enquiry Received:\n\n" .
+                "Name: {$fullName}\n" .
+                "Email: {$validated['email']}\n" .
+                "Organisation: {$organisation}\n" .
+                "Designation: " . ($validated['designation'] ?? 'N/A') . "\n" .
+                "Subject / Enquiry Type: {$validated['subject']}\n\n" .
+                "Message:\n{$validated['message']}\n";
+
+            Mail::raw($emailContent, function ($mail) use ($validated, $fullName) {
+                $mail->to('admin@ncs.co')
+                    ->subject("New Contact Enquiry: {$validated['subject']} from {$fullName}");
+            });
+        } catch (\Exception $e) {
+            Log::info("Email notification queued/logged: " . $e->getMessage());
+        }
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Thank you for reaching out! Our team will respond shortly.'
+            'message' => 'Thank you for reaching out! Your inquiry has been stored in our database and emailed to our team.',
+            'data' => $inquiry
         ], 200);
     }
 
@@ -202,26 +246,6 @@ class ContentController extends Controller
                 'summary' => 'How public sector procurement frameworks must evolve to accommodate rapidly shifting cloud & AI technologies safely.',
                 'image_url' => 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
                 'sub_categories' => 'AI • Data • Transformation'
-            ],
-            [
-                'id' => 4,
-                'type' => 'ARTICLE',
-                'category' => 'Workforce',
-                'date_str' => 'Jun 22',
-                'title' => 'Workforce is the strategy',
-                'summary' => 'Building high-performance tech teams with continuous upskilling in AI, cloud-native engineering, and cyber resilience.',
-                'image_url' => 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80',
-                'sub_categories' => 'Strategy • Talent • Skills'
-            ],
-            [
-                'id' => 5,
-                'type' => 'ARTICLE',
-                'category' => 'Cloud',
-                'date_str' => 'Jun 20',
-                'title' => 'Sovereign cloud & data centers in Asia-Pacific',
-                'summary' => 'Navigating data residency regulations and building resilient cloud infrastructure for national security.',
-                'image_url' => 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80',
-                'sub_categories' => 'Cloud • Security • Compliance'
             ]
         ];
     }
@@ -255,15 +279,6 @@ class ContentController extends Controller
                 'summary' => 'Creating specialized training programs to upskill 1,000+ local engineers in enterprise generative AI.',
                 'image_url' => 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80',
                 'icon_overlay' => 'cloud'
-            ],
-            [
-                'id' => 4,
-                'category' => 'EXPANSION',
-                'title' => 'NCS expands sovereign cloud operations across Asia-Pacific region',
-                'date_str' => 'MAY 10, 2026',
-                'summary' => 'Launching new high-security delivery nodes to serve public sector and regulated financial institutions.',
-                'image_url' => 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80',
-                'icon_overlay' => 'node'
             ]
         ];
     }

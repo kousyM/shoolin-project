@@ -11,10 +11,10 @@ import StatsCounter from './components/StatsCounter';
 import PartnersSection from './components/PartnersSection';
 import JoinTeamSection from './components/JoinTeamSection';
 import ContactSection from './components/ContactSection';
+import ContactPage from './pages/ContactPage';
 import DetailModal from './components/DetailModal';
 import Footer from './components/Footer';
 
-// Default initial state so all sections render immediately!
 const DEFAULT_HOMEPAGE_DATA = {
   banners: [
     {
@@ -149,6 +149,7 @@ const DEFAULT_HOMEPAGE_DATA = {
 };
 
 export function App() {
+  const [currentPage, setCurrentPage] = useState('home'); // 'home' | 'contact'
   const [data, setData] = useState(DEFAULT_HOMEPAGE_DATA);
   const [selectedItem, setSelectedItem] = useState(null);
   const [modalType, setModalType] = useState(null);
@@ -178,10 +179,18 @@ export function App() {
     setModalType(null);
   };
 
+  // If user navigated to Contact Page
+  if (currentPage === 'contact') {
+    return <ContactPage onBackHome={() => setCurrentPage('home')} />;
+  }
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans antialiased">
       {/* 1. Header Navigation */}
-      <Navbar />
+      <Navbar
+        onOpenContactPage={() => setCurrentPage('contact')}
+        onNavHome={() => setCurrentPage('home')}
+      />
 
       <main>
         {/* 2. Hero Banner Slider */}
@@ -214,17 +223,17 @@ export function App() {
           onSelectNews={(item) => handleOpenDetail(item, 'News Article')}
         />
 
-        {/* 8. Stats / Numbers Counter Section (Screenshot 1 - Animated Count-up Timer) */}
+        {/* 8. Stats / Numbers Counter Section */}
         <StatsCounter />
 
-        {/* 9. Meet Our Partners Section (Screenshot 2) */}
+        {/* 9. Meet Our Partners Section */}
         <PartnersSection />
 
-        {/* 10. Join An Extraordinary Team Section (Screenshot 3) */}
+        {/* 10. Join An Extraordinary Team Section */}
         <JoinTeamSection />
 
-        {/* 11. Contact Us Banner & Form Modal (Screenshot 4 - Triggered ONLY by Find out more) */}
-        <ContactSection />
+        {/* 11. Contact Us Banner (Navigates to dedicated Contact Page without popup modal!) */}
+        <ContactSection onOpenContactPage={() => setCurrentPage('contact')} />
       </main>
 
       {/* Item Detail Modal */}
@@ -237,7 +246,7 @@ export function App() {
       )}
 
       {/* 12. Footer */}
-      <Footer />
+      <Footer onOpenContactPage={() => setCurrentPage('contact')} />
     </div>
   );
 }

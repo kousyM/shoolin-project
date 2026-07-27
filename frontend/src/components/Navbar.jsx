@@ -1,76 +1,115 @@
 import React, { useState } from 'react';
-import { Menu, X, Globe, Search, ChevronRight } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
 
-export const Navbar = () => {
-  const [mobileOpen, setMobileOpen] = useState(false);
+export const Navbar = ({ onOpenContactPage, onNavHome }) => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const navItems = [
+    { label: 'About us', href: '#about', action: onNavHome },
+    { label: 'Our services', href: '#services', action: onNavHome },
+    { label: 'Case studies', href: '#case-studies', action: onNavHome },
+    { label: 'Insights', href: '#insights', action: onNavHome },
+    { label: 'Latest news', href: '#latest-news', action: onNavHome },
+    { label: 'Contact us', href: '#contact', action: onOpenContactPage }
+  ];
 
   return (
-    <>
-      <nav className="ncs-navbar">
-        <div className="nav-container">
-          <a href="#" className="brand flex items-center gap-2 text-decoration-none">
-            <span className="logo-text">
-              NCS<span className="logo-accent">//</span>
-            </span>
-          </a>
+    <nav className="ncs-navbar">
+      <div className="nav-container">
+        {/* Brand Logo */}
+        <a
+          href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            if (onNavHome) onNavHome();
+          }}
+          className="flex items-center gap-2 text-decoration-none"
+        >
+          <span className="logo-text">
+            NCS<span className="logo-accent">//</span>
+          </span>
+        </a>
 
-          {/* Desktop Nav Links */}
-          <ul className="nav-links">
-            <li><a href="#about" className="nav-link">About us</a></li>
-            <li><a href="#services" className="nav-link">Our services</a></li>
-            <li><a href="#case-studies" className="nav-link">Case studies</a></li>
-            <li><a href="#insights" className="nav-link">Insights</a></li>
-            <li><a href="#latest-news" className="nav-link">Latest news</a></li>
-            <li><a href="#contact" className="nav-link">Contact us</a></li>
-          </ul>
+        {/* Desktop Navigation Links */}
+        <ul className="nav-links">
+          {navItems.map((item, idx) => (
+            <li key={idx}>
+              <a
+                href={item.href}
+                onClick={(e) => {
+                  if (item.label === 'Contact us') {
+                    e.preventDefault();
+                    if (onOpenContactPage) onOpenContactPage();
+                  } else {
+                    if (onNavHome) onNavHome();
+                  }
+                }}
+                className="nav-link"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
 
-          <div className="flex items-center gap-4">
-            <div className="hidden md:flex items-center gap-2 text-slate-300 text-xs font-semibold cursor-pointer">
-              <Globe size={16} className="text-cyan-400" />
-              <span>EN-AU</span>
-            </div>
-
-            <a href="#contact" className="btn-ncs-primary hidden sm:inline-flex">
-              <span>Get in Touch</span>
-              <ChevronRight size={16} />
-            </a>
-
-            <button 
-              className="mobile-nav-toggle p-2"
-              onClick={() => setMobileOpen(!mobileOpen)}
-              aria-label="Toggle Navigation"
-            >
-              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+        {/* Right CTA Badge & Mobile Toggle */}
+        <div className="flex items-center gap-4">
+          <div className="hidden md:flex items-center gap-1.5 text-slate-300 text-xs font-semibold px-2.5 py-1 bg-white/5 rounded-full border border-white/10">
+            <Globe size={14} className="text-cyan-400" />
+            <span>EN-AU</span>
           </div>
-        </div>
-      </nav>
 
-      {/* Mobile Drawer Navigation */}
-      <div className={`mobile-drawer ${mobileOpen ? 'open' : ''}`}>
-        <div className="flex justify-between items-center pb-4 border-b border-slate-700">
-          <span className="logo-text">NCS<span className="logo-accent">//</span></span>
-          <button onClick={() => setMobileOpen(false)} className="text-white">
+          <button
+            onClick={onOpenContactPage}
+            className="btn-ncs-primary hidden sm:inline-flex"
+          >
+            <span>Get in Touch</span>
+          </button>
+
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="mobile-nav-toggle"
+            aria-label="Toggle Menu"
+          >
+            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Navigation Drawer */}
+      <div className={`mobile-drawer ${mobileMenuOpen ? 'open' : ''}`}>
+        <div className="flex justify-between items-center mb-6">
+          <span className="logo-text">
+            NCS<span className="logo-accent">//</span>
+          </span>
+          <button onClick={() => setMobileMenuOpen(false)} className="text-white">
             <X size={24} />
           </button>
         </div>
 
-        <div className="flex flex-col gap-4 py-4">
-          <a href="#about" onClick={() => setMobileOpen(false)} className="nav-link text-lg">About us</a>
-          <a href="#services" onClick={() => setMobileOpen(false)} className="nav-link text-lg">Our services</a>
-          <a href="#case-studies" onClick={() => setMobileOpen(false)} className="nav-link text-lg">Case studies</a>
-          <a href="#insights" onClick={() => setMobileOpen(false)} className="nav-link text-lg">Insights</a>
-          <a href="#latest-news" onClick={() => setMobileOpen(false)} className="nav-link text-lg">Latest news</a>
-          <a href="#contact" onClick={() => setMobileOpen(false)} className="nav-link text-lg">Contact us</a>
-        </div>
-
-        <div className="mt-auto">
-          <a href="#contact" onClick={() => setMobileOpen(false)} className="btn-ncs-primary w-full justify-center">
-            Get in Touch
-          </a>
-        </div>
+        <ul className="flex flex-col gap-4 list-none p-0">
+          {navItems.map((item, idx) => (
+            <li key={idx}>
+              <a
+                href={item.href}
+                onClick={(e) => {
+                  setMobileMenuOpen(false);
+                  if (item.label === 'Contact us') {
+                    e.preventDefault();
+                    if (onOpenContactPage) onOpenContactPage();
+                  } else {
+                    if (onNavHome) onNavHome();
+                  }
+                }}
+                className="text-white text-lg font-medium hover:text-cyan-400 transition-colors"
+              >
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
       </div>
-    </>
+    </nav>
   );
 };
 
