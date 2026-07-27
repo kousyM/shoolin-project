@@ -96,76 +96,66 @@ class ContentController extends Controller
     }
 
     /**
-     * Handle contact form submission: Store in contacts & inquiries DB + Dispatch Email.
+     * Handle contact form submission: Store in contacts DB + Dispatch Email.
      */
     public function contact(Request $request)
     {
         $validated = $request->validate([
+            'full_name' => 'nullable|string|max:255',
             'first_name' => 'nullable|string|max:255',
             'last_name' => 'nullable|string|max:255',
             'name' => 'nullable|string|max:255',
             'email' => 'required|email|max:255',
+            'phone' => 'nullable|string|max:255',
             'organisation' => 'nullable|string|max:255',
             'company' => 'nullable|string|max:255',
             'designation' => 'nullable|string|max:255',
             'subject' => 'required|string|max:255',
-            'message' => 'required|string',
-            'consent' => 'nullable|boolean'
+            'message' => 'required|string'
         ]);
 
-        $firstName = $validated['first_name'] ?? ($validated['name'] ?? 'Client');
-        $lastName = $validated['last_name'] ?? '';
-        $fullName = trim("$firstName $lastName");
+        $fullName = $validated['full_name'] ?? ($validated['name'] ?? trim(($validated['first_name'] ?? '') . ' ' . ($validated['last_name'] ?? '')));
+        if (empty($fullName)) {
+            $fullName = 'Valued Client';
+        }
+
+        $email = $validated['email'];
+        $phone = $validated['phone'] ?? '';
+        $subject = $validated['subject'];
+        $message = $validated['message'];
         $organisation = $validated['organisation'] ?? ($validated['company'] ?? '');
-        $consent = $request->has('consent') ? (bool)$request->consent : true;
 
         // 1. Store in Contacts table
         $contactRecord = null;
         try {
             $contactRecord = Contact::create([
-                'first_name' => $firstName,
-                'last_name' => $lastName,
-                'email' => $validated['email'],
+                'full_name' => $fullName,
+                'first_name' => $validated['first_name'] ?? '',
+                'last_name' => $validated['last_name'] ?? '',
+                'email' => $email,
+                'phone' => $phone,
                 'organisation' => $organisation,
                 'designation' => $validated['designation'] ?? '',
-                'subject' => $validated['subject'],
-                'message' => $validated['message'],
-                'consent' => $consent
+                'subject' => $subject,
+                'message' => $message,
+                'consent' => true
             ]);
         } catch (\Exception $e) {
             Log::error('Database store in contacts table failed: ' . $e->getMessage());
         }
 
-        // Also store in Inquiries table for compatibility
-        try {
-            Inquiry::create([
-                'name' => $fullName,
-                'first_name' => $firstName,
-                'last_name' => $lastName,
-                'email' => $validated['email'],
-                'company' => $organisation,
-                'organisation' => $organisation,
-                'designation' => $validated['designation'] ?? '',
-                'subject' => $validated['subject'],
-                'message' => $validated['message']
-            ]);
-        } catch (\Exception $e) {
-            Log::error('Database store in inquiries table failed: ' . $e->getMessage());
-        }
-
         // 2. Dispatch Email Notification to Admin
         try {
             $emailContent = "New Contact Us Enquiry Received:\n\n" .
-                "Name: {$fullName}\n" .
-                "Email: {$validated['email']}\n" .
-                "Organisation: {$organisation}\n" .
-                "Designation: " . ($validated['designation'] ?? 'N/A') . "\n" .
-                "Subject / Enquiry Type: {$validated['subject']}\n\n" .
-                "Message:\n{$validated['message']}\n";
+                "Full Name: {$fullName}\n" .
+                "Email: {$email}\n" .
+                "Phone Number: " . ($phone ? $phone : 'N/A') . "\n" .
+                "Subject: {$subject}\n\n" .
+                "Message:\n{$message}\n";
 
-            Mail::raw($emailContent, function ($mail) use ($validated, $fullName) {
-                $mail->to('admin@ncs.co')
-                    ->subject('NCS Corporate Portal - New Inquiry from ' . $fullName);
+            Mail::raw($emailContent, function ($mail) use ($email, $fullName, $subject) {
+                $mail->to('kowsalyam2611@gmail.com')
+                    ->subject('NCS Corporate Portal - New Inquiry from ' . $fullName . ' [' . $subject . ']');
             });
         } catch (\Exception $e) {
             Log::error('Contact form email notification failed: ' . $e->getMessage());
@@ -173,7 +163,7 @@ class ContentController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Thank you for contacting us! Your inquiry has been received and stored in our database.',
+            'message' => 'Thank you for contacting us! Your message has been received and saved.',
             'data' => $contactRecord
         ]);
     }
