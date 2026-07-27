@@ -2,70 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use App\Models\Banner;
 use App\Models\Service;
 use App\Models\CaseStudy;
 use App\Models\Insight;
 use App\Models\NewsItem;
 use App\Models\Inquiry;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Log;
+use App\Models\Contact;
 
 class ContentController extends Controller
 {
     /**
-     * Get complete homepage content payload.
+     * Get dynamic homepage content (Banners, Services, Case Studies, Insights, News)
      */
     public function homepage()
     {
-        $banners = [
-            [
-                'id' => 1,
-                'tag' => 'TRANSFORM WITH CONFIDENCE',
-                'title' => 'What challenge are you facing?',
-                'subtitle' => 'We partner with governments and enterprises to navigate complex digital transformations with Next-Gen technology, cloud innovation, and AI.',
-                'image_url' => 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80',
-                'button_text' => 'Explore Our Solutions',
-                'button_link' => '#services'
-            ],
-            [
-                'id' => 2,
-                'tag' => 'ARTIFICIAL INTELLIGENCE & DATA',
-                'title' => 'Accelerating Enterprise AI Value',
-                'subtitle' => 'Unlock sustainable growth with sovereign data platforms, predictive analytics, and enterprise generative AI solutions built for real impact.',
-                'image_url' => 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80',
-                'button_text' => 'Discover Data & AI',
-                'button_link' => '#services'
-            ]
-        ];
+        try {
+            $dbBanners = Banner::where('is_active', true)->orderBy('sort_order')->get();
+            $banners = $dbBanners->count() > 0 ? $dbBanners : $this->getDefaultBanners();
+        } catch (\Exception $e) {
+            $banners = $this->getDefaultBanners();
+        }
 
-        $services = [
-            [
-                'id' => 1,
-                'icon' => 'Code',
-                'title' => 'Applications & Platforms',
-                'summary' => 'Modernise, build, and run critical business applications with microservices and cloud-native architecture.',
-                'description' => 'Our application modernise capabilities accelerate digital delivery, boost resiliency, and lower total cost of ownership across public sector and enterprise workloads.',
-                'features' => ['Cloud Migration & Modernisation', 'Custom API & Microservices', 'DevSecOps Automation', 'Legacy Application Evolution']
-            ],
-            [
-                'id' => 2,
-                'icon' => 'Smartphone',
-                'title' => 'Digital Experience (CX)',
-                'summary' => 'Create seamless, human-centric digital experiences that captivate citizens and enterprise users alike.',
-                'description' => 'Combining human-centred design with agile engineering to craft intuitive digital portals, mobile applications, and omnichannel citizen experiences.',
-                'features' => ['Human-Centred UX/UI Design', 'Omnichannel Citizen Portals', 'Mobile App Development', 'Accessibility & Design Systems']
-            ],
-            [
-                'id' => 3,
-                'icon' => 'Cpu',
-                'title' => 'Data & AI Ecosystems',
-                'summary' => 'Harness sovereign data intelligence, enterprise analytics, and generative AI models safely.',
-                'description' => 'Turn massive data streams into actionable operational intelligence while maintaining strict data governance, security compliance, and privacy.',
-                'features' => ['Enterprise Data Platforms', 'Generative AI & LLM Integration', 'Predictive Analytics & ML', 'Data Governance & Sovereignty']
-            ]
-        ];
+        try {
+            $dbServices = Service::orderBy('sort_order')->get();
+            $services = $dbServices->count() > 0 ? $dbServices : $this->getDefaultServices();
+        } catch (\Exception $e) {
+            $services = $this->getDefaultServices();
+        }
 
         try {
             $dbCaseStudies = CaseStudy::latest()->get();
@@ -98,8 +65,14 @@ class ContentController extends Controller
             [
                 'id' => 2,
                 'number' => '20+',
-                'label' => 'Global Delivery Centers',
-                'subtext' => 'Providing 24/7 mission-critical operations'
+                'label' => 'Global Hubs & Delivery Centres',
+                'subtext' => 'Delivering localized digital solutions'
+            ],
+            [
+                'id' => 3,
+                'number' => '100+',
+                'label' => 'Government & Enterprise Clients',
+                'subtext' => 'Trusted for critical infrastructure & AI'
             ]
         ];
 
@@ -123,7 +96,7 @@ class ContentController extends Controller
     }
 
     /**
-     * Handle contact form submission: Store in Database + Dispatch Email Notification.
+     * Handle contact form submission: Store in contacts & inquiries DB + Dispatch Email.
      */
     public function contact(Request $request)
     {
@@ -136,18 +109,36 @@ class ContentController extends Controller
             'company' => 'nullable|string|max:255',
             'designation' => 'nullable|string|max:255',
             'subject' => 'required|string|max:255',
-            'message' => 'required|string'
+            'message' => 'required|string',
+            'consent' => 'nullable|boolean'
         ]);
 
         $firstName = $validated['first_name'] ?? ($validated['name'] ?? 'Client');
         $lastName = $validated['last_name'] ?? '';
         $fullName = trim("$firstName $lastName");
         $organisation = $validated['organisation'] ?? ($validated['company'] ?? '');
+        $consent = $request->has('consent') ? (bool)$request->consent : true;
 
-        // 1. Store in Database
-        $inquiry = null;
+        // 1. Store in Contacts table
+        $contactRecord = null;
         try {
-            $inquiry = Inquiry::create([
+            $contactRecord = Contact::create([
+                'first_name' => $firstName,
+                'last_name' => $lastName,
+                'email' => $validated['email'],
+                'organisation' => $organisation,
+                'designation' => $validated['designation'] ?? '',
+                'subject' => $validated['subject'],
+                'message' => $validated['message'],
+                'consent' => $consent
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Database store in contacts table failed: ' . $e->getMessage());
+        }
+
+        // Also store in Inquiries table for compatibility
+        try {
+            Inquiry::create([
                 'name' => $fullName,
                 'first_name' => $firstName,
                 'last_name' => $lastName,
@@ -159,7 +150,7 @@ class ContentController extends Controller
                 'message' => $validated['message']
             ]);
         } catch (\Exception $e) {
-            Log::error('Database store inquiry failed: ' . $e->getMessage());
+            Log::error('Database store in inquiries table failed: ' . $e->getMessage());
         }
 
         // 2. Dispatch Email Notification to Admin
@@ -174,17 +165,71 @@ class ContentController extends Controller
 
             Mail::raw($emailContent, function ($mail) use ($validated, $fullName) {
                 $mail->to('admin@ncs.co')
-                    ->subject("New Contact Enquiry: {$validated['subject']} from {$fullName}");
+                    ->subject('NCS Corporate Portal - New Inquiry from ' . $fullName);
             });
         } catch (\Exception $e) {
-            Log::info("Email notification queued/logged: " . $e->getMessage());
+            Log::error('Contact form email notification failed: ' . $e->getMessage());
         }
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Thank you for reaching out! Your inquiry has been stored in our database and emailed to our team.',
-            'data' => $inquiry
-        ], 200);
+            'message' => 'Thank you for contacting us! Your inquiry has been received and stored in our database.',
+            'data' => $contactRecord
+        ]);
+    }
+
+    private function getDefaultBanners()
+    {
+        return [
+            [
+                'id' => 1,
+                'tag' => 'TRANSFORM WITH CONFIDENCE',
+                'title' => 'What challenge are you facing?',
+                'subtitle' => 'We partner with governments and enterprises to navigate complex digital transformations with Next-Gen technology, cloud innovation, and AI.',
+                'image_url' => 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80',
+                'button_text' => 'Explore Our Solutions',
+                'button_link' => '#services'
+            ],
+            [
+                'id' => 2,
+                'tag' => 'ARTIFICIAL INTELLIGENCE & DATA',
+                'title' => 'Accelerating Enterprise AI Value',
+                'subtitle' => 'Unlock sustainable growth with sovereign data platforms, predictive analytics, and enterprise generative AI solutions built for real impact.',
+                'image_url' => 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80',
+                'button_text' => 'Discover Data & AI',
+                'button_link' => '#services'
+            ]
+        ];
+    }
+
+    private function getDefaultServices()
+    {
+        return [
+            [
+                'id' => 1,
+                'icon' => 'Code',
+                'title' => 'Applications & Platforms',
+                'summary' => 'Modernise, build, and run critical business applications with microservices and cloud-native architecture.',
+                'description' => 'Our application modernise capabilities accelerate digital delivery, boost resiliency, and lower total cost of ownership across public sector and enterprise workloads.',
+                'features' => ['Cloud Migration & Modernisation', 'Custom API & Microservices', 'DevSecOps Automation', 'Legacy Application Evolution']
+            ],
+            [
+                'id' => 2,
+                'icon' => 'Smartphone',
+                'title' => 'Digital Experience (CX)',
+                'summary' => 'Create seamless, human-centric digital experiences that captivate citizens and enterprise users alike.',
+                'description' => 'Combining human-centred design with agile engineering to craft intuitive digital portals, mobile applications, and omnichannel citizen experiences.',
+                'features' => ['Human-Centred UX/UI Design', 'Omnichannel Citizen Portals', 'Mobile App Development', 'Accessibility & Design Systems']
+            ],
+            [
+                'id' => 3,
+                'icon' => 'Cpu',
+                'title' => 'Data & AI Ecosystems',
+                'summary' => 'Harness sovereign data intelligence, enterprise analytics, and generative AI models safely.',
+                'description' => 'Turn massive data streams into actionable operational intelligence while maintaining strict data governance, security compliance, and privacy.',
+                'features' => ['Enterprise Data Platforms', 'Generative AI & LLM Integration', 'Predictive Analytics & ML', 'Data Governance & Sovereignty']
+            ]
+        ];
     }
 
     private function getDefaultCaseStudies()

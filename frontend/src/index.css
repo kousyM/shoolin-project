@@ -1088,110 +1088,91 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 }
 
-/* Dedicated Contact Us Page Container Box */
-.ncs-contact-page-bg {
-  background: linear-gradient(135deg, #3b0764 0%, #701a75 45%, #1e1b4b 100%);
+/* EXACT USER REFERENCE SCREENSHOT CONTACT PAGE STYLING */
+.ncs-exact-contact-gradient {
+  background: linear-gradient(135deg, #090e24 0%, #1e1b4b 20%, #3b0764 45%, #701a75 75%, #1e1b4b 100%);
 }
 
-.ncs-contact-card-box {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 24px;
-  padding: 3rem 2.5rem;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
-  width: 100%;
-}
-
-@media (max-width: 768px) {
-  .ncs-contact-card-box {
-    padding: 2rem 1.5rem;
-    border-radius: 16px;
-  }
-}
-
-.ncs-underline-field {
+.ncs-underline-group {
   position: relative;
   width: 100%;
 }
 
-.ncs-input-underline {
+.ncs-screenshot-input {
   width: 100%;
-  padding: 0.85rem 0;
+  padding: 0.75rem 0;
   background: transparent;
   border: none;
-  border-bottom: 1.5px solid rgba(255, 255, 255, 0.6);
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.55);
   color: #ffffff;
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-family: inherit;
   outline: none;
-  transition: border-color 0.2s ease;
+  transition: border-color 0.25s ease;
 }
 
-.ncs-input-underline::placeholder {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 1.05rem;
+.ncs-screenshot-input::placeholder {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.95rem;
   font-weight: 400;
 }
 
-.ncs-input-underline:focus {
+.ncs-screenshot-input:focus {
   border-bottom-color: #38bdf8;
 }
 
-.ncs-select-underline {
+.ncs-screenshot-select {
   width: 100%;
-  padding: 0.85rem 0;
+  padding: 0.75rem 0;
   background: transparent;
   border: none;
-  border-bottom: 1.5px solid rgba(255, 255, 255, 0.6);
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.55);
   color: #ffffff;
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-family: inherit;
   outline: none;
   cursor: pointer;
 }
 
-.ncs-textarea-box {
+.ncs-textarea-outline-box {
   width: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  background: rgba(255, 255, 255, 0.04);
-  backdrop-filter: blur(4px);
-  padding: 1.25rem;
-  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.02);
+  padding: 1rem;
+  border-radius: 4px;
 }
 
-.ncs-textarea-input {
+.ncs-screenshot-textarea {
   width: 100%;
   background: transparent;
   border: none;
   color: #ffffff;
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-family: inherit;
   outline: none;
   resize: vertical;
 }
 
-.ncs-textarea-input::placeholder {
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 1.05rem;
+.ncs-screenshot-textarea::placeholder {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 0.95rem;
 }
 
-.ncs-contact-submit-btn {
+.ncs-screenshot-submit-pill {
   display: inline-block;
-  padding: 0.85rem 2.8rem;
+  padding: 0.65rem 2.8rem;
   border-radius: 50px;
-  border: 1.5px solid #ffffff;
+  border: 1.5px solid rgba(255, 255, 255, 0.85);
   color: #ffffff;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.1);
   font-weight: 700;
   font-size: 0.85rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.ncs-contact-submit-btn:hover {
+.ncs-screenshot-submit-pill:hover {
   background-color: #ffffff;
   color: #3b0764;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
