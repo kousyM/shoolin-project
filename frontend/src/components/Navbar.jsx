@@ -52,16 +52,17 @@ export const Navbar = ({ onOpenContactPage, onNavHome }) => {
           ))}
         </ul>
 
-        {/* Right Country Badge & Mobile Toggle */}
+        {/* Right Country Badge & Mobile Menu Toggle (STRICTLY HIDDEN ON DESKTOP) */}
         <div className="flex items-center gap-4">
           <div className="hidden md:flex items-center gap-1.5 text-slate-300 text-xs font-semibold px-2.5 py-1 bg-white/5 rounded-full border border-white/10">
             <Globe size={14} className="text-cyan-400" />
             <span>EN-AU</span>
           </div>
 
+          {/* Hamburger Icon Button - ONLY Visible on Mobile Screens (< 900px) */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="mobile-nav-toggle"
+            className="mobile-nav-toggle lg:hidden"
             aria-label="Toggle Menu"
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}

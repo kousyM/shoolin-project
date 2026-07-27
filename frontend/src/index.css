@@ -110,6 +110,37 @@ h1, h2, h3, h4, h5, h6 {
   gap: 0.5rem;
 }
 
+/* Mobile Toggle & Mobile Drawer - STRICTLY HIDDEN ON DESKTOP */
+.mobile-nav-toggle {
+  display: none !important;
+  background: transparent;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.mobile-drawer {
+  display: none !important;
+}
+
+@media (max-width: 900px) {
+  .mobile-nav-toggle {
+    display: block !important;
+  }
+  .nav-links {
+    display: none !important;
+  }
+  .mobile-drawer.open {
+    display: flex !important;
+    flex-direction: column;
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: #001229;
+    padding: 2rem;
+  }
+}
+
 /* Hero Slider */
 .hero-slider-container {
   position: relative;
