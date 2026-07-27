@@ -52,19 +52,12 @@ export const Navbar = ({ onOpenContactPage, onNavHome }) => {
           ))}
         </ul>
 
-        {/* Right CTA Badge & Mobile Toggle */}
+        {/* Right Country Badge & Mobile Toggle */}
         <div className="flex items-center gap-4">
           <div className="hidden md:flex items-center gap-1.5 text-slate-300 text-xs font-semibold px-2.5 py-1 bg-white/5 rounded-full border border-white/10">
             <Globe size={14} className="text-cyan-400" />
             <span>EN-AU</span>
           </div>
-
-          <button
-            onClick={onOpenContactPage}
-            className="btn-ncs-primary hidden sm:inline-flex"
-          >
-            <span>Get in Touch</span>
-          </button>
 
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

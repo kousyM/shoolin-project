@@ -218,9 +218,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: monospace;
 }
 
-/* ============================================================
-   ABOUT US SECTION - EXACT NCS WEBSITE REPLICATED DESIGN
-   ============================================================ */
+/* About Section */
 .ncs-about-section {
   background-color: #f2f4f7;
   padding: 0;
@@ -285,9 +283,7 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
 }
 
-/* ============================================================
-   OUR SERVICES SECTION - EXACT NCS WEBSITE REPLICATED DESIGN
-   ============================================================ */
+/* Services Section */
 .ncs-services-section {
   background-color: #ffffff;
   padding: 5rem 1.5rem;
@@ -372,9 +368,7 @@ h1, h2, h3, h4, h5, h6 {
   text-decoration: none;
 }
 
-/* ============================================================
-   CASE STUDIES CAROUSEL - EXACT NCS WEBSITE REPLICATED DESIGN
-   ============================================================ */
+/* Case Studies Carousel */
 .ncs-case-section {
   background-color: #ffffff;
   padding: 5rem 1.5rem;
@@ -506,9 +500,7 @@ h1, h2, h3, h4, h5, h6 {
   width: fit-content;
 }
 
-/* ============================================================
-   INSIGHTS SECTION - HOVER FLIP TO DARK BLUE BOX EFFECT
-   ============================================================ */
+/* Insights Section */
 .ncs-insight-section {
   background-color: #f9fafb;
   padding: 5rem 1.5rem;
@@ -660,9 +652,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: auto;
 }
 
-/* ============================================================
-   LATEST NEWS CAROUSEL - ARROWS AT BOTTOM RIGHT
-   ============================================================ */
+/* Latest News Carousel */
 .ncs-news-section {
   background-color: #ffffff;
   padding: 5rem 1.5rem;
@@ -788,9 +778,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: 1rem;
 }
 
-/* ============================================================
-   STATS COUNTER SECTION - EXACT REPLICATED SCREENSHOT 1
-   ============================================================ */
+/* Stats Counter Section */
 .ncs-stats-exact-section {
   background-color: #f2f4f7;
   padding: 5rem 1.5rem 4rem;
@@ -859,9 +847,7 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.6;
 }
 
-/* ============================================================
-   MEET OUR PARTNERS SECTION - EXACT REPLICATED SCREENSHOT 2
-   ============================================================ */
+/* Meet Our Partners Section */
 .ncs-partners-exact-section {
   background-color: #ffffff;
   padding: 5rem 1.5rem;
@@ -937,9 +923,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #ffffff;
 }
 
-/* ============================================================
-   JOIN AN EXTRAORDINARY TEAM - EXACT REPLICATED SCREENSHOT 3
-   ============================================================ */
+/* Join Team Section */
 .ncs-join-section {
   width: 100%;
   overflow: hidden;
@@ -1018,9 +1002,7 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
 }
 
-/* ============================================================
-   CONTACT US BANNER SECTION - EXACT REPLICATED SCREENSHOT 4
-   ============================================================ */
+/* Contact Us Banner Section */
 .ncs-contact-banner-section {
   background: linear-gradient(125deg, #3b0764 0%, #701a75 45%, #001738 100%);
   color: #ffffff;
@@ -1075,11 +1057,27 @@ h1, h2, h3, h4, h5, h6 {
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 }
 
-/* ============================================================
-   DEDICATED CONTACT US PAGE STYLES (MATCHING USER SCREENSHOT)
-   ============================================================ */
+/* Dedicated Contact Us Page Container Box */
 .ncs-contact-page-bg {
-  background: linear-gradient(135deg, #3b0764 0%, #701a75 45%, #4c1d95 100%);
+  background: linear-gradient(135deg, #3b0764 0%, #701a75 45%, #1e1b4b 100%);
+}
+
+.ncs-contact-card-box {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 24px;
+  padding: 3rem 2.5rem;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .ncs-contact-card-box {
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
+  }
 }
 
 .ncs-underline-field {
@@ -1129,7 +1127,7 @@ h1, h2, h3, h4, h5, h6 {
   background: rgba(255, 255, 255, 0.04);
   backdrop-filter: blur(4px);
   padding: 1.25rem;
-  border-radius: 4px;
+  border-radius: 8px;
 }
 
 .ncs-textarea-input {
