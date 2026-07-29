@@ -321,95 +321,198 @@ h6 {
   display: block;
 }
 
-/* Services Section */
+/* =========================
+   SERVICES
+========================= */
+
 .ncs-services-section {
-  background-color: #ffffff;
-  padding: 5rem 1.5rem;
-  width: 100%;
+  padding: 65px 20px;
+  background: #fff;
 }
 
 .ncs-services-container {
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 1320px;
+  margin: auto;
 }
 
 .ncs-services-header {
   text-align: center;
-  margin-bottom: 4rem;
+  margin-bottom: 70px;
 }
 
 .ncs-services-title {
-  font-size: 2.75rem;
+  font-size: 3rem;
   font-weight: 700;
-  color: #1a1a1a;
-  margin-bottom: 0.75rem;
-  letter-spacing: -0.03em;
+  color: #222;
+  margin-bottom: 15px;
 }
 
 .ncs-services-subtitle {
-  font-size: 1.15rem;
-  color: #0046ad;
-  font-weight: 500;
+  max-width: 760px;
+  margin: auto;
+  font-size: 22px;
+  line-height: 1.6;
+  color: #444;
 }
+
+/* =========================
+GRID
+========================= */
 
 .ncs-services-3col {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 3.5rem;
-  margin-bottom: 3.5rem;
-}
-
-@media (max-width: 900px) {
-  .ncs-services-3col {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-  }
+  gap: 0;
 }
 
 .ncs-service-col {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
+  position: relative;
+  padding: 0 50px;
 }
+
+.ncs-service-col:not(:last-child) {
+  border-right: 1px solid #d9d9d9;
+}
+
+/* =========================
+ICON
+========================= */
 
 .ncs-service-icon {
-  color: #0046ad;
-  margin-bottom: 1.5rem;
+  color: #0B6CC4;
+  margin-bottom: 28px;
 }
+
+.ncs-service-icon svg {
+  width: 72px;
+  height: 72px;
+}
+
+/* =========================
+TITLE
+========================= */
 
 .ncs-service-col-title {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #1a1a1a;
-  margin-bottom: 0.75rem;
+  font-size: 25px;
+  font-weight: 400;
+  color: #1e1e1e;
+  margin-bottom: 20px;
+  line-height: 1.3;
 }
+
+/* =========================
+DESCRIPTION
+========================= */
 
 .ncs-service-col-desc {
-  font-size: 0.95rem;
-  color: #555555;
-  line-height: 1.65;
-  margin-bottom: 1.5rem;
-  flex-grow: 1;
+  font-size: 20px;
+  line-height: 1.8;
+  color: #444;
+  min-height: 220px;
+  margin-bottom: 35px;
 }
 
+/* =========================
+LINK
+========================= */
+
 .ncs-service-link {
-  color: #0046ad;
-  font-weight: 600;
-  font-size: 0.95rem;
   display: inline-flex;
   align-items: center;
-  gap: 0.35rem;
-  background: transparent;
+  gap: 10px;
   border: none;
-  cursor: pointer;
+  background: none;
   padding: 0;
+  cursor: pointer;
+
+  color: #273F97;
+  font-size: 16px;
+  font-weight: 400;
+
+  letter-spacing: 4px;
+  text-transform: uppercase;
+
+  transition: .3s;
+}
+
+.ncs-service-link:hover {
+  color: #0B6CC4;
+}
+
+.ncs-service-link svg {
+  transition: .3s;
+}
+
+.ncs-service-link:hover svg {
+  transform: translateX(6px);
+}
+
+/* =========================
+BOTTOM BUTTON
+========================= */
+
+.ncs-services-cta {
+  margin-top: 70px;
+  display: flex;
+  justify-content: center;
+}
+
+.ncs-pill-btn {
+  padding: 18px 70px;
+  border: 3px solid #173B82;
+  border-radius: 45px;
+
+  color: #173B82;
   text-decoration: none;
+  font-size: 22px;
+  font-weight: 600;
+
+  transition: .3s;
+}
+
+.ncs-pill-btn:hover {
+  background: #173B82;
+  color: #fff;
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media(max-width:992px) {
+
+  .ncs-services-title {
+    font-size: 42px;
+  }
+
+  .ncs-services-subtitle {
+    font-size: 18px;
+  }
+
+  .ncs-services-3col {
+    grid-template-columns: 1fr;
+  }
+
+  .ncs-service-col {
+    padding: 40px 0;
+    border-right: none !important;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .ncs-service-col:last-child {
+    border-bottom: none;
+  }
+
+  .ncs-service-col-desc {
+    min-height: auto;
+  }
+
 }
 
 /* Case Studies Carousel */
 .ncs-case-section {
   background-color: #ffffff;
-  padding: 5rem 1.5rem;
+  /* padding: 5rem 1.5rem; */
   width: 100%;
 }
 
@@ -420,7 +523,9 @@ h6 {
 
 .ncs-case-header-flex {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   align-items: flex-end;
   margin-bottom: 3rem;
   flex-wrap: wrap;
@@ -541,7 +646,7 @@ h6 {
 /* Insights Section */
 .ncs-insight-section {
   background-color: #f9fafb;
-  padding: 5rem 1.5rem;
+  padding: 3rem 1.5rem;
   width: 100%;
 }
 
@@ -693,7 +798,7 @@ h6 {
 /* Latest News Carousel */
 .ncs-news-section {
   background-color: #ffffff;
-  padding: 5rem 1.5rem;
+  /* padding: 5rem 1.5rem; */
   width: 100%;
 }
 

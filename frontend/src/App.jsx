@@ -237,13 +237,13 @@ export function App() {
       </main>
 
       {/* Item Detail Modal */}
-      {selectedItem && (
+      {/* {selectedItem && (
         <DetailModal
           item={selectedItem}
           type={modalType}
           onClose={handleCloseDetail}
         />
-      )}
+      )} */}
 
       {/* 12. Footer */}
       <Footer onOpenContactPage={() => setCurrentPage('contact')} />

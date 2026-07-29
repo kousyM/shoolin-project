@@ -46,8 +46,8 @@ export const ServicesGrid = ({ services = [], onSelectService }) => {
                   onClick={() => onSelectService(service)}
                   className="ncs-service-link"
                 >
-                  <span>What we do</span>
-                  <ChevronRight size={16} />
+                  <span>FIND OUT MORE</span>
+                  <ChevronRight size={18} />
                 </button>
               </div>
             );
@@ -56,11 +56,10 @@ export const ServicesGrid = ({ services = [], onSelectService }) => {
 
         {/* Centered Discover More Pill Button */}
         <div className="ncs-services-cta">
-          <a href="#case-studies" className="ncs-pill-btn">
-            <span>Discover more</span>
-            <ChevronRight size={16} />
-          </a>
-        </div>
+  <a href="#case-studies" className="ncs-pill-btn">
+    Find out more
+  </a>
+</div>
       </div>
     </section>
   );
