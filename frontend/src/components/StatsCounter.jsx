@@ -18,7 +18,7 @@ export const StatsCounter = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // initial check
+    handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, [hasAnimated]);
 
@@ -75,30 +75,42 @@ export const StatsCounter = () => {
         
         <div className="ncs-stats-3col">
           
-          {/* Column 1 */}
-          <div className="ncs-stat-col border-r border-slate-300">
-            <div className="ncs-stat-number text-cyan-600">
-              <span className="ncs-hash">#</span> {count1}
+          {/* Column 1: # 1 (Sky Blue / Cyan #38bdf8) */}
+          <div className="ncs-stat-col border-r border-slate-300/80">
+            <div
+              className="ncs-stat-number ncs-stat-cyan"
+              style={{ color: '#38bdf8' }}
+            >
+              <span className="ncs-hash mr-1" style={{ color: '#38bdf8' }}>#</span>
+              <span style={{ color: '#38bdf8' }}>{count1}</span>
             </div>
             <p className="ncs-stat-desc">
               in IT services in Singapore and Southeast Asia*
             </p>
           </div>
 
-          {/* Column 2 */}
-          <div className="ncs-stat-col border-r border-slate-300">
-            <div className="ncs-stat-number text-pink-600">
-              <span className="ncs-prefix">&gt;</span> {count2.toLocaleString()}
+          {/* Column 2: > 15,000 (Magenta / Hot Pink #e01a4f) */}
+          <div className="ncs-stat-col border-r border-slate-300/80">
+            <div
+              className="ncs-stat-number ncs-stat-magenta"
+              style={{ color: '#e01a4f' }}
+            >
+              <span className="ncs-prefix mr-1" style={{ color: '#e01a4f' }}>&gt;</span>
+              <span style={{ color: '#e01a4f' }}>{count2.toLocaleString()}</span>
             </div>
             <p className="ncs-stat-desc">
               people across Singapore, Australia, China, India and Philippines
             </p>
           </div>
 
-          {/* Column 3 */}
+          {/* Column 3: > 20 (Dark Navy #001738) */}
           <div className="ncs-stat-col">
-            <div className="ncs-stat-number text-slate-900">
-              <span className="ncs-prefix">&gt;</span> {count3}
+            <div
+              className="ncs-stat-number ncs-stat-navy"
+              style={{ color: '#001738' }}
+            >
+              <span className="ncs-prefix mr-1" style={{ color: '#001738' }}>&gt;</span>
+              <span style={{ color: '#001738' }}>{count3}</span>
             </div>
             <p className="ncs-stat-desc">
               cities where we operate in within Asia Pacific
@@ -107,12 +119,12 @@ export const StatsCounter = () => {
 
         </div>
 
-        {/* Disclaimer note at bottom center matching screenshot 1 */}
+        {/* Disclaimer note at bottom center matching screenshot */}
         <div className="ncs-stats-disclaimer">
           <p>
             *As part of NCS Group — #1 in IT services in Singapore and Southeast Asia — we bring world-class expertise to Australian businesses.
           </p>
-          <p>
+          <p className="mt-1">
             Our global team of 15,000+ people across Singapore, Australia, China and India delivers innovative solutions locally and internationally.
           </p>
         </div>

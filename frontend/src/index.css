@@ -322,157 +322,129 @@ h6 {
 }
 
 /* =========================
-   SERVICES
+   SERVICES (Exact NCS Screenshot Match)
 ========================= */
 
 .ncs-services-section {
-  padding: 65px 20px;
-  background: #fff;
+  padding: 5rem 1.5rem;
+  background-color: #ffffff;
 }
 
 .ncs-services-container {
-  max-width: 1320px;
-  margin: auto;
+  max-width: 1240px;
+  margin: 0 auto;
 }
 
 .ncs-services-header {
   text-align: center;
-  margin-bottom: 70px;
+  margin-bottom: 4rem;
 }
 
 .ncs-services-title {
-  font-size: 3rem;
+  font-family: var(--font-heading);
+  font-size: 2.75rem;
   font-weight: 700;
-  color: #222;
-  margin-bottom: 15px;
+  color: #111827;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.75rem;
 }
 
 .ncs-services-subtitle {
-  max-width: 760px;
-  margin: auto;
-  font-size: 22px;
-  line-height: 1.6;
-  color: #444;
+  max-width: 680px;
+  margin: 0 auto;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: #4b5563;
+  font-weight: 400;
 }
-
-/* =========================
-GRID
-========================= */
 
 .ncs-services-3col {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 0;
+  margin-bottom: 1.5rem;
 }
 
 .ncs-service-col {
   position: relative;
-  padding: 0 50px;
+  padding: 0 45px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .ncs-service-col:not(:last-child) {
-  border-right: 1px solid #d9d9d9;
+  border-right: 1px solid #e2e8f0;
 }
-
-/* =========================
-ICON
-========================= */
 
 .ncs-service-icon {
-  color: #0B6CC4;
-  margin-bottom: 28px;
+  margin-bottom: 1.75rem;
 }
-
-.ncs-service-icon svg {
-  width: 72px;
-  height: 72px;
-}
-
-/* =========================
-TITLE
-========================= */
 
 .ncs-service-col-title {
-  font-size: 25px;
-  font-weight: 400;
-  color: #1e1e1e;
-  margin-bottom: 20px;
-  line-height: 1.3;
+  font-family: var(--font-heading);
+  font-size: 1.65rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 1.25rem;
+  line-height: 1.25;
 }
-
-/* =========================
-DESCRIPTION
-========================= */
 
 .ncs-service-col-desc {
-  font-size: 20px;
-  line-height: 1.8;
-  color: #444;
-  min-height: 220px;
-  margin-bottom: 35px;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: #4b5563;
+  min-height: 160px;
+  margin-bottom: 2rem;
+  font-weight: 400;
 }
-
-/* =========================
-LINK
-========================= */
 
 .ncs-service-link {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.6rem;
   border: none;
   background: none;
   padding: 0;
   cursor: pointer;
-
-  color: #273F97;
-  font-size: 16px;
-  font-weight: 400;
-
-  letter-spacing: 4px;
+  color: #173B82;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-
-  transition: .3s;
+  transition: color 0.2s ease;
+  margin-top: auto;
 }
 
-.ncs-service-link:hover {
-  color: #0B6CC4;
+.ncs-service-link .ncs-service-arrow {
+  transition: transform 0.25s ease;
 }
 
-.ncs-service-link svg {
-  transition: .3s;
-}
-
-.ncs-service-link:hover svg {
+.ncs-service-link:hover .ncs-service-arrow {
   transform: translateX(6px);
 }
 
-/* =========================
-BOTTOM BUTTON
-========================= */
-
 .ncs-services-cta {
-  margin-top: 70px;
+  margin-top: 3.5rem;
   display: flex;
   justify-content: center;
 }
 
 .ncs-pill-btn {
-  padding: 18px 70px;
-  border: 3px solid #173B82;
-  border-radius: 45px;
-
+  padding: 0.65rem 2.5rem;
+  border: 2px solid #173B82;
+  border-radius: 50px;
   color: #173B82;
   text-decoration: none;
-  font-size: 22px;
+  font-size: 0.95rem;
   font-weight: 600;
-
-  transition: .3s;
+  transition: all 0.25s ease;
+  background-color: transparent;
 }
 
 .ncs-pill-btn:hover {
-  background: #173B82;
-  color: #fff;
+  background-color: #173B82;
+  color: #ffffff;
 }
 
 /* =========================
@@ -962,6 +934,18 @@ RESPONSIVE
   line-height: 1;
   margin-bottom: 1rem;
   font-family: var(--font-heading);
+}
+
+.ncs-stat-cyan, .ncs-stat-cyan * {
+  color: #38bdf8 !important;
+}
+
+.ncs-stat-magenta, .ncs-stat-magenta * {
+  color: #e01a4f !important;
+}
+
+.ncs-stat-navy, .ncs-stat-navy * {
+  color: #001738 !important;
 }
 
 .ncs-hash {
@@ -1707,4 +1691,215 @@ RESPONSIVE
   padding: 45px;
   border-radius: 24px;
 
+}
+
+/* =========================================================
+   REUSABLE CARD SLIDER SECTION (Matching User's NCS Screenshot)
+   ========================================================= */
+
+.ncs-slider-single-section {
+  background-color: #ffffff;
+  padding: 4.5rem 1.5rem;
+  width: 100%;
+}
+
+.ncs-slider-single-section:nth-child(even) {
+  background-color: #fafbfc;
+}
+
+.ncs-slider-single-container {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.ncs-slider-header-centered {
+  text-align: center;
+  margin: 0 auto 2.5rem;
+  max-width: 780px;
+}
+
+.ncs-single-section-title {
+  font-family: var(--font-heading);
+  font-size: 2.75rem;
+  font-weight: 700;
+  color: #111827;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
+
+.ncs-single-section-sub {
+  font-size: 1.05rem;
+  color: #6b7280;
+  font-weight: 400;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.ncs-single-slider-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 1.75rem;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  user-select: none;
+}
+
+.ncs-single-slider-grid.grab {
+  cursor: grab;
+}
+
+.ncs-single-slider-grid.grabbing {
+  cursor: grabbing;
+}
+
+@media (max-width: 900px) {
+  .ncs-single-slider-grid {
+    flex-direction: column;
+  }
+}
+
+/* Exact NCS Card Layout from Screenshot */
+.ncs-exact-ncs-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #f4f5f8;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.ncs-exact-ncs-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+}
+
+.ncs-card-img-wrapper {
+  width: 100%;
+  height: 230px;
+  overflow: hidden;
+}
+
+.ncs-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.ncs-card-content {
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  min-height: 250px;
+}
+
+.ncs-card-heading {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #111827;
+  line-height: 1.4;
+  margin-bottom: 1.25rem;
+}
+
+/* Pill Tags (Matching Screenshot) */
+.ncs-card-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.ncs-pill-outline-tag {
+  display: inline-block;
+  padding: 0.25rem 0.85rem;
+  border-radius: 30px;
+  border: 1px solid #173B82;
+  color: #173B82;
+  font-size: 0.75rem;
+  font-weight: 500;
+  background: transparent;
+}
+
+/* READ MORE Button (Matching Screenshot) */
+.ncs-card-action-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #173B82;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: auto;
+  transition: color 0.2s ease;
+}
+
+.ncs-card-action-btn .ncs-action-arrow {
+  transition: transform 0.25s ease;
+}
+
+.ncs-exact-ncs-card:hover .ncs-card-action-btn .ncs-action-arrow {
+  transform: translateX(6px);
+}
+
+/* Bottom Right Arrow Controls (Matching Screenshot) */
+.ncs-bottom-nav-arrows {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.ncs-circle-arrow-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1.5px solid #94a3b8;
+  background: transparent;
+  color: #475569;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.ncs-circle-arrow-btn:hover {
+  border-color: #173B82;
+  color: #173B82;
+  background-color: rgba(23, 59, 130, 0.05);
+}
+
+/* Dark Navy Blue Hover Overlay for Cards (Preserved Hover Effect) */
+.ncs-exact-ncs-card {
+  position: relative;
+}
+
+.ncs-card-blue-hover-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(145deg, #001229 0%, #00224d 100%);
+  color: #ffffff;
+  padding: 2rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  transform: translateY(10px);
+  z-index: 10;
+}
+
+.ncs-exact-ncs-card:hover .ncs-card-blue-hover-overlay {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
 }

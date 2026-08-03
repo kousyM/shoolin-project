@@ -227,24 +227,46 @@ class ContentController extends Controller
         return [
             [
                 'id' => 1,
-                'category' => 'Education & Public Sector',
-                'title' => 'Raising the bar for cashless school payments',
-                'summary' => 'Streamlining payment ecosystems across 400+ schools with contactless smart cards and real-time transaction reconciliation.',
-                'image_url' => 'https://images.unsplash.com/photo-1556742049-0a67daf64f42?auto=format&fit=crop&w=800&q=80'
+                'category' => 'Financial Services',
+                'title' => 'Transforming compliance controls with AI in financial services',
+                'summary' => 'Automating regulatory compliance and risk monitoring with generative AI and machine learning audit models.',
+                'image_url' => 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80'
             ],
             [
                 'id' => 2,
+                'category' => 'Education & Public Services',
+                'title' => 'When a leading education provider set out to reimagine student engagement, NCS helped make it real',
+                'summary' => 'Deploying personalized mobile student portals and automated digital administration for 50,000+ students.',
+                'image_url' => 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80'
+            ],
+            [
+                'id' => 3,
+                'category' => 'Education',
+                'title' => 'Raising the bar for cashless school payments',
+                'summary: Streamlining payment ecosystems across 400+ schools with contactless smart cards and real-time transaction reconciliation.',
+                'summary' => 'Streamlining payment ecosystems across 400+ schools with contactless smart cards and real-time reconciliation.',
+                'image_url' => 'https://images.unsplash.com/photo-1556742049-0a67daf64f42?auto=format&fit=crop&w=800&q=80'
+            ],
+            [
+                'id' => 4,
                 'category' => 'Industrial & Commercial',
                 'title' => 'Driving proactive worksite safety through AI technology',
                 'summary' => 'Deploying computer vision edge analytics to detect hazards and PPE compliance in real time on heavy industrial worksites.',
                 'image_url' => 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80'
             ],
             [
-                'id' => 3,
+                'id' => 5,
                 'category' => 'Enterprise Technology',
                 'title' => 'Enabling AI-powered high performance for a global workforce',
-                'summary' => 'Empowering 18,000+ employees with sovereign generative AI copilots.',
+                'summary' => 'Empowering 18,000+ employees with sovereign generative AI copilots and automated workflows.',
                 'image_url' => 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80'
+            ],
+            [
+                'id' => 6,
+                'category' => 'Healthcare & Biotech',
+                'title' => 'Modernising patient care systems with secure cloud infrastructure',
+                'summary' => 'Connecting regional healthcare networks with real-time electronic health records and HIPAA-compliant data pipelines.',
+                'image_url' => 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80'
             ]
         ];
     }
@@ -255,7 +277,7 @@ class ContentController extends Controller
             [
                 'id' => 1,
                 'type' => 'ARTICLE',
-                'category' => 'Data',
+                'category' => 'Data & AI',
                 'date_str' => 'Jul 02',
                 'title' => 'Databricks Data + AI Summit 2026: The Shift from Data Platforms to AI Powered Innovation',
                 'summary' => 'Key takeaways on scaling lakehouse architecture and sovereign data governance for generative AI enterprise models.',
@@ -264,8 +286,8 @@ class ContentController extends Controller
             ],
             [
                 'id' => 2,
-                'type' => 'ARTICLE',
-                'category' => 'AI',
+                'type' => 'WHITEPAPER',
+                'category' => 'AI Governance',
                 'date_str' => 'Jun 22',
                 'title' => 'Platform, people, and process: why AI governance is the missing piece',
                 'summary' => 'Why successful AI deployment requires aligning technology platforms, human talent, and transparent risk management frameworks.',
@@ -274,13 +296,44 @@ class ContentController extends Controller
             ],
             [
                 'id' => 3,
-                'type' => 'ARTICLE',
+                'type' => 'REPORT',
                 'category' => 'Public Sector',
                 'date_str' => 'Jun 18',
                 'title' => 'AI in government: the procurement problem',
                 'summary' => 'How public sector procurement frameworks must evolve to accommodate rapidly shifting cloud & AI technologies safely.',
                 'image_url' => 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
                 'sub_categories' => 'AI • Data • Transformation'
+            ],
+            [
+                'id' => 4,
+                'type' => 'ARTICLE',
+                'category' => 'Cloud & Security',
+                'date_str' => 'Jun 05',
+                'title' => 'Navigating Sovereign Cloud Requirements for Government Agencies',
+                'summary: Ensuring strict data sovereignty while harvesting the agility of multi-cloud architectures.',
+                'summary' => 'Ensuring strict data sovereignty while harvesting the agility of multi-cloud architectures in government.',
+                'image_url' => 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80',
+                'sub_categories' => 'Cloud • Sovereignty • Security'
+            ],
+            [
+                'id' => 5,
+                'type' => 'PERSPECTIVE',
+                'category' => 'Digital CX',
+                'date_str' => 'May 20',
+                'title' => 'Designing Human-Centric Citizen Experiences in the Age of Autonomous AI',
+                'summary' => 'Creating accessible, frictionless digital services that build trust across diverse demographics.',
+                'image_url' => 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80',
+                'sub_categories' => 'CX • Accessibility • AI'
+            ],
+            [
+                'id' => 6,
+                'type' => 'RESEARCH',
+                'category' => 'Cybersecurity',
+                'date_str' => 'May 10',
+                'title' => 'Zero Trust in the GenAI Era: Securing LLM Integrations against Data Leakage',
+                'summary' => 'Best practices for securing enterprise Large Language Models against prompt injections and telemetry leaks.',
+                'image_url' => 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80',
+                'sub_categories' => 'Security • GenAI • ZeroTrust'
             ]
         ];
     }
@@ -314,6 +367,34 @@ class ContentController extends Controller
                 'summary' => 'Creating specialized training programs to upskill 1,000+ local engineers in enterprise generative AI.',
                 'image_url' => 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80',
                 'icon_overlay' => 'cloud'
+            ],
+            [
+                'id' => 4,
+                'category' => 'AWARD',
+                'title: NCS recognised as Leader in Asia-Pacific Cloud Migration & AI Operations Report 2026',
+                'title' => 'NCS recognised as Leader in Asia-Pacific Cloud Migration & AI Operations Report 2026',
+                'date_str' => 'MAY 12, 2026',
+                'summary' => 'Independent study highlights NCS for market leadership in public sector digital transformation.',
+                'image_url' => 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80',
+                'icon_overlay' => 'star'
+            ],
+            [
+                'id' => 5,
+                'category' => 'COLLABORATION',
+                'title' => 'NCS expands Strategic Collaboration with AWS to build Sovereign Cloud Solutions',
+                'date_str' => 'APRIL 29, 2026',
+                'summary' => 'Delivering next-generation secure cloud environments for critical infrastructure across ANZ.',
+                'image_url' => 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80',
+                'icon_overlay' => 'cloud'
+            ],
+            [
+                'id' => 6,
+                'category' => 'EXPANSION',
+                'title' => 'NCS opens new Innovation Hub in Melbourne to accelerate AI research and enterprise co-creation',
+                'date_str' => 'APRIL 14, 2026',
+                'summary' => 'New state-of-the-art facility dedicated to rapid prototyping of generative AI solutions.',
+                'image_url' => 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80',
+                'icon_overlay' => 'tech'
             ]
         ];
     }
