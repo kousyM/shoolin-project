@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Footer = ({ onOpenContactPage }) => {
+export const Footer = ({ onOpenContactPage, onNavAdmin }) => {
   return (
     <footer className="ncs-footer">
       <div className="max-w-7xl mx-auto">
@@ -70,10 +70,18 @@ export const Footer = ({ onOpenContactPage }) => {
           <div>
             © 2026 NCS Group. All rights reserved.
           </div>
-          <div className="flex gap-6">
+          <div className="flex gap-6 items-center">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-white transition-colors">Terms of Use</a>
             <a href="#" className="hover:text-white transition-colors">Cyber Resilience Statement</a>
+            {onNavAdmin && (
+              <button
+                onClick={onNavAdmin}
+                className="text-slate-500 hover:text-cyan-400 transition-colors underline"
+              >
+                Admin Portal
+              </button>
+            )}
           </div>
         </div>
 

@@ -10,7 +10,12 @@ import PartnersSection from './components/PartnersSection';
 import JoinTeamSection from './components/JoinTeamSection';
 import ContactSection from './components/ContactSection';
 import ContactPage from './pages/ContactPage';
-import DetailModal from './components/DetailModal';
+import CareersPage from './pages/CareersPage';
+import JobDetailPage from './pages/JobDetailPage';
+import JobApplyPage from './pages/JobApplyPage';
+import AdminLoginPage from './pages/AdminLoginPage';
+import AdminDashboardPage from './pages/AdminDashboardPage';
+import AboutPage from './pages/AboutPage';
 import Footer from './components/Footer';
 
 const DEFAULT_HOMEPAGE_DATA = {
@@ -81,27 +86,6 @@ const DEFAULT_HOMEPAGE_DATA = {
       title: 'Raising the bar for cashless school payments',
       summary: 'Streamlining payment ecosystems across 400+ schools with contactless smart cards and real-time transaction reconciliation.',
       image_url: 'https://images.unsplash.com/photo-1556742049-0a67daf64f42?auto=format&fit=crop&w=800&q=80'
-    },
-    {
-      id: 4,
-      category: 'Industrial & Commercial',
-      title: 'Driving proactive worksite safety through AI technology',
-      summary: 'Deploying computer vision edge analytics to detect hazards and PPE compliance in real time on heavy industrial worksites.',
-      image_url: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80'
-    },
-    {
-      id: 5,
-      category: 'Enterprise Technology',
-      title: 'Enabling AI-powered high performance for a global workforce',
-      summary: 'Empowering 18,000+ employees with sovereign generative AI copilots.',
-      image_url: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80'
-    },
-    {
-      id: 6,
-      category: 'Healthcare & Biotech',
-      title: 'Modernising patient care systems with secure cloud infrastructure',
-      summary: 'Connecting regional healthcare networks with real-time electronic health records and data pipelines.',
-      image_url: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80'
     }
   ],
   insights: [
@@ -124,46 +108,6 @@ const DEFAULT_HOMEPAGE_DATA = {
       summary: 'Why successful AI deployment requires aligning technology platforms, human talent, and transparent risk management frameworks.',
       image_url: 'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=800&q=80',
       sub_categories: 'AI • Governance • People'
-    },
-    {
-      id: 3,
-      type: 'REPORT',
-      category: 'Public Sector',
-      date_str: 'Jun 18',
-      title: 'AI in government: the procurement problem',
-      summary: 'How public sector procurement frameworks must evolve to accommodate rapidly shifting cloud & AI technologies safely.',
-      image_url: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
-      sub_categories: 'AI • Data • Transformation'
-    },
-    {
-      id: 4,
-      type: 'ARTICLE',
-      category: 'Cloud & Security',
-      date_str: 'Jun 05',
-      title: 'Navigating Sovereign Cloud Requirements for Government Agencies',
-      summary: 'Ensuring strict data sovereignty while harvesting the agility of multi-cloud architectures in government.',
-      image_url: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80',
-      sub_categories: 'Cloud • Sovereignty • Security'
-    },
-    {
-      id: 5,
-      type: 'PERSPECTIVE',
-      category: 'Digital CX',
-      date_str: 'May 20',
-      title: 'Designing Human-Centric Citizen Experiences in the Age of Autonomous AI',
-      summary: 'Creating accessible, frictionless digital services that build trust across diverse demographics.',
-      image_url: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=80',
-      sub_categories: 'CX • Accessibility • AI'
-    },
-    {
-      id: 6,
-      type: 'RESEARCH',
-      category: 'Cybersecurity',
-      date_str: 'May 10',
-      title: 'Zero Trust in the GenAI Era: Securing LLM Integrations against Data Leakage',
-      summary: 'Best practices for securing enterprise Large Language Models against prompt injections and telemetry leaks.',
-      image_url: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80',
-      sub_categories: 'Security • GenAI • ZeroTrust'
     }
   ],
   news: [
@@ -184,88 +128,221 @@ const DEFAULT_HOMEPAGE_DATA = {
       summary: 'Empowering commercial enterprises with rapid application delivery and workflow automation.',
       image_url: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80',
       icon_overlay: 'tech'
-    },
-    {
-      id: 3,
-      category: 'ANNOUNCEMENT',
-      title: 'NCS launches Google Cloud Academy in Australia to strengthen Australian AI and cloud talent',
-      date_str: 'MAY 28, 2026',
-      summary: 'Creating specialized training programs to upskill 1,000+ local engineers in enterprise generative AI.',
-      image_url: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=600&q=80',
-      icon_overlay: 'cloud'
-    },
-    {
-      id: 4,
-      category: 'AWARD',
-      title: 'NCS recognised as Leader in Asia-Pacific Cloud Migration & AI Operations Report 2026',
-      date_str: 'MAY 12, 2026',
-      summary: 'Independent study highlights NCS for market leadership in public sector digital transformation.',
-      image_url: 'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=600&q=80',
-      icon_overlay: 'star'
-    },
-    {
-      id: 5,
-      category: 'COLLABORATION',
-      title: 'NCS expands Strategic Collaboration with AWS to build Sovereign Cloud Solutions',
-      date_str: 'APRIL 29, 2026',
-      summary: 'Delivering next-generation secure cloud environments for critical infrastructure across ANZ.',
-      image_url: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80',
-      icon_overlay: 'cloud'
-    },
-    {
-      id: 6,
-      category: 'EXPANSION',
-      title: 'NCS opens new Innovation Hub in Melbourne to accelerate AI research and enterprise co-creation',
-      date_str: 'APRIL 14, 2026',
-      summary: 'New state-of-the-art facility dedicated to rapid prototyping of generative AI solutions.',
-      image_url: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=600&q=80',
-      icon_overlay: 'tech'
     }
   ]
 };
 
 export function App() {
-  const [currentPage, setCurrentPage] = useState('home'); // 'home' | 'contact'
+  const [currentPage, setCurrentPage] = useState('home'); // 'home' | 'about' | 'contact' | 'careers' | 'job-detail' | 'job-apply' | 'admin-login' | 'admin-dashboard'
+  const [selectedJobId, setSelectedJobId] = useState(null);
+  const [adminUser, setAdminUser] = useState(null);
   const [data, setData] = useState(DEFAULT_HOMEPAGE_DATA);
-  const [selectedItem, setSelectedItem] = useState(null);
-  const [modalType, setModalType] = useState(null);
 
-  const fetchHomepageData = async () => {
-    try {
-      const response = await axios.get('http://127.0.0.1:8000/api/homepage');
-      if (response.data && response.data.banners && response.data.banners.length > 0) {
-        setData(response.data);
+  // Sync Hash / Path for robust URL access
+  useEffect(() => {
+    const handleUrlChange = () => {
+      const hash = window.location.hash.toLowerCase();
+      const path = window.location.pathname.toLowerCase();
+
+      // 1. Hash routing takes HIGHEST precedence over static pathname
+      if (hash.includes('about')) {
+        setCurrentPage('about');
+      } else if (hash.includes('careers')) {
+        setCurrentPage('careers');
+      } else if (hash.includes('job-detail')) {
+        setCurrentPage('job-detail');
+      } else if (hash.includes('job-apply')) {
+        setCurrentPage('job-apply');
+      } else if (hash.includes('contact')) {
+        setCurrentPage('contact');
+      } else if (hash.includes('admin-dashboard')) {
+        setCurrentPage('admin-dashboard');
+      } else if (hash.includes('admin-login') || hash === '#admin') {
+        const storedToken = localStorage.getItem('adminToken');
+        setCurrentPage(storedToken ? 'admin-dashboard' : 'admin-login');
+      } else if (path.includes('about')) {
+        setCurrentPage('about');
+      } else if (path.includes('admin')) {
+        const storedToken = localStorage.getItem('adminToken');
+        setCurrentPage(storedToken ? 'admin-dashboard' : 'admin-login');
+      } else if (path.includes('careers')) {
+        setCurrentPage('careers');
+      } else if (path.includes('contact')) {
+        setCurrentPage('contact');
       }
-    } catch (error) {
-      console.error('Error fetching homepage content from Laravel backend:', error);
+    };
+
+    // Check on initial load
+    handleUrlChange();
+
+    window.addEventListener('hashchange', handleUrlChange);
+    window.addEventListener('popstate', handleUrlChange);
+    return () => {
+      window.removeEventListener('hashchange', handleUrlChange);
+      window.removeEventListener('popstate', handleUrlChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    // Check local admin authentication token
+    const token = localStorage.getItem('adminToken');
+    const storedUser = localStorage.getItem('adminUser');
+    if (token && storedUser) {
+      try {
+        setAdminUser(JSON.parse(storedUser));
+      } catch (e) {
+        console.error(e);
+      }
+    }
+
+    // Fetch homepage content
+    axios.get('http://127.0.0.1:8000/api/homepage')
+      .then(response => {
+        if (response.data && response.data.banners) {
+          setData(response.data);
+        }
+      })
+      .catch(err => console.log('Using default homepage data:', err));
+  }, []);
+
+  const handleAdminLogout = () => {
+    localStorage.removeItem('adminToken');
+    localStorage.removeItem('adminUser');
+    setAdminUser(null);
+    window.location.hash = '';
+    setCurrentPage('home');
+  };
+
+  const navigateTo = (page, hashName = '') => {
+    setCurrentPage(page);
+    if (hashName) {
+      window.location.hash = hashName;
+    } else {
+      if (window.location.hash) {
+        history.pushState('', document.title, window.location.pathname + window.location.search);
+      }
     }
   };
 
-  useEffect(() => {
-    fetchHomepageData();
-  }, []);
+  // Route Views:
 
-  const handleOpenDetail = (item, type) => {
-    setSelectedItem(item);
-    setModalType(type);
-  };
-
-  const handleCloseDetail = () => {
-    setSelectedItem(null);
-    setModalType(null);
-  };
-
-  // If user navigated to Contact Page
-  if (currentPage === 'contact') {
-    return <ContactPage onBackHome={() => setCurrentPage('home')} />;
+  // 1. About Us Standalone Page
+  if (currentPage === 'about') {
+    return (
+      <AboutPage
+        onNavHome={() => navigateTo('home', '')}
+        onNavCareers={() => navigateTo('careers', 'careers')}
+        onOpenContactPage={() => navigateTo('contact', 'contact')}
+        onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
+        isAdminLoggedIn={!!adminUser}
+        onAdminLogout={handleAdminLogout}
+      />
+    );
   }
 
+  // 2. Contact Page
+  if (currentPage === 'contact') {
+    return (
+      <ContactPage
+        onBackHome={() => navigateTo('home', '')}
+      />
+    );
+  }
+
+  // 3. Careers Job Opportunities Page
+  if (currentPage === 'careers') {
+    return (
+      <CareersPage
+        onSelectJob={(id) => {
+          setSelectedJobId(id);
+          navigateTo('job-detail', 'job-detail');
+        }}
+        onNavHome={() => navigateTo('home', '')}
+        onOpenContactPage={() => navigateTo('contact', 'contact')}
+        onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
+        isAdminLoggedIn={!!adminUser}
+        onAdminLogout={handleAdminLogout}
+      />
+    );
+  }
+
+  // 4. Job Detail Page
+  if (currentPage === 'job-detail') {
+    return (
+      <JobDetailPage
+        jobId={selectedJobId}
+        onBackToCareers={() => navigateTo('careers', 'careers')}
+        onApplyJob={(id) => {
+          setSelectedJobId(id);
+          navigateTo('job-apply', 'job-apply');
+        }}
+        onSelectOtherJob={(id) => {
+          setSelectedJobId(id);
+          navigateTo('job-detail', 'job-detail');
+        }}
+        onNavHome={() => navigateTo('home', '')}
+        onOpenContactPage={() => navigateTo('contact', 'contact')}
+        onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
+        isAdminLoggedIn={!!adminUser}
+        onAdminLogout={handleAdminLogout}
+      />
+    );
+  }
+
+  // 5. Job Application Form Page
+  if (currentPage === 'job-apply') {
+    return (
+      <JobApplyPage
+        jobId={selectedJobId}
+        onBackToJob={() => navigateTo('job-detail', 'job-detail')}
+        onNavHome={() => navigateTo('home', '')}
+        onOpenContactPage={() => navigateTo('contact', 'contact')}
+        onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
+        isAdminLoggedIn={!!adminUser}
+        onAdminLogout={handleAdminLogout}
+      />
+    );
+  }
+
+  // 6. Admin Login Page
+  if (currentPage === 'admin-login') {
+    return (
+      <AdminLoginPage
+        onLoginSuccess={(user) => {
+          setAdminUser(user);
+          navigateTo('admin-dashboard', 'admin-dashboard');
+        }}
+        onNavHome={() => navigateTo('home', '')}
+        onNavCareers={() => navigateTo('careers', 'careers')}
+        onOpenContactPage={() => navigateTo('contact', 'contact')}
+      />
+    );
+  }
+
+  // 7. Admin Dashboard Page
+  if (currentPage === 'admin-dashboard') {
+    return (
+      <AdminDashboardPage
+        onNavHome={() => navigateTo('home', '')}
+        onNavCareers={() => navigateTo('careers', 'careers')}
+        onOpenContactPage={() => navigateTo('contact', 'contact')}
+        onAdminLogout={handleAdminLogout}
+      />
+    );
+  }
+
+  // 8. Homepage (Default)
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans antialiased">
       {/* 1. Header Navigation */}
       <Navbar
-        onOpenContactPage={() => setCurrentPage('contact')}
-        onNavHome={() => setCurrentPage('home')}
+        onOpenContactPage={() => navigateTo('contact', 'contact')}
+        onNavHome={() => navigateTo('home', '')}
+        onNavAbout={() => navigateTo('about', 'about')}
+        onNavCareers={() => navigateTo('careers', 'careers')}
+        onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
+        isAdminLoggedIn={!!adminUser}
+        onAdminLogout={handleAdminLogout}
       />
 
       <main>
@@ -276,40 +353,33 @@ export function App() {
         <AboutSection />
 
         {/* 4. Our Services Grid */}
-        <ServicesGrid
-          services={data.services}
-          onSelectService={(service) => handleOpenDetail(service, 'Service Detail')}
-        />
+        <ServicesGrid services={data.services} />
 
-        {/* 5. Separate Reusable Moving Slider Sections */}
-        {/* A. Case Studies Slider Section */}
+        {/* 5. Case Studies Slider */}
         <CardSliderSection
           id="case-studies"
           title="Case studies"
           subtitle="Explore how we deliver high-impact digital transformation across industries"
           items={data.caseStudies}
           cardType="case-study"
-          onSelectItem={(item) => handleOpenDetail(item, 'Case Study Detail')}
         />
 
-        {/* B. Insights Slider Section */}
+        {/* 6. Insights Slider */}
         <CardSliderSection
           id="insights"
           title="Insights"
           subtitle="Perspectives, research & whitepapers on AI, cloud and transformation"
           items={data.insights}
           cardType="insight"
-          onSelectItem={(item) => handleOpenDetail(item, 'Insight Detail')}
         />
 
-        {/* C. Latest News Slider Section */}
+        {/* 7. Latest News Slider */}
         <CardSliderSection
           id="latest-news"
           title="Latest news"
           subtitle="Keep up to date with news on NCS, from upcoming developments to enterprise collaborations"
           items={data.news}
           cardType="news"
-          onSelectItem={(item) => handleOpenDetail(item, 'News Article')}
         />
 
         {/* 8. Stats / Numbers Counter Section */}
@@ -319,23 +389,14 @@ export function App() {
         <PartnersSection />
 
         {/* 10. Join An Extraordinary Team Section */}
-        <JoinTeamSection />
+        <JoinTeamSection onOpenCareers={() => navigateTo('careers', 'careers')} />
 
-        {/* 11. Contact Us Banner (Navigates to dedicated Contact Page without popup modal!) */}
-        <ContactSection onOpenContactPage={() => setCurrentPage('contact')} />
+        {/* 11. Contact Us Banner */}
+        <ContactSection onOpenContactPage={() => navigateTo('contact', 'contact')} />
       </main>
 
-      {/* Item Detail Modal */}
-      {/* {selectedItem && (
-        <DetailModal
-          item={selectedItem}
-          type={modalType}
-          onClose={handleCloseDetail}
-        />
-      )} */}
-
       {/* 12. Footer */}
-      <Footer onOpenContactPage={() => setCurrentPage('contact')} />
+      <Footer onOpenContactPage={() => navigateTo('contact', 'contact')} onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')} />
     </div>
   );
 }

@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X, Globe, UserCheck } from 'lucide-react';
 
-export const Navbar = ({ onOpenContactPage, onNavHome }) => {
+export const Navbar = ({ onOpenContactPage, onNavHome, onNavAbout, onNavCareers, onNavAdmin, isAdminLoggedIn, onAdminLogout }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { label: 'About us', href: '#about', action: onNavHome },
+    { label: 'About us', href: '#about', action: onNavAbout || onNavHome },
     { label: 'Our services', href: '#services', action: onNavHome },
     { label: 'Case studies', href: '#case-studies', action: onNavHome },
     { label: 'Insights', href: '#insights', action: onNavHome },
     { label: 'Latest news', href: '#latest-news', action: onNavHome },
+    { label: 'Careers', href: '#careers', action: onNavCareers, isSpecial: true },
     { label: 'Contact us', href: '#contact', action: onOpenContactPage }
   ];
 
@@ -37,14 +38,10 @@ export const Navbar = ({ onOpenContactPage, onNavHome }) => {
               <a
                 href={item.href}
                 onClick={(e) => {
-                  if (item.label === 'Contact us') {
-                    e.preventDefault();
-                    if (onOpenContactPage) onOpenContactPage();
-                  } else {
-                    if (onNavHome) onNavHome();
-                  }
+                  e.preventDefault();
+                  if (item.action) item.action();
                 }}
-                className="nav-link"
+                className={`nav-link ${item.isSpecial ? 'nav-link-careers' : ''}`}
               >
                 {item.label}
               </a>
@@ -52,17 +49,54 @@ export const Navbar = ({ onOpenContactPage, onNavHome }) => {
           ))}
         </ul>
 
-        {/* Right Country Badge & Mobile Menu Toggle (STRICTLY HIDDEN ON DESKTOP) */}
-        <div className="flex items-center gap-4">
-          <div className="hidden md:flex items-center gap-1.5 text-slate-300 text-xs font-semibold px-2.5 py-1 bg-white/5 rounded-full border border-white/10">
-            <Globe size={14} className="text-cyan-400" />
+        {/* Right Country Badge & Admin Indicator */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', color: '#cbd5e1', fontSize: '0.75rem', fontWeight: 600, padding: '0.25rem 0.65rem', backgroundColor: 'rgba(255, 255, 255, 0.08)', borderRadius: '20px', border: '1px solid rgba(255, 255, 255, 0.15)' }}>
+            <Globe size={13} style={{ color: '#38bdf8' }} />
             <span>EN-AU</span>
           </div>
 
-          {/* Hamburger Icon Button - ONLY Visible on Mobile Screens (< 900px) */}
+          {isAdminLoggedIn && (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <button
+                onClick={onNavAdmin}
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.3rem',
+                  backgroundColor: '#0284c7',
+                  color: '#ffffff',
+                  fontWeight: 700,
+                  fontSize: '0.78rem',
+                  padding: '0.35rem 0.75rem',
+                  borderRadius: '4px',
+                  border: 'none',
+                  cursor: 'pointer'
+                }}
+              >
+                <UserCheck size={13} />
+                <span>Admin Dashboard</span>
+              </button>
+              <button
+                onClick={onAdminLogout}
+                style={{
+                  color: '#94a3b8',
+                  fontSize: '0.75rem',
+                  background: 'none',
+                  border: 'none',
+                  cursor: 'pointer',
+                  textDecoration: 'underline'
+                }}
+              >
+                Logout
+              </button>
+            </div>
+          )}
+
+          {/* Mobile Hamburger Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="mobile-nav-toggle lg:hidden"
+            className="mobile-nav-toggle lg:hidden text-white"
             aria-label="Toggle Menu"
           >
             {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -87,13 +121,9 @@ export const Navbar = ({ onOpenContactPage, onNavHome }) => {
               <a
                 href={item.href}
                 onClick={(e) => {
+                  e.preventDefault();
                   setMobileMenuOpen(false);
-                  if (item.label === 'Contact us') {
-                    e.preventDefault();
-                    if (onOpenContactPage) onOpenContactPage();
-                  } else {
-                    if (onNavHome) onNavHome();
-                  }
+                  if (item.action) item.action();
                 }}
                 className="text-white text-lg font-medium hover:text-cyan-400 transition-colors"
               >
@@ -101,6 +131,19 @@ export const Navbar = ({ onOpenContactPage, onNavHome }) => {
               </a>
             </li>
           ))}
+          {isAdminLoggedIn && (
+            <li className="pt-4 border-t border-slate-700">
+              <button
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  onNavAdmin();
+                }}
+                className="text-cyan-400 text-base font-semibold"
+              >
+                Admin Dashboard
+              </button>
+            </li>
+          )}
         </ul>
       </div>
     </nav>

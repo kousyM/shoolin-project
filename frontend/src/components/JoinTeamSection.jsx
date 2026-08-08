@@ -1,10 +1,10 @@
 import React from 'react';
 
-export const JoinTeamSection = () => {
+export const JoinTeamSection = ({ onOpenCareers }) => {
   return (
     <section className="ncs-join-section">
       <div className="ncs-join-container">
-        
+
         {/* Left Side: Dark Navy Container */}
         <div className="ncs-join-left">
           <h2 className="ncs-join-title">
@@ -15,9 +15,15 @@ export const JoinTeamSection = () => {
           </p>
 
           <div>
-            <a href="#contact" className="ncs-join-pill-btn">
-              Learn more
-            </a>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                if (onOpenCareers) onOpenCareers();
+              }}
+              className="ncs-join-pill-btn"
+            >
+              Explore Careers
+            </button>
           </div>
         </div>
 
