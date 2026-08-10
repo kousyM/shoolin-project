@@ -11,6 +11,8 @@ import JoinTeamSection from './components/JoinTeamSection';
 import ContactSection from './components/ContactSection';
 import ContactPage from './pages/ContactPage';
 import CareersPage from './pages/CareersPage';
+import PartnersPage from './pages/PartnersPage';
+import InsightsPage from './pages/InsightsPage';
 import JobDetailPage from './pages/JobDetailPage';
 import JobApplyPage from './pages/JobApplyPage';
 import AdminLoginPage from './pages/AdminLoginPage';
@@ -109,31 +111,13 @@ const DEFAULT_HOMEPAGE_DATA = {
       image_url: 'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=800&q=80',
       sub_categories: 'AI • Governance • People'
     }
-  ],
-  news: [
-    {
-      id: 1,
-      category: 'PRESS RELEASE',
-      title: 'Challenge Us: A new era of partnership and possibility',
-      date_str: 'JULY 20, 2026',
-      summary: 'Discover how NCS is partnering with enterprises to challenge conventional thinking and accelerate digital value.',
-      image_url: 'https://images.unsplash.com/photo-1464938050520-ef2270bb8ce8?auto=format&fit=crop&w=600&q=80',
-      icon_overlay: 'quote'
-    },
-    {
-      id: 2,
-      category: 'PARTNERSHIP',
-      title: 'NCS and Newgen announce new low-code partnership to accelerate enterprise-scale modernisation for Australian businesses',
-      date_str: 'JUNE 15, 2026',
-      summary: 'Empowering commercial enterprises with rapid application delivery and workflow automation.',
-      image_url: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80',
-      icon_overlay: 'tech'
-    }
   ]
 };
 
 export function App() {
-  const [currentPage, setCurrentPage] = useState('home'); // 'home' | 'about' | 'contact' | 'careers' | 'job-detail' | 'job-apply' | 'admin-login' | 'admin-dashboard'
+  const [currentPage, setCurrentPage] = useState('home'); // 'home' | 'about' | 'contact' | 'careers' | 'partners' | 'insights' | 'job-detail' | 'job-apply' | 'admin-login' | 'admin-dashboard'
+  const [aboutInitialTab, setAboutInitialTab] = useState('code-of-conduct');
+  const [careersInitialTab, setCareersInitialTab] = useState('career-stories');
   const [selectedJobId, setSelectedJobId] = useState(null);
   const [adminUser, setAdminUser] = useState(null);
   const [data, setData] = useState(DEFAULT_HOMEPAGE_DATA);
@@ -144,10 +128,39 @@ export function App() {
       const hash = window.location.hash.toLowerCase();
       const path = window.location.pathname.toLowerCase();
 
-      // 1. Hash routing takes HIGHEST precedence over static pathname
-      if (hash.includes('about')) {
+      if (hash.includes('code-of-conduct')) {
+        setAboutInitialTab('code-of-conduct');
         setCurrentPage('about');
+      } else if (hash.includes('leadership')) {
+        setAboutInitialTab('leadership');
+        setCurrentPage('about');
+      } else if (hash.includes('milestones')) {
+        setAboutInitialTab('milestones');
+        setCurrentPage('about');
+      } else if (hash.includes('newsroom')) {
+        setAboutInitialTab('newsroom');
+        setCurrentPage('about');
+      } else if (hash.includes('privacy-policy')) {
+        setAboutInitialTab('privacy-policy');
+        setCurrentPage('about');
+      } else if (hash.includes('about')) {
+        setAboutInitialTab('code-of-conduct');
+        setCurrentPage('about');
+      } else if (hash.includes('insights')) {
+        setCurrentPage('insights');
+      } else if (hash.includes('partners')) {
+        setCurrentPage('partners');
+      } else if (hash.includes('career-stories')) {
+        setCareersInitialTab('career-stories');
+        setCurrentPage('careers');
+      } else if (hash.includes('job-opportunities')) {
+        setCareersInitialTab('job-opportunities');
+        setCurrentPage('careers');
+      } else if (hash.includes('life-at-ncs')) {
+        setCareersInitialTab('life-at-ncs');
+        setCurrentPage('careers');
       } else if (hash.includes('careers')) {
+        setCareersInitialTab('career-stories');
         setCurrentPage('careers');
       } else if (hash.includes('job-detail')) {
         setCurrentPage('job-detail');
@@ -162,6 +175,10 @@ export function App() {
         setCurrentPage(storedToken ? 'admin-dashboard' : 'admin-login');
       } else if (path.includes('about')) {
         setCurrentPage('about');
+      } else if (path.includes('insights')) {
+        setCurrentPage('insights');
+      } else if (path.includes('partners')) {
+        setCurrentPage('partners');
       } else if (path.includes('admin')) {
         const storedToken = localStorage.getItem('adminToken');
         setCurrentPage(storedToken ? 'admin-dashboard' : 'admin-login');
@@ -172,7 +189,6 @@ export function App() {
       }
     };
 
-    // Check on initial load
     handleUrlChange();
 
     window.addEventListener('hashchange', handleUrlChange);
@@ -184,7 +200,6 @@ export function App() {
   }, []);
 
   useEffect(() => {
-    // Check local admin authentication token
     const token = localStorage.getItem('adminToken');
     const storedUser = localStorage.getItem('adminUser');
     if (token && storedUser) {
@@ -195,7 +210,6 @@ export function App() {
       }
     }
 
-    // Fetch homepage content
     axios.get('http://127.0.0.1:8000/api/homepage')
       .then(response => {
         if (response.data && response.data.banners) {
@@ -213,7 +227,13 @@ export function App() {
     setCurrentPage('home');
   };
 
-  const navigateTo = (page, hashName = '') => {
+  const navigateTo = (page, hashName = '', subTab = 'code-of-conduct') => {
+    if (page === 'about') {
+      setAboutInitialTab(subTab);
+    }
+    if (page === 'careers') {
+      setCareersInitialTab(subTab || 'career-stories');
+    }
     setCurrentPage(page);
     if (hashName) {
       window.location.hash = hashName;
@@ -222,6 +242,7 @@ export function App() {
         history.pushState('', document.title, window.location.pathname + window.location.search);
       }
     }
+    window.scrollTo(0, 0);
   };
 
   // Route Views:
@@ -230,8 +251,11 @@ export function App() {
   if (currentPage === 'about') {
     return (
       <AboutPage
+        initialTab={aboutInitialTab}
         onNavHome={() => navigateTo('home', '')}
-        onNavCareers={() => navigateTo('careers', 'careers')}
+        onNavCareers={(subTab = 'career-stories') => navigateTo('careers', subTab, subTab)}
+        onNavPartners={() => navigateTo('partners', 'partners')}
+        onNavInsights={() => navigateTo('insights', 'insights')}
         onOpenContactPage={() => navigateTo('contact', 'contact')}
         onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
         isAdminLoggedIn={!!adminUser}
@@ -240,24 +264,67 @@ export function App() {
     );
   }
 
-  // 2. Contact Page
-  if (currentPage === 'contact') {
+  // 2. Insights Standalone Page
+  if (currentPage === 'insights') {
     return (
-      <ContactPage
-        onBackHome={() => navigateTo('home', '')}
+      <InsightsPage
+        onNavHome={() => navigateTo('home', '')}
+        onNavAbout={(subTab = 'code-of-conduct') => navigateTo('about', subTab, subTab)}
+        onNavCareers={(subTab = 'career-stories') => navigateTo('careers', subTab, subTab)}
+        onNavPartners={() => navigateTo('partners', 'partners')}
+        onOpenContactPage={() => navigateTo('contact', 'contact')}
+        onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
+        isAdminLoggedIn={!!adminUser}
+        onAdminLogout={handleAdminLogout}
       />
     );
   }
 
-  // 3. Careers Job Opportunities Page
+  // 3. Partners Standalone Page
+  if (currentPage === 'partners') {
+    return (
+      <PartnersPage
+        onNavHome={() => navigateTo('home', '')}
+        onNavAbout={(subTab = 'code-of-conduct') => navigateTo('about', subTab, subTab)}
+        onNavCareers={(subTab = 'career-stories') => navigateTo('careers', subTab, subTab)}
+        onNavInsights={() => navigateTo('insights', 'insights')}
+        onOpenContactPage={() => navigateTo('contact', 'contact')}
+        onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
+        isAdminLoggedIn={!!adminUser}
+        onAdminLogout={handleAdminLogout}
+      />
+    );
+  }
+
+  // 4. Contact Page
+  if (currentPage === 'contact') {
+    return (
+      <ContactPage
+        onBackHome={() => navigateTo('home', '')}
+        onNavCareers={(subTab = 'career-stories') => navigateTo('careers', subTab, subTab)}
+        onNavAbout={(subTab = 'code-of-conduct') => navigateTo('about', subTab, subTab)}
+        onNavPartners={() => navigateTo('partners', 'partners')}
+        onNavInsights={() => navigateTo('insights', 'insights')}
+        onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
+        isAdminLoggedIn={!!adminUser}
+        onAdminLogout={handleAdminLogout}
+      />
+    );
+  }
+
+  // 5. Careers Job Opportunities Page
   if (currentPage === 'careers') {
     return (
       <CareersPage
+        initialTab={careersInitialTab}
         onSelectJob={(id) => {
           setSelectedJobId(id);
           navigateTo('job-detail', 'job-detail');
         }}
         onNavHome={() => navigateTo('home', '')}
+        onNavAbout={(subTab = 'code-of-conduct') => navigateTo('about', subTab, subTab)}
+        onNavPartners={() => navigateTo('partners', 'partners')}
+        onNavInsights={() => navigateTo('insights', 'insights')}
         onOpenContactPage={() => navigateTo('contact', 'contact')}
         onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
         isAdminLoggedIn={!!adminUser}
@@ -266,12 +333,12 @@ export function App() {
     );
   }
 
-  // 4. Job Detail Page
+  // 6. Job Detail Page
   if (currentPage === 'job-detail') {
     return (
       <JobDetailPage
         jobId={selectedJobId}
-        onBackToCareers={() => navigateTo('careers', 'careers')}
+        onBackToCareers={() => navigateTo('careers', 'job-opportunities', 'job-opportunities')}
         onApplyJob={(id) => {
           setSelectedJobId(id);
           navigateTo('job-apply', 'job-apply');
@@ -289,7 +356,7 @@ export function App() {
     );
   }
 
-  // 5. Job Application Form Page
+  // 7. Job Application Form Page
   if (currentPage === 'job-apply') {
     return (
       <JobApplyPage
@@ -304,7 +371,7 @@ export function App() {
     );
   }
 
-  // 6. Admin Login Page
+  // 8. Admin Login Page
   if (currentPage === 'admin-login') {
     return (
       <AdminLoginPage
@@ -313,33 +380,35 @@ export function App() {
           navigateTo('admin-dashboard', 'admin-dashboard');
         }}
         onNavHome={() => navigateTo('home', '')}
-        onNavCareers={() => navigateTo('careers', 'careers')}
+        onNavCareers={(subTab = 'career-stories') => navigateTo('careers', subTab, subTab)}
         onOpenContactPage={() => navigateTo('contact', 'contact')}
       />
     );
   }
 
-  // 7. Admin Dashboard Page
+  // 9. Admin Dashboard Page
   if (currentPage === 'admin-dashboard') {
     return (
       <AdminDashboardPage
         onNavHome={() => navigateTo('home', '')}
-        onNavCareers={() => navigateTo('careers', 'careers')}
+        onNavCareers={(subTab = 'career-stories') => navigateTo('careers', subTab, subTab)}
         onOpenContactPage={() => navigateTo('contact', 'contact')}
         onAdminLogout={handleAdminLogout}
       />
     );
   }
 
-  // 8. Homepage (Default)
+  // 10. Homepage (Default)
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans antialiased">
       {/* 1. Header Navigation */}
       <Navbar
         onOpenContactPage={() => navigateTo('contact', 'contact')}
         onNavHome={() => navigateTo('home', '')}
-        onNavAbout={() => navigateTo('about', 'about')}
-        onNavCareers={() => navigateTo('careers', 'careers')}
+        onNavAbout={(subTab = 'code-of-conduct') => navigateTo('about', subTab, subTab)}
+        onNavCareers={(subTab = 'career-stories') => navigateTo('careers', subTab, subTab)}
+        onNavPartners={() => navigateTo('partners', 'partners')}
+        onNavInsights={() => navigateTo('insights', 'insights')}
         onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
         isAdminLoggedIn={!!adminUser}
         onAdminLogout={handleAdminLogout}
@@ -373,29 +442,20 @@ export function App() {
           cardType="insight"
         />
 
-        {/* 7. Latest News Slider */}
-        <CardSliderSection
-          id="latest-news"
-          title="Latest news"
-          subtitle="Keep up to date with news on NCS, from upcoming developments to enterprise collaborations"
-          items={data.news}
-          cardType="news"
-        />
-
-        {/* 8. Stats / Numbers Counter Section */}
+        {/* 7. Stats / Numbers Counter Section */}
         <StatsCounter />
 
-        {/* 9. Meet Our Partners Section */}
-        <PartnersSection />
+        {/* 8. Meet Our Partners Section */}
+        <PartnersSection onNavPartners={() => navigateTo('partners', 'partners')} />
 
-        {/* 10. Join An Extraordinary Team Section */}
-        <JoinTeamSection onOpenCareers={() => navigateTo('careers', 'careers')} />
+        {/* 9. Join An Extraordinary Team Section */}
+        <JoinTeamSection onOpenCareers={(subTab = 'career-stories') => navigateTo('careers', subTab, subTab)} />
 
-        {/* 11. Contact Us Banner */}
+        {/* 10. Contact Us Banner */}
         <ContactSection onOpenContactPage={() => navigateTo('contact', 'contact')} />
       </main>
 
-      {/* 12. Footer */}
+      {/* 11. Footer */}
       <Footer onOpenContactPage={() => navigateTo('contact', 'contact')} onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')} />
     </div>
   );
