@@ -13,12 +13,15 @@ import ContactPage from './pages/ContactPage';
 import CareersPage from './pages/CareersPage';
 import PartnersPage from './pages/PartnersPage';
 import InsightsPage from './pages/InsightsPage';
+import ServicesPage from './pages/ServicesPage';
 import JobDetailPage from './pages/JobDetailPage';
 import JobApplyPage from './pages/JobApplyPage';
 import AdminLoginPage from './pages/AdminLoginPage';
 import AdminDashboardPage from './pages/AdminDashboardPage';
 import AboutPage from './pages/AboutPage';
+import ChallengeUsPage from './pages/ChallengeUsPage';
 import Footer from './components/Footer';
+import { getApiBaseUrl } from './api/config';
 
 const DEFAULT_HOMEPAGE_DATA = {
   banners: [
@@ -115,9 +118,10 @@ const DEFAULT_HOMEPAGE_DATA = {
 };
 
 export function App() {
-  const [currentPage, setCurrentPage] = useState('home'); // 'home' | 'about' | 'contact' | 'careers' | 'partners' | 'insights' | 'job-detail' | 'job-apply' | 'admin-login' | 'admin-dashboard'
+  const [currentPage, setCurrentPage] = useState('home'); // 'home' | 'services' | 'about' | 'contact' | 'careers' | 'partners' | 'insights' | 'job-detail' | 'job-apply' | 'admin-login' | 'admin-dashboard'
   const [aboutInitialTab, setAboutInitialTab] = useState('code-of-conduct');
   const [careersInitialTab, setCareersInitialTab] = useState('career-stories');
+  const [servicesInitialCategory, setServicesInitialCategory] = useState('cloud');
   const [selectedJobId, setSelectedJobId] = useState(null);
   const [adminUser, setAdminUser] = useState(null);
   const [data, setData] = useState(DEFAULT_HOMEPAGE_DATA);
@@ -146,8 +150,22 @@ export function App() {
       } else if (hash.includes('about')) {
         setAboutInitialTab('code-of-conduct');
         setCurrentPage('about');
+      } else if (hash.includes('databricks')) {
+        setServicesInitialCategory('databricks');
+        setCurrentPage('services');
+      } else if (hash.includes('cloud')) {
+        setServicesInitialCategory('cloud');
+        setCurrentPage('services');
+      } else if (hash.includes('advisory')) {
+        setServicesInitialCategory('advisory');
+        setCurrentPage('services');
+      } else if (hash.includes('services-page') || hash.includes('services')) {
+        setServicesInitialCategory('cloud');
+        setCurrentPage('services');
       } else if (hash.includes('insights')) {
         setCurrentPage('insights');
+      } else if (hash.includes('challenge-us')) {
+        setCurrentPage('challenge-us');
       } else if (hash.includes('partners')) {
         setCurrentPage('partners');
       } else if (hash.includes('career-stories')) {
@@ -169,23 +187,27 @@ export function App() {
       } else if (hash.includes('contact')) {
         setCurrentPage('contact');
       } else if (hash.includes('admin-dashboard')) {
-        setCurrentPage('admin-dashboard');
+        const storedToken = localStorage.getItem('adminToken');
+        setCurrentPage(storedToken ? 'admin-dashboard' : 'admin-login');
       } else if (hash.includes('admin-login') || hash === '#admin') {
-        const storedToken = localStorage.getItem('adminToken');
-        setCurrentPage(storedToken ? 'admin-dashboard' : 'admin-login');
-      } else if (path.includes('about')) {
-        setCurrentPage('about');
-      } else if (path.includes('insights')) {
-        setCurrentPage('insights');
-      } else if (path.includes('partners')) {
-        setCurrentPage('partners');
-      } else if (path.includes('admin')) {
-        const storedToken = localStorage.getItem('adminToken');
-        setCurrentPage(storedToken ? 'admin-dashboard' : 'admin-login');
-      } else if (path.includes('careers')) {
-        setCurrentPage('careers');
-      } else if (path.includes('contact')) {
-        setCurrentPage('contact');
+        setCurrentPage('admin-login');
+      } else {
+        if (path.includes('services-page')) {
+          setCurrentPage('services');
+        } else if (path.includes('about')) {
+          setCurrentPage('about');
+        } else if (path.includes('insights')) {
+          setCurrentPage('insights');
+        } else if (path.includes('partners')) {
+          setCurrentPage('partners');
+        } else if (path.includes('admin')) {
+          const storedToken = localStorage.getItem('adminToken');
+          setCurrentPage(storedToken ? 'admin-dashboard' : 'admin-login');
+        } else if (path.includes('careers')) {
+          setCurrentPage('careers');
+        } else if (path.includes('contact')) {
+          setCurrentPage('contact');
+        }
       }
     };
 
@@ -210,7 +232,8 @@ export function App() {
       }
     }
 
-    axios.get('http://127.0.0.1:8000/api/homepage')
+    const baseUrl = getApiBaseUrl();
+    axios.get(`${baseUrl}/api/homepage`)
       .then(response => {
         if (response.data && response.data.banners) {
           setData(response.data);
@@ -234,6 +257,9 @@ export function App() {
     if (page === 'careers') {
       setCareersInitialTab(subTab || 'career-stories');
     }
+    if (page === 'services') {
+      setServicesInitialCategory(subTab || 'cloud');
+    }
     setCurrentPage(page);
     if (hashName) {
       window.location.hash = hashName;
@@ -247,15 +273,38 @@ export function App() {
 
   // Route Views:
 
-  // 1. About Us Standalone Page
+  // 1. Services Standalone Page
+  if (currentPage === 'services') {
+    return (
+      <ServicesPage
+        initialCategory={servicesInitialCategory}
+        onNavHome={() => navigateTo('home', '')}
+        onNavServices={(subTab = 'cloud') => navigateTo('services', subTab, subTab)}
+        onNavAbout={(subTab = 'code-of-conduct') => navigateTo('about', subTab, subTab)}
+        onNavCareers={(subTab = 'career-stories') => navigateTo('careers', subTab, subTab)}
+        onNavPartners={() => navigateTo('partners', 'partners')}
+        onNavInsights={() => navigateTo('insights', 'insights')}
+        onNavChallengeUs={() => navigateTo('challenge-us', 'challenge-us')}
+        onOpenContactPage={() => navigateTo('contact', 'contact')}
+        onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
+        isAdminLoggedIn={!!adminUser}
+        onAdminLogout={handleAdminLogout}
+      />
+    );
+  }
+
+  // 2. About Us Standalone Page
   if (currentPage === 'about') {
     return (
       <AboutPage
         initialTab={aboutInitialTab}
         onNavHome={() => navigateTo('home', '')}
+        onNavServices={() => navigateTo('services', 'services-page')}
+        onNavAbout={(subTab = 'code-of-conduct') => navigateTo('about', subTab, subTab)}
         onNavCareers={(subTab = 'career-stories') => navigateTo('careers', subTab, subTab)}
         onNavPartners={() => navigateTo('partners', 'partners')}
         onNavInsights={() => navigateTo('insights', 'insights')}
+        onNavChallengeUs={() => navigateTo('challenge-us', 'challenge-us')}
         onOpenContactPage={() => navigateTo('contact', 'contact')}
         onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
         isAdminLoggedIn={!!adminUser}
@@ -264,14 +313,17 @@ export function App() {
     );
   }
 
-  // 2. Insights Standalone Page
+  // 3. Insights Standalone Page
   if (currentPage === 'insights') {
     return (
       <InsightsPage
         onNavHome={() => navigateTo('home', '')}
+        onNavServices={() => navigateTo('services', 'services-page')}
         onNavAbout={(subTab = 'code-of-conduct') => navigateTo('about', subTab, subTab)}
         onNavCareers={(subTab = 'career-stories') => navigateTo('careers', subTab, subTab)}
         onNavPartners={() => navigateTo('partners', 'partners')}
+        onNavInsights={() => navigateTo('insights', 'insights')}
+        onNavChallengeUs={() => navigateTo('challenge-us', 'challenge-us')}
         onOpenContactPage={() => navigateTo('contact', 'contact')}
         onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
         isAdminLoggedIn={!!adminUser}
@@ -280,14 +332,17 @@ export function App() {
     );
   }
 
-  // 3. Partners Standalone Page
+  // 4. Partners Standalone Page
   if (currentPage === 'partners') {
     return (
       <PartnersPage
         onNavHome={() => navigateTo('home', '')}
+        onNavServices={() => navigateTo('services', 'services-page')}
         onNavAbout={(subTab = 'code-of-conduct') => navigateTo('about', subTab, subTab)}
         onNavCareers={(subTab = 'career-stories') => navigateTo('careers', subTab, subTab)}
+        onNavPartners={() => navigateTo('partners', 'partners')}
         onNavInsights={() => navigateTo('insights', 'insights')}
+        onNavChallengeUs={() => navigateTo('challenge-us', 'challenge-us')}
         onOpenContactPage={() => navigateTo('contact', 'contact')}
         onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
         isAdminLoggedIn={!!adminUser}
@@ -296,15 +351,18 @@ export function App() {
     );
   }
 
-  // 4. Contact Page
+  // 5. Contact Page
   if (currentPage === 'contact') {
     return (
       <ContactPage
         onBackHome={() => navigateTo('home', '')}
+        onNavServices={() => navigateTo('services', 'services-page')}
         onNavCareers={(subTab = 'career-stories') => navigateTo('careers', subTab, subTab)}
         onNavAbout={(subTab = 'code-of-conduct') => navigateTo('about', subTab, subTab)}
         onNavPartners={() => navigateTo('partners', 'partners')}
         onNavInsights={() => navigateTo('insights', 'insights')}
+        onNavChallengeUs={() => navigateTo('challenge-us', 'challenge-us')}
+        onOpenContactPage={() => navigateTo('contact', 'contact')}
         onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
         isAdminLoggedIn={!!adminUser}
         onAdminLogout={handleAdminLogout}
@@ -312,7 +370,7 @@ export function App() {
     );
   }
 
-  // 5. Careers Job Opportunities Page
+  // 6. Careers Job Opportunities Page
   if (currentPage === 'careers') {
     return (
       <CareersPage
@@ -325,6 +383,8 @@ export function App() {
         onNavAbout={(subTab = 'code-of-conduct') => navigateTo('about', subTab, subTab)}
         onNavPartners={() => navigateTo('partners', 'partners')}
         onNavInsights={() => navigateTo('insights', 'insights')}
+        onNavServices={() => navigateTo('services', 'services-page')}
+        onNavChallengeUs={() => navigateTo('challenge-us', 'challenge-us')}
         onOpenContactPage={() => navigateTo('contact', 'contact')}
         onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
         isAdminLoggedIn={!!adminUser}
@@ -333,7 +393,7 @@ export function App() {
     );
   }
 
-  // 6. Job Detail Page
+  // 7. Job Detail Page
   if (currentPage === 'job-detail') {
     return (
       <JobDetailPage
@@ -348,6 +408,7 @@ export function App() {
           navigateTo('job-detail', 'job-detail');
         }}
         onNavHome={() => navigateTo('home', '')}
+        onNavChallengeUs={() => navigateTo('challenge-us', 'challenge-us')}
         onOpenContactPage={() => navigateTo('contact', 'contact')}
         onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
         isAdminLoggedIn={!!adminUser}
@@ -356,13 +417,14 @@ export function App() {
     );
   }
 
-  // 7. Job Application Form Page
+  // 8. Job Application Form Page
   if (currentPage === 'job-apply') {
     return (
       <JobApplyPage
         jobId={selectedJobId}
         onBackToJob={() => navigateTo('job-detail', 'job-detail')}
         onNavHome={() => navigateTo('home', '')}
+        onNavChallengeUs={() => navigateTo('challenge-us', 'challenge-us')}
         onOpenContactPage={() => navigateTo('contact', 'contact')}
         onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
         isAdminLoggedIn={!!adminUser}
@@ -371,7 +433,7 @@ export function App() {
     );
   }
 
-  // 8. Admin Login Page
+  // 9. Admin Login Page
   if (currentPage === 'admin-login') {
     return (
       <AdminLoginPage
@@ -386,7 +448,7 @@ export function App() {
     );
   }
 
-  // 9. Admin Dashboard Page
+  // 10. Admin Dashboard Page
   if (currentPage === 'admin-dashboard') {
     return (
       <AdminDashboardPage
@@ -398,7 +460,25 @@ export function App() {
     );
   }
 
-  // 10. Homepage (Default)
+  // 11. Challenge Us Page
+  if (currentPage === 'challenge-us') {
+    return (
+      <ChallengeUsPage
+        onNavHome={() => navigateTo('home', '')}
+        onNavServices={(cat) => navigateTo('services', 'services-page', cat)}
+        onNavAbout={(subTab = 'code-of-conduct') => navigateTo('about', subTab, subTab)}
+        onNavCareers={(subTab = 'career-stories') => navigateTo('careers', subTab, subTab)}
+        onNavPartners={() => navigateTo('partners', 'partners')}
+        onNavInsights={() => navigateTo('insights', 'insights')}
+        onOpenContactPage={() => navigateTo('contact', 'contact')}
+        onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
+        isAdminLoggedIn={!!adminUser}
+        onAdminLogout={handleAdminLogout}
+      />
+    );
+  }
+
+  // 12. Homepage (Default)
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans antialiased">
       {/* 1. Header Navigation */}
@@ -409,6 +489,8 @@ export function App() {
         onNavCareers={(subTab = 'career-stories') => navigateTo('careers', subTab, subTab)}
         onNavPartners={() => navigateTo('partners', 'partners')}
         onNavInsights={() => navigateTo('insights', 'insights')}
+        onNavServices={() => navigateTo('services', 'services-page')}
+        onNavChallengeUs={() => navigateTo('challenge-us', 'challenge-us')}
         onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
         isAdminLoggedIn={!!adminUser}
         onAdminLogout={handleAdminLogout}

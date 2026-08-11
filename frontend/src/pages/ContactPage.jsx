@@ -7,7 +7,7 @@ import axios from 'axios';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
-export default function ContactPage({ onBackHome, onNavCareers, onNavAbout, onNavAdmin, isAdminLoggedIn, onAdminLogout }) {
+export default function ContactPage({ onBackHome, onNavCareers, onNavAbout, onNavServices, onNavPartners, onNavInsights, onNavChallengeUs, onNavAdmin, isAdminLoggedIn, onAdminLogout }) {
   const [formData, setFormData] = useState({
     first_name: '',
     last_name: '',
@@ -46,7 +46,7 @@ export default function ContactPage({ onBackHome, onNavCareers, onNavAbout, onNa
   const representatives = [
     {
       id: 1,
-      name: 'Anne Carter (SA,WA,NT)',
+      name: 'Anne Carter (SA, WA, NT)',
       title: 'Executive Director, Client Services',
       image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80',
       bio: 'Anne Carter is Executive Director of Client Services for SA, WA, and NT. She leads client success, enterprise account growth, and public sector digital delivery across Central and Western Australia.',
@@ -73,10 +73,19 @@ export default function ContactPage({ onBackHome, onNavCareers, onNavAbout, onNa
     },
     {
       id: 4,
-      name: 'Scott Gledhill (ACT)',
+      name: 'Sian Clissold (NSW)',
       title: 'Executive Director, Client Services',
+      image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=600&q=80',
+      bio: 'Sian Clissold leads New South Wales enterprise accounts, digital transformation programs, and key stakeholder relationships across government and private sector clients.',
+      region: 'New South Wales',
+      linkedinUrl: 'https://www.linkedin.com'
+    },
+    {
+      id: 5,
+      name: 'Steven O’Kane (ACT)',
+      title: 'Commercial Lead',
       image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80',
-      bio: 'Scott Gledhill leads client engagement and technology delivery across Federal Government and Australian Capital Territory agencies.',
+      bio: 'Steven O’Kane drives strategic partnerships, government digital modernisations, and public sector accounts across the Australian Capital Territory.',
       region: 'Australian Capital Territory',
       linkedinUrl: 'https://www.linkedin.com'
     }
@@ -102,8 +111,12 @@ export default function ContactPage({ onBackHome, onNavCareers, onNavAbout, onNa
       {/* Top Navbar */}
       <Navbar
         onNavHome={onBackHome}
+        onNavServices={onNavServices}
         onNavCareers={onNavCareers}
         onNavAbout={onNavAbout}
+        onNavPartners={onNavPartners}
+        onNavInsights={onNavInsights}
+        onNavChallengeUs={onNavChallengeUs}
         onOpenContactPage={() => window.scrollTo(0, 0)}
         onNavAdmin={onNavAdmin}
         isAdminLoggedIn={isAdminLoggedIn}

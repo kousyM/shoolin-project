@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Search, Building2, MessageSquare, ChevronRight, ArrowRight, ArrowLeft, Upload, CheckCircle2, X } from 'lucide-react';
 
-export const CareersPage = ({ initialTab = 'career-stories', onSelectJob, onNavHome, onOpenContactPage, onNavAbout, onNavCareers, onNavAdmin, isAdminLoggedIn, onAdminLogout }) => {
+export const CareersPage = ({ initialTab = 'career-stories', onSelectJob, onNavHome, onOpenContactPage, onNavAbout, onNavCareers, onNavPartners, onNavInsights, onNavServices, onNavChallengeUs, onNavAdmin, isAdminLoggedIn, onAdminLogout }) => {
   const [activeTab, setActiveTab] = useState(initialTab); // 'career-stories' | 'job-opportunities' | 'life-at-ncs'
   const [selectedStory, setSelectedStory] = useState(null); // When set, displays particular career story
   const [hoveredStory, setHoveredStory] = useState(null);
@@ -144,8 +144,12 @@ export const CareersPage = ({ initialTab = 'career-stories', onSelectJob, onNavH
       {/* Navbar with Hover Mega Menu */}
       <Navbar
         onNavHome={onNavHome}
+        onNavServices={onNavServices}
         onNavAbout={onNavAbout}
         onNavCareers={(tab) => handleTabChange(tab)}
+        onNavPartners={onNavPartners}
+        onNavInsights={onNavInsights}
+        onNavChallengeUs={onNavChallengeUs}
         onOpenContactPage={onOpenContactPage}
         onNavAdmin={onNavAdmin}
         isAdminLoggedIn={isAdminLoggedIn}

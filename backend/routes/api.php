@@ -24,6 +24,7 @@ Route::get('/case-studies', [ContentController::class, 'getCaseStudies']);
 Route::post('/case-studies', [ContentController::class, 'storeCaseStudy']);
 Route::delete('/case-studies/{id}', [ContentController::class, 'destroyCaseStudy']);
 Route::post('/contact', [ContentController::class, 'contact']);
+Route::post('/challenge-us', [ContentController::class, 'challengeUs']);
 
 // Careers & Job Opportunities Public Routes
 Route::get('/jobs', [JobController::class, 'index']);

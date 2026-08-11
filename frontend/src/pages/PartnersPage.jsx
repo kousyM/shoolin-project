@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { ArrowRight, CheckCircle2, Building2, Phone, Mail } from 'lucide-react';
 
-export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onOpenContactPage, onNavAdmin, isAdminLoggedIn, onAdminLogout }) => {
+export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartners, onNavInsights, onNavServices, onNavChallengeUs, onOpenContactPage, onNavAdmin, isAdminLoggedIn, onAdminLogout }) => {
   const [activeTab, setActiveTab] = useState('A-F'); // 'A-F' | 'G-L' | 'M-R' | 'S-Z'
   const [formData, setFormData] = useState({
     firstName: '',
@@ -38,11 +38,7 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onOpenContac
       { name: 'BlueVoyant', logo: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=300&q=80', tag: 'Cyber Defense' },
       { name: 'CHECK POINT', logo: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=300&q=80', tag: 'Firewall & Security' },
       { name: 'CISCO', logo: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=300&q=80', tag: 'Enterprise Networking' },
-      { name: 'Citrix', logo: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=300&q=80', tag: 'Digital Workspace' },
-      { name: 'CLAROTY', logo: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=300&q=80', tag: 'OT Security' },
-      { name: 'ClickHouse', logo: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=300&q=80', tag: 'Analytics DB' },
-      { name: 'CrowdStrike', logo: 'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?auto=format&fit=crop&w=300&q=80', tag: 'Endpoint Security' },
-      { name: 'CYBERARK', logo: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=300&q=80', tag: 'Privileged Access' }
+      { name: 'CrowdStrike', logo: 'https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=300&q=80', tag: 'Endpoint Protection' }
     ],
     'G-L': [
       { name: 'Google Cloud', logo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80', tag: 'Hyperscale Cloud' },
@@ -81,8 +77,12 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onOpenContac
       {/* Navbar */}
       <Navbar
         onNavHome={onNavHome}
+        onNavServices={onNavServices}
         onNavAbout={onNavAbout}
         onNavCareers={onNavCareers}
+        onNavPartners={() => window.scrollTo(0, 0)}
+        onNavInsights={onNavInsights}
+        onNavChallengeUs={onNavChallengeUs}
         onOpenContactPage={onOpenContactPage}
         onNavAdmin={onNavAdmin}
         isAdminLoggedIn={isAdminLoggedIn}

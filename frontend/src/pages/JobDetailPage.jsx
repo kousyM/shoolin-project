@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { ArrowLeft, Building2, Share2, Mail, MessageCircle, Globe } from 'lucide-react';
 
-export const JobDetailPage = ({ jobId, onBackToCareers, onApplyJob, onSelectOtherJob, onNavHome, onOpenContactPage, onNavAdmin, isAdminLoggedIn, onAdminLogout }) => {
+export const JobDetailPage = ({ jobId, onBackToCareers, onApplyJob, onSelectOtherJob, onNavHome, onNavServices, onNavAbout, onNavPartners, onNavInsights, onNavChallengeUs, onOpenContactPage, onNavAdmin, isAdminLoggedIn, onAdminLogout }) => {
   const [job, setJob] = useState(null);
   const [otherJobs, setOtherJobs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -18,8 +18,8 @@ export const JobDetailPage = ({ jobId, onBackToCareers, onApplyJob, onSelectOthe
           setJob(response.data.job);
           setOtherJobs(response.data.otherJobs || []);
         }
-      } catch (error) {
-        console.error('Error fetching job details:', error);
+      } catch (err) {
+        console.error('Error fetching job details:', err);
       } finally {
         setLoading(false);
       }
@@ -27,14 +27,13 @@ export const JobDetailPage = ({ jobId, onBackToCareers, onApplyJob, onSelectOthe
 
     if (jobId) {
       fetchJobDetail();
-      window.scrollTo(0, 0);
     }
   }, [jobId]);
 
   if (loading) {
     return (
       <div style={{ backgroundColor: '#f8fafc', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-        <Navbar onNavHome={onNavHome} onNavCareers={onBackToCareers} onOpenContactPage={onOpenContactPage} />
+        <Navbar onNavHome={onNavHome} onNavServices={onNavServices} onNavAbout={onNavAbout} onNavPartners={onNavPartners} onNavInsights={onNavInsights} onNavCareers={onBackToCareers} onOpenContactPage={onOpenContactPage} />
         <div style={{ padding: '6rem 1rem', textAlign: 'center' }}>
           <div style={{ display: 'inline-block', width: '32px', height: '32px', border: '4px solid #004f6e', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
           <p style={{ marginTop: '0.5rem', color: '#475569' }}>Loading job details...</p>
@@ -47,7 +46,7 @@ export const JobDetailPage = ({ jobId, onBackToCareers, onApplyJob, onSelectOthe
   if (!job) {
     return (
       <div style={{ backgroundColor: '#f8fafc', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-        <Navbar onNavHome={onNavHome} onNavCareers={onBackToCareers} onOpenContactPage={onOpenContactPage} />
+        <Navbar onNavHome={onNavHome} onNavServices={onNavServices} onNavAbout={onNavAbout} onNavPartners={onNavPartners} onNavInsights={onNavInsights} onNavCareers={onBackToCareers} onOpenContactPage={onOpenContactPage} />
         <div style={{ maxWidth: '800px', margin: '5rem auto', textAlign: 'center', padding: '0 1rem' }}>
           <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#1e293b', marginBottom: '0.5rem' }}>Job Not Found</h2>
           <p style={{ color: '#64748b', marginBottom: '1.5rem' }}>The requested position may have been closed or removed.</p>
@@ -68,6 +67,11 @@ export const JobDetailPage = ({ jobId, onBackToCareers, onApplyJob, onSelectOthe
       {/* Navbar */}
       <Navbar
         onNavHome={onNavHome}
+        onNavServices={onNavServices}
+        onNavAbout={onNavAbout}
+        onNavPartners={onNavPartners}
+        onNavInsights={onNavInsights}
+        onNavChallengeUs={onNavChallengeUs}
         onNavCareers={onBackToCareers}
         onOpenContactPage={onOpenContactPage}
         onNavAdmin={onNavAdmin}

@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { ArrowRight, ArrowLeft, Mail, Award, CheckCircle2, ShieldCheck, UserCheck } from 'lucide-react';
 
-export const AboutPage = ({ initialTab = 'code-of-conduct', onNavHome, onNavCareers, onOpenContactPage, onNavAdmin, isAdminLoggedIn, onAdminLogout }) => {
+export const AboutPage = ({ initialTab = 'code-of-conduct', onNavHome, onNavCareers, onNavPartners, onNavInsights, onNavServices, onNavChallengeUs, onOpenContactPage, onNavAdmin, isAdminLoggedIn, onAdminLogout }) => {
   const [activeTab, setActiveTab] = useState(initialTab); // 'code-of-conduct' | 'leadership' | 'milestones' | 'newsroom' | 'privacy-policy'
   const [leadershipTeam, setLeadershipTeam] = useState('management'); // 'management' | 'senior'
   const [hoveredLeader, setHoveredLeader] = useState(null);
@@ -19,10 +19,10 @@ export const AboutPage = ({ initialTab = 'code-of-conduct', onNavHome, onNavCare
     window.scrollTo(0, 0);
   }, [initialTab]);
 
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
+  const handleTabChange = (tabName) => {
+    setActiveTab(tabName);
     setSelectedLeader(null);
-    window.location.hash = tab;
+    window.location.hash = tabName;
     window.scrollTo(0, 0);
   };
 
@@ -139,7 +139,11 @@ export const AboutPage = ({ initialTab = 'code-of-conduct', onNavHome, onNavCare
       {/* Navbar */}
       <Navbar
         onNavHome={onNavHome}
+        onNavServices={onNavServices}
         onNavCareers={onNavCareers}
+        onNavPartners={onNavPartners}
+        onNavInsights={onNavInsights}
+        onNavChallengeUs={onNavChallengeUs}
         onOpenContactPage={onOpenContactPage}
         onNavAdmin={onNavAdmin}
         isAdminLoggedIn={isAdminLoggedIn}

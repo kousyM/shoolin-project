@@ -74,14 +74,6 @@ export const Footer = ({ onOpenContactPage, onNavAdmin }) => {
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-white transition-colors">Terms of Use</a>
             <a href="#" className="hover:text-white transition-colors">Cyber Resilience Statement</a>
-            {onNavAdmin && (
-              <button
-                onClick={onNavAdmin}
-                className="text-slate-500 hover:text-cyan-400 transition-colors underline"
-              >
-                Admin Portal
-              </button>
-            )}
           </div>
         </div>
 

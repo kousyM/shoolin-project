@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { ArrowRight, ArrowLeft, Search, Filter, ChevronLeft, ChevronRight, X, BookOpen, Clock, Tag } from 'lucide-react';
 
-export const InsightsPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartners, onOpenContactPage, onNavAdmin, isAdminLoggedIn, onAdminLogout }) => {
+export const InsightsPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartners, onNavInsights, onNavServices, onNavChallengeUs, onOpenContactPage, onNavAdmin, isAdminLoggedIn, onAdminLogout }) => {
   // Featured Insights Carousel State
   const [featuredIndex, setFeaturedIndex] = useState(0);
   const [hoveredInsightId, setHoveredInsightId] = useState(null);
@@ -152,9 +152,12 @@ export const InsightsPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
       {/* Navbar */}
       <Navbar
         onNavHome={onNavHome}
+        onNavServices={onNavServices}
         onNavAbout={onNavAbout}
         onNavCareers={onNavCareers}
         onNavPartners={onNavPartners}
+        onNavInsights={() => window.scrollTo(0, 0)}
+        onNavChallengeUs={onNavChallengeUs}
         onOpenContactPage={onOpenContactPage}
         onNavAdmin={onNavAdmin}
         isAdminLoggedIn={isAdminLoggedIn}

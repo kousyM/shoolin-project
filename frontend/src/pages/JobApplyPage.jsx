@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { ArrowLeft, Upload, CheckCircle2, AlertCircle, Plus, User, FileText, Building2, Search, Trash2, GraduationCap } from 'lucide-react';
 
-export const JobApplyPage = ({ jobId, onBackToJob, onNavHome, onOpenContactPage, onNavAdmin, isAdminLoggedIn, onAdminLogout }) => {
+export const JobApplyPage = ({ jobId, onBackToJob, onNavHome, onNavServices, onNavAbout, onNavPartners, onNavInsights, onNavChallengeUs, onOpenContactPage, onNavAdmin, isAdminLoggedIn, onAdminLogout }) => {
   const [job, setJob] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -206,7 +206,7 @@ export const JobApplyPage = ({ jobId, onBackToJob, onNavHome, onOpenContactPage,
   if (loading) {
     return (
       <div style={{ backgroundColor: '#ffffff', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-        <Navbar onNavHome={onNavHome} onNavCareers={onBackToJob} onOpenContactPage={onOpenContactPage} />
+        <Navbar onNavHome={onNavHome} onNavServices={onNavServices} onNavAbout={onNavAbout} onNavPartners={onNavPartners} onNavInsights={onNavInsights} onNavCareers={onBackToJob} onOpenContactPage={onOpenContactPage} />
         <div style={{ padding: '6rem 1rem', textAlign: 'center' }}>
           <div style={{ display: 'inline-block', width: '32px', height: '32px', border: '4px solid #004f6e', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
           <p style={{ marginTop: '0.5rem', color: '#475569' }}>Loading application form...</p>
@@ -221,6 +221,11 @@ export const JobApplyPage = ({ jobId, onBackToJob, onNavHome, onOpenContactPage,
       {/* Navbar */}
       <Navbar
         onNavHome={onNavHome}
+        onNavServices={onNavServices}
+        onNavAbout={onNavAbout}
+        onNavPartners={onNavPartners}
+        onNavInsights={onNavInsights}
+        onNavChallengeUs={onNavChallengeUs}
         onNavCareers={onBackToJob}
         onOpenContactPage={onOpenContactPage}
         onNavAdmin={onNavAdmin}

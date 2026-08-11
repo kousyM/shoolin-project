@@ -168,6 +168,74 @@ class ContentController extends Controller
         ]);
     }
 
+    /**
+     * Handle Challenge Us form submission: Store in contacts DB + Send Email.
+     */
+    public function challengeUs(Request $request)
+    {
+        $validated = $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'role' => 'required|string|max:255',
+            'organisation' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:255',
+            'message' => 'nullable|string'
+        ]);
+
+        $firstName = $validated['first_name'];
+        $lastName = $validated['last_name'];
+        $fullName = trim($firstName . ' ' . $lastName);
+        $role = $validated['role'];
+        $organisation = $validated['organisation'];
+        $email = $validated['email'];
+        $phone = $validated['phone'];
+        $message = $validated['message'] ?? "Challenge submitted by {$fullName} ({$role} at {$organisation}).";
+
+        // 1. Store in Contacts Table
+        $contactRecord = null;
+        try {
+            $contactRecord = Contact::create([
+                'full_name' => $fullName,
+                'first_name' => $firstName,
+                'last_name' => $lastName,
+                'email' => $email,
+                'phone' => $phone,
+                'organisation' => $organisation,
+                'designation' => $role,
+                'subject' => "Challenge Us: Submitted by {$fullName}",
+                'message' => $message,
+                'consent' => true
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Database store in challengeUs failed: ' . $e->getMessage());
+        }
+
+        // 2. Dispatch Email Notification
+        try {
+            $emailContent = "New Challenge Us Form Submission:\n\n" .
+                "Name: {$fullName}\n" .
+                "Role / Designation: {$role}\n" .
+                "Organisation: {$organisation}\n" .
+                "Business Email: {$email}\n" .
+                "Phone: {$phone}\n\n" .
+                "Challenge Details / Message:\n{$message}\n";
+
+            Mail::raw($emailContent, function ($mail) use ($email, $fullName, $organisation) {
+                $mail->to('kowsalyam2611@gmail.com')
+                    ->subject("NCS Challenge Us - Submission from {$fullName} ({$organisation})");
+            });
+        } catch (\Exception $e) {
+            Log::error('Challenge Us email notification failed: ' . $e->getMessage());
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Thank you for taking on the challenge! Your submission has been received and saved.',
+            'data' => $contactRecord
+        ]);
+    }
+
     private function getDefaultBanners()
     {
         return [
