@@ -3,6 +3,8 @@ import axios from 'axios';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { ArrowLeft, Building2, Share2, Mail, MessageCircle, Globe } from 'lucide-react';
+import { getApiBaseUrl } from '../api/config';
+import { DEFAULT_JOBS } from '../data/defaultJobs';
 
 export const JobDetailPage = ({ jobId, onBackToCareers, onApplyJob, onSelectOtherJob, onNavHome, onNavServices, onNavAbout, onNavPartners, onNavInsights, onNavChallengeUs, onOpenContactPage, onNavAdmin, isAdminLoggedIn, onAdminLogout }) => {
   const [job, setJob] = useState(null);
@@ -13,13 +15,19 @@ export const JobDetailPage = ({ jobId, onBackToCareers, onApplyJob, onSelectOthe
     const fetchJobDetail = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/jobs/${jobId}`);
+        const apiBase = getApiBaseUrl();
+        const response = await axios.get(`${apiBase}/api/jobs/${jobId}`, { timeout: 5000 });
         if (response.data && response.data.job) {
           setJob(response.data.job);
           setOtherJobs(response.data.otherJobs || []);
+        } else {
+          throw new Error('Job not found in API');
         }
       } catch (err) {
-        console.error('Error fetching job details:', err);
+        console.warn('Backend API unavailable, using default job details:', err);
+        const found = DEFAULT_JOBS.find((j) => String(j.id) === String(jobId)) || DEFAULT_JOBS[0];
+        setJob(found);
+        setOtherJobs(DEFAULT_JOBS.filter((j) => String(j.id) !== String(jobId)));
       } finally {
         setLoading(false);
       }

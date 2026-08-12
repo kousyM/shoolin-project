@@ -3,6 +3,8 @@ import axios from 'axios';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Search, Building2, MessageSquare, ChevronRight, ArrowRight, ArrowLeft, Upload, CheckCircle2, X } from 'lucide-react';
+import { getApiBaseUrl } from '../api/config';
+import { DEFAULT_JOBS, DEFAULT_META } from '../data/defaultJobs';
 
 export const CareersPage = ({ initialTab = 'career-stories', onSelectJob, onNavHome, onOpenContactPage, onNavAbout, onNavCareers, onNavPartners, onNavInsights, onNavServices, onNavChallengeUs, onNavAdmin, isAdminLoggedIn, onAdminLogout }) => {
   const [activeTab, setActiveTab] = useState(initialTab); // 'career-stories' | 'job-opportunities' | 'life-at-ncs'
@@ -31,8 +33,8 @@ export const CareersPage = ({ initialTab = 'career-stories', onSelectJob, onNavH
   const [locationFilter, setLocationFilter] = useState('All');
   const [departmentFilter, setDepartmentFilter] = useState('All');
   const [remoteOnly, setRemoteOnly] = useState(false);
-  const [locationsList, setLocationsList] = useState([]);
-  const [departmentsList, setDepartmentsList] = useState([]);
+  const [locationsList, setLocationsList] = useState(DEFAULT_META.locations);
+  const [departmentsList, setDepartmentsList] = useState(DEFAULT_META.departments);
 
   useEffect(() => {
     if (initialTab) {
@@ -58,16 +60,35 @@ export const CareersPage = ({ initialTab = 'career-stories', onSelectJob, onNavH
       if (departmentFilter !== 'All') params.department = departmentFilter;
       if (remoteOnly) params.remote = true;
 
-      const response = await axios.get('http://127.0.0.1:8000/api/jobs', { params });
-      if (response.data && response.data.jobs) {
+      const apiBase = getApiBaseUrl();
+      const response = await axios.get(`${apiBase}/api/jobs`, { params, timeout: 5000 });
+      if (response.data && response.data.jobs && response.data.jobs.length > 0) {
         setJobs(response.data.jobs);
         if (response.data.meta) {
-          setLocationsList(response.data.meta.locations || []);
-          setDepartmentsList(response.data.meta.departments || []);
+          setLocationsList(response.data.meta.locations || DEFAULT_META.locations);
+          setDepartmentsList(response.data.meta.departments || DEFAULT_META.departments);
         }
+      } else {
+        throw new Error('No jobs returned from API');
       }
     } catch (error) {
-      console.error('Error fetching jobs:', error);
+      console.warn('Backend API unavailable, displaying default jobs list:', error);
+      let filtered = DEFAULT_JOBS;
+      if (search) {
+        filtered = filtered.filter(j => j.title.toLowerCase().includes(search.toLowerCase()) || j.summary.toLowerCase().includes(search.toLowerCase()));
+      }
+      if (locationFilter !== 'All') {
+        filtered = filtered.filter(j => j.location.includes(locationFilter));
+      }
+      if (departmentFilter !== 'All') {
+        filtered = filtered.filter(j => j.department === departmentFilter);
+      }
+      if (remoteOnly) {
+        filtered = filtered.filter(j => j.is_remote);
+      }
+      setJobs(filtered);
+      setLocationsList(DEFAULT_META.locations);
+      setDepartmentsList(DEFAULT_META.departments);
     } finally {
       setLoading(false);
     }
