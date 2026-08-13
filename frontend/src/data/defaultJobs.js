@@ -105,7 +105,34 @@ export const DEFAULT_JOBS = [
 
 export const DEFAULT_META = {
   locations: ['All', 'Sydney, NSW', 'Melbourne, VIC', 'Canberra, ACT', 'Brisbane, QLD', 'Macquarie Park, NSW'],
-  departments: ['All', 'Cloud & Infrastructure', 'Data & AI', 'Cyber Security', 'Applications & Digital']
+  departments: ['All', 'Cloud & Infrastructure', 'Data & AI', 'Cyber Security', 'Applications & Digital', 'Digital Applications']
+};
+
+export const getStoredJobs = () => {
+  try {
+    const stored = localStorage.getItem('ncs_jobs');
+    if (stored) {
+      const parsed = JSON.parse(stored);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        return parsed;
+      }
+    }
+  } catch (e) {
+    console.warn('Error reading stored jobs from localStorage:', e);
+  }
+  // Initialize with DEFAULT_JOBS
+  try {
+    localStorage.setItem('ncs_jobs', JSON.stringify(DEFAULT_JOBS));
+  } catch (e) {}
+  return DEFAULT_JOBS;
+};
+
+export const saveStoredJobs = (jobsList) => {
+  try {
+    localStorage.setItem('ncs_jobs', JSON.stringify(jobsList));
+  } catch (e) {
+    console.warn('Error saving jobs to localStorage:', e);
+  }
 };
 
 export default DEFAULT_JOBS;

@@ -3,10 +3,12 @@ import axios from 'axios';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { Plus, Edit2, Trash2, FileText, Briefcase, Users, LogOut, CheckCircle2, AlertCircle, RefreshCw } from 'lucide-react';
+import { getApiBaseUrl } from '../api/config';
+import { getStoredJobs, saveStoredJobs } from '../data/defaultJobs';
 
 export const AdminDashboardPage = ({ onNavHome, onNavCareers, onOpenContactPage, onAdminLogout }) => {
   const [activeTab, setActiveTab] = useState('jobs'); // 'jobs' | 'applications' | 'create-job'
-  const [jobs, setJobs] = useState([]);
+  const [jobs, setJobs] = useState(getStoredJobs());
   const [applications, setApplications] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editingJobId, setEditingJobId] = useState(null);
@@ -34,19 +36,25 @@ export const AdminDashboardPage = ({ onNavHome, onNavCareers, onOpenContactPage,
     const headers = { Authorization: `Bearer ${token}` };
 
     try {
-      // Fetch jobs
-      const jobsRes = await axios.get('http://127.0.0.1:8000/api/admin/jobs', { headers });
-      if (jobsRes.data && jobsRes.data.jobs) {
+      const apiBase = getApiBaseUrl();
+      // Fetch jobs from API
+      const jobsRes = await axios.get(`${apiBase}/api/admin/jobs`, { headers, timeout: 4000 });
+      if (jobsRes.data && jobsRes.data.jobs && jobsRes.data.jobs.length > 0) {
         setJobs(jobsRes.data.jobs);
+        saveStoredJobs(jobsRes.data.jobs);
+      } else {
+        throw new Error('API returned no jobs');
       }
 
       // Fetch applications
-      const appsRes = await axios.get('http://127.0.0.1:8000/api/admin/applications', { headers });
+      const appsRes = await axios.get(`${apiBase}/api/admin/applications`, { headers, timeout: 4000 });
       if (appsRes.data && appsRes.data.applications) {
         setApplications(appsRes.data.applications);
       }
     } catch (err) {
-      console.error('Error fetching admin data:', err);
+      console.warn('Backend API unavailable or offline, using stored admin jobs:', err);
+      const localJobs = getStoredJobs();
+      setJobs(localJobs);
     } finally {
       setLoading(false);
     }
@@ -60,15 +68,15 @@ export const AdminDashboardPage = ({ onNavHome, onNavCareers, onOpenContactPage,
     setEditingJobId(job.id);
     setFormData({
       title: job.title || '',
-      employment_type: job.employment_type || 'Full-time',
-      department: job.department || '',
-      location: job.location || '',
-      work_mode: job.work_mode || '',
-      remote: job.remote || false,
-      company_description: job.company_description || '',
-      job_description: job.job_description || '',
-      key_responsibilities: job.key_responsibilities || '',
-      requirements: job.requirements || '',
+      employment_type: job.type || job.employment_type || 'Full-time',
+      department: job.department || 'Digital Applications',
+      location: job.location || 'Melbourne, VIC',
+      work_mode: job.work_mode || '4 days onsite, 1 wfh',
+      remote: job.is_remote ?? job.remote ?? false,
+      company_description: job.company_description || 'At NCS Australia, we believe in doing technology services better.',
+      job_description: job.description || job.job_description || '',
+      key_responsibilities: Array.isArray(job.responsibilities) ? job.responsibilities.join('\n') : (job.key_responsibilities || ''),
+      requirements: Array.isArray(job.requirements) ? job.requirements.join('\n') : (job.requirements || ''),
     });
     setActiveTab('create-job');
     window.scrollTo(0, 0);
@@ -77,16 +85,23 @@ export const AdminDashboardPage = ({ onNavHome, onNavCareers, onOpenContactPage,
   const handleDeleteJob = async (id) => {
     if (!window.confirm('Are you sure you want to delete this job posting?')) return;
     const token = localStorage.getItem('adminToken');
+
     try {
-      await axios.delete(`http://127.0.0.1:8000/api/admin/jobs/${id}`, {
-        headers: { Authorization: `Bearer ${token}` }
+      const apiBase = getApiBaseUrl();
+      await axios.delete(`${apiBase}/api/admin/jobs/${id}`, {
+        headers: { Authorization: `Bearer ${token}` },
+        timeout: 4000
       });
-      setStatusMessage('Job posting deleted successfully.');
-      fetchDashboardData();
     } catch (err) {
-      console.error('Error deleting job:', err);
-      alert('Failed to delete job posting.');
+      console.warn('Backend delete API failed, performing local delete:', err);
     }
+
+    // Local state fallback update
+    const currentJobs = getStoredJobs();
+    const updated = currentJobs.filter((j) => String(j.id) !== String(id));
+    saveStoredJobs(updated);
+    setJobs(updated);
+    setStatusMessage('Job posting deleted successfully.');
   };
 
   const handleFormSubmit = async (e) => {
@@ -97,39 +112,66 @@ export const AdminDashboardPage = ({ onNavHome, onNavCareers, onOpenContactPage,
     const token = localStorage.getItem('adminToken');
     const headers = { Authorization: `Bearer ${token}` };
 
-    try {
-      if (editingJobId) {
-        // Update Job
-        await axios.put(`http://127.0.0.1:8000/api/admin/jobs/${editingJobId}`, formData, { headers });
-        setStatusMessage('Job updated successfully!');
-      } else {
-        // Create Job
-        await axios.post('http://127.0.0.1:8000/api/admin/jobs', formData, { headers });
-        setStatusMessage('New job posted successfully!');
-      }
+    const formattedJob = {
+      id: editingJobId || Date.now(),
+      title: formData.title,
+      department: formData.department,
+      location: formData.location,
+      type: formData.employment_type,
+      employment_type: formData.employment_type,
+      work_mode: formData.work_mode,
+      is_remote: formData.remote,
+      remote: formData.remote,
+      summary: formData.job_description ? formData.job_description.substring(0, 140) + '...' : 'Career opportunity at NCS Australia.',
+      description: formData.job_description,
+      company_description: formData.company_description,
+      requirements: typeof formData.requirements === 'string' ? formData.requirements.split('\n').filter(Boolean) : (formData.requirements || []),
+      responsibilities: typeof formData.key_responsibilities === 'string' ? formData.key_responsibilities.split('\n').filter(Boolean) : (formData.key_responsibilities || [])
+    };
 
-      // Reset form
-      setEditingJobId(null);
-      setFormData({
-        title: '',
-        employment_type: 'Full-time',
-        department: 'Digital Applications',
-        location: 'Melbourne, VIC',
-        work_mode: '4 days onsite, 1 wfh',
-        remote: false,
-        company_description: 'At NCS Australia, we believe in doing technology services better. Our commitment to quality, focus on people, and willingness to challenge traditional thinking set us apart.',
-        job_description: '',
-        key_responsibilities: '',
-        requirements: '',
-      });
-      fetchDashboardData();
-      setActiveTab('jobs');
+    try {
+      const apiBase = getApiBaseUrl();
+      if (editingJobId) {
+        // Update Job via API
+        await axios.put(`${apiBase}/api/admin/jobs/${editingJobId}`, formData, { headers, timeout: 4000 });
+      } else {
+        // Create Job via API
+        await axios.post(`${apiBase}/api/admin/jobs`, formData, { headers, timeout: 4000 });
+      }
     } catch (err) {
-      console.error('Error saving job:', err);
-      alert(err.response?.data?.message || 'Failed to save job posting.');
-    } finally {
-      setFormSubmitting(false);
+      console.warn('Backend API submission failed or offline, saving job locally:', err);
     }
+
+    // Always update local storage & state to ensure immediate UI update
+    let currentJobs = getStoredJobs();
+    if (editingJobId) {
+      currentJobs = currentJobs.map((j) => (String(j.id) === String(editingJobId) ? { ...j, ...formattedJob } : j));
+      setStatusMessage('Job updated successfully!');
+    } else {
+      currentJobs = [formattedJob, ...currentJobs];
+      setStatusMessage('New job posted successfully!');
+    }
+
+    saveStoredJobs(currentJobs);
+    setJobs(currentJobs);
+
+    // Reset form
+    setEditingJobId(null);
+    setFormData({
+      title: '',
+      employment_type: 'Full-time',
+      department: 'Digital Applications',
+      location: 'Melbourne, VIC',
+      work_mode: '4 days onsite, 1 wfh',
+      remote: false,
+      company_description: 'At NCS Australia, we believe in doing technology services better. Our commitment to quality, focus on people, and willingness to challenge traditional thinking set us apart.',
+      job_description: '',
+      key_responsibilities: '',
+      requirements: '',
+    });
+    setFormSubmitting(false);
+    setActiveTab('jobs');
+    window.scrollTo(0, 0);
   };
 
   return (

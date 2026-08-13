@@ -1,112 +1,178 @@
-import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import React, { useState } from 'react';
+import { Globe, Shield, Users, FileText, Monitor, Cpu, Building2, Zap } from 'lucide-react';
 
-/* Custom Dual-Tone Icons Matching Exact NCS Website Screenshot */
-const ApplicationsIcon = () => (
-  <svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="8" y="10" width="36" height="28" rx="3" stroke="#00B4D8" strokeWidth="3.5" fill="none" />
-    <path d="M14 18H20M24 18H28" stroke="#00B4D8" strokeWidth="3" strokeLinecap="round" />
-    <rect x="18" y="24" width="40" height="30" rx="3" stroke="#0046AD" strokeWidth="3.5" fill="#FFFFFF" />
-    <path d="M28 34L23 39L28 44" stroke="#0046AD" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" />
-    <path d="M48 34L53 39L48 44" stroke="#0046AD" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round" strokeLinecap="round" />
-    <path d="M40 33L36 45" stroke="#0046AD" strokeWidth="3.5" strokeLinecap="round" />
-  </svg>
-);
+export const DEEL_HOMEPAGE_SERVICES = [
+  {
+    id: 'outcome-delivery',
+    tabName: 'Outcome Delivery',
+    heroTag: 'GLOBAL DELIVERY CENTRES',
+    headline: 'From Overseas Centres to Outcome-Based delivery',
+    description: 'We help organisations move beyond traditional offshore delivery models by building high-performing global teams focused on measurable business outcomes. From capability design and team setup to delivery governance and continuous optimisation, we create scalable models that combine global talent, technology, and local expertise to deliver greater agility, efficiency, and business value.',
+    cardBgColor: '#f8fafc',
+    icon: Zap
+  },
+  {
+    id: 'immigration',
+    tabName: 'Immigration & Visa',
+    heroTag: 'GLOBAL MOBILITY',
+    headline: 'Immigration & Visa',
+    description: 'Expand your workforce anywhere. Shoolin’s immigration and visa services handle every step—assessment, paperwork, compliance, and approvals—so your hires move across borders smoothly. Our expert partners ensure fast processing and full compliance with local regulations, keeping onboarding on track.',
+    cardBgColor: '#fafaf9',
+    icon: Building2
+  },
+  {
+    id: 'digital-cx',
+    tabName: 'Digital Experience',
+    heroTag: 'DIGITAL TRANSFORMATION',
+    headline: 'Digital Experience',
+    description: 'We focus on building the digital present for startups and enterprises—creating experiences that work today and scale tomorrow. Through a powerful mix of strategy, technology, data, and human centred design, we help organisations simplify complexity, enhance customer engagement, and accelerate sustainable growth. Our consulting approach ensures every digital solution is connected, intuitive, and ready for the next stage of your business.',
+    cardBgColor: '#f9fafb',
+    icon: Monitor
+  },
+  {
+    id: 'bpm',
+    tabName: 'BPM & Optimisation',
+    heroTag: 'PROCESS EXCELLENCE',
+    headline: 'Business Process Management & Optimisation',
+    description: 'We reimagine and optimise business processes to create agile, efficient, and scalable operating models. Through process transformation, automation, governance, and continuous improvement, we help organisations build intelligent, resilient, and future-ready operations that drive productivity and sustainable business value',
+    cardBgColor: '#fafaf9',
+    icon: Cpu
+  },
+  {
+    id: 'eor',
+    tabName: 'Employer of Record',
+    heroTag: 'GLOBAL EMPLOYMENT',
+    headline: 'Employer of Record',
+    description: 'Expand globally without opening an entity. Shoolin handles local employment, contracts, compliance, payroll, benefits, and taxes so you can hire top talent anywhere in the world seamlessly.',
+    cardBgColor: '#f8fafc',
+    icon: Globe
+  },
+  {
+    id: 'contractor',
+    tabName: 'Contractor',
+    heroTag: 'CONTRACTOR MANAGEMENT',
+    headline: 'Contractor',
+    description: 'Manage your entire contractor workforce across countries with one unified platform. Shoolin handles onboarding, contracts, compliance, invoicing, and payments—ensuring every contractor is engaged and paid correctly, no matter where they work.',
+    cardBgColor: '#f9fafb',
+    icon: Users
+  },
+  {
+    id: 'vendor',
+    tabName: 'Vendor',
+    heroTag: 'VENDOR MANAGEMENT',
+    headline: 'Vendor',
+    description: 'Streamline how you work with vendors worldwide. Shoolin automates onboarding, documentation, compliance, and payouts, ensuring every vendor is verified, contracted, and managed with complete transparency.',
+    cardBgColor: '#f8fafc',
+    icon: Shield
+  },
+  {
+    id: 'it-support',
+    tabName: 'IT Support',
+    heroTag: 'MANAGED IT SERVICES',
+    headline: 'IT Support',
+    description: 'Shoolin provides end to end IT assistance—from onboarding devices and managing access to resolving technical issues quickly. Your workforce gets fast, dependable support that keeps operations moving without interruption.',
+    cardBgColor: '#f8fafc',
+    icon: Monitor
+  },
+  {
+    id: 'hr-support',
+    tabName: 'HR Support',
+    heroTag: 'HUMAN CAPITAL SUPPORT',
+    headline: 'HR Support',
+    description: 'From onboarding to offboarding, Shoolin delivers reliable HR support that keeps your teams informed, compliant, and productive. We manage employee queries, documentation, policy guidance, and issue resolution so your operations never slow down.',
+    cardBgColor: '#fafaf9',
+    icon: FileText
+  }
+];
 
-const DigitalCXIcon = () => (
-  <svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="10" y="10" width="48" height="48" rx="4" stroke="#00B4D8" strokeWidth="3.5" fill="none" />
-    <line x1="34" y1="10" x2="34" y2="58" stroke="#00B4D8" strokeWidth="3.5" strokeDasharray="4 4" />
-    <path d="M16 22L24 32L30 26L22 16" stroke="#0046AD" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-    <circle cx="20" cy="20" r="3" fill="#0046AD" />
-    <line x1="40" y1="20" x2="52" y2="20" stroke="#0046AD" strokeWidth="3.5" strokeLinecap="round" />
-    <line x1="40" y1="28" x2="52" y2="28" stroke="#0046AD" strokeWidth="3.5" strokeLinecap="round" />
-    <line x1="40" y1="36" x2="48" y2="36" stroke="#0046AD" strokeWidth="3.5" strokeLinecap="round" />
-  </svg>
-);
+export const ServicesGrid = ({ onSelectService }) => {
+  const [activeTabId, setActiveTabId] = useState('outcome-delivery');
 
-const DataAIIcon = () => (
-  <svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="12" y="14" width="28" height="42" rx="4" stroke="#00B4D8" strokeWidth="3.5" fill="none" />
-    <circle cx="26" cy="48" r="2.5" fill="#00B4D8" />
-    <path d="M24 20C32 20 38 26 42 32C46 38 52 40 58 40" stroke="#0046AD" strokeWidth="4" strokeLinecap="round" fill="none" />
-    <circle cx="24" cy="20" r="4.5" fill="#0046AD" />
-    <circle cx="42" cy="32" r="4.5" fill="#0046AD" />
-    <circle cx="58" cy="40" r="4.5" fill="#0046AD" />
-  </svg>
-);
-
-const iconMap = {
-  Code: ApplicationsIcon,
-  Smartphone: DigitalCXIcon,
-  Cpu: DataAIIcon
-};
-
-export const ServicesGrid = ({ services = [], onSelectService }) => {
-  const displayServices = services && services.length >= 3 ? services.slice(0, 3) : [
-    {
-      id: 1,
-      icon: 'Code',
-      title: 'Applications',
-      summary: "Our application development process will assist you in creating enterprise grade applications that prioritise your customers at the core of your business. Elevate your business's intelligence and agility with revolutionary enterprise software supported by AI and machine learning."
-    },
-    {
-      id: 2,
-      icon: 'Smartphone',
-      title: 'Digital Experience',
-      summary: "From reimagining healthcare for the future to driving digital transformations in defence, we'll help you create seamless, integrated customer-first digital experiences."
-    },
-    {
-      id: 3,
-      icon: 'Cpu',
-      title: 'Data & AI',
-      summary: 'Master data as the fuel for your business, harness data driven intelligence and deploy AI in the enterprise.'
-    }
-  ];
+  const activeService = DEEL_HOMEPAGE_SERVICES.find((s) => s.id === activeTabId) || DEEL_HOMEPAGE_SERVICES[0];
+  const IconComp = activeService.icon;
 
   return (
-    <section id="services" className="ncs-services-section">
-      <div className="ncs-services-container">
+    <section id="services" className="ncs-services-section" style={{ backgroundColor: '#ffffff', padding: '2.5rem 0 4rem 0' }}>
+      <div className="ncs-services-container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem' }}>
         
         {/* Section Header */}
-        <div className="ncs-services-header">
-          <h2 className="ncs-services-title">Our services</h2>
-          <p className="ncs-services-subtitle">
-            We help deliver business outcomes through technology. Find out more about our services.
-          </p>
+        <div className="ncs-services-header" style={{ textAlign: 'center', marginBottom: '2rem' }}>
+          <span style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#0284c7', backgroundColor: '#e0f2fe', padding: '0.35rem 0.9rem', borderRadius: '50px', display: 'inline-block', marginBottom: '0.85rem' }}>
+            OUR SERVICES
+          </span>
+          <h2 className="ncs-services-title" style={{ fontFamily: "var(--bs-body-font-family), 'Plus Jakarta Sans', sans-serif", fontSize: '1.5rem', fontWeight: 500, color: '#0f172a', letterSpacing: '-0.01em', marginBottom: '0.5rem', lineHeight: 1.3 }}>
+            We help deliver business outcomes through technology and workforce solutions
+          </h2>
         </div>
 
-        {/* Services 3-Column Layout */}
-        <div className="ncs-services-3col">
-          {displayServices.map((service, idx) => {
-            const IconComponent = iconMap[service.icon] || (idx === 0 ? ApplicationsIcon : idx === 1 ? DigitalCXIcon : DataAIIcon);
+        {/* SINGLE ROW SHORTENED TAB BAR */}
+        <div
+          style={{
+            borderBottom: '1px solid #e2e8f0',
+            marginBottom: '2rem',
+            display: 'flex',
+            alignItems: 'center',
+            justify: 'center',
+            flexWrap: 'nowrap',
+            overflowX: 'auto',
+            gap: '0.5rem',
+            paddingBottom: '0.25rem',
+            scrollbarWidth: 'none'
+          }}
+        >
+          {DEEL_HOMEPAGE_SERVICES.map((service) => {
+            const isActive = service.id === activeTabId;
             return (
-              <div key={service.id || idx} className="ncs-service-col">
-                <div className="ncs-service-icon">
-                  <IconComponent />
-                </div>
-
-                <h3 className="ncs-service-col-title">{service.title}</h3>
-
-                <p className="ncs-service-col-desc">{service.summary}</p>
-
-                <button
-                  onClick={() => onSelectService && onSelectService(service)}
-                  className="ncs-service-link"
-                >
-                  <span>FIND OUT MORE</span>
-                  <ArrowRight size={16} className="ncs-service-arrow" />
-                </button>
-              </div>
+              <button
+                key={service.id}
+                onClick={() => setActiveTabId(service.id)}
+                style={{
+                  padding: '0.65rem 0.85rem',
+                  fontSize: '0.88rem',
+                  fontWeight: isActive ? 700 : 500,
+                  color: isActive ? '#0284c7' : '#64748b',
+                  border: 'none',
+                  borderBottom: isActive ? '3px solid #0284c7' : '3px solid transparent',
+                  backgroundColor: isActive ? '#f0f9ff' : 'transparent',
+                  borderRadius: '6px 6px 0 0',
+                  cursor: 'pointer',
+                  whiteSpace: 'nowrap',
+                  transition: 'all 0.2s ease',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.35rem'
+                }}
+              >
+                <span>{service.tabName}</span>
+              </button>
             );
           })}
         </div>
 
-        {/* Centered Discover More Button */}
-        <div className="ncs-services-cta">
-          <a href="#case-studies" className="ncs-pill-btn font-semibold">
-            Find out more
-          </a>
+        {/* SINGLE BOX DETAILS CONTAINER (ONLY PARAGRAPH CONTENT, BUTTON REMOVED) */}
+        <div
+          style={{
+            backgroundColor: activeService.cardBgColor,
+            borderRadius: '16px',
+            padding: '2.5rem 3rem',
+            border: '1px solid #e2e8f0',
+            boxShadow: '0 6px 20px rgba(0,0,0,0.02)',
+            maxWidth: '1000px',
+            margin: '0 auto'
+          }}
+        >
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: '#0284c7', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1rem' }}>
+            <IconComp size={16} />
+            <span>{activeService.heroTag}</span>
+          </div>
+
+          <h3 style={{ fontFamily: "var(--bs-body-font-family), 'Plus Jakarta Sans', sans-serif", fontSize: '1.45rem', fontWeight: 500, color: '#0f172a', lineHeight: 1.3, marginBottom: '1rem' }}>
+            {activeService.headline}
+          </h3>
+
+          <p style={{ fontSize: '1.05rem', color: '#334155', lineHeight: 1.75, margin: 0, fontWeight: 400 }}>
+            {activeService.description}
+          </p>
         </div>
 
       </div>

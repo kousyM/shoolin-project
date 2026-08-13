@@ -250,12 +250,12 @@ class ContentController extends Controller
             ],
             [
                 'id' => 2,
-                'tag' => 'ARTIFICIAL INTELLIGENCE & DATA',
-                'title' => 'Accelerating Enterprise AI Value',
-                'subtitle' => 'Unlock sustainable growth with sovereign data platforms, predictive analytics, and enterprise generative AI solutions built for real impact.',
-                'image_url' => 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80',
-                'button_text' => 'Discover Data & AI',
-                'button_link' => '#services'
+                'tag' => 'GLOBAL TALENT & COMPLIANCE',
+                'title' => 'Build smarter. Hire globally. Pay compliantly. Grow without limits.',
+                'subtitle' => 'Our workforce solutions supports international talent hiring, optimise operations, and strengthen organisational growth through continuity, compliance, and excellence.',
+                'image_url' => '/slider_2.jpg',
+                'button_text' => 'Get In Touch',
+                'button_link' => '#contact'
             ]
         ];
     }

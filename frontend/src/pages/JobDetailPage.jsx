@@ -4,7 +4,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { ArrowLeft, Building2, Share2, Mail, MessageCircle, Globe } from 'lucide-react';
 import { getApiBaseUrl } from '../api/config';
-import { DEFAULT_JOBS } from '../data/defaultJobs';
+import { DEFAULT_JOBS, getStoredJobs } from '../data/defaultJobs';
 
 export const JobDetailPage = ({ jobId, onBackToCareers, onApplyJob, onSelectOtherJob, onNavHome, onNavServices, onNavAbout, onNavPartners, onNavInsights, onNavChallengeUs, onOpenContactPage, onNavAdmin, isAdminLoggedIn, onAdminLogout }) => {
   const [job, setJob] = useState(null);
@@ -24,10 +24,11 @@ export const JobDetailPage = ({ jobId, onBackToCareers, onApplyJob, onSelectOthe
           throw new Error('Job not found in API');
         }
       } catch (err) {
-        console.warn('Backend API unavailable, using default job details:', err);
-        const found = DEFAULT_JOBS.find((j) => String(j.id) === String(jobId)) || DEFAULT_JOBS[0];
+        console.warn('Backend API unavailable, using stored job details:', err);
+        const stored = getStoredJobs();
+        const found = stored.find((j) => String(j.id) === String(jobId)) || stored[0];
         setJob(found);
-        setOtherJobs(DEFAULT_JOBS.filter((j) => String(j.id) !== String(jobId)));
+        setOtherJobs(stored.filter((j) => String(j.id) !== String(jobId)));
       } finally {
         setLoading(false);
       }

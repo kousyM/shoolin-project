@@ -5,7 +5,7 @@ export const PartnersSection = () => {
     { name: 'Microsoft', logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg' },
     { name: 'Google Cloud', logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg' },
     { name: 'AWS', logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg' },
-    { name: 'Databricks', logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/6/63/Databricks_Logo.png' }
+    { name: 'Dell', logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/1/18/Dell_logo_2016.svg' }
   ];
 
   return (

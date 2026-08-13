@@ -4,6 +4,10 @@ import Navbar from './components/Navbar';
 import HeroSlider from './components/HeroSlider';
 import AboutSection from './components/AboutSection';
 import ServicesGrid from './components/ServicesGrid';
+import OurSolutionSection from './components/OurSolutionSection';
+import GetStartedStepper from './components/GetStartedStepper';
+import DriveCareerBanner from './components/DriveCareerBanner';
+import GoGlobalSection from './components/GoGlobalSection';
 import CardSliderSection from './components/CardSliderSection';
 import StatsCounter from './components/StatsCounter';
 import PartnersSection from './components/PartnersSection';
@@ -27,47 +31,47 @@ const DEFAULT_HOMEPAGE_DATA = {
   banners: [
     {
       id: 1,
-      tag: 'TRANSFORM WITH CONFIDENCE',
-      title: 'What challenge are you facing?',
-      subtitle: 'We partner with governments and enterprises to navigate complex digital transformations with Next-Gen technology, cloud innovation, and AI.',
+      tag: 'WORKFORCE & HR TECH SOLUTIONS',
+      title: 'Bridging every gap from hiring to end‑to‑end workforce delivery',
+      subtitle: 'Tech‑powered workforce solutions that help you hire smarter, scale faster, and run with confidence—built for continuity, compliance, and seamless growth',
       image_url: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80',
       button_text: 'Explore Our Solutions',
       button_link: '#services'
     },
     {
       id: 2,
-      tag: 'ARTIFICIAL INTELLIGENCE & DATA',
-      title: 'Accelerating Enterprise AI Value',
-      subtitle: 'Unlock sustainable growth with sovereign data platforms, predictive analytics, and enterprise generative AI solutions built for real impact.',
-      image_url: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80',
-      button_text: 'Discover Data & AI',
-      button_link: '#services'
+      tag: 'GLOBAL TALENT & COMPLIANCE',
+      title: 'Build smarter. Hire globally. Pay compliantly. Grow without limits.',
+      subtitle: 'Our workforce solutions supports international talent hiring, optimise operations, and strengthen organisational growth through continuity, compliance, and excellence.',
+      image_url: '/slider_2.jpg',
+      button_text: 'Get In Touch',
+      button_link: '#contact'
     }
   ],
   services: [
     {
       id: 1,
       icon: 'Code',
-      title: 'Applications & Platforms',
-      summary: 'Modernise, build, and run critical business applications with microservices and cloud-native architecture.',
-      description: 'Our application modernise capabilities accelerate digital delivery, boost resiliency, and lower total cost of ownership across public sector and enterprise workloads.',
-      features: ['Cloud Migration & Modernisation', 'Custom API & Microservices', 'DevSecOps Automation', 'Legacy Application Evolution']
+      title: 'Employer of Record (EOR)',
+      summary: 'Expand globally without opening an entity. Shoolin handles local employment, contracts, compliance, payroll, benefits, and taxes seamlessly.',
+      description: 'Expand globally without opening an entity. Shoolin handles local employment, contracts, compliance, payroll, benefits, and taxes so you can hire top talent anywhere in the world seamlessly.',
+      features: ['150+ Countries Supported', 'Localized Employment Contracts', 'Automated Payroll & Benefits', '100% Tax & Labor Compliance']
     },
     {
       id: 2,
       icon: 'Smartphone',
-      title: 'Digital Experience (CX)',
-      summary: 'Create seamless, human-centric digital experiences that captivate citizens and enterprise users alike.',
-      description: 'Combining human-centred design with agile engineering to craft intuitive digital portals, mobile applications, and omnichannel citizen experiences.',
-      features: ['Human-Centred UX/UI Design', 'Omnichannel Citizen Portals', 'Mobile App Development', 'Accessibility & Design Systems']
+      title: 'Outcome-Based Delivery',
+      summary: 'Build high-performing global capability centres focused on measurable business outcomes, agility, and continuous optimisation.',
+      description: 'We help organisations move beyond traditional offshore delivery models by building high-performing global teams focused on measurable business outcomes. Combining global talent, technology, and local expertise.',
+      features: ['Outcome-Focused SLA Frameworks', 'Global Capability Centre (GCC) Setup', 'Continuous Agile Optimization', 'Cost & Resiliency Efficiency']
     },
     {
       id: 3,
       icon: 'Cpu',
-      title: 'Data & AI Ecosystems',
-      summary: 'Harness sovereign data intelligence, enterprise analytics, and generative AI models safely.',
-      description: 'Turn massive data streams into actionable operational intelligence while maintaining strict data governance, security compliance, and privacy.',
-      features: ['Enterprise Data Platforms', 'Generative AI & LLM Integration', 'Predictive Analytics & ML', 'Data Governance & Sovereignty']
+      title: 'Digital Experience & BPM',
+      summary: 'Reimagine digital experience and optimise business processes to build agile, intelligent, and scalable operating models.',
+      description: 'Through process transformation, RPA automation, governance, and human-centred design, we help organisations build intelligent, resilient, and future-ready operations that drive productivity.',
+      features: ['Human-Centred UX/UI Design', 'Workflow Process Transformation', 'AI & RPA Automation Controls', 'Measurable Productivity Gains']
     }
   ],
   caseStudies: [
@@ -235,8 +239,12 @@ export function App() {
     const baseUrl = getApiBaseUrl();
     axios.get(`${baseUrl}/api/homepage`)
       .then(response => {
-        if (response.data && response.data.banners) {
-          setData(response.data);
+        if (response.data) {
+          setData({
+            ...response.data,
+            banners: DEFAULT_HOMEPAGE_DATA.banners,
+            services: DEFAULT_HOMEPAGE_DATA.services
+          });
         }
       })
       .catch(err => console.log('Using default homepage data:', err));
@@ -483,6 +491,7 @@ export function App() {
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans antialiased">
       {/* 1. Header Navigation */}
       <Navbar
+        activePage={currentPage}
         onOpenContactPage={() => navigateTo('contact', 'contact')}
         onNavHome={() => navigateTo('home', '')}
         onNavAbout={(subTab = 'code-of-conduct') => navigateTo('about', subTab, subTab)}
@@ -503,38 +512,23 @@ export function App() {
         {/* 3. About Us Section */}
         <AboutSection />
 
-        {/* 4. Our Services Grid */}
-        <ServicesGrid services={data.services} />
+        {/* 4. Our Solution Section (6 Clean Boxes) */}
+        <OurSolutionSection />
 
-        {/* 5. Case Studies Slider */}
-        <CardSliderSection
-          id="case-studies"
-          title="Case studies"
-          subtitle="Explore how we deliver high-impact digital transformation across industries"
-          items={data.caseStudies}
-          cardType="case-study"
-        />
+        {/* 5. Get Started 4-Step Process Flow */}
+        <GetStartedStepper onOpenContact={() => navigateTo('contact', 'contact')} />
 
-        {/* 6. Insights Slider */}
-        <CardSliderSection
-          id="insights"
-          title="Insights"
-          subtitle="Perspectives, research & whitepapers on AI, cloud and transformation"
-          items={data.insights}
-          cardType="insight"
-        />
+        {/* 6. Go Global With Us Banner (5 Country Cards) */}
+        <GoGlobalSection onNavCareers={() => navigateTo('careers', 'job-opportunities', 'job-opportunities')} />
 
-        {/* 7. Stats / Numbers Counter Section */}
-        <StatsCounter />
-
-        {/* 8. Meet Our Partners Section */}
+        {/* 7. Meet Our Partners Section (with Dell) */}
         <PartnersSection onNavPartners={() => navigateTo('partners', 'partners')} />
 
-        {/* 9. Join An Extraordinary Team Section */}
-        <JoinTeamSection onOpenCareers={(subTab = 'career-stories') => navigateTo('careers', subTab, subTab)} />
+        {/* 8. Drive Your Career Banner (Right Above Contact Form) */}
+        <DriveCareerBanner onNavCareers={() => navigateTo('careers', 'job-opportunities', 'job-opportunities')} />
 
-        {/* 10. Contact Us Banner */}
-        <ContactSection onOpenContactPage={() => navigateTo('contact', 'contact')} />
+        {/* 9. Contact Section (Cognizant Form: Get answers to your questions) */}
+        <ContactSection />
       </main>
 
       {/* 11. Footer */}

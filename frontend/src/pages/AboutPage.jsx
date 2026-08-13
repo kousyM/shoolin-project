@@ -288,22 +288,25 @@ export const AboutPage = ({ initialTab = 'code-of-conduct', onNavHome, onNavCare
                   style={{
                     position: 'relative',
                     backgroundColor: '#0b132b',
-                    backgroundImage: `linear-gradient(90deg, rgba(11, 19, 43, 0.90) 0%, rgba(11, 19, 43, 0.75) 50%, rgba(11, 19, 43, 0.35) 100%), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1920&q=80')`,
+                    backgroundImage: `linear-gradient(90deg, rgba(11, 19, 43, 0.92) 0%, rgba(11, 19, 43, 0.80) 50%, rgba(11, 19, 43, 0.45) 100%), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=1920&q=80')`,
                     backgroundSize: 'cover',
                     backgroundPosition: 'center',
                     color: '#ffffff',
-                    padding: '5rem 2rem',
-                    minHeight: '320px',
+                    padding: '5.5rem 2rem',
+                    minHeight: '340px',
                     display: 'flex',
                     alignItems: 'center'
                   }}
                 >
                   <div style={{ maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
                     <h1 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '2.8rem', fontWeight: 800, color: '#ffffff', marginBottom: '1rem', letterSpacing: '-0.03em' }}>
-                      NCS code of conduct
+                      About Us — Shoolin Consultancy
                     </h1>
-                    <p style={{ fontSize: '1.15rem', color: '#e2e8f0', maxWidth: '720px', lineHeight: '1.6' }}>
-                      Our commitment to integrity, ethics, and operational excellence guides how we partner with clients, support communities, and empower our workforce across Australia and Asia-Pacific.
+                    <p style={{ fontSize: '1.2rem', color: '#38bdf8', fontWeight: 700, maxWidth: '880px', lineHeight: '1.6', marginBottom: '1rem' }}>
+                      Vebhor / Shoolin Consultancy is a next generation HR Tech and Workforce Solutions company that helps enterprises build, manage, and scale global teams with precision, compliance, and AI driven efficiency.
+                    </p>
+                    <p style={{ fontSize: '1.05rem', color: '#cbd5e1', maxWidth: '880px', lineHeight: '1.7' }}>
+                      With deep expertise across talent management, payrolling, contractor operations, and global mobility, we deliver industry specific solutions that meet the complex workforce needs of modern businesses. Our multi vertical model mirrors the strength of leading global IT and consulting firms, enabling us to support clients across diverse sectors with tailored workforce strategies, transparent operations, and end to end execution.
                     </p>
                   </div>
                 </section>

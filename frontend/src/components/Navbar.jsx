@@ -1,18 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Globe, ArrowRight, ChevronDown, ChevronUp, Share2, Mail, Phone } from 'lucide-react';
 
-export const Navbar = ({ onOpenContactPage, onNavHome, onNavAbout, onNavCareers, onNavPartners, onNavInsights, onNavServices, onNavChallengeUs, onNavAdmin, isAdminLoggedIn, onAdminLogout }) => {
+export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNavAbout, onNavCareers, onNavPartners, onNavInsights, onNavServices, onNavChallengeUs, onNavAdmin, isAdminLoggedIn, onAdminLogout }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
   const [careersDropdownOpen, setCareersDropdownOpen] = useState(false);
   const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
 
-  // Mobile Accordion States (Default open Services so options are instantly visible)
+  // Mobile Accordion States
   const [mobileServicesOpen, setMobileServicesOpen] = useState(true);
   const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
   const [mobileCareersOpen, setMobileCareersOpen] = useState(false);
 
-  // Lock body scroll when mobile menu drawer is open
   useEffect(() => {
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -53,7 +52,7 @@ export const Navbar = ({ onOpenContactPage, onNavHome, onNavAbout, onNavCareers,
 
   return (
     <>
-      <nav className="ncs-navbar" style={{ position: 'sticky', top: 0, zIndex: 100, backgroundColor: '#001229', borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
+      <nav className="ncs-navbar" style={{ position: 'sticky', top: 0, zIndex: 100, backgroundColor: '#2C2C54', borderBottom: '1px solid rgba(255, 255, 255, 0.12)' }}>
         <div className="nav-container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0.85rem 1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           {/* Brand Logo */}
           <a
@@ -66,165 +65,33 @@ export const Navbar = ({ onOpenContactPage, onNavHome, onNavAbout, onNavCareers,
             style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}
           >
             <span className="logo-text" style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 800, fontSize: '1.75rem', color: '#ffffff' }}>
-              NCS<span className="logo-accent" style={{ color: '#00b4d8' }}>//</span>
+              vebhor<span className="logo-accent" style={{ color: '#55E6C1' }}>//</span>
             </span>
           </a>
 
           {/* Desktop Navigation Links */}
           <ul className="nav-links" style={{ display: 'flex', gap: '2rem', alignItems: 'center', listStyle: 'none', margin: 0, padding: 0 }}>
-            {/* 1. Services with Hover Mega Menu Dropdown */}
-            <li
-              style={{ position: 'relative' }}
-              onMouseEnter={() => setServicesDropdownOpen(true)}
-              onMouseLeave={() => setServicesDropdownOpen(false)}
-            >
+            {/* 1. Services Direct Link */}
+            <li>
               <a
                 href="#services"
                 onClick={(e) => handleServicesSubnavClick(e, 'overview')}
                 className="nav-link"
-                style={{ color: '#cbd5e1', textDecoration: 'none', fontSize: '0.95rem', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '0.2rem' }}
+                style={{
+                  color: activePage === 'services' || activePage === 'services-page' ? '#55E6C1' : '#cbd5e1',
+                  fontWeight: activePage === 'services' || activePage === 'services-page' ? 700 : 600,
+                  borderBottom: activePage === 'services' || activePage === 'services-page' ? '2px solid #55E6C1' : '2px solid transparent',
+                  paddingBottom: '0.2rem',
+                  textDecoration: 'none',
+                  fontSize: '0.95rem',
+                  transition: 'all 0.2s ease'
+                }}
               >
                 Services
               </a>
-
-              {/* Hover Mega Menu Dropdown Box for Services */}
-              {servicesDropdownOpen && (
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: '100%',
-                    left: '-60px',
-                    width: '820px',
-                    backgroundColor: '#001b3a',
-                    color: '#ffffff',
-                    boxShadow: '0 20px 40px rgba(0,0,0,0.4)',
-                    borderRadius: '0 0 8px 8px',
-                    padding: '2.5rem 3rem',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '2rem',
-                    animation: 'fadeIn 0.2s ease',
-                    borderTop: '3px solid #00b4d8',
-                    zIndex: 9999
-                  }}
-                >
-                  <div>
-                    <button
-                      onClick={(e) => handleServicesSubnavClick(e, 'overview')}
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '0.4rem',
-                        color: '#ffffff',
-                        fontSize: '1.35rem',
-                        fontWeight: 800,
-                        background: 'none',
-                        border: 'none',
-                        cursor: 'pointer',
-                        padding: 0
-                      }}
-                    >
-                      <span>Overview</span>
-                      <ArrowRight size={20} />
-                    </button>
-                  </div>
-
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '2.5rem', borderTop: '1px solid rgba(255,255,255,0.15)', paddingTop: '1.5rem' }}>
-                    {/* Column 1 */}
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
-                      <button
-                        onClick={(e) => handleServicesSubnavClick(e, 'advisory')}
-                        style={{ color: '#38bdf8', fontSize: '0.95rem', fontWeight: 800, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Advisory
-                      </button>
-                      <button
-                        onClick={(e) => handleServicesSubnavClick(e, 'cloud')}
-                        style={{ color: '#ffffff', fontSize: '0.92rem', fontWeight: 500, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Cloud and Infrastructure
-                      </button>
-                      <button
-                        onClick={(e) => handleServicesSubnavClick(e, 'databricks')}
-                        style={{ color: '#ffffff', fontSize: '0.92rem', fontWeight: 500, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Databricks Solutions
-                      </button>
-                      <button
-                        onClick={(e) => handleServicesSubnavClick(e, 'innovation')}
-                        style={{ color: '#ffffff', fontSize: '0.92rem', fontWeight: 500, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Innovation
-                      </button>
-                      <button
-                        onClick={(e) => handleServicesSubnavClick(e, 'quality')}
-                        style={{ color: '#ffffff', fontSize: '0.92rem', fontWeight: 500, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Quality and Testing
-                      </button>
-                    </div>
-
-                    {/* Column 2 */}
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
-                      <button
-                        onClick={(e) => handleServicesSubnavClick(e, 'applications')}
-                        style={{ color: '#ffffff', fontSize: '0.92rem', fontWeight: 500, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Applications
-                      </button>
-                      <button
-                        onClick={(e) => handleServicesSubnavClick(e, 'cybersecurity')}
-                        style={{ color: '#ffffff', fontSize: '0.92rem', fontWeight: 500, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Cyber Security
-                      </button>
-                      <button
-                        onClick={(e) => handleServicesSubnavClick(e, 'cx')}
-                        style={{ color: '#ffffff', fontSize: '0.92rem', fontWeight: 500, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Digital Experience
-                      </button>
-                      <button
-                        onClick={(e) => handleServicesSubnavClick(e, 'managed')}
-                        style={{ color: '#ffffff', fontSize: '0.92rem', fontWeight: 500, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Managed Services
-                      </button>
-                    </div>
-
-                    {/* Column 3 */}
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
-                      <button
-                        onClick={(e) => handleServicesSubnavClick(e, 'aws')}
-                        style={{ color: '#ffffff', fontSize: '0.92rem', fontWeight: 500, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        AWS Solutions
-                      </button>
-                      <button
-                        onClick={(e) => handleServicesSubnavClick(e, 'data-ai')}
-                        style={{ color: '#ffffff', fontSize: '0.92rem', fontWeight: 500, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Data and AI
-                      </button>
-                      <button
-                        onClick={(e) => handleServicesSubnavClick(e, 'google')}
-                        style={{ color: '#ffffff', fontSize: '0.92rem', fontWeight: 500, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Google Solutions
-                      </button>
-                      <button
-                        onClick={(e) => handleServicesSubnavClick(e, 'microsoft')}
-                        style={{ color: '#ffffff', fontSize: '0.92rem', fontWeight: 500, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Microsoft Solutions
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
             </li>
 
-            {/* 2. About Us with Hover Mega Menu Dropdown */}
+            {/* 2. About Us */}
             <li
               style={{ position: 'relative' }}
               onMouseEnter={() => setAboutDropdownOpen(true)}
@@ -234,7 +101,18 @@ export const Navbar = ({ onOpenContactPage, onNavHome, onNavAbout, onNavCareers,
                 href="#code-of-conduct"
                 onClick={(e) => handleAboutSubnavClick(e, 'code-of-conduct')}
                 className="nav-link"
-                style={{ color: '#cbd5e1', textDecoration: 'none', fontSize: '0.95rem', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '0.2rem' }}
+                style={{
+                  color: activePage === 'about' ? '#55E6C1' : '#cbd5e1',
+                  fontWeight: activePage === 'about' ? 700 : 600,
+                  borderBottom: activePage === 'about' ? '2px solid #55E6C1' : '2px solid transparent',
+                  paddingBottom: '0.2rem',
+                  textDecoration: 'none',
+                  fontSize: '0.95rem',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.2rem',
+                  transition: 'all 0.2s ease'
+                }}
               >
                 About us
               </a>
@@ -341,7 +219,7 @@ export const Navbar = ({ onOpenContactPage, onNavHome, onNavAbout, onNavCareers,
               </a>
             </li>
 
-            {/* 3. Partners Menu Link */}
+            {/* 3. Partners */}
             <li>
               <a
                 href="#partners"
@@ -350,7 +228,15 @@ export const Navbar = ({ onOpenContactPage, onNavHome, onNavAbout, onNavCareers,
                   if (onNavPartners) onNavPartners();
                 }}
                 className="nav-link"
-                style={{ color: '#cbd5e1', textDecoration: 'none', fontSize: '0.95rem', fontWeight: 600 }}
+                style={{
+                  color: activePage === 'partners' ? '#55E6C1' : '#cbd5e1',
+                  fontWeight: activePage === 'partners' ? 700 : 600,
+                  borderBottom: activePage === 'partners' ? '2px solid #55E6C1' : '2px solid transparent',
+                  paddingBottom: '0.2rem',
+                  textDecoration: 'none',
+                  fontSize: '0.95rem',
+                  transition: 'all 0.2s ease'
+                }}
               >
                 Partners
               </a>
@@ -365,97 +251,38 @@ export const Navbar = ({ onOpenContactPage, onNavHome, onNavAbout, onNavCareers,
                   if (onNavChallengeUs) onNavChallengeUs();
                 }}
                 className="nav-link"
-                style={{ color: '#38bdf8', textDecoration: 'none', fontSize: '0.95rem', fontWeight: 700 }}
+                style={{
+                  color: activePage === 'challenge-us' ? '#55E6C1' : '#cbd5e1',
+                  fontWeight: activePage === 'challenge-us' ? 700 : 600,
+                  borderBottom: activePage === 'challenge-us' ? '2px solid #55E6C1' : '2px solid transparent',
+                  paddingBottom: '0.2rem',
+                  textDecoration: 'none',
+                  fontSize: '0.95rem',
+                  transition: 'all 0.2s ease'
+                }}
               >
                 Challenge us
               </a>
             </li>
 
-            {/* 4. Careers with Hover Mega Menu Dropdown */}
-            <li
-              style={{ position: 'relative' }}
-              onMouseEnter={() => setCareersDropdownOpen(true)}
-              onMouseLeave={() => setCareersDropdownOpen(false)}
-            >
+            {/* 4. Careers Direct Link */}
+            <li>
               <a
-                href="#career-stories"
-                onClick={(e) => handleCareersSubnavClick(e, 'career-stories')}
+                href="#job-opportunities"
+                onClick={(e) => handleCareersSubnavClick(e, 'job-opportunities')}
                 className="nav-link"
-                style={{ color: '#cbd5e1', textDecoration: 'none', fontSize: '0.95rem', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '0.2rem' }}
+                style={{
+                  color: activePage === 'careers' ? '#55E6C1' : '#cbd5e1',
+                  fontWeight: activePage === 'careers' ? 700 : 600,
+                  borderBottom: activePage === 'careers' ? '2px solid #55E6C1' : '2px solid transparent',
+                  paddingBottom: '0.2rem',
+                  textDecoration: 'none',
+                  fontSize: '0.95rem',
+                  transition: 'all 0.2s ease'
+                }}
               >
                 Careers
               </a>
-
-              {/* Hover Mega Menu Dropdown Box for Careers */}
-              {careersDropdownOpen && (
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: '100%',
-                    left: '-120px',
-                    width: '560px',
-                    backgroundColor: '#002b49',
-                    color: '#ffffff',
-                    boxShadow: '0 20px 40px rgba(0,0,0,0.35)',
-                    borderRadius: '0 0 8px 8px',
-                    padding: '2rem 2.5rem',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '1.5rem',
-                    animation: 'fadeIn 0.2s ease',
-                    borderTop: '3px solid #00b4d8',
-                    zIndex: 9999
-                  }}
-                >
-                  <div>
-                    <button
-                      onClick={(e) => handleCareersSubnavClick(e, 'career-stories')}
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '0.4rem',
-                        color: '#ffffff',
-                        fontSize: '1.25rem',
-                        fontWeight: 800,
-                        background: 'none',
-                        border: 'none',
-                        cursor: 'pointer',
-                        padding: 0
-                      }}
-                    >
-                      <span>Overview</span>
-                      <ArrowRight size={18} />
-                    </button>
-                  </div>
-
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.2rem', paddingTop: '0.75rem', borderTop: '1px solid rgba(255,255,255,0.15)' }}>
-                    <div>
-                      <button
-                        onClick={(e) => handleCareersSubnavClick(e, 'career-stories')}
-                        style={{ color: '#ffffff', fontSize: '0.88rem', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Career Stories
-                      </button>
-                    </div>
-                    <div>
-                      <button
-                        onClick={(e) => handleCareersSubnavClick(e, 'job-opportunities')}
-                        style={{ color: '#ffffff', fontSize: '0.88rem', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Job Opportunities
-                      </button>
-                    </div>
-                    <div>
-                      <button
-                        onClick={(e) => handleCareersSubnavClick(e, 'life-at-ncs')}
-                        style={{ color: '#ffffff', fontSize: '0.88rem', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Life at NCS
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
             </li>
 
             <li>
@@ -463,7 +290,18 @@ export const Navbar = ({ onOpenContactPage, onNavHome, onNavAbout, onNavCareers,
                 onClick={() => {
                   if (onOpenContactPage) onOpenContactPage();
                 }}
-                style={{ color: '#cbd5e1', background: 'none', border: 'none', fontSize: '0.95rem', fontWeight: 600, cursor: 'pointer', padding: 0 }}
+                style={{
+                  color: activePage === 'contact' ? '#55E6C1' : '#cbd5e1',
+                  fontWeight: activePage === 'contact' ? 700 : 600,
+                  borderBottom: activePage === 'contact' ? '2px solid #55E6C1' : '2px solid transparent',
+                  paddingBottom: '0.2rem',
+                  background: 'none',
+                  border: 'none',
+                  fontSize: '0.95rem',
+                  cursor: 'pointer',
+                  padding: 0,
+                  transition: 'all 0.2s ease'
+                }}
               >
                 Contact us
               </button>
@@ -556,62 +394,19 @@ export const Navbar = ({ onOpenContactPage, onNavHome, onNavAbout, onNavCareers,
                   </button>
                 </li>
 
-                {/* 1. Services Mobile Accordion */}
+                {/* 1. Services Direct Link */}
                 <li style={{ borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '0.85rem' }}>
-                  <div
-                    onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                    style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: '#ffffff', fontSize: '1.35rem', fontWeight: 800, cursor: 'pointer' }}
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setMobileMenuOpen(false);
+                      if (onNavServices) onNavServices('overview');
+                    }}
+                    style={{ color: '#ffffff', background: 'none', border: 'none', fontSize: '1.35rem', fontWeight: 800, cursor: 'pointer', textAlign: 'left', padding: 0, width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
                   >
                     <span>Services</span>
-                    {mobileServicesOpen ? <ChevronUp size={20} color="#00b4d8" /> : <ChevronDown size={20} color="#94a3b8" />}
-                  </div>
-
-                  {mobileServicesOpen && (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', marginTop: '0.85rem', paddingLeft: '1rem', borderLeft: '2px solid #00b4d8' }}>
-                      <button
-                        onClick={(e) => handleServicesSubnavClick(e, 'cloud')}
-                        style={{ color: '#38bdf8', fontSize: '1rem', fontWeight: 700, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Cloud and Infrastructure
-                      </button>
-                      <button
-                        onClick={(e) => handleServicesSubnavClick(e, 'overview')}
-                        style={{ color: '#cbd5e1', fontSize: '0.95rem', fontWeight: 500, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Overview
-                      </button>
-                      <button
-                        onClick={(e) => handleServicesSubnavClick(e, 'advisory')}
-                        style={{ color: '#cbd5e1', fontSize: '0.95rem', fontWeight: 500, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Advisory
-                      </button>
-                      <button
-                        onClick={(e) => handleServicesSubnavClick(e, 'databricks')}
-                        style={{ color: '#cbd5e1', fontSize: '0.95rem', fontWeight: 500, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Databricks Solutions
-                      </button>
-                      <button
-                        onClick={(e) => handleServicesSubnavClick(e, 'applications')}
-                        style={{ color: '#cbd5e1', fontSize: '0.95rem', fontWeight: 500, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Applications
-                      </button>
-                      <button
-                        onClick={(e) => handleServicesSubnavClick(e, 'cybersecurity')}
-                        style={{ color: '#cbd5e1', fontSize: '0.95rem', fontWeight: 500, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Cyber Security
-                      </button>
-                      <button
-                        onClick={(e) => handleServicesSubnavClick(e, 'data-ai')}
-                        style={{ color: '#cbd5e1', fontSize: '0.95rem', fontWeight: 500, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Data and AI
-                      </button>
-                    </div>
-                  )}
+                    <ArrowRight size={20} color="#00b4d8" />
+                  </button>
                 </li>
 
                 {/* 2. About us Mobile Accordion */}
@@ -688,38 +483,19 @@ export const Navbar = ({ onOpenContactPage, onNavHome, onNavAbout, onNavCareers,
                   </button>
                 </li>
 
-                {/* 5. Careers Mobile Accordion */}
+                {/* 5. Careers Direct Link */}
                 <li style={{ borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '0.85rem' }}>
-                  <div
-                    onClick={() => setMobileCareersOpen(!mobileCareersOpen)}
-                    style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: '#ffffff', fontSize: '1.35rem', fontWeight: 800, cursor: 'pointer' }}
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setMobileMenuOpen(false);
+                      handleCareersSubnavClick(e, 'job-opportunities');
+                    }}
+                    style={{ color: '#ffffff', background: 'none', border: 'none', fontSize: '1.35rem', fontWeight: 800, cursor: 'pointer', textAlign: 'left', padding: 0, width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
                   >
                     <span>Careers</span>
-                    {mobileCareersOpen ? <ChevronUp size={20} color="#00b4d8" /> : <ChevronDown size={20} color="#94a3b8" />}
-                  </div>
-
-                  {mobileCareersOpen && (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', marginTop: '0.85rem', paddingLeft: '1rem', borderLeft: '2px solid #00b4d8' }}>
-                      <button
-                        onClick={(e) => handleCareersSubnavClick(e, 'career-stories')}
-                        style={{ color: '#cbd5e1', fontSize: '0.95rem', fontWeight: 500, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Career Stories
-                      </button>
-                      <button
-                        onClick={(e) => handleCareersSubnavClick(e, 'job-opportunities')}
-                        style={{ color: '#cbd5e1', fontSize: '0.95rem', fontWeight: 500, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Job Opportunities
-                      </button>
-                      <button
-                        onClick={(e) => handleCareersSubnavClick(e, 'life-at-ncs')}
-                        style={{ color: '#cbd5e1', fontSize: '0.95rem', fontWeight: 500, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Life at NCS
-                      </button>
-                    </div>
-                  )}
+                    <ArrowRight size={20} color="#00b4d8" />
+                  </button>
                 </li>
 
                 {/* 5b. Challenge us */}
