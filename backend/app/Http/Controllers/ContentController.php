@@ -107,11 +107,15 @@ class ContentController extends Controller
             'name' => 'nullable|string|max:255',
             'email' => 'required|email|max:255',
             'phone' => 'nullable|string|max:255',
+            'contactNumber' => 'nullable|string|max:255',
             'organisation' => 'nullable|string|max:255',
+            'organization' => 'nullable|string|max:255',
             'company' => 'nullable|string|max:255',
             'designation' => 'nullable|string|max:255',
-            'subject' => 'required|string|max:255',
-            'message' => 'required|string'
+            'region' => 'nullable|string|max:255',
+            'inquiryType' => 'nullable|string|max:255',
+            'subject' => 'nullable|string|max:255',
+            'message' => 'nullable|string'
         ]);
 
         $fullName = $validated['full_name'] ?? ($validated['name'] ?? trim(($validated['first_name'] ?? '') . ' ' . ($validated['last_name'] ?? '')));
@@ -120,10 +124,11 @@ class ContentController extends Controller
         }
 
         $email = $validated['email'];
-        $phone = $validated['phone'] ?? '';
-        $subject = $validated['subject'];
-        $message = $validated['message'];
-        $organisation = $validated['organisation'] ?? ($validated['company'] ?? '');
+        $phone = $validated['phone'] ?? ($validated['contactNumber'] ?? '');
+        $organisation = $validated['organisation'] ?? ($validated['organization'] ?? ($validated['company'] ?? 'N/A'));
+        
+        $subject = $validated['subject'] ?? ($validated['inquiryType'] ? ($validated['inquiryType'] . ' [' . ($validated['region'] ?? 'Global') . ']') : 'Website Inquiry');
+        $message = !empty($validated['message']) ? $validated['message'] : 'New website contact inquiry submitted.';
 
         // 1. Store in Contacts table
         $contactRecord = null;

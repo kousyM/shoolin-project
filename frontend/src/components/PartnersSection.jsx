@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const PartnersSection = () => {
+export const PartnersSection = ({ onNavPartners }) => {
   const partners = [
     { name: 'Microsoft', logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg' },
     { name: 'Google Cloud', logoUrl: 'https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg' },
@@ -39,9 +39,19 @@ export const PartnersSection = () => {
 
         {/* Centered Outline Pill Button matching Screenshot 2 */}
         <div className="text-center mt-10">
-          <a href="#contact" className="ncs-partners-pill-btn">
+          <button
+            onClick={() => {
+              if (onNavPartners) {
+                onNavPartners();
+              } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            }}
+            className="ncs-partners-pill-btn"
+            style={{ cursor: 'pointer', background: 'none' }}
+          >
             Find out more
-          </a>
+          </button>
         </div>
 
       </div>

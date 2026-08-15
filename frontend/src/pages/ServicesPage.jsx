@@ -2,6 +2,9 @@ import React from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { DeelServicesSubpage } from '../components/DeelServicesSubpage';
+import { PartnersSection } from '../components/PartnersSection';
+import { DriveCareerBanner } from '../components/DriveCareerBanner';
+import { ContactSection } from '../components/ContactSection';
 
 export const ServicesPage = ({
   onNavHome,
@@ -36,6 +39,15 @@ export const ServicesPage = ({
       <main style={{ paddingTop: 0, marginTop: 0 }}>
         {/* STANDALONE SERVICES PAGE WITH ALL TABS & SINGLE BOX DETAILS */}
         <DeelServicesSubpage onOpenContactPage={onOpenContactPage} />
+
+        {/* MEET OUR PARTNERS SECTION */}
+        <PartnersSection onNavPartners={onNavPartners} />
+
+        {/* DRIVE YOUR CAREER FORWARD BANNER */}
+        <DriveCareerBanner onNavCareers={onNavCareers} />
+
+        {/* GET ANSWERS TO YOUR QUESTIONS CONTACT FORM */}
+        <ContactSection />
       </main>
 
       {/* Footer */}

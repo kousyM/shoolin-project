@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import HeroSlider from './components/HeroSlider';
 import AboutSection from './components/AboutSection';
 import ServicesGrid from './components/ServicesGrid';
+import WorkforceSolutionsTabSection from './components/WorkforceSolutionsTabSection';
 import OurSolutionSection from './components/OurSolutionSection';
 import GetStartedStepper from './components/GetStartedStepper';
 import DriveCareerBanner from './components/DriveCareerBanner';
@@ -24,7 +25,10 @@ import AdminLoginPage from './pages/AdminLoginPage';
 import AdminDashboardPage from './pages/AdminDashboardPage';
 import AboutPage from './pages/AboutPage';
 import ChallengeUsPage from './pages/ChallengeUsPage';
+import EmployersServicesPage from './pages/EmployersServicesPage';
+import IndividualsServicesPage from './pages/IndividualsServicesPage';
 import Footer from './components/Footer';
+import BackToTopButton from './components/BackToTopButton';
 import { getApiBaseUrl } from './api/config';
 
 const DEFAULT_HOMEPAGE_DATA = {
@@ -53,8 +57,8 @@ const DEFAULT_HOMEPAGE_DATA = {
       id: 1,
       icon: 'Code',
       title: 'Employer of Record (EOR)',
-      summary: 'Expand globally without opening an entity. Shoolin handles local employment, contracts, compliance, payroll, benefits, and taxes seamlessly.',
-      description: 'Expand globally without opening an entity. Shoolin handles local employment, contracts, compliance, payroll, benefits, and taxes so you can hire top talent anywhere in the world seamlessly.',
+      summary: 'Expand globally without opening an entity. Vebhor handles local employment, contracts, compliance, payroll, benefits, and taxes seamlessly.',
+      description: 'Expand globally without opening an entity. Vebhor handles local employment, contracts, compliance, payroll, benefits, and taxes so you can hire top talent anywhere in the world seamlessly.',
       features: ['150+ Countries Supported', 'Localized Employment Contracts', 'Automated Payroll & Benefits', '100% Tax & Labor Compliance']
     },
     {
@@ -168,6 +172,10 @@ export function App() {
         setCurrentPage('services');
       } else if (hash.includes('insights')) {
         setCurrentPage('insights');
+      } else if (hash.includes('employers')) {
+        setCurrentPage('employers-services');
+      } else if (hash.includes('individuals')) {
+        setCurrentPage('individuals-services');
       } else if (hash.includes('challenge-us')) {
         setCurrentPage('challenge-us');
       } else if (hash.includes('partners')) {
@@ -478,6 +486,46 @@ export function App() {
         onNavCareers={(subTab = 'career-stories') => navigateTo('careers', subTab, subTab)}
         onNavPartners={() => navigateTo('partners', 'partners')}
         onNavInsights={() => navigateTo('insights', 'insights')}
+        onNavEmployers={() => navigateTo('employers-services', 'employers')}
+        onNavIndividuals={() => navigateTo('individuals-services', 'individuals')}
+        onOpenContactPage={() => navigateTo('contact', 'contact')}
+        onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
+        isAdminLoggedIn={!!adminUser}
+        onAdminLogout={handleAdminLogout}
+      />
+    );
+  }
+
+  // 12. Employers Services Standalone Page
+  if (currentPage === 'employers-services') {
+    return (
+      <EmployersServicesPage
+        onNavHome={() => navigateTo('home', '')}
+        onNavServices={(cat) => navigateTo('services', 'services-page', cat)}
+        onNavAbout={(subTab = 'code-of-conduct') => navigateTo('about', subTab, subTab)}
+        onNavCareers={(subTab = 'career-stories') => navigateTo('careers', subTab, subTab)}
+        onNavPartners={() => navigateTo('partners', 'partners')}
+        onNavInsights={() => navigateTo('insights', 'insights')}
+        onNavChallengeUs={() => navigateTo('challenge-us', 'challenge-us')}
+        onOpenContactPage={() => navigateTo('contact', 'contact')}
+        onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
+        isAdminLoggedIn={!!adminUser}
+        onAdminLogout={handleAdminLogout}
+      />
+    );
+  }
+
+  // 13. Individuals Services Standalone Page
+  if (currentPage === 'individuals-services') {
+    return (
+      <IndividualsServicesPage
+        onNavHome={() => navigateTo('home', '')}
+        onNavServices={(cat) => navigateTo('services', 'services-page', cat)}
+        onNavAbout={(subTab = 'code-of-conduct') => navigateTo('about', subTab, subTab)}
+        onNavCareers={(subTab = 'career-stories') => navigateTo('careers', subTab, subTab)}
+        onNavPartners={() => navigateTo('partners', 'partners')}
+        onNavInsights={() => navigateTo('insights', 'insights')}
+        onNavChallengeUs={() => navigateTo('challenge-us', 'challenge-us')}
         onOpenContactPage={() => navigateTo('contact', 'contact')}
         onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
         isAdminLoggedIn={!!adminUser}
@@ -512,7 +560,10 @@ export function App() {
         {/* 3. About Us Section */}
         <AboutSection />
 
-        {/* 4. Our Solution Section (6 Clean Boxes) */}
+        {/* 4. Multi-Vertical Workforce Solutions Tab Section */}
+        <WorkforceSolutionsTabSection />
+
+        {/* 5. Our Solution Section (6 Clean Boxes) */}
         <OurSolutionSection />
 
         {/* 5. Get Started 4-Step Process Flow */}

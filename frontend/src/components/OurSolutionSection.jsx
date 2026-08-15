@@ -6,7 +6,7 @@ export const OurSolutionSection = () => {
     {
       id: 'compliance',
       title: 'Global Payroll Compliance',
-      description: 'Stay compliant across markets with locally informed payroll expertise. Shoolin manages evolving payroll regulations, statutory requirements, tax obligations, and reporting, helping ensure your workforce is paid accurately and on time while reducing compliance risk and administrative complexity.',
+      description: 'Stay compliant across markets with locally informed payroll expertise. Vebhor manages evolving payroll regulations, statutory requirements, tax obligations, and reporting, helping ensure your workforce is paid accurately and on time while reducing compliance risk and administrative complexity.',
       icon: ShieldCheck,
       badgeBg: '#f3e8ff',
       iconColor: '#6C5CE7'
@@ -14,7 +14,7 @@ export const OurSolutionSection = () => {
     {
       id: 'global-payroll',
       title: 'Global Payroll',
-      description: 'Simplify payroll across borders with accurate, compliant, and scalable global payroll solutions. Shoolin manages payroll processing, statutory requirements, tax obligations, and local compliance, helping you pay your workforce accurately and on time while reducing administrative complexity.',
+      description: 'Simplify payroll across borders with accurate, compliant, and scalable global payroll solutions. Vebhor manages payroll processing, statutory requirements, tax obligations, and local compliance, helping you pay your workforce accurately and on time while reducing administrative complexity.',
       icon: Globe,
       badgeBg: '#e0e7ff',
       iconColor: '#3B3B98'
@@ -22,7 +22,7 @@ export const OurSolutionSection = () => {
     {
       id: 'consolidate',
       title: 'Consolidate Multiple Vendors',
-      description: 'Simplify your workforce operations by bringing recruitment, contractor management, payroll, compliance, and workforce services under one trusted partner. Shoolin helps reduce vendor complexity, streamline processes, improve visibility, and create a more consistent workforce experience across markets.',
+      description: 'Simplify your workforce operations by bringing recruitment, contractor management, payroll, compliance, and workforce services under one trusted partner. Vebhor helps reduce vendor complexity, streamline processes, improve visibility, and create a more consistent workforce experience across markets.',
       icon: Layers,
       badgeBg: '#e0f2fe',
       iconColor: '#0284c7'
@@ -30,7 +30,7 @@ export const OurSolutionSection = () => {
     {
       id: 'onboarding',
       title: 'Seamless Onboarding',
-      description: 'With Shoolin/Vebhor Payroll’s Partner & Contractor onboarding application, teams can activate payroll and compliance instantly—no heavy integrations, no delays. Just connect, configure, and go.',
+      description: 'With Vebhor Payroll’s Partner & Contractor onboarding application, teams can activate payroll and compliance instantly—no heavy integrations, no delays. Just connect, configure, and go.',
       icon: Zap,
       badgeBg: '#d1fae5',
       iconColor: '#059669'

@@ -71,11 +71,37 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
 
           {/* Desktop Navigation Links */}
           <ul className="nav-links" style={{ display: 'flex', gap: '2rem', alignItems: 'center', listStyle: 'none', margin: 0, padding: 0 }}>
-            {/* 1. Services Direct Link */}
+            {/* About Us Link */}
+            <li>
+              <a
+                href="#about"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (onNavAbout) onNavAbout('code-of-conduct');
+                }}
+                className="nav-link"
+                style={{
+                  color: activePage === 'about' ? '#55E6C1' : '#cbd5e1',
+                  fontWeight: activePage === 'about' ? 700 : 600,
+                  borderBottom: activePage === 'about' ? '2px solid #55E6C1' : '2px solid transparent',
+                  paddingBottom: '0.2rem',
+                  textDecoration: 'none',
+                  fontSize: '0.95rem',
+                  transition: 'all 0.2s ease'
+                }}
+              >
+                About us
+              </a>
+            </li>
+
+            {/* Services Link */}
             <li>
               <a
                 href="#services"
-                onClick={(e) => handleServicesSubnavClick(e, 'overview')}
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (onNavServices) onNavServices('overview');
+                }}
                 className="nav-link"
                 style={{
                   color: activePage === 'services' || activePage === 'services-page' ? '#55E6C1' : '#cbd5e1',
@@ -88,134 +114,6 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
                 }}
               >
                 Services
-              </a>
-            </li>
-
-            {/* 2. About Us */}
-            <li
-              style={{ position: 'relative' }}
-              onMouseEnter={() => setAboutDropdownOpen(true)}
-              onMouseLeave={() => setAboutDropdownOpen(false)}
-            >
-              <a
-                href="#code-of-conduct"
-                onClick={(e) => handleAboutSubnavClick(e, 'code-of-conduct')}
-                className="nav-link"
-                style={{
-                  color: activePage === 'about' ? '#55E6C1' : '#cbd5e1',
-                  fontWeight: activePage === 'about' ? 700 : 600,
-                  borderBottom: activePage === 'about' ? '2px solid #55E6C1' : '2px solid transparent',
-                  paddingBottom: '0.2rem',
-                  textDecoration: 'none',
-                  fontSize: '0.95rem',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.2rem',
-                  transition: 'all 0.2s ease'
-                }}
-              >
-                About us
-              </a>
-
-              {/* Hover Mega Menu Dropdown Box for About Us */}
-              {aboutDropdownOpen && (
-                <div
-                  style={{
-                    position: 'absolute',
-                    top: '100%',
-                    left: '-80px',
-                    width: '720px',
-                    backgroundColor: '#002b49',
-                    color: '#ffffff',
-                    boxShadow: '0 20px 40px rgba(0,0,0,0.35)',
-                    borderRadius: '0 0 8px 8px',
-                    padding: '2rem 2.5rem',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '1.5rem',
-                    animation: 'fadeIn 0.2s ease',
-                    borderTop: '3px solid #00b4d8',
-                    zIndex: 9999
-                  }}
-                >
-                  <div>
-                    <button
-                      onClick={(e) => handleAboutSubnavClick(e, 'code-of-conduct')}
-                      style={{
-                        display: 'inline-flex',
-                        alignItems: 'center',
-                        gap: '0.4rem',
-                        color: '#ffffff',
-                        fontSize: '1.25rem',
-                        fontWeight: 800,
-                        background: 'none',
-                        border: 'none',
-                        cursor: 'pointer',
-                        padding: 0
-                      }}
-                    >
-                      <span>Overview</span>
-                      <ArrowRight size={18} />
-                    </button>
-                  </div>
-
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '1.2rem', paddingTop: '0.75rem', borderTop: '1px solid rgba(255,255,255,0.15)' }}>
-                    <div>
-                      <button
-                        onClick={(e) => handleAboutSubnavClick(e, 'code-of-conduct')}
-                        style={{ color: '#ffffff', fontSize: '0.88rem', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Code of Conduct
-                      </button>
-                    </div>
-                    <div>
-                      <button
-                        onClick={(e) => handleAboutSubnavClick(e, 'leadership')}
-                        style={{ color: '#ffffff', fontSize: '0.88rem', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Leadership
-                      </button>
-                    </div>
-                    <div>
-                      <button
-                        onClick={(e) => handleAboutSubnavClick(e, 'milestones')}
-                        style={{ color: '#ffffff', fontSize: '0.88rem', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Milestones
-                      </button>
-                    </div>
-                    <div>
-                      <button
-                        onClick={(e) => handleAboutSubnavClick(e, 'newsroom')}
-                        style={{ color: '#ffffff', fontSize: '0.88rem', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Newsroom
-                      </button>
-                    </div>
-                    <div>
-                      <button
-                        onClick={(e) => handleAboutSubnavClick(e, 'privacy-policy')}
-                        style={{ color: '#ffffff', fontSize: '0.88rem', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Privacy Policy
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              )}
-            </li>
-
-            <li>
-              <a
-                href="#insights"
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (onNavInsights) onNavInsights();
-                }}
-                className="nav-link"
-                style={{ color: '#cbd5e1', textDecoration: 'none', fontSize: '0.95rem', fontWeight: 600 }}
-              >
-                Insights
               </a>
             </li>
 
@@ -394,7 +292,21 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
                   </button>
                 </li>
 
-                {/* 1. Services Direct Link */}
+                {/* About us Link */}
+                <li style={{ borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '0.85rem' }}>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setMobileMenuOpen(false);
+                      if (onNavAbout) onNavAbout('code-of-conduct');
+                    }}
+                    style={{ color: '#ffffff', background: 'none', border: 'none', fontSize: '1.35rem', fontWeight: 800, cursor: 'pointer', textAlign: 'left', padding: 0, width: '100%' }}
+                  >
+                    About us
+                  </button>
+                </li>
+
+                {/* Services Link */}
                 <li style={{ borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '0.85rem' }}>
                   <button
                     onClick={(e) => {
@@ -402,70 +314,9 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
                       setMobileMenuOpen(false);
                       if (onNavServices) onNavServices('overview');
                     }}
-                    style={{ color: '#ffffff', background: 'none', border: 'none', fontSize: '1.35rem', fontWeight: 800, cursor: 'pointer', textAlign: 'left', padding: 0, width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
-                  >
-                    <span>Services</span>
-                    <ArrowRight size={20} color="#00b4d8" />
-                  </button>
-                </li>
-
-                {/* 2. About us Mobile Accordion */}
-                <li style={{ borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '0.85rem' }}>
-                  <div
-                    onClick={() => setMobileAboutOpen(!mobileAboutOpen)}
-                    style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: '#ffffff', fontSize: '1.35rem', fontWeight: 800, cursor: 'pointer' }}
-                  >
-                    <span>About us</span>
-                    {mobileAboutOpen ? <ChevronUp size={20} color="#00b4d8" /> : <ChevronDown size={20} color="#94a3b8" />}
-                  </div>
-
-                  {mobileAboutOpen && (
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', marginTop: '0.85rem', paddingLeft: '1rem', borderLeft: '2px solid #00b4d8' }}>
-                      <button
-                        onClick={(e) => handleAboutSubnavClick(e, 'code-of-conduct')}
-                        style={{ color: '#cbd5e1', fontSize: '0.95rem', fontWeight: 500, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Code of Conduct
-                      </button>
-                      <button
-                        onClick={(e) => handleAboutSubnavClick(e, 'leadership')}
-                        style={{ color: '#cbd5e1', fontSize: '0.95rem', fontWeight: 500, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Leadership
-                      </button>
-                      <button
-                        onClick={(e) => handleAboutSubnavClick(e, 'milestones')}
-                        style={{ color: '#cbd5e1', fontSize: '0.95rem', fontWeight: 500, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Milestones
-                      </button>
-                      <button
-                        onClick={(e) => handleAboutSubnavClick(e, 'newsroom')}
-                        style={{ color: '#cbd5e1', fontSize: '0.95rem', fontWeight: 500, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Newsroom
-                      </button>
-                      <button
-                        onClick={(e) => handleAboutSubnavClick(e, 'privacy-policy')}
-                        style={{ color: '#cbd5e1', fontSize: '0.95rem', fontWeight: 500, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                      >
-                        Privacy Policy
-                      </button>
-                    </div>
-                  )}
-                </li>
-
-                {/* 3. Insights */}
-                <li style={{ borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '0.85rem' }}>
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setMobileMenuOpen(false);
-                      if (onNavInsights) onNavInsights();
-                    }}
                     style={{ color: '#ffffff', background: 'none', border: 'none', fontSize: '1.35rem', fontWeight: 800, cursor: 'pointer', textAlign: 'left', padding: 0, width: '100%' }}
                   >
-                    Insights
+                    Services
                   </button>
                 </li>
 
