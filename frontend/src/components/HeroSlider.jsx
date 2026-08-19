@@ -25,7 +25,7 @@ export const HeroSlider = ({ banners = [] }) => {
   return (
     <div className="hero-slider-container" style={{ position: 'relative', width: '100%', height: '80vh', minHeight: '580px', maxHeight: '740px', overflow: 'hidden' }}>
       {banners.map((banner, index) => {
-        const isVideo = banner.video_url || index === 0;
+        const isVideo = Boolean(banner.video_url);
 
         return (
           <div

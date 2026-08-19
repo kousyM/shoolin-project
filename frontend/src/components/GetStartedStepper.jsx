@@ -19,8 +19,8 @@ export const GetStartedStepper = ({ onOpenContact }) => {
         
         {/* Main Heading & Subtitle matching Reference Image 2 with Primary Colors */}
         <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.4rem', fontWeight: 700, lineHeight: 1.25, marginBottom: '2.5rem' }}>
-          <span style={{ color: '#6C5CE7' }}>Get started in 1 hour</span> <span style={{ color: '#2C2C54' }}>with Vebhor’s</span><br />
-          <span style={{ color: '#2C2C54' }}>Payroll & Workforce Services</span>
+          <span style={{ color: '#7C3AED' }}>Get started in 1 hour</span> <span style={{ color: '#172033' }}>with Vebhor’s</span><br />
+          <span style={{ color: '#172033' }}>Payroll & Workforce Services</span>
         </h2>
 
         {/* 4 Step Connected Process Stepper Bar */}
@@ -33,7 +33,7 @@ export const GetStartedStepper = ({ onOpenContact }) => {
               left: '12%',
               right: '12%',
               height: '3px',
-              backgroundColor: '#6C5CE7',
+              backgroundColor: '#7C3AED',
               zIndex: 1
             }}
           />
@@ -42,10 +42,10 @@ export const GetStartedStepper = ({ onOpenContact }) => {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem', position: 'relative', zIndex: 2 }}>
             {/* Step 1 */}
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-              <div style={{ width: '38px', height: '38px', borderRadius: '50%', border: '2px solid #6C5CE7', backgroundColor: '#ffffff', color: '#6C5CE7', fontWeight: 800, fontSize: '0.95rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.25rem', boxShadow: '0 4px 10px rgba(108, 92, 231, 0.15)' }}>
+              <div style={{ width: '38px', height: '38px', borderRadius: '50%', border: '2px solid #7C3AED', backgroundColor: '#ffffff', color: '#7C3AED', fontWeight: 800, fontSize: '0.95rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.25rem', boxShadow: '0 4px 10px rgba(124, 58, 237, 0.2)' }}>
                 1
               </div>
-              <h3 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '1.1rem', fontWeight: 700, color: '#2C2C54', marginBottom: '0.6rem' }}>
+              <h3 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '1.1rem', fontWeight: 700, color: '#172033', marginBottom: '0.6rem' }}>
                 Create an Account
               </h3>
               <p style={{ fontSize: '0.88rem', color: '#475569', lineHeight: 1.55, margin: 0 }}>
@@ -55,10 +55,10 @@ export const GetStartedStepper = ({ onOpenContact }) => {
 
             {/* Step 2 */}
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-              <div style={{ width: '38px', height: '38px', borderRadius: '50%', border: '2px solid #6C5CE7', backgroundColor: '#ffffff', color: '#6C5CE7', fontWeight: 800, fontSize: '0.95rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.25rem', boxShadow: '0 4px 10px rgba(108, 92, 231, 0.15)' }}>
+              <div style={{ width: '38px', height: '38px', borderRadius: '50%', border: '2px solid #7C3AED', backgroundColor: '#ffffff', color: '#7C3AED', fontWeight: 800, fontSize: '0.95rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.25rem', boxShadow: '0 4px 10px rgba(124, 58, 237, 0.2)' }}>
                 2
               </div>
-              <h3 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '1.1rem', fontWeight: 700, color: '#2C2C54', marginBottom: '0.6rem' }}>
+              <h3 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '1.1rem', fontWeight: 700, color: '#172033', marginBottom: '0.6rem' }}>
                 Contracts
               </h3>
               <p style={{ fontSize: '0.88rem', color: '#475569', lineHeight: 1.55, margin: 0 }}>
@@ -68,10 +68,10 @@ export const GetStartedStepper = ({ onOpenContact }) => {
 
             {/* Step 3 */}
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-              <div style={{ width: '38px', height: '38px', borderRadius: '50%', border: '2px solid #6C5CE7', backgroundColor: '#ffffff', color: '#6C5CE7', fontWeight: 800, fontSize: '0.95rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.25rem', boxShadow: '0 4px 10px rgba(108, 92, 231, 0.15)' }}>
+              <div style={{ width: '38px', height: '38px', borderRadius: '50%', border: '2px solid #7C3AED', backgroundColor: '#ffffff', color: '#7C3AED', fontWeight: 800, fontSize: '0.95rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.25rem', boxShadow: '0 4px 10px rgba(124, 58, 237, 0.2)' }}>
                 3
               </div>
-              <h3 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '1.1rem', fontWeight: 700, color: '#2C2C54', marginBottom: '0.6rem' }}>
+              <h3 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '1.1rem', fontWeight: 700, color: '#172033', marginBottom: '0.6rem' }}>
                 Onboarding
               </h3>
               <p style={{ fontSize: '0.88rem', color: '#475569', lineHeight: 1.55, margin: 0 }}>
@@ -81,10 +81,10 @@ export const GetStartedStepper = ({ onOpenContact }) => {
 
             {/* Step 4 */}
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-              <div style={{ width: '38px', height: '38px', borderRadius: '50%', border: '2px solid #6C5CE7', backgroundColor: '#ffffff', color: '#6C5CE7', fontWeight: 800, fontSize: '0.95rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.25rem', boxShadow: '0 4px 10px rgba(108, 92, 231, 0.15)' }}>
+              <div style={{ width: '38px', height: '38px', borderRadius: '50%', border: '2px solid #7C3AED', backgroundColor: '#ffffff', color: '#7C3AED', fontWeight: 800, fontSize: '0.95rem', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.25rem', boxShadow: '0 4px 10px rgba(124, 58, 237, 0.2)' }}>
                 4
               </div>
-              <h3 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '1.1rem', fontWeight: 700, color: '#2C2C54', marginBottom: '0.6rem' }}>
+              <h3 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '1.1rem', fontWeight: 700, color: '#172033', marginBottom: '0.6rem' }}>
                 Run Payroll!
               </h3>
               <p style={{ fontSize: '0.88rem', color: '#475569', lineHeight: 1.55, margin: 0 }}>

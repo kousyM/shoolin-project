@@ -3,7 +3,7 @@ import { ChevronRight } from 'lucide-react';
 
 export const DriveCareerBanner = ({ onNavCareers }) => {
   return (
-    <section style={{ backgroundColor: '#2C2C54', overflow: 'hidden', position: 'relative' }}>
+    <section style={{ backgroundColor: '#08152F', overflow: 'hidden', position: 'relative' }}>
       <div style={{ maxWidth: '1400px', margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', alignItems: 'center', minHeight: '320px' }}>
         
         {/* Left Side: Angled Image Container */}
@@ -13,7 +13,7 @@ export const DriveCareerBanner = ({ onNavCareers }) => {
               width: '100%',
               height: '100%',
               minHeight: '320px',
-              backgroundImage: 'url("https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80")',
+              backgroundImage: 'url("/images/team_collaboration.jpg")',
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               clipPath: 'polygon(0 0, 100% 0, 75% 100%, 0 100%)'

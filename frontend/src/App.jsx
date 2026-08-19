@@ -10,7 +10,6 @@ import GetStartedStepper from './components/GetStartedStepper';
 import DriveCareerBanner from './components/DriveCareerBanner';
 import GoGlobalSection from './components/GoGlobalSection';
 import CardSliderSection from './components/CardSliderSection';
-import StatsCounter from './components/StatsCounter';
 import PartnersSection from './components/PartnersSection';
 import JoinTeamSection from './components/JoinTeamSection';
 import ContactSection from './components/ContactSection';
@@ -35,21 +34,31 @@ const DEFAULT_HOMEPAGE_DATA = {
   banners: [
     {
       id: 1,
-      tag: 'WORKFORCE & HR TECH SOLUTIONS',
-      title: 'Bridging every gap from hiring to end‑to‑end workforce delivery',
-      subtitle: 'Tech‑powered workforce solutions that help you hire smarter, scale faster, and run with confidence—built for continuity, compliance, and seamless growth',
-      image_url: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80',
+      tag: 'WORKFORCE TRANSFORMATION',
+      title: 'Introducing Vebhor',
+      subtitle: 'A refreshed identity that reflects our workforce transformation and future‑ready vision.',
+      image_url: '/images/slider_1.jpg',
+      video_url: '/hero_video.mp4',
       button_text: 'Explore Our Solutions',
       button_link: '#services'
     },
     {
       id: 2,
-      tag: 'GLOBAL TALENT & COMPLIANCE',
-      title: 'Build smarter. Hire globally. Pay compliantly. Grow without limits.',
-      subtitle: 'Our workforce solutions supports international talent hiring, optimise operations, and strengthen organisational growth through continuity, compliance, and excellence.',
+      tag: 'AI & TECH INNOVATION',
+      title: 'Smarter Teams, Powered by AI.',
+      subtitle: 'Tech‑powered workforce solutions for smarter hiring, faster scaling, and confident operations.',
       image_url: '/slider_2.jpg',
       button_text: 'Get In Touch',
       button_link: '#contact'
+    },
+    {
+      id: 3,
+      tag: 'NEXT-GEN HR TECH & WORKFORCE',
+      title: 'Engineering the Future of Business.',
+      subtitle: 'Next-generation Payroll and Workforce Solutions that drive performance, ensure compliance and empower people.',
+      image_url: '/images/hero_cyber_network.jpg',
+      button_text: 'Explore Solutions',
+      button_link: '#services'
     }
   ],
   services: [
@@ -84,21 +93,21 @@ const DEFAULT_HOMEPAGE_DATA = {
       category: 'Financial Services',
       title: 'Transforming compliance controls with AI in financial services',
       summary: 'Automating regulatory compliance and risk monitoring with generative AI and machine learning audit models.',
-      image_url: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=80'
+      image_url: '/images/case_study_1.jpg'
     },
     {
       id: 2,
       category: 'Public Services',
       title: 'When a leading education provider set out to reimagine student engagement, NCS helped make it real',
       summary: 'Deploying personalized mobile student portals and automated digital administration for 50,000+ students.',
-      image_url: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80'
+      image_url: '/images/case_study_2.jpg'
     },
     {
       id: 3,
       category: 'Education',
       title: 'Raising the bar for cashless school payments',
       summary: 'Streamlining payment ecosystems across 400+ schools with contactless smart cards and real-time transaction reconciliation.',
-      image_url: 'https://images.unsplash.com/photo-1556742049-0a67daf64f42?auto=format&fit=crop&w=800&q=80'
+      image_url: '/images/case_study_3.jpg'
     }
   ],
   insights: [
@@ -109,7 +118,7 @@ const DEFAULT_HOMEPAGE_DATA = {
       date_str: 'Jul 02',
       title: 'Databricks Data + AI Summit 2026: The Shift from Data Platforms to AI Powered Innovation',
       summary: 'Key takeaways on scaling lakehouse architecture and sovereign data governance for generative AI enterprise models.',
-      image_url: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80',
+      image_url: '/images/news_1.jpg',
       sub_categories: 'Data • AI • Platform'
     },
     {
@@ -119,7 +128,7 @@ const DEFAULT_HOMEPAGE_DATA = {
       date_str: 'Jun 22',
       title: 'Platform, people, and process: why AI governance is the missing piece',
       summary: 'Why successful AI deployment requires aligning technology platforms, human talent, and transparent risk management frameworks.',
-      image_url: 'https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?auto=format&fit=crop&w=800&q=80',
+      image_url: '/images/news_2.jpg',
       sub_categories: 'AI • Governance • People'
     }
   ]

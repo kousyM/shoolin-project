@@ -140,7 +140,7 @@ export const ChallengeUsPage = ({
             minHeight: '82vh',
             display: 'flex',
             alignItems: 'center',
-            backgroundImage: 'url("https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80")',
+            backgroundImage: 'url("/images/challenge_hero.jpg")',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             color: '#ffffff',
@@ -163,61 +163,66 @@ export const ChallengeUsPage = ({
               zIndex: 2,
               maxWidth: '1280px',
               margin: '0 auto',
-              padding: '6rem 2rem',
+              padding: '4.5rem 1.5rem',
               width: '100%',
               display: 'flex',
-              justify: 'space-between',
+              justifyContent: 'space-between',
               alignItems: 'center',
               flexWrap: 'wrap',
-              gap: '3rem'
+              gap: '2rem',
+              overflow: 'hidden',
+              boxSizing: 'border-box'
             }}
           >
-            <div style={{ maxWidth: '780px' }}>
+            <div style={{ maxWidth: '780px', width: '100%' }}>
               <h1
                 style={{
                   fontFamily: "'Outfit', sans-serif",
-                  fontSize: '3.4rem',
+                  fontSize: 'clamp(1.85rem, 5vw, 3.2rem)',
                   fontWeight: 800,
                   color: '#ffffff',
-                  lineHeight: 1.2,
-                  marginBottom: '1.75rem',
-                  letterSpacing: '-0.02em'
+                  lineHeight: 1.22,
+                  marginBottom: '1.25rem',
+                  letterSpacing: '-0.02em',
+                  wordBreak: 'break-word',
+                  overflowWrap: 'break-word'
                 }}
               >
                 A Connected Partner Ecosystem Powering Workforce Innovation
               </h1>
               <p
                 style={{
-                  fontSize: '1.25rem',
+                  fontSize: 'clamp(1rem, 2.5vw, 1.2rem)',
                   color: '#f1f5f9',
-                  lineHeight: 1.65,
+                  lineHeight: 1.6,
                   fontWeight: 400,
-                  margin: 0
+                  margin: 0,
+                  wordBreak: 'break-word'
                 }}
               >
                 By teaming with industry‑leading technology providers, we help clients streamline operations, enhance compliance, and prepare for what’s next.
               </p>
             </div>
 
-            {/* Giant White Slant Slash Logo Graphic matching Screenshot 1 */}
-            <div style={{ display: 'flex', gap: '1.2rem', opacity: 0.9 }}>
+            {/* Giant White Slant Slash Logo Graphic */}
+            <div className="vebhor-banner-slant-logo" style={{ display: 'flex', gap: '1.2rem', opacity: 0.9 }}>
               <div
                 style={{
-                  width: '65px',
-                  height: '180px',
+                  width: '55px',
+                  height: '160px',
                   backgroundColor: '#ffffff',
                   transform: 'skewX(-25deg)',
-                  borderRadius: '12px',
+                  borderRadius: '10px',
                   boxShadow: '0 10px 30px rgba(0,0,0,0.3)'
                 }}
               />
               <div
                 style={{
-                  width: '65px',
-                  height: '180px',
+                  width: '55px',
+                  height: '160px',
                   backgroundColor: '#ffffff',
                   transform: 'skewX(-25deg)',
-                  borderRadius: '12px',
+                  borderRadius: '10px',
                   boxShadow: '0 10px 30px rgba(0,0,0,0.3)'
                 }}
               />

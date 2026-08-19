@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Zap } from 'lucide-react';
+import { CheckCircle2, ArrowRight } from 'lucide-react';
 
 export const WorkforceSolutionsTabSection = () => {
   const [activeTabId, setActiveTabId] = useState('outcome');
@@ -28,7 +28,7 @@ export const WorkforceSolutionsTabSection = () => {
     },
     {
       id: 'bpm',
-      label: 'BPM & Optimisation',
+      label: 'BPM & Ops',
       tag: 'PROCESS AUTOMATION & BPM',
       heading: 'Streamlining Operations for Scalable Productivity',
       description: 'Optimise business processes through intelligent workflow automation, robotic process automation (RPA), and enterprise governance frameworks. We eliminate operational bottlenecks, reduce costs, and elevate overall performance across all departments.'
@@ -73,16 +73,16 @@ export const WorkforceSolutionsTabSection = () => {
   const activeContent = tabsData.find((tab) => tab.id === activeTabId) || tabsData[0];
 
   return (
-    <section style={{ backgroundColor: '#ffffff', padding: '5rem 1.5rem 4rem 1.5rem', fontFamily: "var(--bs-body-font-family), 'Plus Jakarta Sans', sans-serif" }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto', textAlign: 'center' }}>
+    <section style={{ backgroundColor: '#ffffff', padding: '5.5rem 1.5rem 4.5rem 1.5rem', fontFamily: "var(--bs-body-font-family), 'Plus Jakarta Sans', sans-serif" }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', textAlign: 'center' }}>
         
         {/* Eyebrow Badge Tag */}
-        <span style={{ fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#6C5CE7', backgroundColor: '#DCD6F7', padding: '0.4rem 1.1rem', borderRadius: '50px', display: 'inline-block', marginBottom: '1.25rem' }}>
+        <span style={{ fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#7C3AED', backgroundColor: '#EDE9FE', padding: '0.4rem 1.1rem', borderRadius: '50px', display: 'inline-block', marginBottom: '1.25rem' }}>
           OUR SERVICES
         </span>
 
         {/* Title Matching User Screenshot */}
-        <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.5rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.02em', marginBottom: '1rem', lineHeight: 1.25 }}>
+        <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.5rem', fontWeight: 800, color: '#172033', letterSpacing: '-0.02em', marginBottom: '1rem', lineHeight: 1.25 }}>
           Everything you need to scale global workforce & operations
         </h2>
 
@@ -91,20 +91,23 @@ export const WorkforceSolutionsTabSection = () => {
           Explore our multi-vertical workforce solutions—from Employer of Record and global contractor management to Outcome-Based delivery and digital transformation.
         </p>
 
-        {/* Single Line Horizontal Tab Navigation Bar */}
+        {/* Single Line Horizontal Tab Navigation Bar - All 9 In One Line, No Scroll, Zero Overlap */}
         <div
           className="workforce-tabs-bar"
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            flexWrap: 'nowrap',
-            overflowX: 'auto',
-            gap: '0.15rem',
-            borderBottom: '1px solid #e2e8f0',
-            marginBottom: '3rem',
-            paddingBottom: '0.25rem',
-            width: '100%'
+            display: 'grid',
+            gridTemplateColumns: 'repeat(9, minmax(0, 1fr))',
+            gap: '0.2rem',
+            backgroundColor: '#F1F5F9',
+            padding: '0.35rem',
+            borderRadius: '50px',
+            maxWidth: '1280px',
+            margin: '0 auto 3rem auto',
+            border: '1px solid #E2E8F0',
+            boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.02)',
+            overflow: 'hidden',
+            width: '100%',
+            boxSizing: 'border-box'
           }}
         >
           {tabsData.map((tab) => {
@@ -113,54 +116,69 @@ export const WorkforceSolutionsTabSection = () => {
               <button
                 key={tab.id}
                 onClick={() => setActiveTabId(tab.id)}
+                className={`workforce-tab-btn ${isActive ? 'active' : ''}`}
                 style={{
-                  background: isActive ? '#f0f9ff' : 'transparent',
+                  background: isActive ? 'linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)' : 'transparent',
                   border: 'none',
-                  borderBottom: isActive ? '3px solid #0284c7' : '3px solid transparent',
-                  padding: '0.65rem 0.85rem',
-                  fontSize: '0.88rem',
-                  fontWeight: isActive ? 700 : 500,
-                  color: isActive ? '#0284c7' : '#64748b',
-                  borderRadius: '6px 6px 0 0',
+                  padding: '0.65rem 0.2rem',
+                  fontSize: 'clamp(0.72rem, 0.85vw, 0.84rem)',
+                  fontWeight: isActive ? 700 : 600,
+                  color: isActive ? '#ffffff' : '#64748B',
+                  borderRadius: '50px',
                   cursor: 'pointer',
-                  transition: 'all 0.2s ease',
+                  transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
                   whiteSpace: 'nowrap',
-                  flexShrink: 0
+                  textAlign: 'center',
+                  minWidth: 0,
+                  width: '100%',
+                  overflow: 'hidden',
+                  textOverflow: 'ellipsis',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  boxSizing: 'border-box',
+                  boxShadow: isActive ? '0 4px 14px rgba(37, 99, 235, 0.35)' : 'none'
                 }}
+                title={tab.label}
               >
-                {tab.label}
+                <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                  {tab.label}
+                </span>
               </button>
             );
           })}
         </div>
 
-        {/* Active Content Card Matching User Screenshot */}
+        {/* Animated Active Content Card */}
         <div
-          className="workforce-active-card"
+          key={activeContent.id}
+          className="workforce-active-card animated-fade-slide"
           style={{
-            backgroundColor: '#f8fafc',
+            backgroundColor: '#ffffff',
             borderRadius: '24px',
-            border: '1px solid #f1f5f9',
-            padding: '3.5rem 3.5rem 3.5rem 3.5rem',
+            padding: '3.5rem 3.5rem',
             textAlign: 'left',
-            maxWidth: '1020px',
-            margin: '0 auto',
-            boxShadow: '0 4px 20px rgba(0,0,0,0.015)'
+            boxShadow: '0 20px 50px rgba(0, 0, 0, 0.06)',
+            border: '1px solid #E2E8F0',
+            position: 'relative',
+            overflow: 'hidden'
           }}
         >
-          {/* Cyan Tag with Lightning Icon */}
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: '#0284c7', fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1.25rem' }}>
-            <Zap size={16} color="#0284c7" />
-            <span>{activeContent.tag}</span>
-          </div>
+          {/* Subtle Accent Glow Top Border */}
+          <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '4px', background: 'linear-gradient(90deg, #2563EB 0%, #7C3AED 50%, #10B981 100%)' }} />
 
-          {/* Heading */}
-          <h3 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2rem', fontWeight: 700, color: '#0f172a', marginBottom: '1.25rem', letterSpacing: '-0.01em', lineHeight: 1.3 }}>
+          {/* Active Category Tag */}
+          <span style={{ fontSize: '0.82rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#2563EB', backgroundColor: '#EFF6FF', padding: '0.35rem 1rem', borderRadius: '6px', display: 'inline-block', marginBottom: '1.25rem' }}>
+            {activeContent.tag}
+          </span>
+
+          {/* Card Heading */}
+          <h3 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2rem', fontWeight: 800, color: '#172033', letterSpacing: '-0.02em', marginBottom: '1.25rem', lineHeight: 1.3 }}>
             {activeContent.heading}
           </h3>
 
-          {/* Paragraph Narrative */}
-          <p style={{ fontSize: '1.08rem', color: '#475569', lineHeight: 1.8, margin: 0, fontWeight: 400 }}>
+          {/* Card Description */}
+          <p style={{ fontSize: '1.08rem', color: '#475569', lineHeight: 1.7, margin: 0, fontWeight: 400 }}>
             {activeContent.description}
           </p>
         </div>

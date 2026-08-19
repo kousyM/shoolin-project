@@ -54,7 +54,7 @@ const IndividualsServicesPage = ({
             backgroundColor: '#001838',
             color: '#ffffff',
             padding: '7rem 2rem 5rem',
-            backgroundImage: 'linear-gradient(135deg, rgba(0,24,56,0.95) 0%, rgba(2,132,199,0.8) 100%), url("https://images.unsplash.com/photo-1511497584788-876761c11969?auto=format&fit=crop&w=1920&q=80")',
+            backgroundImage: 'linear-gradient(135deg, rgba(0,24,56,0.95) 0%, rgba(2,132,199,0.8) 100%), url("/images/individuals_hero.jpg")',
             backgroundSize: 'cover',
             backgroundPosition: 'center'
           }}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Globe, ArrowRight, ChevronDown, ChevronUp, Share2, Mail, Phone } from 'lucide-react';
+import { Menu, X, Search, ArrowRight, ChevronDown, ChevronUp, Globe, Mail, Share2 } from 'lucide-react';
 
 export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNavAbout, onNavCareers, onNavPartners, onNavInsights, onNavServices, onNavChallengeUs, onNavAdmin, isAdminLoggedIn, onAdminLogout }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -52,9 +52,10 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
 
   return (
     <>
-      <nav className="ncs-navbar" style={{ position: 'sticky', top: 0, zIndex: 100, backgroundColor: '#2C2C54', borderBottom: '1px solid rgba(255, 255, 255, 0.12)' }}>
-        <div className="nav-container" style={{ maxWidth: '1280px', margin: '0 auto', padding: '0.85rem 1.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          {/* Brand Logo */}
+      <nav className="ncs-navbar" style={{ position: 'sticky', top: 0, zIndex: 100, backgroundColor: '#060D1F', borderBottom: '1px solid rgba(255, 255, 255, 0.08)', boxShadow: '0 8px 24px rgba(0,0,0,0.4)' }}>
+        <div className="nav-container" style={{ maxWidth: '1360px', margin: '0 auto', padding: '0.85rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+
+          {/* 1. BRAND LOGO (User's Logo Icon + Clean Vebhor Text, NO bottom tagline) */}
           <a
             href="#"
             onClick={(e) => {
@@ -62,16 +63,31 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
               setMobileMenuOpen(false);
               if (onNavHome) onNavHome();
             }}
-            style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}
+            style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.65rem' }}
           >
-            <span className="logo-text" style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 800, fontSize: '1.75rem', color: '#ffffff' }}>
-              vebhor<span className="logo-accent" style={{ color: '#55E6C1' }}>//</span>
+            <img
+              src="/logo_icon.png"
+              alt="Vebhor"
+              style={{ height: '34px', width: 'auto', objectFit: 'contain' }}
+              onError={(e) => { e.currentTarget.style.display = 'none'; }}
+            />
+            <span
+              className="logo-text"
+              style={{
+                fontFamily: "'Cinzel', 'Outfit', 'Plus Jakarta Sans', sans-serif",
+                fontSize: '1.75rem',
+                fontWeight: 800,
+                letterSpacing: '0.02em',
+                color: '#ffffff'
+              }}
+            >
+              vebhor
             </span>
           </a>
 
-          {/* Desktop Navigation Links */}
+          {/* 2. ORIGINAL DESKTOP NAVIGATION LINKS */}
           <ul className="nav-links" style={{ display: 'flex', gap: '2rem', alignItems: 'center', listStyle: 'none', margin: 0, padding: 0 }}>
-            {/* About Us Link */}
+            {/* About us */}
             <li>
               <a
                 href="#about"
@@ -81,12 +97,12 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
                 }}
                 className="nav-link"
                 style={{
-                  color: activePage === 'about' ? '#55E6C1' : '#cbd5e1',
+                  color: activePage === 'about' ? '#55E6C1' : '#ffffff',
                   fontWeight: activePage === 'about' ? 700 : 600,
                   borderBottom: activePage === 'about' ? '2px solid #55E6C1' : '2px solid transparent',
                   paddingBottom: '0.2rem',
                   textDecoration: 'none',
-                  fontSize: '0.95rem',
+                  fontSize: '0.98rem',
                   transition: 'all 0.2s ease'
                 }}
               >
@@ -94,7 +110,7 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
               </a>
             </li>
 
-            {/* Services Link */}
+            {/* Services */}
             <li>
               <a
                 href="#services"
@@ -104,12 +120,12 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
                 }}
                 className="nav-link"
                 style={{
-                  color: activePage === 'services' || activePage === 'services-page' ? '#55E6C1' : '#cbd5e1',
+                  color: activePage === 'services' || activePage === 'services-page' ? '#55E6C1' : '#ffffff',
                   fontWeight: activePage === 'services' || activePage === 'services-page' ? 700 : 600,
                   borderBottom: activePage === 'services' || activePage === 'services-page' ? '2px solid #55E6C1' : '2px solid transparent',
                   paddingBottom: '0.2rem',
                   textDecoration: 'none',
-                  fontSize: '0.95rem',
+                  fontSize: '0.98rem',
                   transition: 'all 0.2s ease'
                 }}
               >
@@ -117,7 +133,7 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
               </a>
             </li>
 
-            {/* 3. Partners */}
+            {/* Partners */}
             <li>
               <a
                 href="#partners"
@@ -127,12 +143,12 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
                 }}
                 className="nav-link"
                 style={{
-                  color: activePage === 'partners' ? '#55E6C1' : '#cbd5e1',
+                  color: activePage === 'partners' ? '#55E6C1' : '#ffffff',
                   fontWeight: activePage === 'partners' ? 700 : 600,
                   borderBottom: activePage === 'partners' ? '2px solid #55E6C1' : '2px solid transparent',
                   paddingBottom: '0.2rem',
                   textDecoration: 'none',
-                  fontSize: '0.95rem',
+                  fontSize: '0.98rem',
                   transition: 'all 0.2s ease'
                 }}
               >
@@ -140,7 +156,7 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
               </a>
             </li>
 
-            {/* 3b. Challenge Us Menu Link */}
+            {/* Challenge us */}
             <li>
               <a
                 href="#challenge-us"
@@ -150,12 +166,12 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
                 }}
                 className="nav-link"
                 style={{
-                  color: activePage === 'challenge-us' ? '#55E6C1' : '#cbd5e1',
+                  color: activePage === 'challenge-us' ? '#55E6C1' : '#ffffff',
                   fontWeight: activePage === 'challenge-us' ? 700 : 600,
                   borderBottom: activePage === 'challenge-us' ? '2px solid #55E6C1' : '2px solid transparent',
                   paddingBottom: '0.2rem',
                   textDecoration: 'none',
-                  fontSize: '0.95rem',
+                  fontSize: '0.98rem',
                   transition: 'all 0.2s ease'
                 }}
               >
@@ -163,19 +179,19 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
               </a>
             </li>
 
-            {/* 4. Careers Direct Link */}
+            {/* Careers */}
             <li>
               <a
                 href="#job-opportunities"
                 onClick={(e) => handleCareersSubnavClick(e, 'job-opportunities')}
                 className="nav-link"
                 style={{
-                  color: activePage === 'careers' ? '#55E6C1' : '#cbd5e1',
+                  color: activePage === 'careers' ? '#55E6C1' : '#ffffff',
                   fontWeight: activePage === 'careers' ? 700 : 600,
                   borderBottom: activePage === 'careers' ? '2px solid #55E6C1' : '2px solid transparent',
                   paddingBottom: '0.2rem',
                   textDecoration: 'none',
-                  fontSize: '0.95rem',
+                  fontSize: '0.98rem',
                   transition: 'all 0.2s ease'
                 }}
               >
@@ -183,37 +199,83 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
               </a>
             </li>
 
+            {/* Contact us */}
             <li>
-              <button
-                onClick={() => {
+              <a
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
                   if (onOpenContactPage) onOpenContactPage();
                 }}
+                className="nav-link"
                 style={{
-                  color: activePage === 'contact' ? '#55E6C1' : '#cbd5e1',
+                  color: activePage === 'contact' ? '#55E6C1' : '#ffffff',
                   fontWeight: activePage === 'contact' ? 700 : 600,
                   borderBottom: activePage === 'contact' ? '2px solid #55E6C1' : '2px solid transparent',
                   paddingBottom: '0.2rem',
-                  background: 'none',
-                  border: 'none',
-                  fontSize: '0.95rem',
-                  cursor: 'pointer',
-                  padding: 0,
+                  textDecoration: 'none',
+                  fontSize: '0.98rem',
                   transition: 'all 0.2s ease'
                 }}
               >
                 Contact us
-              </button>
+              </a>
             </li>
           </ul>
 
-          {/* Action Controls & Mobile Hamburger Toggle */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', color: '#ffffff', fontSize: '0.88rem', fontWeight: 600 }}>
-              <Globe size={16} />
-              <span>AU</span>
-            </div>
+          {/* 3. RIGHT ACTION CONTROLS */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
 
-            {/* Mobile Hamburger Toggle (STRICTLY Hidden on Desktop via CSS) */}
+            {/* Search Icon Circle Button */}
+            <button
+              onClick={() => {
+                if (onNavServices) onNavServices('overview');
+              }}
+              style={{
+                width: '40px',
+                height: '40px',
+                borderRadius: '50%',
+                border: '1px solid rgba(255, 255, 255, 0.16)',
+                backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                color: '#ffffff',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                transition: 'all 0.2s ease'
+              }}
+              aria-label="Search"
+            >
+              <Search size={18} />
+            </button>
+
+            {/* Get In Touch Green-to-Cyan Gradient Pill Button */}
+            <button
+              onClick={() => {
+                if (onOpenContactPage) onOpenContactPage();
+              }}
+              className="navbar-touch-btn"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                padding: '0.62rem 1.4rem',
+                background: 'linear-gradient(135deg, #10B981 0%, #06B6D4 60%, #3B82F6 100%)',
+                color: '#ffffff',
+                border: 'none',
+                borderRadius: '50px',
+                fontSize: '0.92rem',
+                fontWeight: 700,
+                cursor: 'pointer',
+                boxShadow: '0 4px 18px rgba(16, 185, 129, 0.35)',
+                transition: 'all 0.25s ease'
+              }}
+            >
+              <span>Get In Touch</span>
+              <ArrowRight size={16} />
+            </button>
+
+            {/* Mobile Hamburger Toggle */}
             <button
               className="mobile-nav-toggle"
               onClick={() => setMobileMenuOpen(true)}
@@ -236,7 +298,7 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
           />
 
           {/* 100vh Left Drawer Container */}
-          <div className="mobile-drawer-left">
+          <div className="mobile-drawer-left" style={{ backgroundColor: '#060D1F' }}>
             {/* Drawer Top Header (Logo + Circle Close X) */}
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
               <a
@@ -246,10 +308,16 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
                   setMobileMenuOpen(false);
                   if (onNavHome) onNavHome();
                 }}
-                style={{ textDecoration: 'none' }}
+                style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.65rem' }}
               >
-                <span style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 800, fontSize: '1.6rem', color: '#ffffff' }}>
-                  NCS<span style={{ color: '#00b4d8' }}>//</span>
+                <img
+                  src="/logo_icon.png"
+                  alt="Vebhor"
+                  style={{ height: '30px', width: 'auto', objectFit: 'contain' }}
+                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                />
+                <span style={{ fontFamily: "'Cinzel', 'Outfit', sans-serif", fontWeight: 800, fontSize: '1.5rem', letterSpacing: '0.02em', color: '#ffffff' }}>
+                  vebhor
                 </span>
               </a>
 
@@ -380,9 +448,9 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
             {/* Bottom Footer Section matching Screenshot 2 */}
             <div style={{ paddingTop: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.12)', marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
               <span style={{ fontSize: '0.85rem', color: '#94a3b8', fontWeight: 600 }}>Get in touch</span>
-              <a href="mailto:info@ncs.com" style={{ color: '#38bdf8', fontSize: '0.95rem', textDecoration: 'none', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+              <a href="mailto:info@vebhor.com" style={{ color: '#38bdf8', fontSize: '0.95rem', textDecoration: 'none', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
                 <Mail size={16} />
-                <span>info@ncs.com</span>
+                <span>info@vebhor.com</span>
               </a>
               <span style={{ color: '#cbd5e1', fontSize: '0.88rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
                 <Globe size={16} />

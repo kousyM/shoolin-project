@@ -5,12 +5,12 @@ export const getApiBaseUrl = () => {
     const host = window.location.hostname;
     // Local development environment
     if (host === 'localhost' || host === '127.0.0.1') {
-      return 'http://127.0.0.1:8000';
+      return 'http://127.0.0.1:8001';
     }
     // Live Server Environment
     return window.location.origin + '/backend/public';
   }
-  return 'http://127.0.0.1:8000';
+  return 'http://127.0.0.1:8001';
 };
 
 export const API_BASE_URL = getApiBaseUrl();

@@ -38,7 +38,7 @@ export const AdminDashboardPage = ({ onNavHome, onNavCareers, onOpenContactPage,
     try {
       const apiBase = getApiBaseUrl();
       // Fetch jobs from API
-      const jobsRes = await axios.get(`${apiBase}/api/admin/jobs`, { headers, timeout: 4000 });
+      const jobsRes = await axios.get(`${apiBase}/api/admin/jobs`, { headers, timeout: 15000 });
       if (jobsRes.data && jobsRes.data.jobs && jobsRes.data.jobs.length > 0) {
         setJobs(jobsRes.data.jobs);
         saveStoredJobs(jobsRes.data.jobs);
@@ -47,7 +47,7 @@ export const AdminDashboardPage = ({ onNavHome, onNavCareers, onOpenContactPage,
       }
 
       // Fetch applications
-      const appsRes = await axios.get(`${apiBase}/api/admin/applications`, { headers, timeout: 4000 });
+      const appsRes = await axios.get(`${apiBase}/api/admin/applications`, { headers, timeout: 15000 });
       if (appsRes.data && appsRes.data.applications) {
         setApplications(appsRes.data.applications);
       }

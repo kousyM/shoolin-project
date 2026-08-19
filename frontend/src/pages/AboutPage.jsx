@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { 
-  ArrowRight, 
-  CheckCircle2, 
-  ShieldCheck, 
-  Target, 
+import {
+  ArrowRight,
+  CheckCircle2,
+  ShieldCheck,
+  Target,
   Eye
 } from 'lucide-react';
 
@@ -31,7 +31,7 @@ export const AboutPage = ({ onNavHome, onNavCareers, onNavPartners, onNavInsight
       />
 
       <main style={{ paddingTop: 0, marginTop: 0 }}>
-        
+
         {/* ============================================================ */}
         {/* 1. HERO BANNER SECTION */}
         {/* ============================================================ */}
@@ -39,12 +39,12 @@ export const AboutPage = ({ onNavHome, onNavCareers, onNavPartners, onNavInsight
           style={{
             position: 'relative',
             backgroundColor: '#1e1b4b',
-            backgroundImage: `linear-gradient(135deg, rgba(30, 27, 75, 0.95) 0%, rgba(15, 23, 42, 0.92) 100%), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1920&q=80')`,
+            backgroundImage: `linear-gradient(135deg, rgba(30, 27, 75, 0.95) 0%, rgba(15, 23, 42, 0.92) 100%), url('/images/team_collaboration.jpg')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             color: '#ffffff',
             padding: '5.5rem 2rem 5rem 2rem',
-            textAlign: 'center'
+            textAlign: 'left'
           }}
         >
           <div style={{ maxWidth: '1040px', margin: '0 auto' }}>
@@ -52,21 +52,21 @@ export const AboutPage = ({ onNavHome, onNavCareers, onNavPartners, onNavInsight
               ABOUT US
             </span>
 
-            {/* Banner Heading with fontSize: 1.75rem */}
-            <h1 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '1.75rem', fontWeight: 600, color: '#ffffff', marginBottom: '1.5rem', lineHeight: 1.3, letterSpacing: '-0.01em' }}>
+            {/* Banner Heading with start alignment */}
+            <h1 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '1.75rem', fontWeight: 600, color: '#ffffff', marginBottom: '1.5rem', lineHeight: 1.3, letterSpacing: '-0.01em', textAlign: 'left' }}>
               Vebhor is a next‑generation Payroll and Workforce Solutions company
             </h1>
 
-            <p style={{ fontSize: '1.18rem', color: '#DCD6F7', fontWeight: 400, maxWidth: '960px', margin: '0 auto 1.5rem', lineHeight: 1.7 }}>
+            <p style={{ fontSize: '1.18rem', color: '#DCD6F7', fontWeight: 400, maxWidth: '960px', margin: '0 0 1.5rem 0', lineHeight: 1.7, textAlign: 'left' }}>
               Vebhor is a next‑generation Payroll and Workforce Solutions company that helps enterprises build, manage, and scale global teams with precision, compliance, and AI‑driven efficiency. With deep expertise across talent management, payrolling, contractor operations, and global mobility, we deliver industry‑specific solutions that meet the complex workforce needs of modern businesses.
             </p>
 
-            <p style={{ fontSize: '1.12rem', color: '#cbd5e1', fontWeight: 400, maxWidth: '960px', margin: '0 auto 2.25rem', lineHeight: 1.7 }}>
+            <p style={{ fontSize: '1.12rem', color: '#cbd5e1', fontWeight: 400, maxWidth: '960px', margin: '0 0 2.25rem 0', lineHeight: 1.7, textAlign: 'left' }}>
               For clients, we are the partner that builds and manages the workforce behind their success. For investors, we are a scalable, process‑driven consulting firm with strong market demand, recurring revenue models, and technology‑powered delivery.
             </p>
 
             {/* Partner With Us Button Linked to Partners Page */}
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
+            <div style={{ display: 'flex', justifyContent: 'flex-start', gap: '1rem' }}>
               <button
                 onClick={onNavPartners}
                 style={{
@@ -115,7 +115,7 @@ export const AboutPage = ({ onNavHome, onNavCareers, onNavPartners, onNavInsight
               <div className="our-story-img-col" style={{ gridColumn: 'span 6' }}>
                 <div style={{ position: 'relative', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}>
                   <img
-                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80"
+                    src="/images/team_collaboration.jpg"
                     alt="Our Story"
                     style={{ width: '100%', height: '420px', objectFit: 'cover', display: 'block' }}
                   />
@@ -174,7 +174,7 @@ export const AboutPage = ({ onNavHome, onNavCareers, onNavPartners, onNavInsight
         {/* ============================================================ */}
         <section id="code-of-conduct" style={{ backgroundColor: '#0f172a', color: '#ffffff', padding: '5.5rem 2rem 5rem 2rem' }}>
           <div style={{ maxWidth: '1140px', margin: '0 auto' }}>
-            
+
             {/* Unified Header Box (Matching Screenshot 2) */}
             <div
               style={{
@@ -260,7 +260,7 @@ export const AboutPage = ({ onNavHome, onNavCareers, onNavPartners, onNavInsight
         {/* ============================================================ */}
         <section style={{ backgroundColor: '#ffffff', padding: '5.5rem 2rem 4.5rem 2rem', borderBottom: '1px solid #f1f5f9' }}>
           <div style={{ maxWidth: '1140px', margin: '0 auto' }}>
-            
+
             {/* Why Clients Work With Us */}
             <div style={{ marginBottom: '4.5rem' }}>
               <div style={{ textAlign: 'center', marginBottom: '3rem' }}>

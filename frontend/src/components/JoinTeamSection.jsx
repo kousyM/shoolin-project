@@ -30,8 +30,8 @@ export const JoinTeamSection = ({ onOpenCareers }) => {
         {/* Right Side: High Quality Office Team Image */}
         <div className="ncs-join-right">
           <img
-            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80"
-            alt="Join an extraordinary team at NCS"
+            src="/images/team_collaboration.jpg"
+            alt="Join an extraordinary team at Vebhor"
             className="ncs-join-img"
           />
         </div>

@@ -59,7 +59,7 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
         <section
           style={{
             backgroundColor: '#001938',
-            backgroundImage: `linear-gradient(90deg, rgba(0, 25, 56, 0.90) 0%, rgba(0, 25, 56, 0.75) 50%, rgba(0, 25, 56, 0.45) 100%), url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=1920&q=80')`,
+            backgroundImage: `linear-gradient(90deg, rgba(0, 25, 56, 0.90) 0%, rgba(0, 25, 56, 0.75) 50%, rgba(0, 25, 56, 0.45) 100%), url('/images/partners_hero.jpg')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             color: '#ffffff',
@@ -69,11 +69,11 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
             alignItems: 'center'
           }}
         >
-          <div style={{ maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
-            <h1 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '3rem', fontWeight: 800, color: '#ffffff', maxWidth: '880px', lineHeight: 1.25, marginBottom: '1.25rem' }}>
+          <div style={{ maxWidth: '1200px', margin: '0 auto', width: '100%', overflow: 'hidden' }}>
+            <h1 style={{ fontFamily: "'Outfit', sans-serif", fontSize: 'clamp(1.85rem, 5vw, 3rem)', fontWeight: 800, color: '#ffffff', maxWidth: '880px', lineHeight: 1.25, marginBottom: '1.25rem', wordBreak: 'break-word' }}>
               A Connected Partner Ecosystem Powering Workforce Innovation
             </h1>
-            <p style={{ fontSize: '1.2rem', color: '#e2e8f0', maxWidth: '780px', lineHeight: 1.65 }}>
+            <p style={{ fontSize: 'clamp(1rem, 2.5vw, 1.2rem)', color: '#e2e8f0', maxWidth: '780px', lineHeight: 1.65, wordBreak: 'break-word' }}>
               By teaming with industry‑leading technology providers, we help clients streamline operations, enhance compliance, and prepare for what’s next.
             </p>
           </div>
@@ -100,16 +100,17 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                 </span>
               </div>
 
-              {/* Dell (Replaced Databricks as requested) */}
+              {/* Salesforce (Replaced Dell as requested) */}
               <div style={{ padding: '2.5rem 1.5rem', borderRight: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-                  <span style={{ fontFamily: "'Outfit', sans-serif", fontSize: '2.2rem', fontWeight: 900, color: '#0076CE', letterSpacing: '0.05em' }}>
-                    DELL
-                  </span>
-                  <span style={{ fontSize: '1rem', fontWeight: 700, color: '#475569' }}>Technologies</span>
+                  <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg"
+                    alt="Salesforce"
+                    style={{ height: '38px', width: 'auto', objectFit: 'contain' }}
+                  />
                 </div>
-                <span style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 600, marginTop: '0.4rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
-                  Global Infrastructure Partner
+                <span style={{ fontSize: '0.8rem', color: '#64748b', fontWeight: 600, marginTop: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                  Summit Partner
                 </span>
               </div>
 

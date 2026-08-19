@@ -43,7 +43,7 @@ export default function ContactPage({ onBackHome, onNavCareers, onNavAbout, onNa
           style={{
             position: 'relative',
             backgroundColor: '#0b132b',
-            backgroundImage: `linear-gradient(90deg, rgba(11, 19, 43, 0.85) 0%, rgba(11, 19, 43, 0.70) 50%, rgba(11, 19, 43, 0.35) 100%), url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1920&q=80')`,
+            backgroundImage: `linear-gradient(90deg, rgba(11, 19, 43, 0.85) 0%, rgba(11, 19, 43, 0.70) 50%, rgba(11, 19, 43, 0.35) 100%), url('/images/slider_3.jpg')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             color: '#ffffff',
@@ -120,15 +120,47 @@ export default function ContactPage({ onBackHome, onNavCareers, onNavAbout, onNa
                   <a href="mailto:contactus@vebhor.com" style={{ color: '#ffffff', textDecoration: 'none' }}>contactus@vebhor.com</a>
                 </div>
                 <span style={{ color: 'rgba(255,255,255,0.3)' }}>|</span>
-                <div
-                  onClick={() => openLinkedIn('https://www.linkedin.com')}
-                  style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', cursor: 'pointer' }}
+                <a
+                  href="https://www.linkedin.com/company/vebhor/?viewAsMember=true"
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#ffffff', textDecoration: 'none' }}
                 >
                   <span style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: '22px', height: '22px', borderRadius: '4px', backgroundColor: '#38bdf8', color: '#001b3a', fontWeight: 900, fontSize: '0.75rem' }}>
                     in
                   </span>
                   <span>LinkedIn</span>
-                </div>
+                </a>
+                <span style={{ color: 'rgba(255,255,255,0.3)' }}>|</span>
+                <a
+                  href="https://www.instagram.com/vebhor_aus/"
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#ffffff', textDecoration: 'none' }}
+                >
+                  <span style={{ color: '#ec4899', display: 'inline-flex', alignItems: 'center' }}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                  </span>
+                  <span>Instagram</span>
+                </a>
+                <span style={{ color: 'rgba(255,255,255,0.3)' }}>|</span>
+                <a
+                  href="https://www.facebook.com/profile.php?id=61593392762903&sk=directory_personal_details"
+                  target="_blank"
+                  rel="noreferrer"
+                  style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#ffffff', textDecoration: 'none' }}
+                >
+                  <span style={{ color: '#1877f2', display: 'inline-flex', alignItems: 'center' }}>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H7.5v-3H10V9.5C10 7.01 11.49 5.63 13.78 5.63c1.09 0 2.23.19 2.23.19v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.77l-.44 3h-2.33v6.8c4.56-.93 8-4.96 8-9.8z" />
+                    </svg>
+                  </span>
+                  <span>Facebook</span>
+                </a>
               </div>
             </div>
           </div>

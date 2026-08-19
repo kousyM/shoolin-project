@@ -128,7 +128,7 @@ export const CareersPage = ({ onSelectJob, onNavHome, onOpenContactPage, onNavAb
           <section
             style={{
               backgroundColor: '#0b132b',
-              backgroundImage: `linear-gradient(90deg, rgba(11, 19, 43, 0.90) 0%, rgba(11, 19, 43, 0.75) 50%, rgba(11, 19, 43, 0.35) 100%), url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1920&q=80')`,
+              backgroundImage: `linear-gradient(90deg, rgba(11, 19, 43, 0.90) 0%, rgba(11, 19, 43, 0.75) 50%, rgba(11, 19, 43, 0.35) 100%), url('/images/team_collaboration.jpg')`,
               backgroundSize: 'cover',
               backgroundPosition: 'center',
               color: '#ffffff',
@@ -212,73 +212,151 @@ export const CareersPage = ({ onSelectJob, onNavHome, onOpenContactPage, onNavAb
                 <p style={{ fontSize: '0.95rem' }}>Try clearing filters or search for another keyword.</p>
               </div>
             ) : (
-              <div style={{ backgroundColor: '#ffffff', borderRadius: '4px', border: '1px solid #e2e8f0', boxShadow: '0 2px 8px rgba(0,0,0,0.04)', overflow: 'hidden' }}>
-                <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left' }}>
-                  <thead>
-                    <tr style={{ backgroundColor: '#f8fafc', borderBottom: '2px solid #e2e8f0' }}>
-                      <th style={{ padding: '1.2rem 1.5rem', fontSize: '0.9rem', fontWeight: 700, color: '#334155' }}>JOB TITLE</th>
-                      <th style={{ padding: '1.2rem 1.5rem', fontSize: '0.9rem', fontWeight: 700, color: '#334155' }}>DEPARTMENT</th>
-                      <th style={{ padding: '1.2rem 1.5rem', fontSize: '0.9rem', fontWeight: 700, color: '#334155' }}>LOCATION</th>
-                      <th style={{ padding: '1.2rem 1.5rem', fontSize: '0.9rem', fontWeight: 700, color: '#334155', textAlign: 'right' }}>ACTION</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {jobs.map((job, idx) => (
-                      <tr
-                        key={job.id || idx}
-                        style={{ borderBottom: '1px solid #f1f5f9', transition: 'background-color 0.15s ease' }}
-                        onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#f8fafc')}
-                        onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#ffffff')}
-                      >
-                        <td style={{ padding: '1.25rem 1.5rem' }}>
-                          <span
-                            onClick={() => {
-                              if (onSelectJob) onSelectJob(job);
-                            }}
-                            style={{ fontSize: '1.05rem', fontWeight: 700, color: '#0284c7', textDecoration: 'none', cursor: 'pointer' }}
-                          >
-                            {job.title}
-                          </span>
-                          {job.is_remote && (
-                            <span style={{ marginLeft: '0.6rem', fontSize: '0.75rem', fontWeight: 700, color: '#16a34a', backgroundColor: '#dcfce7', padding: '0.2rem 0.5rem', borderRadius: '4px' }}>
-                              Remote
-                            </span>
-                          )}
-                        </td>
-                        <td style={{ padding: '1.25rem 1.5rem', fontSize: '0.95rem', color: '#475569' }}>
-                          {job.department}
-                        </td>
-                        <td style={{ padding: '1.25rem 1.5rem', fontSize: '0.95rem', color: '#475569' }}>
-                          {job.location}
-                        </td>
-                        <td style={{ padding: '1.25rem 1.5rem', textAlign: 'right' }}>
-                          <button
-                            onClick={() => {
-                              if (onSelectJob) onSelectJob(job);
-                            }}
-                            style={{
-                              display: 'inline-flex',
-                              alignItems: 'center',
-                              gap: '0.4rem',
-                              padding: '0.5rem 1rem',
-                              backgroundColor: '#0f172a',
-                              color: '#ffffff',
-                              borderRadius: '4px',
-                              fontSize: '0.85rem',
-                              fontWeight: 700,
-                              border: 'none',
-                              cursor: 'pointer'
-                            }}
-                          >
-                            <span>View Role</span>
-                            <ChevronRight size={16} />
-                          </button>
-                        </td>
+              <>
+                {/* Desktop View Table */}
+                <div className="vebhor-jobs-table-desktop" style={{ backgroundColor: '#ffffff', borderRadius: '6px', border: '1px solid #e2e8f0', boxShadow: '0 2px 8px rgba(0,0,0,0.04)', overflowX: 'auto' }}>
+                  <table style={{ width: '100%', minWidth: '600px', borderCollapse: 'collapse', textAlign: 'left' }}>
+                    <thead>
+                      <tr style={{ backgroundColor: '#f8fafc', borderBottom: '2px solid #e2e8f0' }}>
+                        <th style={{ padding: '1.2rem 1.5rem', fontSize: '0.9rem', fontWeight: 700, color: '#334155' }}>JOB TITLE</th>
+                        <th style={{ padding: '1.2rem 1.5rem', fontSize: '0.9rem', fontWeight: 700, color: '#334155' }}>DEPARTMENT</th>
+                        <th style={{ padding: '1.2rem 1.5rem', fontSize: '0.9rem', fontWeight: 700, color: '#334155' }}>LOCATION</th>
+                        <th style={{ padding: '1.2rem 1.5rem', fontSize: '0.9rem', fontWeight: 700, color: '#334155', textAlign: 'right' }}>ACTION</th>
                       </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+                    </thead>
+                    <tbody>
+                      {jobs.map((job, idx) => (
+                        <tr
+                          key={job.id || idx}
+                          style={{ borderBottom: '1px solid #f1f5f9', transition: 'background-color 0.15s ease' }}
+                          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#f8fafc')}
+                          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#ffffff')}
+                        >
+                          <td style={{ padding: '1.25rem 1.5rem' }}>
+                            <span
+                              onClick={() => {
+                                if (onSelectJob) onSelectJob(job);
+                              }}
+                              style={{ fontSize: '1.05rem', fontWeight: 700, color: '#0284c7', textDecoration: 'none', cursor: 'pointer' }}
+                            >
+                              {job.title}
+                            </span>
+                            {job.is_remote && (
+                              <span style={{ marginLeft: '0.6rem', fontSize: '0.75rem', fontWeight: 700, color: '#16a34a', backgroundColor: '#dcfce7', padding: '0.2rem 0.5rem', borderRadius: '4px' }}>
+                                Remote
+                              </span>
+                            )}
+                          </td>
+                          <td style={{ padding: '1.25rem 1.5rem', fontSize: '0.95rem', color: '#475569' }}>
+                            {job.department}
+                          </td>
+                          <td style={{ padding: '1.25rem 1.5rem', fontSize: '0.95rem', color: '#475569' }}>
+                            {job.location}
+                          </td>
+                          <td style={{ padding: '1.25rem 1.5rem', textAlign: 'right' }}>
+                            <button
+                              onClick={() => {
+                                if (onSelectJob) onSelectJob(job);
+                              }}
+                              style={{
+                                display: 'inline-flex',
+                                alignItems: 'center',
+                                gap: '0.4rem',
+                                padding: '0.5rem 1rem',
+                                backgroundColor: '#0f172a',
+                                color: '#ffffff',
+                                borderRadius: '4px',
+                                fontSize: '0.85rem',
+                                fontWeight: 700,
+                                border: 'none',
+                                cursor: 'pointer'
+                              }}
+                            >
+                              <span>View Role</span>
+                              <ChevronRight size={16} />
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+
+                {/* Mobile View Job Cards (Always Shows View Role Button) */}
+                <div className="vebhor-jobs-cards-mobile">
+                  {jobs.map((job, idx) => (
+                    <div
+                      key={job.id || idx}
+                      style={{
+                        backgroundColor: '#ffffff',
+                        border: '1px solid #e2e8f0',
+                        borderRadius: '8px',
+                        padding: '1.25rem',
+                        boxShadow: '0 2px 6px rgba(0,0,0,0.04)',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        gap: '0.85rem'
+                      }}
+                    >
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.5rem' }}>
+                        <h3
+                          onClick={() => {
+                            if (onSelectJob) onSelectJob(job);
+                          }}
+                          style={{
+                            fontSize: '1.15rem',
+                            fontWeight: 700,
+                            color: '#0284c7',
+                            cursor: 'pointer',
+                            lineHeight: 1.3
+                          }}
+                        >
+                          {job.title}
+                        </h3>
+                        {job.is_remote && (
+                          <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#16a34a', backgroundColor: '#dcfce7', padding: '0.2rem 0.5rem', borderRadius: '4px', whiteSpace: 'nowrap' }}>
+                            Remote
+                          </span>
+                        )}
+                      </div>
+
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', fontSize: '0.85rem', color: '#64748b' }}>
+                        <span style={{ backgroundColor: '#f1f5f9', padding: '0.25rem 0.6rem', borderRadius: '4px', fontWeight: 600, color: '#475569' }}>
+                          {job.department}
+                        </span>
+                        <span style={{ backgroundColor: '#f1f5f9', padding: '0.25rem 0.6rem', borderRadius: '4px', color: '#475569' }}>
+                          📍 {job.location}
+                        </span>
+                      </div>
+
+                      <button
+                        onClick={() => {
+                          if (onSelectJob) onSelectJob(job);
+                        }}
+                        style={{
+                          width: '100%',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          gap: '0.5rem',
+                          padding: '0.75rem 1rem',
+                          backgroundColor: '#0f172a',
+                          color: '#ffffff',
+                          borderRadius: '6px',
+                          fontSize: '0.92rem',
+                          fontWeight: 700,
+                          border: 'none',
+                          cursor: 'pointer',
+                          marginTop: '0.4rem'
+                        }}
+                      >
+                        <span>View Role</span>
+                        <ChevronRight size={16} />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </>
             )}
 
             {/* Expressions of Interest Banner */}

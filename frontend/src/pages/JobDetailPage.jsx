@@ -98,18 +98,18 @@ export const JobDetailPage = ({ jobId, onBackToCareers, onApplyJob, onSelectOthe
           <span>Back to Career Opportunities</span>
         </button>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '2.5rem' }}>
+        <div className="vebhor-job-detail-grid">
           {/* Main Left Content Column */}
-          <div style={{ gridColumn: 'span 8', background: '#ffffff', padding: '2.5rem', borderRadius: '8px', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
-            {/* NCS Brand Logo */}
+          <div className="vebhor-job-main-col" style={{ background: '#ffffff', padding: '2.5rem', borderRadius: '8px', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+            {/* Vebhor Brand Logo */}
             <div style={{ marginBottom: '1.5rem' }}>
               <span style={{ fontFamily: "'Outfit', sans-serif", fontSize: '2.2rem', fontWeight: 900, color: '#0f172a' }}>
-                ncs<span style={{ color: '#00b4d8' }}>//</span>
+                vebhor<span style={{ color: '#55E6C1' }}>//</span>
               </span>
             </div>
 
             {/* Job Title */}
-            <h1 style={{ fontSize: '2.2rem', fontWeight: 800, color: '#0f172a', marginBottom: '1rem', lineHeight: 1.25 }}>
+            <h1 style={{ fontSize: '2.2rem', fontWeight: 800, color: '#0f172a', marginBottom: '1rem', lineHeight: 1.25, wordBreak: 'break-word' }}>
               {job.title}
             </h1>
 
@@ -130,7 +130,7 @@ export const JobDetailPage = ({ jobId, onBackToCareers, onApplyJob, onSelectOthe
               <h2 style={{ fontSize: '1.15rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.75rem' }}>Company Description</h2>
               <p style={{ color: '#334155', lineHeight: 1.7, fontSize: '0.95rem', whiteSpace: 'pre-line' }}>
                 {job.company_description ||
-                  'At NCS Australia, we believe in doing technology services better. Our commitment to quality, focus on people, and willingness to challenge traditional thinking set us apart. Our team brings this belief to life by partnering with our clients and communities to make tomorrow together.'}
+                  'At Vebhor, we believe in doing technology services better. Our commitment to quality, focus on people, and willingness to challenge traditional thinking set us apart. Our team brings this belief to life by partnering with our clients and communities to make tomorrow together.'}
               </p>
             </div>
 
@@ -163,8 +163,8 @@ export const JobDetailPage = ({ jobId, onBackToCareers, onApplyJob, onSelectOthe
             )}
           </div>
 
-          {/* Right Sidebar Column (Matching Screenshot 2 Sidebar Layout) */}
-          <div style={{ gridColumn: 'span 4' }}>
+          {/* Right Sidebar Column */}
+          <div className="vebhor-job-side-col">
             <div style={{ background: '#ffffff', padding: '1.75rem', borderRadius: '8px', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', position: 'sticky', top: '100px' }}>
               {/* Primary Action Button: "I'm interested" */}
               <button
@@ -229,7 +229,7 @@ export const JobDetailPage = ({ jobId, onBackToCareers, onApplyJob, onSelectOthe
               {/* Other Jobs At NCS Australia */}
               <div>
                 <h3 style={{ fontSize: '0.75rem', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '1rem' }}>
-                  OTHER JOBS AT NCS AUSTRALIA
+                  OTHER JOBS AT VEBHOR
                 </h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1rem' }}>
                   {otherJobs.map((other) => (
