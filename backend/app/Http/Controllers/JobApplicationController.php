@@ -63,7 +63,8 @@ class JobApplicationController extends Controller
 
         // Send Email Notification
         try {
-            Mail::to('kowsalyam2611@gmail.com')->send(new JobApplicationMailable($application));
+            $adminEmail = config('mail.admin_address', 'info@vebhor.com');
+            Mail::to($adminEmail)->send(new JobApplicationMailable($application));
             Log::info("Job application email sent successfully for application ID: {$application->id}");
         } catch (\Exception $e) {
             Log::error("Failed to send job application email: " . $e->getMessage());
@@ -74,5 +75,81 @@ class JobApplicationController extends Controller
             'message' => 'Your application has been successfully submitted!',
             'application' => $application
         ], 201);
+    }
+
+    /**
+     * Submit Expression of Interest (EOI) form for Careers
+     */
+    public function eoi(Request $request)
+    {
+        $validated = $request->validate([
+            'firstName' => 'nullable|string|max:255',
+            'first_name' => 'nullable|string|max:255',
+            'lastName' => 'nullable|string|max:255',
+            'last_name' => 'nullable|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'nullable|string|max:255',
+            'location' => 'nullable|string|max:255',
+            'areaOfInterest' => 'nullable|string|max:255',
+            'workPreference' => 'nullable|string|max:255',
+            'linkedin' => 'nullable|string|max:255',
+            'summary' => 'nullable|string'
+        ]);
+
+        $firstName = $validated['firstName'] ?? ($validated['first_name'] ?? '');
+        $lastName = $validated['lastName'] ?? ($validated['last_name'] ?? '');
+        $fullName = trim($firstName . ' ' . $lastName);
+        if (empty($fullName)) {
+            $fullName = 'Career Candidate';
+        }
+        $email = $validated['email'];
+        $phone = $validated['phone'] ?? 'N/A';
+        $location = $validated['location'] ?? 'N/A';
+        $interest = $validated['areaOfInterest'] ?? 'General';
+        $preference = $validated['workPreference'] ?? 'N/A';
+        $linkedin = $validated['linkedin'] ?? 'N/A';
+        $summary = $validated['summary'] ?? 'Expression of interest submitted.';
+
+        // Store EOI Application in JobApplication table or log
+        try {
+            JobApplication::create([
+                'first_name' => $firstName ?: 'Candidate',
+                'last_name' => $lastName ?: 'EOI',
+                'email' => $email,
+                'phone' => $phone,
+                'education' => "Location: {$location} | Interest: {$interest} | Mode: {$preference}",
+                'linkedin' => $linkedin,
+                'cover_note' => $summary,
+                'status' => 'pending_eoi'
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Database store in eoi failed: ' . $e->getMessage());
+        }
+
+        // Dispatch Email Notification
+        try {
+            $adminEmail = config('mail.admin_address', 'info@vebhor.com');
+            $emailContent = "New Expression of Interest (EOI) Submission:\n\n" .
+                "Full Name: {$fullName}\n" .
+                "Email: {$email}\n" .
+                "Phone: {$phone}\n" .
+                "Location: {$location}\n" .
+                "Area of Interest: {$interest}\n" .
+                "Work Preference: {$preference}\n" .
+                "LinkedIn Profile: {$linkedin}\n\n" .
+                "Background / Summary:\n{$summary}\n";
+
+            Mail::raw($emailContent, function ($mail) use ($adminEmail, $fullName, $interest) {
+                $mail->to($adminEmail)
+                    ->subject("Vebhor Careers - EOI from {$fullName} [{$interest}]");
+            });
+        } catch (\Exception $e) {
+            Log::error('EOI email notification failed: ' . $e->getMessage());
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Thank you for your Expression of Interest! Our talent acquisition team will review your profile.'
+        ]);
     }
 }

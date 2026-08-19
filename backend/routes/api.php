@@ -25,11 +25,14 @@ Route::post('/case-studies', [ContentController::class, 'storeCaseStudy']);
 Route::delete('/case-studies/{id}', [ContentController::class, 'destroyCaseStudy']);
 Route::post('/contact', [ContentController::class, 'contact']);
 Route::post('/challenge-us', [ContentController::class, 'challengeUs']);
+Route::post('/partner', [ContentController::class, 'partnerInquiry']);
+Route::post('/subscribe', [ContentController::class, 'subscribe']);
 
 // Careers & Job Opportunities Public Routes
 Route::get('/jobs', [JobController::class, 'index']);
 Route::get('/jobs/{id}', [JobController::class, 'show']);
 Route::post('/jobs/{id}/apply', [JobApplicationController::class, 'apply']);
+Route::post('/eoi', [JobApplicationController::class, 'eoi']);
 
 // Admin Authentication & Job Management Routes
 Route::post('/admin/login', [JobController::class, 'adminLogin']);

@@ -151,16 +151,18 @@ class ContentController extends Controller
 
         // 2. Dispatch Email Notification to Admin
         try {
+            $adminEmail = config('mail.admin_address', 'info@vebhor.com');
             $emailContent = "New Contact Us Enquiry Received:\n\n" .
                 "Full Name: {$fullName}\n" .
                 "Email: {$email}\n" .
                 "Phone Number: " . ($phone ? $phone : 'N/A') . "\n" .
+                "Organisation: {$organisation}\n" .
                 "Subject: {$subject}\n\n" .
                 "Message:\n{$message}\n";
 
-            Mail::raw($emailContent, function ($mail) use ($email, $fullName, $subject) {
-                $mail->to('kowsalyam2611@gmail.com')
-                    ->subject('NCS Corporate Portal - New Inquiry from ' . $fullName . ' [' . $subject . ']');
+            Mail::raw($emailContent, function ($mail) use ($adminEmail, $fullName, $subject) {
+                $mail->to($adminEmail)
+                    ->subject('Vebhor Portal - New Contact Enquiry from ' . $fullName . ' [' . $subject . ']');
             });
         } catch (\Exception $e) {
             Log::error('Contact form email notification failed: ' . $e->getMessage());
@@ -218,6 +220,7 @@ class ContentController extends Controller
 
         // 2. Dispatch Email Notification
         try {
+            $adminEmail = config('mail.admin_address', 'info@vebhor.com');
             $emailContent = "New Challenge Us Form Submission:\n\n" .
                 "Name: {$fullName}\n" .
                 "Role / Designation: {$role}\n" .
@@ -226,9 +229,9 @@ class ContentController extends Controller
                 "Phone: {$phone}\n\n" .
                 "Challenge Details / Message:\n{$message}\n";
 
-            Mail::raw($emailContent, function ($mail) use ($email, $fullName, $organisation) {
-                $mail->to('kowsalyam2611@gmail.com')
-                    ->subject("NCS Challenge Us - Submission from {$fullName} ({$organisation})");
+            Mail::raw($emailContent, function ($mail) use ($adminEmail, $fullName, $organisation) {
+                $mail->to($adminEmail)
+                    ->subject("Vebhor Challenge Us - Submission from {$fullName} ({$organisation})");
             });
         } catch (\Exception $e) {
             Log::error('Challenge Us email notification failed: ' . $e->getMessage());
@@ -238,6 +241,101 @@ class ContentController extends Controller
             'status' => 'success',
             'message' => 'Thank you for taking on the challenge! Your submission has been received and saved.',
             'data' => $contactRecord
+        ]);
+    }
+
+    /**
+     * Handle Partner Inquiry form submission.
+     */
+    public function partnerInquiry(Request $request)
+    {
+        $validated = $request->validate([
+            'firstName' => 'nullable|string|max:255',
+            'lastName' => 'nullable|string|max:255',
+            'company' => 'nullable|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'nullable|string|max:255',
+            'enquiry' => 'nullable|string'
+        ]);
+
+        $firstName = $validated['firstName'] ?? '';
+        $lastName = $validated['lastName'] ?? '';
+        $fullName = trim($firstName . ' ' . $lastName);
+        if (empty($fullName)) {
+            $fullName = 'Potential Partner';
+        }
+        $company = $validated['company'] ?? 'N/A';
+        $email = $validated['email'];
+        $phone = $validated['phone'] ?? 'N/A';
+        $enquiry = $validated['enquiry'] ?? 'Partner inquiry submitted.';
+
+        // Store in DB if Contact model exists
+        try {
+            Contact::create([
+                'full_name' => $fullName,
+                'first_name' => $firstName,
+                'last_name' => $lastName,
+                'email' => $email,
+                'phone' => $phone,
+                'organisation' => $company,
+                'subject' => "Partner Inquiry: {$company}",
+                'message' => $enquiry,
+                'consent' => true
+            ]);
+        } catch (\Exception $e) {
+            Log::error('Database store in partnerInquiry failed: ' . $e->getMessage());
+        }
+
+        // Dispatch Email
+        try {
+            $adminEmail = config('mail.admin_address', 'info@vebhor.com');
+            $emailContent = "New Partner Inquiry Received:\n\n" .
+                "Full Name: {$fullName}\n" .
+                "Company: {$company}\n" .
+                "Email: {$email}\n" .
+                "Phone: {$phone}\n\n" .
+                "Enquiry / Details:\n{$enquiry}\n";
+
+            Mail::raw($emailContent, function ($mail) use ($adminEmail, $fullName, $company) {
+                $mail->to($adminEmail)
+                    ->subject("Vebhor Partner Program - Inquiry from {$fullName} ({$company})");
+            });
+        } catch (\Exception $e) {
+            Log::error('Partner inquiry email notification failed: ' . $e->getMessage());
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Thank you for reaching out! Your partner inquiry has been received.'
+        ]);
+    }
+
+    /**
+     * Handle Newsletter Subscription.
+     */
+    public function subscribe(Request $request)
+    {
+        $validated = $request->validate([
+            'email' => 'required|email|max:255'
+        ]);
+
+        $email = $validated['email'];
+
+        try {
+            $adminEmail = config('mail.admin_address', 'info@vebhor.com');
+            $emailContent = "New Newsletter Subscription Received:\n\nEmail Address: {$email}\nDate: " . date('Y-m-d H:i:s') . "\n";
+
+            Mail::raw($emailContent, function ($mail) use ($adminEmail, $email) {
+                $mail->to($adminEmail)
+                    ->subject("New Newsletter Subscriber: {$email}");
+            });
+        } catch (\Exception $e) {
+            Log::error('Newsletter subscribe email notification failed: ' . $e->getMessage());
+        }
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Thank you for subscribing to our newsletter!'
         ]);
     }
 

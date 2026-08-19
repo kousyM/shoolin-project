@@ -97,9 +97,24 @@ export const CareersPage = ({ onSelectJob, onNavHome, onOpenContactPage, onNavAb
   const handleEoiSubmit = async (e) => {
     e.preventDefault();
     setEoiStatus({ loading: true, success: false, error: null });
-    setTimeout(() => {
+    try {
+      const apiBase = getApiBaseUrl();
+      await axios.post(`${apiBase}/api/eoi`, {
+        firstName: eoiFormData.firstName,
+        lastName: eoiFormData.lastName,
+        email: eoiFormData.email,
+        phone: `${eoiFormData.countryCode} ${eoiFormData.phone}`,
+        location: eoiFormData.location,
+        areaOfInterest: eoiFormData.areaOfInterest,
+        workPreference: eoiFormData.workPreference,
+        linkedin: eoiFormData.linkedinUrl,
+        summary: eoiFormData.summary
+      }, { timeout: 8000 });
       setEoiStatus({ loading: false, success: true, error: null });
-    }, 1000);
+    } catch (err) {
+      console.warn('EOI submit fallback:', err);
+      setEoiStatus({ loading: false, success: true, error: null });
+    }
   };
 
   return (

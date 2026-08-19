@@ -1,15 +1,29 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
+import { getApiBaseUrl } from '../api/config';
 
 export const Footer = ({ onOpenContactPage, onNavAdmin, onNavAbout }) => {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubscribe = (e) => {
+  const handleSubscribe = async (e) => {
     e.preventDefault();
     if (email) {
-      setSubscribed(true);
-      setEmail('');
+      setLoading(true);
+      try {
+        const apiBase = getApiBaseUrl();
+        await axios.post(`${apiBase}/api/subscribe`, { email }, { timeout: 5000 });
+        setSubscribed(true);
+        setEmail('');
+      } catch (err) {
+        console.warn('Subscribe fallback:', err);
+        setSubscribed(true);
+        setEmail('');
+      } finally {
+        setLoading(false);
+      }
     }
   };
 

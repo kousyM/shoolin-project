@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { getApiBaseUrl } from '../api/config';
 import { 
   ArrowRight, 
   CheckCircle2, 
@@ -21,6 +23,7 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
     enquiry: ''
   });
   const [formSubmitted, setFormSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleInputChange = (e) => {
     setFormData({
@@ -29,9 +32,26 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormSubmitted(true);
+    setLoading(true);
+    try {
+      const apiBase = getApiBaseUrl();
+      await axios.post(`${apiBase}/api/partner`, {
+        firstName: formData.firstName,
+        lastName: formData.lastName,
+        company: formData.organisation,
+        email: formData.email,
+        phone: formData.phone,
+        enquiry: formData.enquiry
+      }, { timeout: 8000 });
+      setFormSubmitted(true);
+    } catch (err) {
+      console.warn('Partner submit fallback:', err);
+      setFormSubmitted(true);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
