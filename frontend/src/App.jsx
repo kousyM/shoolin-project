@@ -47,7 +47,7 @@ const DEFAULT_HOMEPAGE_DATA = {
       tag: 'AI & TECH INNOVATION',
       title: 'Smarter Teams, Powered by AI.',
       subtitle: 'Tech‑powered workforce solutions for smarter hiring, faster scaling, and confident operations.',
-      image_url: '/slider_2.jpg',
+      image_url: '/images/slider_2.jpg',
       button_text: 'Get In Touch',
       button_link: '#contact'
     },
@@ -58,6 +58,16 @@ const DEFAULT_HOMEPAGE_DATA = {
       subtitle: 'Next-generation Payroll and Workforce Solutions that drive performance, ensure compliance and empower people.',
       image_url: '/images/hero_cyber_network.jpg',
       button_text: 'Explore Solutions',
+      button_link: '#services'
+    },
+    {
+      id: 4,
+      tag: 'QUALITY & AUTOMATION',
+      title: 'Quality Engineering that powers your growth.',
+      subtitle: 'Accelerating digital speed, intelligent automation, and reliable enterprise delivery across global markets.',
+      image_url: '/images/slider_2.jpg',
+      video_url: '/slider_2.mp4',
+      button_text: 'Explore Quality Solutions',
       button_link: '#services'
     }
   ],

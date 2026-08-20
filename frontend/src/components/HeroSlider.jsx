@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, ArrowRight, Sparkles } from 'lucide-react';
 
 export const HeroSlider = ({ banners = [] }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -62,15 +62,17 @@ export const HeroSlider = ({ banners = [] }) => {
               />
             )}
 
-            {/* Background Dark Overlay for Readability */}
-            <div
-              style={{
-                position: 'absolute',
-                inset: 0,
-                background: 'linear-gradient(180deg, rgba(15, 23, 42, 0.45) 0%, rgba(15, 23, 42, 0.75) 100%)',
-                zIndex: 2
-              }}
-            />
+            {/* Background Dark Overlay for Readability (Removed for Slider 1 and Slider 4) */}
+            {index !== 0 && index !== 3 && (
+              <div
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  background: 'linear-gradient(180deg, rgba(6, 13, 31, 0.35) 0%, rgba(6, 13, 31, 0.75) 100%)',
+                  zIndex: 2
+                }}
+              />
+            )}
 
             {/* Main Content Layout Container */}
             <div
@@ -88,67 +90,85 @@ export const HeroSlider = ({ banners = [] }) => {
                 boxSizing: 'border-box'
               }}
             >
-              {/* TOP SECTION: Tag Badge & Heading Moved UP */}
-              <div style={{ alignSelf: 'flex-start', maxWidth: '980px', marginTop: '1rem' }}>
-                {banner.tag && (
-                  <span
-                    className="hero-tag"
+              {/* TOP SECTION: Tag Badge & Heading (Hidden on Slider 4 as requested) */}
+              {index !== 3 && (
+                <div style={{ alignSelf: 'flex-start', maxWidth: '960px', marginTop: '1.25rem' }}>
+                  {/* CloudMarc Floating Innovate Badge for Slider 2 */}
+                  {index === 1 ? (
+                    <div style={{ marginBottom: '1rem' }}>
+                      <a
+                        href="#contact"
+                        className="cloudmarc-floating-badge"
+                      >
+                        <div className="badge-icon">
+                          <Sparkles size={18} />
+                        </div>
+                        <span>Innovate</span>
+                      </a>
+                    </div>
+                  ) : banner.tag ? (
+                    <span
+                      className="hero-tag"
+                      style={{
+                        display: 'inline-block',
+                        padding: '0.35rem 1.15rem',
+                        backgroundColor: '#6C5CE7',
+                        color: '#ffffff',
+                        borderRadius: '50px',
+                        fontSize: '0.8rem',
+                        fontWeight: 800,
+                        letterSpacing: '0.08em',
+                        textTransform: 'uppercase',
+                        marginBottom: '1rem',
+                        boxShadow: '0 4px 14px rgba(108, 92, 231, 0.45)'
+                      }}
+                    >
+                      {banner.tag}
+                    </span>
+                  ) : null}
+
+                  <h1
+                    className="hero-title"
                     style={{
-                      display: 'inline-block',
-                      padding: '0.4rem 1.1rem',
-                      backgroundColor: 'rgba(108, 92, 231, 0.85)',
-                      color: '#ffffff',
-                      borderRadius: '50px',
-                      fontSize: '0.82rem',
+                      fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
+                      fontSize: 'clamp(1.5rem, 3.2vw, 2.35rem)',
                       fontWeight: 700,
-                      letterSpacing: '0.08em',
-                      textTransform: 'uppercase',
-                      marginBottom: '1rem'
+                      color: '#ffffff',
+                      lineHeight: 1.25,
+                      margin: 0,
+                      letterSpacing: '-0.01em',
+                      whiteSpace: 'normal',
+                      wordBreak: 'break-word',
+                      textShadow: '0 2px 10px rgba(0, 0, 0, 0.75)'
                     }}
                   >
-                    {banner.tag}
-                  </span>
+                    {banner.title}
+                  </h1>
+                </div>
+              )}
+
+              {/* BOTTOM SECTION: Subtitle + Button + Counter */}
+              <div style={{ width: '100%', marginTop: 'auto', marginBottom: '0.5rem' }}>
+
+                {/* Paragraph Subtitle (Hidden on Slider 4) */}
+                {index !== 3 && banner.subtitle && (
+                  <p
+                    className="hero-subtitle"
+                    style={{
+                      fontSize: '1.08rem',
+                      color: '#F1F5F9',
+                      lineHeight: 1.6,
+                      marginBottom: '1.5rem',
+                      fontWeight: 400,
+                      maxWidth: '720px',
+                      textShadow: '0 2px 8px rgba(0, 0, 0, 0.75)'
+                    }}
+                  >
+                    {banner.subtitle}
+                  </p>
                 )}
 
-                <h1
-                  className="hero-title"
-                  style={{
-                    fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
-                    fontSize: 'clamp(1.4rem, 4vw, 2.5rem)',
-                    fontWeight: 600,
-                    color: '#ffffff',
-                    lineHeight: 1.25,
-                    margin: 0,
-                    letterSpacing: '-0.01em',
-                    whiteSpace: 'normal',
-                    wordBreak: 'break-word',
-                    textShadow: '0 2px 14px rgba(0, 0, 0, 0.9)'
-                  }}
-                >
-                  {banner.title}
-                </h1>
-              </div>
-
-              {/* BOTTOM SECTION: Subtitle Paragraph on Left + Button & Slider Counter Stacked on RIGHT */}
-              <div style={{ width: '100%', marginTop: 'auto', marginBottom: '0.5rem' }}>
-                
-                {/* Paragraph Subtitle Moved Down */}
-                <p
-                  className="hero-subtitle"
-                  style={{
-                    fontSize: '1.15rem',
-                    color: '#DCD6F7',
-                    lineHeight: 1.65,
-                    marginBottom: '1.5rem',
-                    fontWeight: 400,
-                    maxWidth: '780px',
-                    textShadow: '0 2px 10px rgba(0, 0, 0, 0.85)'
-                  }}
-                >
-                  {banner.subtitle}
-                </p>
-
-                {/* Right-aligned Vertical Stack: Button on Top Right, Slider Counter Badge DIRECTLY BELOW IT on Right */}
+                {/* Right-aligned Vertical Stack */}
                 <div
                   style={{
                     display: 'flex',
@@ -158,30 +178,32 @@ export const HeroSlider = ({ banners = [] }) => {
                     width: '100%'
                   }}
                 >
-                  {/* 1. CTA Button on RIGHT */}
-                  <a
-                    href={banner.button_link || '#services'}
-                    className="btn-ncs-primary"
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '0.65rem',
-                      backgroundColor: '#2563eb',
-                      color: '#ffffff',
-                      fontWeight: 700,
-                      fontSize: '1rem',
-                      padding: '0.85rem 2.25rem',
-                      borderRadius: '8px',
-                      textDecoration: 'none',
-                      boxShadow: '0 6px 20px rgba(37, 99, 235, 0.45)',
-                      transition: 'all 0.3s ease'
-                    }}
-                  >
-                    <span>{banner.button_text || 'Explore Solutions'}</span>
-                    <ArrowRight size={18} />
-                  </a>
+                  {/* 1. CTA Button on RIGHT (Hidden on Slider 4) */}
+                  {index !== 3 && (
+                    <a
+                      href={banner.button_link || '#services'}
+                      className="btn-ncs-primary"
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '0.65rem',
+                        backgroundColor: '#6C5CE7',
+                        color: '#ffffff',
+                        fontWeight: 700,
+                        fontSize: '0.96rem',
+                        padding: '0.8rem 2.2rem',
+                        borderRadius: '8px',
+                        textDecoration: 'none',
+                        boxShadow: '0 6px 20px rgba(108, 92, 231, 0.45)',
+                        transition: 'all 0.3s ease'
+                      }}
+                    >
+                      <span>{banner.button_text || 'Explore Solutions'}</span>
+                      <ArrowRight size={18} />
+                    </a>
+                  )}
 
-                  {/* 2. Slider Number Counter (< • ━ 01 / 02 >) DIRECTLY BELOW THE BUTTON on RIGHT */}
+                  {/* 2. Slider Number Counter (< • ━ 01 / 04 >) */}
                   {banners.length > 1 && (
                     <div
                       style={{

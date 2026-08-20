@@ -118,6 +118,7 @@ export const ChallengeUsPage = ({
     <div style={{ backgroundColor: '#ffffff', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
       {/* Navbar */}
       <Navbar
+        activePage="challenge-us"
         onNavHome={onNavHome}
         onNavServices={onNavServices}
         onNavAbout={onNavAbout}

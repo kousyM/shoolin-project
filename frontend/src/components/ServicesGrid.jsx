@@ -94,7 +94,7 @@ export const ServicesGrid = ({ onSelectService }) => {
   return (
     <section id="services" className="ncs-services-section" style={{ backgroundColor: '#ffffff', padding: '2.5rem 0 4rem 0' }}>
       <div className="ncs-services-container" style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 1.5rem' }}>
-        
+
         {/* Section Header */}
         <div className="ncs-services-header" style={{ textAlign: 'center', marginBottom: '2rem' }}>
           <span style={{ fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#0284c7', backgroundColor: '#e0f2fe', padding: '0.35rem 0.9rem', borderRadius: '50px', display: 'inline-block', marginBottom: '0.85rem' }}>

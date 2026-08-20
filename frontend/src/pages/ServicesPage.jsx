@@ -23,6 +23,7 @@ export const ServicesPage = ({
     <div style={{ backgroundColor: '#ffffff', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
       {/* Navbar */}
       <Navbar
+        activePage="services"
         onNavHome={onNavHome}
         onNavServices={onNavServices}
         onNavAbout={onNavAbout}

@@ -258,6 +258,288 @@ h6 {
   margin-bottom: 1.25rem;
 }
 
+/* CloudMarc Floating Innovate Badge & Pulse Animations */
+@keyframes cloudmarcFloat {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes cloudmarcPulseShrink {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.cloudmarc-floating-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background: rgba(6, 13, 31, 0.75);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(56, 189, 248, 0.5);
+  padding: 0.45rem 1.25rem;
+  border-radius: 50px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  box-shadow: 0 8px 24px rgba(56, 189, 248, 0.25);
+  animation: cloudmarcFloat 3.5s ease-in-out infinite;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cloudmarc-floating-badge:hover {
+  background: rgba(14, 165, 233, 0.2);
+  border-color: rgba(56, 189, 248, 0.85);
+  box-shadow: 0 10px 30px rgba(56, 189, 248, 0.45);
+}
+
+.cloudmarc-floating-badge .badge-icon {
+  animation: cloudmarcPulseShrink 2.2s ease-in-out infinite;
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================================================================
+   Navigation Bar Interactive Underline & Hover Effects
+   ========================================================================== */
+.nav-link-item {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #ffffff;
+  font-size: 1.02rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.35rem 0;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.25s ease;
+}
+
+.nav-link-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 2.5px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Hover effect: Expand underline line smoothly */
+.nav-link-item:hover::after {
+  width: 100%;
+}
+
+/* Active page: Permanent full underline line */
+.nav-link-item.active::after {
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.nav-link-item.active {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Meet Our Partners - Continuous Auto-Scroll Carousel & Grayscale Hover
+   ========================================================================== */
+@keyframes partnerMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.partner-marquee-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 1rem 0 2rem 0;
+}
+
+.partner-marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  width: max-content;
+  animation: partnerMarquee 32s linear infinite;
+  will-change: transform;
+}
+
+.partner-marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.partner-logo-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 190px;
+  height: 86px;
+  padding: 1rem 1.85rem;
+  background: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 14px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.partner-logo-card img {
+  max-height: 42px;
+  max-width: 140px;
+  object-fit: contain;
+  filter: none !important;
+  opacity: 1 !important;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.partner-logo-card:hover {
+  background: #ffffff;
+  border-color: #38bdf8;
+  box-shadow: 0 12px 32px rgba(56, 189, 248, 0.35), 0 4px 16px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px) scale(1.06);
+}
+
+.partner-logo-card:hover img {
+  transform: scale(1.08);
+}
+
+.partner-fade-left {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 140px;
+  background: linear-gradient(to right, #060D1F 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.partner-fade-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 140px;
+  background: linear-gradient(to left, #060D1F 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+/* ==========================================================================
+   Our Solutions - Dark Theme Glow Outline Cards & Slide Entrance
+   ========================================================================== */
+.solution-dark-card {
+  background-color: #111625;
+  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 2.25rem 2rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.solution-dark-card:hover {
+  background-color: #161e33;
+  border-color: rgba(168, 85, 247, 0.95);
+  box-shadow: 0 0 35px rgba(168, 85, 247, 0.45), 0 20px 45px rgba(0, 0, 0, 0.7);
+  transform: translateY(-12px) scale(1.04) !important;
+}
+
+.solution-dark-card .solution-card-icon {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.solution-dark-card:hover .solution-card-icon {
+  transform: scale(1.15) rotate(5deg);
+}
+
+/* ==========================================================================
+   Get Started Stepper - Continuous Auto Flowing Beam & Step Pulse
+   ========================================================================== */
+@keyframes stepperBeamGlow {
+  0% {
+    left: 0%;
+    width: 15%;
+    opacity: 0.7;
+  }
+  50% {
+    width: 35%;
+    opacity: 1;
+  }
+  100% {
+    left: 85%;
+    width: 15%;
+    opacity: 0.7;
+  }
+}
+
+.stepper-flowing-beam {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, #A855F7, #38BDF8, transparent);
+  border-radius: 4px;
+  animation: stepperBeamGlow 3.5s ease-in-out infinite alternate;
+  filter: blur(1px);
+}
+
+/* ==========================================================================
+   Drive Career Banner - Gentle Parallax Image Motion & Slide Entrance
+   ========================================================================== */
+@keyframes careerImgFloat {
+  0% {
+    transform: scale(1) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: scale(1.05) translate3d(8px, -5px, 0);
+  }
+  100% {
+    transform: scale(1.03) translate3d(-6px, 4px, 0);
+  }
+}
+
+.career-banner-img {
+  width: 100%;
+  height: 100%;
+  min-height: 340px;
+  background-image: url("/images/team_collaboration.jpg");
+  background-size: cover;
+  background-position: center;
+  clip-path: polygon(0 0, 100% 0, 75% 100%, 0 100%);
+  animation: careerImgFloat 7s ease-in-out infinite alternate;
+  transition: transform 0.5s ease, filter 0.5s ease;
+  will-change: transform;
+}
+
+.career-banner-container:hover .career-banner-img {
+  filter: brightness(1.08) contrast(1.05);
+}
+
 .hero-subtitle {
   font-size: clamp(1rem, 2vw, 1.25rem);
   color: #cbd5e1;
@@ -2268,6 +2550,7 @@ RESPONSIVE
     opacity: 0;
     transform: translateY(14px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);

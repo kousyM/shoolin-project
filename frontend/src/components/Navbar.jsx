@@ -85,7 +85,7 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
             </span>
           </a>
 
-          {/* 2. ORIGINAL DESKTOP NAVIGATION LINKS */}
+          {/* 2. ORIGINAL DESKTOP NAVIGATION LINKS WITH HOVER & ACTIVE UNDERLINE */}
           <ul className="nav-links" style={{ display: 'flex', gap: '2rem', alignItems: 'center', listStyle: 'none', margin: 0, padding: 0 }}>
             {/* About us */}
             <li>
@@ -95,16 +95,7 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
                   e.preventDefault();
                   if (onNavAbout) onNavAbout('code-of-conduct');
                 }}
-                className="nav-link"
-                style={{
-                  color: activePage === 'about' ? '#55E6C1' : '#ffffff',
-                  fontWeight: activePage === 'about' ? 700 : 600,
-                  borderBottom: activePage === 'about' ? '2px solid #55E6C1' : '2px solid transparent',
-                  paddingBottom: '0.2rem',
-                  textDecoration: 'none',
-                  fontSize: '0.98rem',
-                  transition: 'all 0.2s ease'
-                }}
+                className={`nav-link-item ${activePage === 'about' ? 'active' : ''}`}
               >
                 About us
               </a>
@@ -118,16 +109,7 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
                   e.preventDefault();
                   if (onNavServices) onNavServices('overview');
                 }}
-                className="nav-link"
-                style={{
-                  color: activePage === 'services' || activePage === 'services-page' ? '#55E6C1' : '#ffffff',
-                  fontWeight: activePage === 'services' || activePage === 'services-page' ? 700 : 600,
-                  borderBottom: activePage === 'services' || activePage === 'services-page' ? '2px solid #55E6C1' : '2px solid transparent',
-                  paddingBottom: '0.2rem',
-                  textDecoration: 'none',
-                  fontSize: '0.98rem',
-                  transition: 'all 0.2s ease'
-                }}
+                className={`nav-link-item ${activePage === 'services' || activePage === 'services-page' ? 'active' : ''}`}
               >
                 Services
               </a>
@@ -141,16 +123,7 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
                   e.preventDefault();
                   if (onNavPartners) onNavPartners();
                 }}
-                className="nav-link"
-                style={{
-                  color: activePage === 'partners' ? '#55E6C1' : '#ffffff',
-                  fontWeight: activePage === 'partners' ? 700 : 600,
-                  borderBottom: activePage === 'partners' ? '2px solid #55E6C1' : '2px solid transparent',
-                  paddingBottom: '0.2rem',
-                  textDecoration: 'none',
-                  fontSize: '0.98rem',
-                  transition: 'all 0.2s ease'
-                }}
+                className={`nav-link-item ${activePage === 'partners' ? 'active' : ''}`}
               >
                 Partners
               </a>
@@ -164,16 +137,7 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
                   e.preventDefault();
                   if (onNavChallengeUs) onNavChallengeUs();
                 }}
-                className="nav-link"
-                style={{
-                  color: activePage === 'challenge-us' ? '#55E6C1' : '#ffffff',
-                  fontWeight: activePage === 'challenge-us' ? 700 : 600,
-                  borderBottom: activePage === 'challenge-us' ? '2px solid #55E6C1' : '2px solid transparent',
-                  paddingBottom: '0.2rem',
-                  textDecoration: 'none',
-                  fontSize: '0.98rem',
-                  transition: 'all 0.2s ease'
-                }}
+                className={`nav-link-item ${activePage === 'challenge-us' ? 'active' : ''}`}
               >
                 Challenge us
               </a>
@@ -184,16 +148,7 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
               <a
                 href="#job-opportunities"
                 onClick={(e) => handleCareersSubnavClick(e, 'job-opportunities')}
-                className="nav-link"
-                style={{
-                  color: activePage === 'careers' ? '#55E6C1' : '#ffffff',
-                  fontWeight: activePage === 'careers' ? 700 : 600,
-                  borderBottom: activePage === 'careers' ? '2px solid #55E6C1' : '2px solid transparent',
-                  paddingBottom: '0.2rem',
-                  textDecoration: 'none',
-                  fontSize: '0.98rem',
-                  transition: 'all 0.2s ease'
-                }}
+                className={`nav-link-item ${activePage === 'careers' ? 'active' : ''}`}
               >
                 Careers
               </a>
@@ -207,16 +162,7 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
                   e.preventDefault();
                   if (onOpenContactPage) onOpenContactPage();
                 }}
-                className="nav-link"
-                style={{
-                  color: activePage === 'contact' ? '#55E6C1' : '#ffffff',
-                  fontWeight: activePage === 'contact' ? 700 : 600,
-                  borderBottom: activePage === 'contact' ? '2px solid #55E6C1' : '2px solid transparent',
-                  paddingBottom: '0.2rem',
-                  textDecoration: 'none',
-                  fontSize: '0.98rem',
-                  transition: 'all 0.2s ease'
-                }}
+                className={`nav-link-item ${activePage === 'contact' ? 'active' : ''}`}
               >
                 Contact us
               </a>

@@ -58,6 +58,7 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
     <div style={{ backgroundColor: '#ffffff', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
       {/* Navbar */}
       <Navbar
+        activePage="partners"
         onNavHome={onNavHome}
         onNavServices={onNavServices}
         onNavAbout={onNavAbout}

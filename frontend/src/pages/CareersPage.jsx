@@ -121,6 +121,7 @@ export const CareersPage = ({ onSelectJob, onNavHome, onOpenContactPage, onNavAb
     <div style={{ backgroundColor: '#ffffff', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
       {/* Navbar */}
       <Navbar
+        activePage="careers"
         onNavHome={onNavHome}
         onNavServices={onNavServices}
         onNavAbout={onNavAbout}

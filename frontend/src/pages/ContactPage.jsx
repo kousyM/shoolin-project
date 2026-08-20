@@ -24,6 +24,7 @@ export default function ContactPage({ onBackHome, onNavCareers, onNavAbout, onNa
     <div style={{ backgroundColor: '#ffffff', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
       {/* Top Navbar */}
       <Navbar
+        activePage="contact"
         onNavHome={onBackHome}
         onNavServices={onNavServices}
         onNavCareers={onNavCareers}
