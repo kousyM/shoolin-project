@@ -114,7 +114,7 @@ export const AboutPage = ({ onNavHome, onNavCareers, onNavPartners, onNavInsight
           />
 
           <div style={{ maxWidth: '1120px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
-            
+
             {/* Tag Badge */}
             <div
               style={{
@@ -276,7 +276,7 @@ export const AboutPage = ({ onNavHome, onNavCareers, onNavPartners, onNavInsight
           />
 
           <div style={{ maxWidth: '1240px', margin: '0 auto', position: 'relative', zIndex: 3 }}>
-            
+
             <div
               className="about-story-grid about-story-grid-card"
               style={{
@@ -347,7 +347,7 @@ export const AboutPage = ({ onNavHome, onNavCareers, onNavPartners, onNavInsight
                 <p style={{ fontSize: '1.1rem', color: '#cbd5e1', lineHeight: 1.75, marginBottom: '1.25rem', fontWeight: 400 }}>
                   Vebhor was founded with a simple belief: organisations grow when their people systems work effortlessly. Over the years, we’ve evolved into a trusted partner for startups, scale‑ups, and enterprises across industries—delivering workforce solutions that are transparent, compliant, and built for scale.
                 </p>
-                
+
                 <p style={{ fontSize: '1.08rem', color: '#94a3b8', lineHeight: 1.75, margin: 0, fontWeight: 400 }}>
                   As a mid‑size firm, we offer the agility of a boutique consultancy with the capability of an enterprise provider. Our teams operate across recruitment, HR, payroll, vendor management, and IT support, ensuring continuity and operational excellence at every stage of the workforce lifecycle.
                 </p>
@@ -416,7 +416,7 @@ export const AboutPage = ({ onNavHome, onNavCareers, onNavPartners, onNavInsight
                     className="about-robot-img"
                   />
                   <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(6, 13, 31, 0.15) 0%, rgba(6, 13, 31, 0.85) 100%)' }} />
-                  
+
                   {/* Floating Overlay Badge on Card */}
                   <div style={{ position: 'absolute', bottom: '2rem', left: '2rem', right: '2rem', color: '#ffffff', zIndex: 5 }}>
                     <span style={{ fontSize: '0.85rem', fontWeight: 800, color: '#38BDF8', textTransform: 'uppercase', letterSpacing: '0.12em', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
@@ -464,14 +464,13 @@ export const AboutPage = ({ onNavHome, onNavCareers, onNavPartners, onNavInsight
               </h2>
             </div>
 
-            {/* 7 Directional Staggered Animated Cards (Alternating Left & Right Entrances) */}
+            {/* 6 Directional Staggered Animated Cards (Alternating Left & Right Entrances) */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '1.35rem', marginBottom: '2.5rem' }}>
               {[
                 'Hire globally and compliantly',
                 'Manage employees, contractors, and vendors in one system',
                 'Run payroll accurately and on time',
-                'Streamline HR operations and employee support',
-                'Deliver IT and device lifecycle management',
+                'From HR operations to full IT and device lifecycle management—we make workforce support seamless',
                 'Build scalable workforce processes and digital experiences',
                 'Reduce operational friction and accelerate growth'
               ].map((point, idx) => {
@@ -553,47 +552,44 @@ export const AboutPage = ({ onNavHome, onNavCareers, onNavPartners, onNavInsight
                 transition: 'all 0.85s cubic-bezier(0.16, 1, 0.3, 1)'
               }}
             >
-              <span style={{ fontSize: '0.82rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#ffffff', backgroundColor: '#6C5CE7', padding: '0.4rem 1.4rem', borderRadius: '18px 24px 24px 18px', display: 'inline-block', marginBottom: '1.25rem', boxShadow: '0 4px 14px rgba(121, 22, 168, 0.45)' }}>
-                OUR GOVERNANCE
-              </span>
-              <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.6rem', fontWeight: 800, color: '#ffffff', letterSpacing: '-0.02em', marginBottom: '1.25rem' }}>
-                Our Code of conduct
+              <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.4rem', fontWeight: 800, color: '#ffffff', letterSpacing: '-0.02em', marginBottom: '1.5rem' }}>
+                Our Code of Conduct — The Vebhor Way
               </h2>
-              <p style={{ fontSize: '1.15rem', color: '#cbd5e1', maxWidth: '880px', margin: '0 auto', lineHeight: 1.7, fontWeight: 400 }}>
-                At Vebhor Consultancy, integrity is the foundation of how we operate—with governments, communities, clients, partners, and our people. Our Code of Conduct guides every decision we make and every relationship we build.
-              </p>
+              <div style={{ maxWidth: '900px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
+                <p style={{ fontSize: '1.1rem', color: '#cbd5e1', lineHeight: 1.75, fontWeight: 400, margin: 0 }}>
+                  At Vebhor, integrity isn’t just a principle—it’s the story of how we choose to show up every day. From the way we work with governments and communities to how we support clients, partners, and our own people, integrity shapes every decision, every interaction, and every commitment we make.
+                </p>
+                <p style={{ fontSize: '1.1rem', color: '#cbd5e1', lineHeight: 1.75, fontWeight: 400, margin: 0 }}>
+                  It is the thread that connects our past to our future, guiding us as we grow, evolve, and build relationships grounded in trust. Our Code of Conduct is the compass that keeps us aligned—ensuring that no matter where we operate or who we work with, we act with transparency, respect, and responsibility.
+                </p>
+                <p style={{ fontSize: '1.12rem', color: '#38bdf8', lineHeight: 1.8, fontWeight: 700, margin: '0.5rem 0 0 0', letterSpacing: '0.01em' }}>
+                  This is who we are.<br />
+                  This is how we lead.<br />
+                  This is the Vebhor way.
+                </p>
+              </div>
             </div>
 
-            {/* 5 Box-by-Box Integrity Pillar Cards with Directional Entrances */}
+            {/* 3 Box-by-Box Integrity Pillar Cards with Directional Entrances */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem', marginBottom: 0 }}>
               {[
                 {
-                  title: 'Integrity with governments',
-                  desc: 'We are committed to full compliance with the laws and regulations of every country in which we operate. We maintain transparent, ethical relationships with government bodies and strictly enforce a zero‑tolerance policy towards corruption, bribery, or any improper influence.'
+                  title: 'Integrity with our clients and government',
+                  desc: 'We comply fully with the laws and regulations of every country we operate in and maintain transparent, ethical relationships with government bodies. We enforce a strict zero‑tolerance policy toward corruption, bribery, or any improper influence.'
                 },
                 {
-                  title: 'Integrity with communities',
-                  desc: 'We support and promote environmental responsibility and sustainable practices in the way we work. We safeguard Vebhor’s brand, information, and intellectual property, and we strive to communicate clearly, act responsibly, and make a positive impact on the communities we serve.'
-                },
-                {
-                  title: 'Integrity with our clients',
-                  desc: 'We respect and protect the privacy, data, and confidential information of our clients. We act with honesty and fairness in all client engagements and support fair competition, delivering services with professionalism, transparency, and accountability.'
+                  title: 'Integrity with communities and people',
+                  desc: 'We promote environmental responsibility and sustainable practices in everything we do. We safeguard Vebhor’s brand, information, and intellectual property, and we communicate with clarity and accountability. We are committed to a safe, healthy, and inclusive workplace, upholding meritocracy, non‑discrimination, and diversity while protecting our people, our assets, and our business.'
                 },
                 {
                   title: 'Integrity with partners and suppliers',
-                  desc: 'We work with partners and suppliers who share our commitment to ethical conduct and compliance. We avoid conflicts of interest and do not solicit or accept gifts, hospitality, or travel from third parties for personal gain.'
-                },
-                {
-                  title: 'Integrity with our people',
-                  desc: 'We are committed to providing a safe, healthy, and inclusive work environment. We promote meritocracy, non‑discrimination, and diversity, and we take responsibility for protecting our people, our assets, and our business.'
+                  desc: 'We work with partners and suppliers who share our commitment to ethical conduct and compliance. We avoid conflicts of interest and uphold strict standards of transparency, fairness, and professionalism in all engagements.'
                 }
               ].map((pillar, idx) => {
                 const getEntranceTransform = (i) => {
-                  if (i === 0) return 'translate3d(-40px, -25px, 0)';
-                  if (i === 1) return 'translate3d(40px, -25px, 0)';
-                  if (i === 2) return 'translate3d(-40px, 30px, 0)';
-                  if (i === 3) return 'translate3d(0, 35px, 0)';
-                  return 'translate3d(40px, 30px, 0)';
+                  if (i === 0) return 'translate3d(-40px, 0, 0)';
+                  if (i === 1) return 'translate3d(0, 40px, 0)';
+                  return 'translate3d(40px, 0, 0)';
                 };
 
                 return (
@@ -611,7 +607,7 @@ export const AboutPage = ({ onNavHome, onNavCareers, onNavPartners, onNavInsight
                       opacity: conductVisible ? 1 : 0,
                       transform: conductVisible ? 'translate3d(0, 0, 0)' : getEntranceTransform(idx),
                       animation: conductVisible ? (idx % 2 === 0 ? 'conductFloat1 6.5s ease-in-out infinite' : 'conductFloat2 7.5s ease-in-out infinite') : 'none',
-                      transition: `opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.1}s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.1}s`
+                      transition: `opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.15}s, transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.15}s`
                     }}
                   >
                     <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem', marginBottom: '1.2rem' }}>
@@ -631,7 +627,7 @@ export const AboutPage = ({ onNavHome, onNavCareers, onNavPartners, onNavInsight
                       >
                         <ShieldCheck size={26} />
                       </div>
-                      <h3 style={{ fontSize: '1.28rem', fontWeight: 800, color: '#ffffff', margin: 0 }}>
+                      <h3 style={{ fontSize: '1.24rem', fontWeight: 800, color: '#ffffff', margin: 0, lineHeight: 1.3 }}>
                         {pillar.title}
                       </h3>
                     </div>
@@ -762,7 +758,7 @@ export const AboutPage = ({ onNavHome, onNavCareers, onNavPartners, onNavInsight
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '2.5rem' }}>
-              
+
               {/* Mission Card (SLIDES IN FROM LEFT TO RIGHT) */}
               <div
                 className="about-mission-card"

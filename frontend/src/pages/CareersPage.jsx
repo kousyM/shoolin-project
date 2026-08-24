@@ -175,7 +175,7 @@ export const CareersPage = ({ onSelectJob, onNavHome, onOpenContactPage, onNavAb
   };
 
   return (
-    <div style={{ backgroundColor: '#001938', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#ffffff' }}>
+    <div style={{ backgroundColor: '#060A14', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#ffffff' }}>
       {/* Navbar */}
       <Navbar
         activePage="careers"
@@ -192,7 +192,7 @@ export const CareersPage = ({ onSelectJob, onNavHome, onOpenContactPage, onNavAb
         onAdminLogout={onAdminLogout}
       />
 
-      <main style={{ paddingTop: '2.5rem', paddingBottom: '6rem', position: 'relative', overflow: 'hidden' }}>
+      <main style={{ backgroundColor: '#060A14', paddingTop: '2.5rem', paddingBottom: '6rem', position: 'relative', overflow: 'hidden' }}>
         
         {/* Subtle Ambient Radial Navy Glow */}
         <div
@@ -203,14 +203,14 @@ export const CareersPage = ({ onSelectJob, onNavHome, onOpenContactPage, onNavAb
             transform: 'translateX(-50%)',
             width: '900px',
             height: '380px',
-            background: 'radial-gradient(ellipse, rgba(121, 22, 168, 0.28) 0%, rgba(2, 132, 199, 0.18) 50%, transparent 70%)',
+            background: 'radial-gradient(ellipse, rgba(108, 92, 231, 0.18) 0%, rgba(56, 189, 248, 0.1) 50%, transparent 70%)',
             filter: 'blur(60px)',
             pointerEvents: 'none'
           }}
         />
 
         {/* ============================================================ */}
-        {/* JOB OPPORTUNITIES - DARK NAVY BLUE THEME */}
+        {/* JOB OPPORTUNITIES - UNIFIED DEEP THEME */}
         {/* ============================================================ */}
         <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '1rem 2rem', position: 'relative', zIndex: 2 }}>
           
@@ -228,7 +228,7 @@ export const CareersPage = ({ onSelectJob, onNavHome, onOpenContactPage, onNavAb
                   padding: '0.4rem 1.4rem',
                   borderRadius: '18px 24px 24px 18px',
                   display: 'inline-block',
-                  boxShadow: '0 4px 18px rgba(121, 22, 168, 0.5)'
+                  boxShadow: '0 4px 18px rgba(108, 92, 231, 0.4)'
                 }}
               >
                 CAREER OPPORTUNITIES
@@ -250,21 +250,21 @@ export const CareersPage = ({ onSelectJob, onNavHome, onOpenContactPage, onNavAb
               </h1>
               <Sparkles size={30} style={{ color: '#55E6C1', strokeWidth: 1.6 }} />
             </div>
-            <p style={{ fontSize: '1.1rem', color: '#cbd5e1', maxWidth: '680px', margin: '0.85rem auto 0 auto', lineHeight: 1.6 }}>
+            <p style={{ fontSize: '1.1rem', color: '#94a3b8', maxWidth: '680px', margin: '0.85rem auto 0 auto', lineHeight: 1.6 }}>
               Explore open engineering, cloud, cybersecurity, and delivery positions across Australia and globally.
             </p>
           </div>
 
-          {/* Original Search & Filter Bar (Restored in Theme Colors) */}
+          {/* Search & Filter Bar */}
           <div
             style={{
-              backgroundColor: 'rgba(10, 25, 60, 0.75)',
+              backgroundColor: 'rgba(255, 255, 255, 0.03)',
               backdropFilter: 'blur(16px)',
               WebkitBackdropFilter: 'blur(16px)',
-              border: '1.5px solid rgba(255, 255, 255, 0.12)',
+              border: '1.5px solid rgba(255, 255, 255, 0.08)',
               borderRadius: '16px',
               padding: '1.25rem 1.75rem',
-              boxShadow: '0 12px 35px rgba(0, 0, 0, 0.35)',
+              boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)',
               marginBottom: '3rem'
             }}
           >
@@ -281,8 +281,8 @@ export const CareersPage = ({ onSelectJob, onNavHome, onOpenContactPage, onNavAb
                   style={{
                     width: '100%',
                     padding: '0.75rem 1rem 0.75rem 2.6rem',
-                    backgroundColor: 'rgba(6, 15, 38, 0.8)',
-                    border: '1px solid rgba(255, 255, 255, 0.18)',
+                    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                    border: '1px solid rgba(255, 255, 255, 0.12)',
                     borderRadius: '10px',
                     color: '#ffffff',
                     fontSize: '0.95rem',
@@ -303,7 +303,7 @@ export const CareersPage = ({ onSelectJob, onNavHome, onOpenContactPage, onNavAb
                   fontWeight: 700,
                   border: 'none',
                   cursor: 'pointer',
-                  boxShadow: '0 4px 15px rgba(121, 22, 168, 0.45)',
+                  boxShadow: '0 4px 15px rgba(108, 92, 231, 0.45)',
                   transition: 'all 0.25s ease'
                 }}
               >
@@ -318,8 +318,8 @@ export const CareersPage = ({ onSelectJob, onNavHome, onOpenContactPage, onNavAb
                   style={{
                     width: '100%',
                     padding: '0.75rem 1rem',
-                    backgroundColor: 'rgba(6, 15, 38, 0.8)',
-                    border: '1px solid rgba(255, 255, 255, 0.18)',
+                    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                    border: '1px solid rgba(255, 255, 255, 0.12)',
                     borderRadius: '10px',
                     color: '#ffffff',
                     fontSize: '0.9rem',
@@ -327,11 +327,11 @@ export const CareersPage = ({ onSelectJob, onNavHome, onOpenContactPage, onNavAb
                     cursor: 'pointer'
                   }}
                 >
-                  <option value="All" style={{ backgroundColor: '#071126', color: '#ffffff' }}>Location (All)</option>
-                  <option value="Melbourne" style={{ backgroundColor: '#071126', color: '#ffffff' }}>Melbourne, Australia</option>
-                  <option value="Sydney" style={{ backgroundColor: '#071126', color: '#ffffff' }}>Sydney, Australia</option>
-                  <option value="Brisbane" style={{ backgroundColor: '#071126', color: '#ffffff' }}>Brisbane, Australia</option>
-                  <option value="Canberra" style={{ backgroundColor: '#071126', color: '#ffffff' }}>Canberra, Australia</option>
+                  <option value="All" style={{ backgroundColor: '#060A14', color: '#ffffff' }}>Location (All)</option>
+                  <option value="Melbourne" style={{ backgroundColor: '#060A14', color: '#ffffff' }}>Melbourne, Australia</option>
+                  <option value="Sydney" style={{ backgroundColor: '#060A14', color: '#ffffff' }}>Sydney, Australia</option>
+                  <option value="Brisbane" style={{ backgroundColor: '#060A14', color: '#ffffff' }}>Brisbane, Australia</option>
+                  <option value="Canberra" style={{ backgroundColor: '#060A14', color: '#ffffff' }}>Canberra, Australia</option>
                 </select>
               </div>
 
@@ -343,8 +343,8 @@ export const CareersPage = ({ onSelectJob, onNavHome, onOpenContactPage, onNavAb
                   style={{
                     width: '100%',
                     padding: '0.75rem 1rem',
-                    backgroundColor: 'rgba(6, 15, 38, 0.8)',
-                    border: '1px solid rgba(255, 255, 255, 0.18)',
+                    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                    border: '1px solid rgba(255, 255, 255, 0.12)',
                     borderRadius: '10px',
                     color: '#ffffff',
                     fontSize: '0.9rem',
@@ -352,24 +352,24 @@ export const CareersPage = ({ onSelectJob, onNavHome, onOpenContactPage, onNavAb
                     cursor: 'pointer'
                   }}
                 >
-                  <option value="All" style={{ backgroundColor: '#071126', color: '#ffffff' }}>Department (All)</option>
-                  <option value="Automation Engineering" style={{ backgroundColor: '#071126', color: '#ffffff' }}>Automation Engineering</option>
-                  <option value="Performance Engineering" style={{ backgroundColor: '#071126', color: '#ffffff' }}>Performance Engineering</option>
-                  <option value="Quality Engineering" style={{ backgroundColor: '#071126', color: '#ffffff' }}>Quality Engineering</option>
-                  <option value="Cloud & AI" style={{ backgroundColor: '#071126', color: '#ffffff' }}>Cloud & AI</option>
-                  <option value="Digital Applications" style={{ backgroundColor: '#071126', color: '#ffffff' }}>Digital Applications</option>
+                  <option value="All" style={{ backgroundColor: '#060A14', color: '#ffffff' }}>Department (All)</option>
+                  <option value="Automation Engineering" style={{ backgroundColor: '#060A14', color: '#ffffff' }}>Automation Engineering</option>
+                  <option value="Performance Engineering" style={{ backgroundColor: '#060A14', color: '#ffffff' }}>Performance Engineering</option>
+                  <option value="Quality Engineering" style={{ backgroundColor: '#060A14', color: '#ffffff' }}>Quality Engineering</option>
+                  <option value="Cloud & AI" style={{ backgroundColor: '#060A14', color: '#ffffff' }}>Cloud & AI</option>
+                  <option value="Digital Applications" style={{ backgroundColor: '#060A14', color: '#ffffff' }}>Digital Applications</option>
                 </select>
               </div>
             </form>
           </div>
 
-          {/* Job Openings Cards List in Dark Navy Blue Theme */}
+          {/* Job Openings Cards List */}
           {loading ? (
             <div style={{ padding: '4rem 0', textAlign: 'center', color: '#94a3b8' }}>
               <p>Loading available career opportunities...</p>
             </div>
           ) : jobs.length === 0 ? (
-            <div style={{ padding: '4rem 2rem', textAlign: 'center', color: '#94a3b8', backgroundColor: 'rgba(10, 25, 60, 0.65)', borderRadius: '16px', border: '1.5px solid rgba(255,255,255,0.1)' }}>
+            <div style={{ padding: '4rem 2rem', textAlign: 'center', color: '#94a3b8', backgroundColor: 'rgba(255, 255, 255, 0.03)', borderRadius: '16px', border: '1.5px solid rgba(255,255,255,0.08)' }}>
               <h3 style={{ fontSize: '1.3rem', color: '#ffffff', marginBottom: '0.5rem' }}>No open positions match your selection</h3>
               <p style={{ fontSize: '0.95rem' }}>Try clearing filters or search for another keyword.</p>
               <button
@@ -387,9 +387,9 @@ export const CareersPage = ({ onSelectJob, onNavHome, onOpenContactPage, onNavAb
                   className="job-opening-card"
                   onClick={() => handleApplyJob(job)}
                   style={{
-                    backgroundColor: 'rgba(8, 20, 48, 0.85)',
+                    backgroundColor: 'rgba(255, 255, 255, 0.03)',
                     backdropFilter: 'blur(12px)',
-                    border: '1.5px solid rgba(255, 255, 255, 0.1)',
+                    border: '1.5px solid rgba(255, 255, 255, 0.08)',
                     borderRadius: '16px',
                     padding: '1.6rem 2.25rem',
                     display: 'flex',
@@ -397,7 +397,18 @@ export const CareersPage = ({ onSelectJob, onNavHome, onOpenContactPage, onNavAb
                     alignItems: 'center',
                     flexWrap: 'wrap',
                     gap: '1.5rem',
-                    boxShadow: '0 10px 25px rgba(0, 0, 0, 0.25)'
+                    boxShadow: '0 12px 30px rgba(0, 0, 0, 0.25)',
+                    transition: 'all 0.25s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px)';
+                    e.currentTarget.style.borderColor = 'rgba(85, 230, 193, 0.4)';
+                    e.currentTarget.style.boxShadow = '0 16px 35px rgba(0, 0, 0, 0.35)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                    e.currentTarget.style.boxShadow = '0 12px 30px rgba(0, 0, 0, 0.25)';
                   }}
                 >
                   {/* Left Side: Job Title & Location / Department */}
@@ -455,9 +466,9 @@ export const CareersPage = ({ onSelectJob, onNavHome, onOpenContactPage, onNavAb
           <div
             style={{
               marginTop: '4rem',
-              backgroundColor: 'rgba(10, 25, 60, 0.75)',
+              backgroundColor: 'rgba(255, 255, 255, 0.03)',
               backdropFilter: 'blur(16px)',
-              border: '1.5px solid rgba(121, 22, 168, 0.35)',
+              border: '1.5px solid rgba(108, 92, 231, 0.35)',
               borderRadius: '18px',
               padding: '2.5rem',
               display: 'flex',
@@ -465,7 +476,7 @@ export const CareersPage = ({ onSelectJob, onNavHome, onOpenContactPage, onNavAb
               justifyContent: 'space-between',
               alignItems: 'center',
               gap: '1.5rem',
-              boxShadow: '0 12px 35px rgba(0, 0, 0, 0.35)'
+              boxShadow: '0 20px 50px rgba(0, 0, 0, 0.3)'
             }}
           >
             <div>
@@ -487,7 +498,7 @@ export const CareersPage = ({ onSelectJob, onNavHome, onOpenContactPage, onNavAb
                 borderRadius: '50px',
                 border: 'none',
                 cursor: 'pointer',
-                boxShadow: '0 4px 18px rgba(121, 22, 168, 0.5)',
+                boxShadow: '0 4px 18px rgba(108, 92, 231, 0.45)',
                 transition: 'all 0.25s ease'
               }}
             >
@@ -501,8 +512,8 @@ export const CareersPage = ({ onSelectJob, onNavHome, onOpenContactPage, onNavAb
 
       {/* Expression of Interest Modal */}
       {showEoiModal && (
-        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0, 15, 35, 0.85)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.5rem', backdropFilter: 'blur(12px)' }}>
-          <div style={{ backgroundColor: '#071126', border: '1.5px solid rgba(121, 22, 168, 0.45)', borderRadius: '20px', maxWidth: '580px', width: '100%', padding: '2.5rem', position: 'relative', boxShadow: '0 25px 60px rgba(0,0,0,0.6)', maxHeight: '90vh', overflowY: 'auto', color: '#ffffff' }}>
+        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(6, 10, 20, 0.88)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.5rem', backdropFilter: 'blur(12px)' }}>
+          <div style={{ backgroundColor: '#0B132B', border: '1.5px solid rgba(255, 255, 255, 0.12)', borderRadius: '20px', maxWidth: '580px', width: '100%', padding: '2.5rem', position: 'relative', boxShadow: '0 25px 60px rgba(0,0,0,0.6)', maxHeight: '90vh', overflowY: 'auto', color: '#ffffff' }}>
             <button
               onClick={() => setShowEoiModal(false)}
               style={{ position: 'absolute', top: '1.25rem', right: '1.25rem', background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer', padding: '0.25rem' }}
@@ -534,27 +545,27 @@ export const CareersPage = ({ onSelectJob, onNavHome, onOpenContactPage, onNavAb
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                   <div>
                     <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#cbd5e1', marginBottom: '0.35rem' }}>First Name *</label>
-                    <input type="text" name="firstName" required value={eoiFormData.firstName} onChange={handleEoiChange} style={{ width: '100%', padding: '0.65rem 0.85rem', border: '1px solid rgba(255,255,255,0.15)', backgroundColor: '#0f1f3d', color: '#ffffff', borderRadius: '8px', fontSize: '0.9rem', outline: 'none' }} />
+                    <input type="text" name="firstName" required value={eoiFormData.firstName} onChange={handleEoiChange} style={{ width: '100%', padding: '0.65rem 0.85rem', border: '1px solid rgba(255,255,255,0.15)', backgroundColor: 'rgba(255, 255, 255, 0.05)', color: '#ffffff', borderRadius: '8px', fontSize: '0.9rem', outline: 'none' }} />
                   </div>
                   <div>
                     <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#cbd5e1', marginBottom: '0.35rem' }}>Last Name *</label>
-                    <input type="text" name="lastName" required value={eoiFormData.lastName} onChange={handleEoiChange} style={{ width: '100%', padding: '0.65rem 0.85rem', border: '1px solid rgba(255,255,255,0.15)', backgroundColor: '#0f1f3d', color: '#ffffff', borderRadius: '8px', fontSize: '0.9rem', outline: 'none' }} />
+                    <input type="text" name="lastName" required value={eoiFormData.lastName} onChange={handleEoiChange} style={{ width: '100%', padding: '0.65rem 0.85rem', border: '1px solid rgba(255,255,255,0.15)', backgroundColor: 'rgba(255, 255, 255, 0.05)', color: '#ffffff', borderRadius: '8px', fontSize: '0.9rem', outline: 'none' }} />
                   </div>
                 </div>
 
                 <div>
                   <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#cbd5e1', marginBottom: '0.35rem' }}>Email Address *</label>
-                  <input type="email" name="email" required value={eoiFormData.email} onChange={handleEoiChange} style={{ width: '100%', padding: '0.65rem 0.85rem', border: '1px solid rgba(255,255,255,0.15)', backgroundColor: '#0f1f3d', color: '#ffffff', borderRadius: '8px', fontSize: '0.9rem', outline: 'none' }} />
+                  <input type="email" name="email" required value={eoiFormData.email} onChange={handleEoiChange} style={{ width: '100%', padding: '0.65rem 0.85rem', border: '1px solid rgba(255,255,255,0.15)', backgroundColor: 'rgba(255, 255, 255, 0.05)', color: '#ffffff', borderRadius: '8px', fontSize: '0.9rem', outline: 'none' }} />
                 </div>
 
                 <div>
                   <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: '700', color: '#cbd5e1', marginBottom: '0.35rem' }}>Preferred Location *</label>
-                  <input type="text" name="location" placeholder="e.g. Melbourne, Sydney" required value={eoiFormData.location} onChange={handleEoiChange} style={{ width: '100%', padding: '0.65rem 0.85rem', border: '1px solid rgba(255,255,255,0.15)', backgroundColor: '#0f1f3d', color: '#ffffff', borderRadius: '8px', fontSize: '0.9rem', outline: 'none' }} />
+                  <input type="text" name="location" placeholder="e.g. Melbourne, Sydney" required value={eoiFormData.location} onChange={handleEoiChange} style={{ width: '100%', padding: '0.65rem 0.85rem', border: '1px solid rgba(255,255,255,0.15)', backgroundColor: 'rgba(255, 255, 255, 0.05)', color: '#ffffff', borderRadius: '8px', fontSize: '0.9rem', outline: 'none' }} />
                 </div>
 
                 <div>
                   <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#cbd5e1', marginBottom: '0.35rem' }}>Resume / CV *</label>
-                  <input type="file" required accept=".pdf,.doc,.docx" onChange={handleEoiChange} style={{ width: '100%', padding: '0.5rem', border: '1px solid rgba(255,255,255,0.15)', backgroundColor: '#0f1f3d', color: '#ffffff', borderRadius: '8px', fontSize: '0.85rem' }} />
+                  <input type="file" required accept=".pdf,.doc,.docx" onChange={handleEoiChange} style={{ width: '100%', padding: '0.5rem', border: '1px solid rgba(255,255,255,0.15)', backgroundColor: 'rgba(255, 255, 255, 0.05)', color: '#ffffff', borderRadius: '8px', fontSize: '0.85rem' }} />
                 </div>
 
                 <button

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Search, ArrowRight, ChevronDown, ChevronUp, Globe, Mail, Share2 } from 'lucide-react';
+import { Menu, X, Search, ArrowRight, ChevronDown, ChevronUp, Globe, Mail, Share2, Phone } from 'lucide-react';
 
 export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNavAbout, onNavCareers, onNavPartners, onNavInsights, onNavServices, onNavChallengeUs, onNavAdmin, isAdminLoggedIn, onAdminLogout }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -129,17 +129,17 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
               </a>
             </li>
 
-            {/* Challenge us */}
+            {/* Visa */}
             <li>
               <a
-                href="#challenge-us"
+                href="#visa"
                 onClick={(e) => {
                   e.preventDefault();
                   if (onNavChallengeUs) onNavChallengeUs();
                 }}
-                className={`nav-link-item ${activePage === 'challenge-us' ? 'active' : ''}`}
+                className={`nav-link-item ${activePage === 'challenge-us' || activePage === 'visa' ? 'active' : ''}`}
               >
-                Challenge us
+                Visa
               </a>
             </li>
 
@@ -349,7 +349,7 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
                   </button>
                 </li>
 
-                {/* 5b. Challenge us */}
+                {/* 5b. Visa */}
                 <li style={{ borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '0.85rem' }}>
                   <button
                     onClick={() => {
@@ -358,7 +358,7 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
                     }}
                     style={{ color: '#38bdf8', background: 'none', border: 'none', fontSize: '1.35rem', fontWeight: 800, cursor: 'pointer', textAlign: 'left', padding: 0, width: '100%' }}
                   >
-                    Challenge us
+                    Visa
                   </button>
                 </li>
 
@@ -409,6 +409,10 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
             {/* Bottom Footer Section */}
             <div style={{ paddingTop: '1.25rem', borderTop: '1px solid rgba(255,255,255,0.12)', marginTop: '0.5rem', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
               <span style={{ fontSize: '0.82rem', color: '#94a3b8', fontWeight: 600 }}>Get in touch</span>
+              <a href="tel:+61466048975" style={{ color: '#38bdf8', fontSize: '0.92rem', textDecoration: 'none', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                <Phone size={16} />
+                <span>+61 466 048 975</span>
+              </a>
               <a href="mailto:info@vebhor.com" style={{ color: '#38bdf8', fontSize: '0.92rem', textDecoration: 'none', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
                 <Mail size={16} />
                 <span>info@vebhor.com</span>

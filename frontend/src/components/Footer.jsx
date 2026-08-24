@@ -43,12 +43,12 @@ export const Footer = ({ onOpenContactPage, onNavAdmin, onNavAbout }) => {
   };
 
   return (
-    <footer style={{ backgroundColor: '#08152F', color: '#ffffff', fontFamily: "var(--bs-body-font-family), 'Plus Jakarta Sans', sans-serif" }}>
+    <footer style={{ backgroundColor: 'rgb(6, 13, 31)', borderTop: '1px solid rgba(255, 255, 255, 0.08)', color: '#ffffff', fontFamily: "var(--bs-body-font-family), 'Plus Jakarta Sans', sans-serif" }}>
 
       {/* ============================================================ */}
       {/* 1. DEEL-STYLE NEWSLETTER BANNER MATCHING IMAGE 2 */}
       {/* ============================================================ */}
-      <div style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.1)', padding: '3rem 1.5rem' }}>
+      <div style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.08)', padding: '3rem 1.5rem' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '2rem' }}>
 
           {/* Left: Brand Logo & Social Icons */}

@@ -92,7 +92,7 @@ export const DeelServicesSubpage = ({ onOpenContactPage }) => {
   const IconComp = activeService.icon;
 
   return (
-    <div style={{ backgroundColor: '#ffffff', color: '#111827', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+    <div id="services-tabs-section" style={{ backgroundColor: '#ffffff', color: '#111827', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
       
       {/* SECTION HEADER */}
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '4rem 1.5rem 2rem', textAlign: 'center' }}>
