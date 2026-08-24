@@ -11,7 +11,7 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
       tag: 'GLOBAL DELIVERY CENTRES',
       heading: 'From Overseas Centres to Outcome-Based Delivery',
       description: 'We help organisations move beyond traditional offshore delivery models by building high-performing global teams focused on measurable business outcomes. From capability design and team setup to delivery governance and continuous optimisation, we create scalable models that combine global talent, technology, and local expertise to deliver greater agility, efficiency, and business value.',
-      imageUrl: '/images/hero_cyber_network.jpg',
+      imageUrl: '/images/service_outcome_delivery.jpg',
       stat: '99.4% SLA Delivery'
     },
     {
@@ -20,7 +20,7 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
       tag: 'GLOBAL MOBILITY & IMMIGRATION',
       heading: 'Seamless International Relocation & Visa Compliance',
       description: 'Accelerate global expansion with end-to-end visa sponsorship, work permit processing, and immigration compliance across 150+ countries. We handle legal paperwork, tax residency assessments, and relocation logistics so your talent can work anywhere with complete peace of mind.',
-      imageUrl: '/images/slider_2.jpg',
+      imageUrl: '/images/service_immigration_visa.jpg',
       stat: '150+ Countries'
     },
     {
@@ -29,7 +29,7 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
       tag: 'DIGITAL TRANSFORMATION',
       heading: 'Human-Centred UX & Intelligent Operating Platforms',
       description: 'Reimagine customer and employee journeys through intuitive digital design, modern application development, and seamless cloud integration. We craft responsive web applications and portals that drive engagement, efficiency, and business growth.',
-      imageUrl: '/images/team_collaboration.jpg',
+      imageUrl: '/images/service_digital_experience.jpg',
       stat: '3x Faster Time-to-Market'
     },
     {
@@ -38,7 +38,7 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
       tag: 'PROCESS AUTOMATION & BPM',
       heading: 'Streamlining Operations for Scalable Productivity',
       description: 'Optimise business processes through intelligent workflow automation, robotic process automation (RPA), and enterprise governance frameworks. We eliminate operational bottlenecks, reduce costs, and elevate overall performance across all departments.',
-      imageUrl: '/images/slider_1.jpg',
+      imageUrl: '/images/service_bpm_ops.jpg',
       stat: '40% Cost Optimization'
     },
     {
@@ -47,7 +47,7 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
       tag: 'EMPLOYER OF RECORD (EOR)',
       heading: 'Global Hiring Without Entity Setup',
       description: 'Hire, onboard, and manage international employees in days without opening foreign legal entities. Vebhor acts as legal employer of record handling localized employment contracts, payroll, statutory benefits, and local tax compliance seamlessly.',
-      imageUrl: '/images/country_singapore.jpg',
+      imageUrl: '/images/service_eor.jpg',
       stat: '100% Audit Compliance'
     },
     {
@@ -56,7 +56,7 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
       tag: 'CONTRACTOR MANAGEMENT',
       heading: 'Compliant Independent Contractor Solutions',
       description: 'Engage global freelancers and independent contractors securely without misclassification risks. Our automated system handles localized agreements, multi-currency invoicing, tax documentation, and instant payout execution.',
-      imageUrl: '/images/country_sydney.jpg',
+      imageUrl: '/images/service_contractor_mgmt.jpg',
       stat: '24hr Contractor Setup'
     },
     {
@@ -65,7 +65,7 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
       tag: 'VENDOR CONSOLIDATION',
       heading: 'Unified Partner & Supplier Governance',
       description: 'Consolidate multiple recruitment, IT, and operational vendors under one centralized management platform. Simplify vendor contracts, SLA tracking, invoice reconciliation, and global risk management.',
-      imageUrl: '/images/country_melbourne.jpg',
+      imageUrl: '/images/service_vendor_consolidation.jpg',
       stat: 'Single Invoice Flow'
     },
     {
@@ -74,7 +74,7 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
       tag: 'MANAGED IT & INFRASTRUCTURE',
       heading: '24/7 Managed Tech Support & Device Provisioning',
       description: 'Empower remote and hybrid workforces with enterprise IT service desk support, laptop provisioning, endpoint security, and cloud infrastructure management tailored for global operations.',
-      imageUrl: '/images/country_brisbane.jpg',
+      imageUrl: '/images/service_it_support.jpg',
       stat: '24/7 Enterprise Support'
     },
     {
@@ -83,7 +83,7 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
       tag: 'PEOPLE & HR ADVISORY',
       heading: 'Strategic HR Services & Employee Experience',
       description: 'Elevate employee retention and organizational culture with customized HR advisory, performance management systems, local benefit benchmarking, and transparent HR operations across all regions.',
-      imageUrl: '/images/country_india.jpg',
+      imageUrl: '/images/service_hr_support.jpg',
       stat: '98% Retention Rate'
     }
   ];
@@ -97,10 +97,10 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
 
       <div style={{ maxWidth: '1340px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
 
-        {/* 1. SECTION HEADER WITH OUR SERVICES FULLY IN PURPLE CAPSULE HIGHLIGHT */}
+        {/* 1. SECTION HEADER WITH OUR SERVICES FULLY IN ROYAL PURPLE CAPSULE HIGHLIGHT */}
         <div style={{ textAlign: 'center', marginBottom: '3.25rem' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', fontSize: '0.95rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1.25rem' }}>
-            <span style={{ backgroundColor: '#7916A8', color: '#ffffff', padding: '0.4rem 1.6rem', borderRadius: '18px 24px 24px 18px', boxShadow: '0 4px 20px rgba(121, 22, 168, 0.45)' }}>
+            <span style={{ backgroundColor: '#6C5CE7', color: '#ffffff', padding: '0.4rem 1.6rem', borderRadius: '18px 24px 24px 18px', boxShadow: '0 4px 20px rgba(108, 92, 231, 0.45)' }}>
               Our Services
             </span>
           </div>
@@ -114,24 +114,10 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
           </p>
         </div>
 
-        {/* 2. THREE-COLUMN / ALL 9 FULLY VISIBLE WITH DOUBLE SHADOW EFFECT */}
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(12, 1fr)',
-            gap: '1.5rem',
-            alignItems: 'stretch'
-          }}
-        >
-          {/* LEFT COLUMN: All 9 Services Fully Visible Without Scrolling */}
-          <div
-            style={{
-              gridColumn: 'span 4',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '0.45rem'
-            }}
-          >
+        {/* 2. THREE-COLUMN RESPONSIVE LAYOUT (STACKS ON MOBILE/TABLET) */}
+        <div className="workforce-grid-container">
+          {/* LEFT COLUMN: All 9 Services */}
+          <div className="workforce-left-col">
             {servicesList.map((service) => {
               const isSelected = service.id === selectedServiceId;
 
@@ -141,15 +127,15 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
                   onMouseEnter={() => setSelectedServiceId(service.id)}
                   onClick={() => setSelectedServiceId(service.id)}
                   style={{
-                    backgroundColor: isSelected ? '#ffffff' : '#ffffff',
-                    border: isSelected ? '1.5px solid #2563EB' : '1px solid #E2E8F0',
-                    borderLeft: isSelected ? '4px solid #2563EB' : '1px solid #E2E8F0',
+                    backgroundColor: '#ffffff',
+                    border: isSelected ? '1.5px solid #6C5CE7' : '1px solid #E2E8F0',
+                    borderLeft: isSelected ? '4px solid #6C5CE7' : '1px solid #E2E8F0',
                     borderRadius: '10px',
                     padding: '0.65rem 0.95rem',
                     cursor: 'pointer',
                     transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
                     boxShadow: isSelected
-                      ? '0 10px 20px -3px rgba(37, 99, 235, 0.16), 0 4px 6px -2px rgba(37, 99, 235, 0.08)'
+                      ? '0 10px 20px -3px rgba(108, 92, 231, 0.16), 0 4px 6px -2px rgba(108, 92, 231, 0.08)'
                       : '0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -2px rgba(0, 0, 0, 0.03)',
                     transform: isSelected ? 'translateX(4px)' : 'translateX(0)',
                     display: 'flex',
@@ -159,7 +145,7 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
                   }}
                 >
                   <div style={{ overflow: 'hidden' }}>
-                    <span style={{ fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', color: isSelected ? '#2563EB' : '#94A3B8', display: 'block', marginBottom: '0.1rem', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
+                    <span style={{ fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', color: isSelected ? '#6C5CE7' : '#94A3B8', display: 'block', marginBottom: '0.1rem', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
                       {service.tag}
                     </span>
                     <h3 style={{ fontSize: '0.92rem', fontWeight: isSelected ? 700 : 600, color: isSelected ? '#0F172A' : '#334155', margin: 0, whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
@@ -172,7 +158,7 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
                       width: '24px',
                       height: '24px',
                       borderRadius: '50%',
-                      backgroundColor: isSelected ? '#2563EB' : '#F1F5F9',
+                      backgroundColor: isSelected ? '#6C5CE7' : '#F1F5F9',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -189,10 +175,10 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
             })}
           </div>
 
-          {/* CENTER COLUMN: Dynamic Preview Image & Complete Original Narrative Description with Double Shadow */}
+          {/* CENTER COLUMN: Dynamic Preview Image & Complete Original Narrative Description */}
           <div
+            className="workforce-center-col"
             style={{
-              gridColumn: 'span 5',
               backgroundColor: '#ffffff',
               border: '1px solid #E2E8F0',
               borderRadius: '16px',
@@ -255,9 +241,9 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
               </div>
             </div>
 
-            {/* Dynamic Content: Original Paragraph Only (No Extra Bullets) */}
+            {/* Dynamic Content: Original Paragraph */}
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <span style={{ fontSize: '0.76rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#2563EB', backgroundColor: '#EFF6FF', padding: '0.25rem 0.8rem', borderRadius: '6px', display: 'inline-block', marginBottom: '0.75rem', width: 'fit-content' }}>
+              <span style={{ fontSize: '0.76rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#6C5CE7', backgroundColor: '#EDE9FE', padding: '0.25rem 0.8rem', borderRadius: '6px', display: 'inline-block', marginBottom: '0.75rem', width: 'fit-content' }}>
                 {activeService.tag}
               </span>
 
@@ -271,14 +257,9 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: Interactive Action Cards ("Let's Talk" & "Join Our Team") */}
+          {/* RIGHT COLUMN: Interactive Action Cards */}
           <div
-            style={{
-              gridColumn: 'span 3',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '1.25rem'
-            }}
+            className="workforce-right-col"
           >
             {/* Card 1: Let's Talk */}
             <div

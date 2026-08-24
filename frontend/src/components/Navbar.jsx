@@ -170,39 +170,26 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
           </ul>
 
           {/* 3. RIGHT ACTION CONTROLS */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
 
-            {/* Search Icon Circle Button */}
+            {/* Search Icon Circle Button (Desktop only - Strictly Hidden on Mobile) */}
             <button
+              className="nav-search-btn desktop-only-action"
               onClick={() => {
                 if (onNavServices) onNavServices('overview');
-              }}
-              style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '50%',
-                border: '1px solid rgba(255, 255, 255, 0.16)',
-                backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                color: '#ffffff',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                transition: 'all 0.2s ease'
               }}
               aria-label="Search"
             >
               <Search size={18} />
             </button>
 
-            {/* Get In Touch Green-to-Cyan Gradient Pill Button */}
+            {/* Get In Touch Pill Button (Desktop only - Strictly Hidden on Mobile) */}
             <button
               onClick={() => {
                 if (onOpenContactPage) onOpenContactPage();
               }}
-              className="navbar-touch-btn"
+              className="navbar-touch-btn desktop-only-action"
               style={{
-                display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.5rem',
                 padding: '0.62rem 1.4rem',
@@ -221,14 +208,13 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
               <ArrowRight size={16} />
             </button>
 
-            {/* Mobile Hamburger Toggle */}
+            {/* Mobile Hamburger Toggle (3 Lines) - Prominent, Tapable & Centered */}
             <button
               className="mobile-nav-toggle"
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open navigation menu"
-              style={{ background: 'none', border: 'none', color: '#ffffff', cursor: 'pointer', padding: '0.3rem' }}
             >
-              <Menu size={26} />
+              <Menu size={22} color="#ffffff" strokeWidth={2.4} />
             </button>
           </div>
         </div>
@@ -389,30 +375,59 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
                   </button>
                 </li>
               </ul>
+
+              {/* Prominent Mobile Get In Touch Button */}
+              <div style={{ marginTop: '1.5rem', marginBottom: '0.5rem' }}>
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    if (onOpenContactPage) onOpenContactPage();
+                  }}
+                  style={{
+                    width: '100%',
+                    padding: '0.85rem 1.25rem',
+                    background: 'linear-gradient(135deg, #10B981 0%, #06B6D4 60%, #3B82F6 100%)',
+                    color: '#ffffff',
+                    border: 'none',
+                    borderRadius: '50px',
+                    fontSize: '1rem',
+                    fontWeight: 800,
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.5rem',
+                    boxShadow: '0 4px 18px rgba(16, 185, 129, 0.4)'
+                  }}
+                >
+                  <span>Get In Touch</span>
+                  <ArrowRight size={18} />
+                </button>
+              </div>
             </div>
 
-            {/* Bottom Footer Section matching Screenshot 2 */}
-            <div style={{ paddingTop: '1.5rem', borderTop: '1px solid rgba(255,255,255,0.12)', marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.85rem' }}>
-              <span style={{ fontSize: '0.85rem', color: '#94a3b8', fontWeight: 600 }}>Get in touch</span>
-              <a href="mailto:info@vebhor.com" style={{ color: '#38bdf8', fontSize: '0.95rem', textDecoration: 'none', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+            {/* Bottom Footer Section */}
+            <div style={{ paddingTop: '1.25rem', borderTop: '1px solid rgba(255,255,255,0.12)', marginTop: '0.5rem', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+              <span style={{ fontSize: '0.82rem', color: '#94a3b8', fontWeight: 600 }}>Get in touch</span>
+              <a href="mailto:info@vebhor.com" style={{ color: '#38bdf8', fontSize: '0.92rem', textDecoration: 'none', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
                 <Mail size={16} />
                 <span>info@vebhor.com</span>
               </a>
-              <span style={{ color: '#cbd5e1', fontSize: '0.88rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+              <span style={{ color: '#cbd5e1', fontSize: '0.85rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
                 <Globe size={16} />
                 <span>Australia (AU)</span>
               </span>
 
-              {/* Social / Contact Icons row matching Screenshot 2 */}
-              <div style={{ display: 'flex', gap: '0.75rem', marginTop: '0.5rem' }}>
-                <div style={{ width: '36px', height: '36px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#cbd5e1' }}>
-                  <Share2 size={16} />
+              {/* Social / Contact Icons row */}
+              <div style={{ display: 'flex', gap: '0.75rem', marginTop: '0.35rem' }}>
+                <div style={{ width: '34px', height: '34px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#cbd5e1' }}>
+                  <Share2 size={15} />
                 </div>
-                <div style={{ width: '36px', height: '36px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#cbd5e1' }}>
-                  <Mail size={16} />
+                <div style={{ width: '34px', height: '34px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#cbd5e1' }}>
+                  <Mail size={15} />
                 </div>
-                <div style={{ width: '36px', height: '36px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#cbd5e1' }}>
-                  <Globe size={16} />
+                <div style={{ width: '34px', height: '34px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#cbd5e1' }}>
+                  <Globe size={15} />
                 </div>
               </div>
             </div>

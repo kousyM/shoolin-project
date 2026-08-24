@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { Search, Building2, ChevronRight, ArrowRight, ArrowLeft, Upload, CheckCircle2, X } from 'lucide-react';
+import { Search, Building2, ChevronRight, ArrowRight, ArrowLeft, Upload, CheckCircle2, X, Sparkles, MapPin } from 'lucide-react';
 import { getApiBaseUrl } from '../api/config';
 import { DEFAULT_JOBS, DEFAULT_META, getStoredJobs } from '../data/defaultJobs';
 
 export const CareersPage = ({ onSelectJob, onNavHome, onOpenContactPage, onNavAbout, onNavCareers, onNavPartners, onNavInsights, onNavServices, onNavChallengeUs, onNavAdmin, isAdminLoggedIn, onAdminLogout }) => {
   const [showEoiModal, setShowEoiModal] = useState(false);
+  const [selectedJobForEoi, setSelectedJobForEoi] = useState(null);
 
   // EOI Form State
   const [eoiFormData, setEoiFormData] = useState({
@@ -50,14 +51,61 @@ export const CareersPage = ({ onSelectJob, onNavHome, onOpenContactPage, onNavAb
     } catch (error) {
       console.warn('Backend API unavailable, displaying jobs list from storage:', error);
       let filtered = getStoredJobs();
+      
+      if (filtered.length < 5) {
+        filtered = [
+          {
+            id: 'job-1',
+            title: 'Test Automation Engineer (Playwright)',
+            department: 'Automation Engineering',
+            location: 'Melbourne, Australia',
+            is_remote: false,
+            summary: 'Drive test automation using Playwright, TypeScript, and modern CI/CD test frameworks.'
+          },
+          {
+            id: 'job-2',
+            title: 'Senior Test Automation Engineer',
+            department: 'Automation Engineering',
+            location: 'Melbourne, Australia',
+            is_remote: false,
+            summary: 'Lead architecture and strategy for enterprise test automation frameworks.'
+          },
+          {
+            id: 'job-3',
+            title: 'Test Automation Engineer C#',
+            department: 'Automation Engineering',
+            location: 'Melbourne, Australia',
+            is_remote: false,
+            summary: 'Design scalable test automation suites using C#, .NET, SpecFlow and Azure DevOps.'
+          },
+          {
+            id: 'job-4',
+            title: 'Performance Test Engineer (JMeter / k6)',
+            department: 'Performance Engineering',
+            location: 'Sydney, Australia',
+            is_remote: true,
+            summary: 'Analyze throughput, latency, and system scalability for high-transaction platforms.'
+          },
+          {
+            id: 'job-5',
+            title: 'Lead Quality Assurance Engineer',
+            department: 'Quality Engineering',
+            location: 'Melbourne, Australia',
+            is_remote: false,
+            summary: 'Ensure end-to-end quality governance, compliance, and automated release validation.'
+          },
+          ...filtered
+        ];
+      }
+
       if (search) {
-        filtered = filtered.filter(j => j.title.toLowerCase().includes(search.toLowerCase()) || j.summary.toLowerCase().includes(search.toLowerCase()));
+        filtered = filtered.filter(j => j.title.toLowerCase().includes(search.toLowerCase()) || (j.summary && j.summary.toLowerCase().includes(search.toLowerCase())));
       }
       if (locationFilter !== 'All') {
-        filtered = filtered.filter(j => j.location.includes(locationFilter));
+        filtered = filtered.filter(j => j.location && j.location.includes(locationFilter));
       }
       if (departmentFilter !== 'All') {
-        filtered = filtered.filter(j => j.department === departmentFilter);
+        filtered = filtered.filter(j => j.department && j.department === departmentFilter);
       }
       if (remoteOnly) {
         filtered = filtered.filter(j => j.is_remote);
@@ -105,7 +153,7 @@ export const CareersPage = ({ onSelectJob, onNavHome, onOpenContactPage, onNavAb
         email: eoiFormData.email,
         phone: `${eoiFormData.countryCode} ${eoiFormData.phone}`,
         location: eoiFormData.location,
-        areaOfInterest: eoiFormData.areaOfInterest,
+        areaOfInterest: selectedJobForEoi ? selectedJobForEoi.title : departmentFilter,
         workPreference: eoiFormData.workPreference,
         linkedin: eoiFormData.linkedinUrl,
         summary: eoiFormData.summary
@@ -117,8 +165,17 @@ export const CareersPage = ({ onSelectJob, onNavHome, onOpenContactPage, onNavAb
     }
   };
 
+  const handleApplyJob = (job) => {
+    setSelectedJobForEoi(job);
+    if (onSelectJob) {
+      onSelectJob(job);
+    } else {
+      setShowEoiModal(true);
+    }
+  };
+
   return (
-    <div style={{ backgroundColor: '#ffffff', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+    <div style={{ backgroundColor: '#001938', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#ffffff' }}>
       {/* Navbar */}
       <Navbar
         activePage="careers"
@@ -135,293 +192,339 @@ export const CareersPage = ({ onSelectJob, onNavHome, onOpenContactPage, onNavAb
         onAdminLogout={onAdminLogout}
       />
 
-      <main style={{ paddingTop: 0, marginTop: 0 }}>
+      <main style={{ paddingTop: '2.5rem', paddingBottom: '6rem', position: 'relative', overflow: 'hidden' }}>
+        
+        {/* Subtle Ambient Radial Navy Glow */}
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            width: '900px',
+            height: '380px',
+            background: 'radial-gradient(ellipse, rgba(121, 22, 168, 0.28) 0%, rgba(2, 132, 199, 0.18) 50%, transparent 70%)',
+            filter: 'blur(60px)',
+            pointerEvents: 'none'
+          }}
+        />
+
         {/* ============================================================ */}
-        {/* JOB OPPORTUNITIES EXCLUSIVE PAGE */}
+        {/* JOB OPPORTUNITIES - DARK NAVY BLUE THEME */}
         {/* ============================================================ */}
-        <div>
-          {/* Header Banner */}
-          <section
+        <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '1rem 2rem', position: 'relative', zIndex: 2 }}>
+          
+          {/* Header Title with Purple Capsule Badge & Sparkle */}
+          <div style={{ textAlign: 'center', marginBottom: '3rem', position: 'relative' }}>
+            <div style={{ marginBottom: '1.25rem' }}>
+              <span
+                style={{
+                  fontSize: '0.82rem',
+                  fontWeight: 800,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.14em',
+                  color: '#ffffff',
+                  backgroundColor: '#6C5CE7',
+                  padding: '0.4rem 1.4rem',
+                  borderRadius: '18px 24px 24px 18px',
+                  display: 'inline-block',
+                  boxShadow: '0 4px 18px rgba(121, 22, 168, 0.5)'
+                }}
+              >
+                CAREER OPPORTUNITIES
+              </span>
+            </div>
+
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.85rem' }}>
+              <h1
+                style={{
+                  fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
+                  fontSize: 'clamp(2.2rem, 4vw, 3.2rem)',
+                  fontWeight: 800,
+                  color: '#ffffff',
+                  letterSpacing: '-0.02em',
+                  margin: 0
+                }}
+              >
+                Our Open Positions
+              </h1>
+              <Sparkles size={30} style={{ color: '#55E6C1', strokeWidth: 1.6 }} />
+            </div>
+            <p style={{ fontSize: '1.1rem', color: '#cbd5e1', maxWidth: '680px', margin: '0.85rem auto 0 auto', lineHeight: 1.6 }}>
+              Explore open engineering, cloud, cybersecurity, and delivery positions across Australia and globally.
+            </p>
+          </div>
+
+          {/* Original Search & Filter Bar (Restored in Theme Colors) */}
+          <div
             style={{
-              backgroundColor: '#0b132b',
-              backgroundImage: `linear-gradient(90deg, rgba(11, 19, 43, 0.90) 0%, rgba(11, 19, 43, 0.75) 50%, rgba(11, 19, 43, 0.35) 100%), url('/images/team_collaboration.jpg')`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-              color: '#ffffff',
-              padding: '4.5rem 2rem',
-              minHeight: '260px',
-              display: 'flex',
-              alignItems: 'center'
+              backgroundColor: 'rgba(10, 25, 60, 0.75)',
+              backdropFilter: 'blur(16px)',
+              WebkitBackdropFilter: 'blur(16px)',
+              border: '1.5px solid rgba(255, 255, 255, 0.12)',
+              borderRadius: '16px',
+              padding: '1.25rem 1.75rem',
+              boxShadow: '0 12px 35px rgba(0, 0, 0, 0.35)',
+              marginBottom: '3rem'
             }}
           >
-            <div style={{ maxWidth: '1200px', margin: '0 auto', width: '100%' }}>
-              <h1 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.8rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.75rem' }}>
-                Job Opportunities
-              </h1>
-              <p style={{ fontSize: '1.1rem', color: '#e2e8f0', maxWidth: '680px', lineHeight: '1.6' }}>
-                Explore open engineering, cloud, cybersecurity, and delivery positions across Australia.
-              </p>
-            </div>
-          </section>
-
-          {/* Search & Filter Bar */}
-          <section style={{ backgroundColor: '#e9ecef', borderTop: '1px solid #ced4da', borderBottom: '1px solid #ced4da', padding: '0.85rem 2rem' }}>
-            <div style={{ maxWidth: '1200px', margin: '0 auto', display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '1rem' }}>
-              <form onSubmit={handleSearchSubmit} style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '1rem', width: '100%' }}>
-                <div style={{ flex: 1, minWidth: '240px' }}>
-                  <input
-                    type="text"
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    placeholder="Filter by title, expertise"
-                    style={{ width: '100%', padding: '0.5rem 0.85rem', border: '1px solid #ced4da', borderRadius: '3px', fontSize: '0.9rem', outline: 'none' }}
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  style={{ padding: '0.5rem 1.25rem', backgroundColor: '#e2e8f0', border: '1px solid #cbd5e1', borderRadius: '3px', fontSize: '0.88rem', fontWeight: 600, color: '#1e293b', cursor: 'pointer' }}
-                >
-                  Search
-                </button>
-
-                <div style={{ minWidth: '160px' }}>
-                  <select
-                    value={locationFilter}
-                    onChange={(e) => setLocationFilter(e.target.value)}
-                    style={{ width: '100%', padding: '0.5rem 0.85rem', border: '1px solid #ced4da', borderRadius: '3px', fontSize: '0.88rem', outline: 'none' }}
-                  >
-                    <option value="All">Location (All)</option>
-                    <option value="Melbourne, VIC">Melbourne, VIC</option>
-                    <option value="Sydney, Australia">Sydney, Australia</option>
-                    <option value="Macquarie Park, NSW">Macquarie Park, NSW</option>
-                    <option value="Preston, VIC">Preston, VIC</option>
-                    <option value="Canberra, Australia">Canberra, Australia</option>
-                  </select>
-                </div>
-
-                <div style={{ minWidth: '160px' }}>
-                  <select
-                    value={departmentFilter}
-                    onChange={(e) => setDepartmentFilter(e.target.value)}
-                    style={{ width: '100%', padding: '0.5rem 0.85rem', border: '1px solid #ced4da', borderRadius: '3px', fontSize: '0.88rem', outline: 'none' }}
-                  >
-                    <option value="All">Department (All)</option>
-                    <option value="SAP">SAP</option>
-                    <option value="Digital Applications">Digital Applications</option>
-                    <option value="Cloud & AI">Cloud & AI</option>
-                  </select>
-                </div>
-              </form>
-            </div>
-          </section>
-
-          {/* Jobs Table */}
-          <section style={{ maxWidth: '1200px', margin: '2.5rem auto 6rem', padding: '0 1.5rem' }}>
-            {loading ? (
-              <div style={{ padding: '4rem 0', textAlign: 'center', color: '#64748b' }}>
-                <p>Loading available career opportunities...</p>
+            <form onSubmit={handleSearchSubmit} style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '1rem', width: '100%' }}>
+              
+              {/* Text Search */}
+              <div style={{ flex: 1, minWidth: '240px', position: 'relative' }}>
+                <Search size={18} style={{ position: 'absolute', left: '1rem', top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }} />
+                <input
+                  type="text"
+                  value={search}
+                  onChange={(e) => setSearch(e.target.value)}
+                  placeholder="Filter by title, expertise..."
+                  style={{
+                    width: '100%',
+                    padding: '0.75rem 1rem 0.75rem 2.6rem',
+                    backgroundColor: 'rgba(6, 15, 38, 0.8)',
+                    border: '1px solid rgba(255, 255, 255, 0.18)',
+                    borderRadius: '10px',
+                    color: '#ffffff',
+                    fontSize: '0.95rem',
+                    outline: 'none'
+                  }}
+                />
               </div>
-            ) : jobs.length === 0 ? (
-              <div style={{ padding: '4rem 0', textAlign: 'center', color: '#64748b', backgroundColor: '#f8fafc', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
-                <h3 style={{ fontSize: '1.2rem', color: '#1e293b', marginBottom: '0.5rem' }}>No open positions match your search</h3>
-                <p style={{ fontSize: '0.95rem' }}>Try clearing filters or search for another keyword.</p>
-              </div>
-            ) : (
-              <>
-                {/* Desktop View Table */}
-                <div className="vebhor-jobs-table-desktop" style={{ backgroundColor: '#ffffff', borderRadius: '6px', border: '1px solid #e2e8f0', boxShadow: '0 2px 8px rgba(0,0,0,0.04)', overflowX: 'auto' }}>
-                  <table style={{ width: '100%', minWidth: '600px', borderCollapse: 'collapse', textAlign: 'left' }}>
-                    <thead>
-                      <tr style={{ backgroundColor: '#f8fafc', borderBottom: '2px solid #e2e8f0' }}>
-                        <th style={{ padding: '1.2rem 1.5rem', fontSize: '0.9rem', fontWeight: 700, color: '#334155' }}>JOB TITLE</th>
-                        <th style={{ padding: '1.2rem 1.5rem', fontSize: '0.9rem', fontWeight: 700, color: '#334155' }}>DEPARTMENT</th>
-                        <th style={{ padding: '1.2rem 1.5rem', fontSize: '0.9rem', fontWeight: 700, color: '#334155' }}>LOCATION</th>
-                        <th style={{ padding: '1.2rem 1.5rem', fontSize: '0.9rem', fontWeight: 700, color: '#334155', textAlign: 'right' }}>ACTION</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {jobs.map((job, idx) => (
-                        <tr
-                          key={job.id || idx}
-                          style={{ borderBottom: '1px solid #f1f5f9', transition: 'background-color 0.15s ease' }}
-                          onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = '#f8fafc')}
-                          onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = '#ffffff')}
-                        >
-                          <td style={{ padding: '1.25rem 1.5rem' }}>
-                            <span
-                              onClick={() => {
-                                if (onSelectJob) onSelectJob(job);
-                              }}
-                              style={{ fontSize: '1.05rem', fontWeight: 700, color: '#0284c7', textDecoration: 'none', cursor: 'pointer' }}
-                            >
-                              {job.title}
-                            </span>
-                            {job.is_remote && (
-                              <span style={{ marginLeft: '0.6rem', fontSize: '0.75rem', fontWeight: 700, color: '#16a34a', backgroundColor: '#dcfce7', padding: '0.2rem 0.5rem', borderRadius: '4px' }}>
-                                Remote
-                              </span>
-                            )}
-                          </td>
-                          <td style={{ padding: '1.25rem 1.5rem', fontSize: '0.95rem', color: '#475569' }}>
-                            {job.department}
-                          </td>
-                          <td style={{ padding: '1.25rem 1.5rem', fontSize: '0.95rem', color: '#475569' }}>
-                            {job.location}
-                          </td>
-                          <td style={{ padding: '1.25rem 1.5rem', textAlign: 'right' }}>
-                            <button
-                              onClick={() => {
-                                if (onSelectJob) onSelectJob(job);
-                              }}
-                              style={{
-                                display: 'inline-flex',
-                                alignItems: 'center',
-                                gap: '0.4rem',
-                                padding: '0.5rem 1rem',
-                                backgroundColor: '#0f172a',
-                                color: '#ffffff',
-                                borderRadius: '4px',
-                                fontSize: '0.85rem',
-                                fontWeight: 700,
-                                border: 'none',
-                                cursor: 'pointer'
-                              }}
-                            >
-                              <span>View Role</span>
-                              <ChevronRight size={16} />
-                            </button>
-                          </td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
 
-                {/* Mobile View Job Cards (Always Shows View Role Button) */}
-                <div className="vebhor-jobs-cards-mobile">
-                  {jobs.map((job, idx) => (
-                    <div
-                      key={job.id || idx}
-                      style={{
-                        backgroundColor: '#ffffff',
-                        border: '1px solid #e2e8f0',
-                        borderRadius: '8px',
-                        padding: '1.25rem',
-                        boxShadow: '0 2px 6px rgba(0,0,0,0.04)',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        gap: '0.85rem'
-                      }}
-                    >
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '0.5rem' }}>
-                        <h3
-                          onClick={() => {
-                            if (onSelectJob) onSelectJob(job);
-                          }}
-                          style={{
-                            fontSize: '1.15rem',
-                            fontWeight: 700,
-                            color: '#0284c7',
-                            cursor: 'pointer',
-                            lineHeight: 1.3
-                          }}
-                        >
-                          {job.title}
-                        </h3>
-                        {job.is_remote && (
-                          <span style={{ fontSize: '0.72rem', fontWeight: 700, color: '#16a34a', backgroundColor: '#dcfce7', padding: '0.2rem 0.5rem', borderRadius: '4px', whiteSpace: 'nowrap' }}>
-                            Remote
-                          </span>
-                        )}
-                      </div>
-
-                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', fontSize: '0.85rem', color: '#64748b' }}>
-                        <span style={{ backgroundColor: '#f1f5f9', padding: '0.25rem 0.6rem', borderRadius: '4px', fontWeight: 600, color: '#475569' }}>
-                          {job.department}
-                        </span>
-                        <span style={{ backgroundColor: '#f1f5f9', padding: '0.25rem 0.6rem', borderRadius: '4px', color: '#475569' }}>
-                          📍 {job.location}
-                        </span>
-                      </div>
-
-                      <button
-                        onClick={() => {
-                          if (onSelectJob) onSelectJob(job);
-                        }}
-                        style={{
-                          width: '100%',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          gap: '0.5rem',
-                          padding: '0.75rem 1rem',
-                          backgroundColor: '#0f172a',
-                          color: '#ffffff',
-                          borderRadius: '6px',
-                          fontSize: '0.92rem',
-                          fontWeight: 700,
-                          border: 'none',
-                          cursor: 'pointer',
-                          marginTop: '0.4rem'
-                        }}
-                      >
-                        <span>View Role</span>
-                        <ChevronRight size={16} />
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              </>
-            )}
-
-            {/* Expressions of Interest Banner */}
-            <div style={{ marginTop: '3.5rem', backgroundColor: '#f0f9ff', border: '1px solid #bae6fd', borderRadius: '12px', padding: '2.5rem', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '1.5rem' }}>
-              <div>
-                <h3 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '1.35rem', fontWeight: 700, color: '#0369a1', marginBottom: '0.4rem' }}>
-                  Don't see the role you are looking for?
-                </h3>
-                <p style={{ fontSize: '0.95rem', color: '#334155', margin: 0 }}>
-                  Submit an Expression of Interest and our talent team will reach out when suitable opportunities open up.
-                </p>
-              </div>
+              {/* Search Button */}
               <button
-                onClick={() => setShowEoiModal(true)}
-                style={{ padding: '0.85rem 1.75rem', backgroundColor: '#0284c7', color: '#ffffff', fontWeight: 700, fontSize: '0.95rem', borderRadius: '6px', border: 'none', cursor: 'pointer', boxShadow: '0 4px 12px rgba(2,132,199,0.25)' }}
+                type="submit"
+                style={{
+                  padding: '0.75rem 1.75rem',
+                  backgroundColor: '#6C5CE7',
+                  color: '#ffffff',
+                  borderRadius: '10px',
+                  fontSize: '0.92rem',
+                  fontWeight: 700,
+                  border: 'none',
+                  cursor: 'pointer',
+                  boxShadow: '0 4px 15px rgba(121, 22, 168, 0.45)',
+                  transition: 'all 0.25s ease'
+                }}
               >
-                Express Interest
+                Search
+              </button>
+
+              {/* Location Filter Dropdown */}
+              <div style={{ minWidth: '170px' }}>
+                <select
+                  value={locationFilter}
+                  onChange={(e) => setLocationFilter(e.target.value)}
+                  style={{
+                    width: '100%',
+                    padding: '0.75rem 1rem',
+                    backgroundColor: 'rgba(6, 15, 38, 0.8)',
+                    border: '1px solid rgba(255, 255, 255, 0.18)',
+                    borderRadius: '10px',
+                    color: '#ffffff',
+                    fontSize: '0.9rem',
+                    outline: 'none',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <option value="All" style={{ backgroundColor: '#071126', color: '#ffffff' }}>Location (All)</option>
+                  <option value="Melbourne" style={{ backgroundColor: '#071126', color: '#ffffff' }}>Melbourne, Australia</option>
+                  <option value="Sydney" style={{ backgroundColor: '#071126', color: '#ffffff' }}>Sydney, Australia</option>
+                  <option value="Brisbane" style={{ backgroundColor: '#071126', color: '#ffffff' }}>Brisbane, Australia</option>
+                  <option value="Canberra" style={{ backgroundColor: '#071126', color: '#ffffff' }}>Canberra, Australia</option>
+                </select>
+              </div>
+
+              {/* Department Filter Dropdown */}
+              <div style={{ minWidth: '180px' }}>
+                <select
+                  value={departmentFilter}
+                  onChange={(e) => setDepartmentFilter(e.target.value)}
+                  style={{
+                    width: '100%',
+                    padding: '0.75rem 1rem',
+                    backgroundColor: 'rgba(6, 15, 38, 0.8)',
+                    border: '1px solid rgba(255, 255, 255, 0.18)',
+                    borderRadius: '10px',
+                    color: '#ffffff',
+                    fontSize: '0.9rem',
+                    outline: 'none',
+                    cursor: 'pointer'
+                  }}
+                >
+                  <option value="All" style={{ backgroundColor: '#071126', color: '#ffffff' }}>Department (All)</option>
+                  <option value="Automation Engineering" style={{ backgroundColor: '#071126', color: '#ffffff' }}>Automation Engineering</option>
+                  <option value="Performance Engineering" style={{ backgroundColor: '#071126', color: '#ffffff' }}>Performance Engineering</option>
+                  <option value="Quality Engineering" style={{ backgroundColor: '#071126', color: '#ffffff' }}>Quality Engineering</option>
+                  <option value="Cloud & AI" style={{ backgroundColor: '#071126', color: '#ffffff' }}>Cloud & AI</option>
+                  <option value="Digital Applications" style={{ backgroundColor: '#071126', color: '#ffffff' }}>Digital Applications</option>
+                </select>
+              </div>
+            </form>
+          </div>
+
+          {/* Job Openings Cards List in Dark Navy Blue Theme */}
+          {loading ? (
+            <div style={{ padding: '4rem 0', textAlign: 'center', color: '#94a3b8' }}>
+              <p>Loading available career opportunities...</p>
+            </div>
+          ) : jobs.length === 0 ? (
+            <div style={{ padding: '4rem 2rem', textAlign: 'center', color: '#94a3b8', backgroundColor: 'rgba(10, 25, 60, 0.65)', borderRadius: '16px', border: '1.5px solid rgba(255,255,255,0.1)' }}>
+              <h3 style={{ fontSize: '1.3rem', color: '#ffffff', marginBottom: '0.5rem' }}>No open positions match your selection</h3>
+              <p style={{ fontSize: '0.95rem' }}>Try clearing filters or search for another keyword.</p>
+              <button
+                onClick={() => { setLocationFilter('All'); setDepartmentFilter('All'); setSearch(''); }}
+                style={{ marginTop: '1rem', padding: '0.6rem 1.5rem', backgroundColor: '#6C5CE7', color: '#ffffff', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 700 }}
+              >
+                Reset Filters
               </button>
             </div>
-          </section>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+              {jobs.map((job, idx) => (
+                <div
+                  key={job.id || idx}
+                  className="job-opening-card"
+                  onClick={() => handleApplyJob(job)}
+                  style={{
+                    backgroundColor: 'rgba(8, 20, 48, 0.85)',
+                    backdropFilter: 'blur(12px)',
+                    border: '1.5px solid rgba(255, 255, 255, 0.1)',
+                    borderRadius: '16px',
+                    padding: '1.6rem 2.25rem',
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    flexWrap: 'wrap',
+                    gap: '1.5rem',
+                    boxShadow: '0 10px 25px rgba(0, 0, 0, 0.25)'
+                  }}
+                >
+                  {/* Left Side: Job Title & Location / Department */}
+                  <div>
+                    <h3
+                      style={{
+                        fontSize: '1.35rem',
+                        fontWeight: 800,
+                        color: '#ffffff',
+                        margin: '0 0 0.45rem 0',
+                        lineHeight: 1.3
+                      }}
+                    >
+                      {job.title}
+                    </h3>
+                    <p
+                      style={{
+                        fontSize: '0.95rem',
+                        color: '#cbd5e1',
+                        margin: 0,
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.4rem'
+                      }}
+                    >
+                      <span>📍 {job.location}</span>
+                      <span style={{ color: '#64748b' }}>•</span>
+                      <span style={{ color: '#38bdf8', fontWeight: 600 }}>{job.department}</span>
+                      {job.is_remote && (
+                        <span style={{ marginLeft: '0.5rem', fontSize: '0.75rem', fontWeight: 700, color: '#55E6C1', backgroundColor: 'rgba(85, 230, 193, 0.15)', padding: '0.2rem 0.5rem', borderRadius: '4px' }}>
+                          Remote
+                        </span>
+                      )}
+                    </p>
+                  </div>
+
+                  {/* Right Side: Apply Now Button with Purple Brand Accent */}
+                  <div>
+                    <button
+                      className="job-apply-btn"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleApplyJob(job);
+                      }}
+                    >
+                      Apply Now
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Expression of Interest Banner Box */}
+          <div
+            style={{
+              marginTop: '4rem',
+              backgroundColor: 'rgba(10, 25, 60, 0.75)',
+              backdropFilter: 'blur(16px)',
+              border: '1.5px solid rgba(121, 22, 168, 0.35)',
+              borderRadius: '18px',
+              padding: '2.5rem',
+              display: 'flex',
+              flexWrap: 'wrap',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              gap: '1.5rem',
+              boxShadow: '0 12px 35px rgba(0, 0, 0, 0.35)'
+            }}
+          >
+            <div>
+              <h3 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '1.45rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.4rem' }}>
+                Don't see the role you are looking for?
+              </h3>
+              <p style={{ fontSize: '0.95rem', color: '#cbd5e1', margin: 0, maxWidth: '640px' }}>
+                Submit an Expression of Interest and our talent acquisition team will reach out when suitable opportunities open up.
+              </p>
+            </div>
+            <button
+              onClick={() => { setSelectedJobForEoi(null); setShowEoiModal(true); }}
+              style={{
+                padding: '0.85rem 2rem',
+                backgroundColor: '#6C5CE7',
+                color: '#ffffff',
+                fontWeight: 800,
+                fontSize: '0.95rem',
+                borderRadius: '50px',
+                border: 'none',
+                cursor: 'pointer',
+                boxShadow: '0 4px 18px rgba(121, 22, 168, 0.5)',
+                transition: 'all 0.25s ease'
+              }}
+            >
+              Express Interest
+            </button>
+          </div>
+
         </div>
+
       </main>
 
       {/* Expression of Interest Modal */}
       {showEoiModal && (
-        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(15, 23, 42, 0.75)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.5rem' }}>
-          <div style={{ backgroundColor: '#ffffff', borderRadius: '16px', maxWidth: '580px', width: '100%', padding: '2.5rem', position: 'relative', boxShadow: '0 20px 50px rgba(0,0,0,0.3)', maxHeight: '90vh', overflowY: 'auto' }}>
+        <div style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(0, 15, 35, 0.85)', zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1.5rem', backdropFilter: 'blur(12px)' }}>
+          <div style={{ backgroundColor: '#071126', border: '1.5px solid rgba(121, 22, 168, 0.45)', borderRadius: '20px', maxWidth: '580px', width: '100%', padding: '2.5rem', position: 'relative', boxShadow: '0 25px 60px rgba(0,0,0,0.6)', maxHeight: '90vh', overflowY: 'auto', color: '#ffffff' }}>
             <button
               onClick={() => setShowEoiModal(false)}
-              style={{ position: 'absolute', top: '1.25rem', right: '1.25rem', background: 'none', border: 'none', color: '#64748b', cursor: 'pointer', padding: '0.25rem' }}
+              style={{ position: 'absolute', top: '1.25rem', right: '1.25rem', background: 'none', border: 'none', color: '#94a3b8', cursor: 'pointer', padding: '0.25rem' }}
             >
               <X size={24} />
             </button>
 
-            <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '1.6rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.5rem' }}>
-              Expression of Interest
+            <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '1.65rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.5rem' }}>
+              {selectedJobForEoi ? `Apply for ${selectedJobForEoi.title}` : 'Expression of Interest'}
             </h2>
-            <p style={{ fontSize: '0.9rem', color: '#64748b', marginBottom: '1.75rem', lineHeight: 1.5 }}>
+            <p style={{ fontSize: '0.92rem', color: '#94a3b8', marginBottom: '1.75rem', lineHeight: 1.5 }}>
               Share your details and resume with our talent acquisition team.
             </p>
 
             {eoiStatus.success ? (
               <div style={{ padding: '2rem 1rem', textAlign: 'center' }}>
-                <CheckCircle2 size={54} color="#16a34a" style={{ margin: '0 auto 1rem' }} />
-                <h3 style={{ fontSize: '1.3rem', fontWeight: 700, color: '#16a34a', marginBottom: '0.5rem' }}>Thank You!</h3>
-                <p style={{ fontSize: '0.95rem', color: '#475569', marginBottom: '1.5rem' }}>Your Expression of Interest has been submitted successfully.</p>
+                <CheckCircle2 size={54} color="#55E6C1" style={{ margin: '0 auto 1rem' }} />
+                <h3 style={{ fontSize: '1.3rem', fontWeight: 700, color: '#55E6C1', marginBottom: '0.5rem' }}>Thank You!</h3>
+                <p style={{ fontSize: '0.95rem', color: '#cbd5e1', marginBottom: '1.5rem' }}>Your application has been submitted successfully.</p>
                 <button
                   onClick={() => { setShowEoiModal(false); setEoiStatus({ loading: false, success: false, error: null }); }}
-                  style={{ padding: '0.75rem 1.5rem', backgroundColor: '#0f172a', color: '#ffffff', borderRadius: '6px', fontWeight: 700, border: 'none', cursor: 'pointer' }}
+                  style={{ padding: '0.75rem 1.5rem', backgroundColor: '#6C5CE7', color: '#ffffff', borderRadius: '50px', fontWeight: 700, border: 'none', cursor: 'pointer' }}
                 >
                   Close
                 </button>
@@ -430,36 +533,36 @@ export const CareersPage = ({ onSelectJob, onNavHome, onOpenContactPage, onNavAb
               <form onSubmit={handleEoiSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#334155', marginBottom: '0.35rem' }}>First Name *</label>
-                    <input type="text" name="firstName" required value={eoiFormData.firstName} onChange={handleEoiChange} style={{ width: '100%', padding: '0.65rem 0.85rem', border: '1px solid #cbd5e1', borderRadius: '6px', fontSize: '0.9rem' }} />
+                    <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#cbd5e1', marginBottom: '0.35rem' }}>First Name *</label>
+                    <input type="text" name="firstName" required value={eoiFormData.firstName} onChange={handleEoiChange} style={{ width: '100%', padding: '0.65rem 0.85rem', border: '1px solid rgba(255,255,255,0.15)', backgroundColor: '#0f1f3d', color: '#ffffff', borderRadius: '8px', fontSize: '0.9rem', outline: 'none' }} />
                   </div>
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#334155', marginBottom: '0.35rem' }}>Last Name *</label>
-                    <input type="text" name="lastName" required value={eoiFormData.lastName} onChange={handleEoiChange} style={{ width: '100%', padding: '0.65rem 0.85rem', border: '1px solid #cbd5e1', borderRadius: '6px', fontSize: '0.9rem' }} />
+                    <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#cbd5e1', marginBottom: '0.35rem' }}>Last Name *</label>
+                    <input type="text" name="lastName" required value={eoiFormData.lastName} onChange={handleEoiChange} style={{ width: '100%', padding: '0.65rem 0.85rem', border: '1px solid rgba(255,255,255,0.15)', backgroundColor: '#0f1f3d', color: '#ffffff', borderRadius: '8px', fontSize: '0.9rem', outline: 'none' }} />
                   </div>
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#334155', marginBottom: '0.35rem' }}>Email Address *</label>
-                  <input type="email" name="email" required value={eoiFormData.email} onChange={handleEoiChange} style={{ width: '100%', padding: '0.65rem 0.85rem', border: '1px solid #cbd5e1', borderRadius: '6px', fontSize: '0.9rem' }} />
+                  <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#cbd5e1', marginBottom: '0.35rem' }}>Email Address *</label>
+                  <input type="email" name="email" required value={eoiFormData.email} onChange={handleEoiChange} style={{ width: '100%', padding: '0.65rem 0.85rem', border: '1px solid rgba(255,255,255,0.15)', backgroundColor: '#0f1f3d', color: '#ffffff', borderRadius: '8px', fontSize: '0.9rem', outline: 'none' }} />
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#334155', marginBottom: '0.35rem' }}>Preferred Location *</label>
-                  <input type="text" name="location" placeholder="e.g. Melbourne, Sydney" required value={eoiFormData.location} onChange={handleEoiChange} style={{ width: '100%', padding: '0.65rem 0.85rem', border: '1px solid #cbd5e1', borderRadius: '6px', fontSize: '0.9rem' }} />
+                  <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: '700', color: '#cbd5e1', marginBottom: '0.35rem' }}>Preferred Location *</label>
+                  <input type="text" name="location" placeholder="e.g. Melbourne, Sydney" required value={eoiFormData.location} onChange={handleEoiChange} style={{ width: '100%', padding: '0.65rem 0.85rem', border: '1px solid rgba(255,255,255,0.15)', backgroundColor: '#0f1f3d', color: '#ffffff', borderRadius: '8px', fontSize: '0.9rem', outline: 'none' }} />
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#334155', marginBottom: '0.35rem' }}>Resume / CV *</label>
-                  <input type="file" required accept=".pdf,.doc,.docx" onChange={handleEoiChange} style={{ width: '100%', padding: '0.5rem', border: '1px solid #cbd5e1', borderRadius: '6px', fontSize: '0.85rem' }} />
+                  <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#cbd5e1', marginBottom: '0.35rem' }}>Resume / CV *</label>
+                  <input type="file" required accept=".pdf,.doc,.docx" onChange={handleEoiChange} style={{ width: '100%', padding: '0.5rem', border: '1px solid rgba(255,255,255,0.15)', backgroundColor: '#0f1f3d', color: '#ffffff', borderRadius: '8px', fontSize: '0.85rem' }} />
                 </div>
 
                 <button
                   type="submit"
                   disabled={eoiStatus.loading}
-                  style={{ marginTop: '0.5rem', padding: '0.85rem', backgroundColor: '#0284c7', color: '#ffffff', fontWeight: 800, fontSize: '0.95rem', borderRadius: '6px', border: 'none', cursor: 'pointer' }}
+                  style={{ marginTop: '0.5rem', padding: '0.85rem', backgroundColor: '#6C5CE7', color: '#ffffff', fontWeight: 800, fontSize: '0.95rem', borderRadius: '50px', border: 'none', cursor: 'pointer', boxShadow: '0 4px 15px rgba(108, 92, 231, 0.5)' }}
                 >
-                  {eoiStatus.loading ? 'Submitting...' : 'Submit Expression of Interest'}
+                  {eoiStatus.loading ? 'Submitting...' : 'Submit Application'}
                 </button>
               </form>
             )}
@@ -468,7 +571,15 @@ export const CareersPage = ({ onSelectJob, onNavHome, onOpenContactPage, onNavAb
       )}
 
       {/* Footer */}
-      <Footer onOpenContactPage={onOpenContactPage} onNavAdmin={onNavAdmin} />
+      <Footer
+        onNavHome={onNavHome}
+        onNavServices={onNavServices}
+        onNavCareers={onNavCareers}
+        onNavPartners={onNavPartners}
+        onNavInsights={onNavInsights}
+        onNavChallengeUs={onNavChallengeUs}
+        onOpenContactPage={onOpenContactPage}
+      />
     </div>
   );
 };

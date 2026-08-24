@@ -62,16 +62,95 @@ export const HeroSlider = ({ banners = [] }) => {
               />
             )}
 
-            {/* Background Dark Overlay for Readability (Removed for Slider 1 and Slider 4) */}
-            {index !== 0 && index !== 3 && (
-              <div
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  background: 'linear-gradient(180deg, rgba(6, 13, 31, 0.35) 0%, rgba(6, 13, 31, 0.75) 100%)',
-                  zIndex: 2
-                }}
-              />
+            {/* Background Dark Overlay for Readability across all slides */}
+            <div
+              style={{
+                position: 'absolute',
+                inset: 0,
+                background: index === 0
+                  ? 'linear-gradient(90deg, rgba(6, 13, 31, 0.85) 0%, rgba(6, 13, 31, 0.55) 45%, rgba(6, 13, 31, 0.12) 80%, rgba(6, 13, 31, 0.3) 100%)'
+                  : index === 1
+                  ? 'linear-gradient(135deg, rgba(6, 13, 31, 0.45) 0%, rgba(6, 13, 31, 0.25) 50%, rgba(6, 13, 31, 0.65) 100%)'
+                  : 'linear-gradient(180deg, rgba(6, 13, 31, 0.35) 0%, rgba(6, 13, 31, 0.75) 100%)',
+                zIndex: 2
+              }}
+            />
+
+            {/* 1. Cyber Video Animation Effects for Slider 1 (Workforce Transformation) */}
+            {index === 0 && (
+              <>
+                {/* Ambient Nebula Light Aura */}
+                <div className="hero-slide1-nebula-glow" />
+
+                {/* Sweeping Cyan & Purple Laser Streams */}
+                <div
+                  className="hero-slide1-laser"
+                  style={{ top: '32%', left: '5%', width: '520px', animation: 'laserStreamSweep 6.5s ease-in-out infinite' }}
+                />
+                <div
+                  className="hero-slide1-laser"
+                  style={{ top: '64%', right: '10%', width: '440px', animation: 'laserStreamSweepReverse 8s ease-in-out infinite 1.5s' }}
+                />
+                <div
+                  className="hero-slide1-laser"
+                  style={{ top: '82%', left: '25%', width: '360px', animation: 'laserStreamSweep 7s ease-in-out infinite 3s' }}
+                />
+
+                {/* Pulsing Sonar Data Nodes & Rings */}
+                <div className="hero-sonar-node" style={{ top: '31%', left: '42%' }}>
+                  <div className="hero-sonar-ring" />
+                </div>
+                <div className="hero-sonar-node" style={{ top: '63%', right: '28%' }}>
+                  <div className="hero-sonar-ring" style={{ animationDelay: '1.2s' }} />
+                </div>
+                <div className="hero-sonar-node" style={{ top: '78%', right: '14%' }}>
+                  <div className="hero-sonar-ring" style={{ animationDelay: '2s' }} />
+                </div>
+
+                {/* Floating Modern Tech Pill */}
+                <div className="hero-transformation-pill">
+                  <span style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: '#55E6C1', boxShadow: '0 0 10px #55E6C1', display: 'inline-block' }} />
+                  <span>Workforce Transformation Active</span>
+                </div>
+              </>
+            )}
+
+            {/* 3D Tech Graphic with Motion Glow & Data Nodes for Slider 2 (Innovate) */}
+            {index === 1 && (
+              <>
+                {/* 1. Futuristic 3D Data Sphere Motion Glow */}
+                <div className="hero-sphere-ambient-glow" />
+
+                {/* 2. Glowing Blue Circuit Lines & Rays */}
+                <div className="hero-circuit-ray" style={{ top: '28%', left: '10%', width: '450px', animation: 'techRayMove 7s ease-in-out infinite' }} />
+                <div className="hero-circuit-ray" style={{ top: '68%', left: '30%', width: '380px', animation: 'techRayMove 9s ease-in-out infinite 2s' }} />
+                <div className="hero-circuit-ray" style={{ top: '45%', right: '5%', width: '320px', animation: 'techRayMove 6s ease-in-out infinite 1s' }} />
+
+                {/* 3. Glowing Data Nodes */}
+                <div className="hero-data-node" style={{ top: '27%', left: '35%', animationDelay: '0s' }} />
+                <div className="hero-data-node" style={{ top: '67%', left: '55%', animationDelay: '1.2s' }} />
+                <div className="hero-data-node" style={{ top: '44%', right: '22%', animationDelay: '0.6s' }} />
+                <div className="hero-data-node" style={{ top: '72%', right: '12%', animationDelay: '1.8s' }} />
+              </>
+            )}
+
+            {/* 3D Rotating Holographic Cyber Globe for Slider 3 (Global Workforce) */}
+            {index === 2 && (
+              <div className="hero-cyber-globe-wrapper">
+                {/* Outer Orbiting Rings with Traveling Data Satellites */}
+                <div className="hero-orbit-ring-1">
+                  <div className="hero-satellite-dot" />
+                </div>
+                <div className="hero-orbit-ring-2">
+                  <div className="hero-satellite-dot" style={{ backgroundColor: '#A855F7', boxShadow: '0 0 14px #A855F7' }} />
+                </div>
+
+                {/* Rotating Cyber Globe Core */}
+                <div className="hero-globe-core">
+                  <div className="hero-globe-latitudes" />
+                  <div className="hero-globe-longitudes" />
+                </div>
+              </div>
             )}
 
             {/* Main Content Layout Container */}
@@ -90,23 +169,23 @@ export const HeroSlider = ({ banners = [] }) => {
                 boxSizing: 'border-box'
               }}
             >
-              {/* TOP SECTION: Tag Badge & Heading (Hidden on Slider 4 as requested) */}
-              {index !== 3 && (
-                <div style={{ alignSelf: 'flex-start', maxWidth: '960px', marginTop: '1.25rem' }}>
-                  {/* CloudMarc Floating Innovate Badge for Slider 2 */}
-                  {index === 1 ? (
-                    <div style={{ marginBottom: '1rem' }}>
-                      <a
-                        href="#contact"
-                        className="cloudmarc-floating-badge"
-                      >
-                        <div className="badge-icon">
-                          <Sparkles size={18} />
-                        </div>
-                        <span>Innovate</span>
-                      </a>
-                    </div>
-                  ) : banner.tag ? (
+              {/* TOP SECTION: Tag Badge & Heading */}
+              <div style={{ alignSelf: 'flex-start', maxWidth: '960px', marginTop: '1.25rem' }}>
+                {/* CloudMarc Floating Innovate Badge for Slider 2 */}
+                {index === 1 ? (
+                  <div style={{ marginBottom: '1rem' }} className={index === currentSlide ? 'hero-animate-tag' : ''}>
+                    <a
+                      href="#contact"
+                      className="cloudmarc-floating-badge"
+                    >
+                      <div className="badge-icon">
+                        <Sparkles size={18} />
+                      </div>
+                      <span>Innovate</span>
+                    </a>
+                  </div>
+                ) : banner.tag ? (
+                  <div className={index === currentSlide ? 'hero-animate-tag' : ''}>
                     <span
                       className="hero-tag"
                       style={{
@@ -125,43 +204,43 @@ export const HeroSlider = ({ banners = [] }) => {
                     >
                       {banner.tag}
                     </span>
-                  ) : null}
+                  </div>
+                ) : null}
 
-                  <h1
-                    className="hero-title"
-                    style={{
-                      fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
-                      fontSize: 'clamp(1.5rem, 3.2vw, 2.35rem)',
-                      fontWeight: 700,
-                      color: '#ffffff',
-                      lineHeight: 1.25,
-                      margin: 0,
-                      letterSpacing: '-0.01em',
-                      whiteSpace: 'normal',
-                      wordBreak: 'break-word',
-                      textShadow: '0 2px 10px rgba(0, 0, 0, 0.75)'
-                    }}
-                  >
-                    {banner.title}
-                  </h1>
-                </div>
-              )}
+                <h1
+                  className={`hero-title ${index === currentSlide ? 'hero-animate-title' : ''}`}
+                  style={{
+                    fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
+                    fontSize: 'clamp(1.5rem, 3.2vw, 2.35rem)',
+                    fontWeight: 700,
+                    color: '#ffffff',
+                    lineHeight: 1.25,
+                    margin: 0,
+                    letterSpacing: '-0.01em',
+                    whiteSpace: 'normal',
+                    wordBreak: 'break-word',
+                    textShadow: '0 2px 10px rgba(0, 0, 0, 0.75)'
+                  }}
+                >
+                  {banner.title}
+                </h1>
+              </div>
 
               {/* BOTTOM SECTION: Subtitle + Button + Counter */}
               <div style={{ width: '100%', marginTop: 'auto', marginBottom: '0.5rem' }}>
 
-                {/* Paragraph Subtitle (Hidden on Slider 4) */}
-                {index !== 3 && banner.subtitle && (
+                {/* Paragraph Subtitle */}
+                {banner.subtitle && (
                   <p
-                    className="hero-subtitle"
+                    className={`hero-subtitle ${index === currentSlide ? 'hero-animate-subtitle' : ''}`}
                     style={{
                       fontSize: '1.08rem',
                       color: '#F1F5F9',
                       lineHeight: 1.6,
                       marginBottom: '1.5rem',
                       fontWeight: 400,
-                      maxWidth: '720px',
-                      textShadow: '0 2px 8px rgba(0, 0, 0, 0.75)'
+                      maxWidth: index === 0 ? '520px' : '720px',
+                      textShadow: '0 2px 10px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 0, 0, 0.6)'
                     }}
                   >
                     {banner.subtitle}
@@ -178,8 +257,8 @@ export const HeroSlider = ({ banners = [] }) => {
                     width: '100%'
                   }}
                 >
-                  {/* 1. CTA Button on RIGHT (Hidden on Slider 4) */}
-                  {index !== 3 && (
+                  {/* 1. CTA Button on RIGHT */}
+                  <div className={index === currentSlide ? 'hero-animate-button' : ''}>
                     <a
                       href={banner.button_link || '#services'}
                       className="btn-ncs-primary"
@@ -201,7 +280,7 @@ export const HeroSlider = ({ banners = [] }) => {
                       <span>{banner.button_text || 'Explore Solutions'}</span>
                       <ArrowRight size={18} />
                     </a>
-                  )}
+                  </div>
 
                   {/* 2. Slider Number Counter (< • ━ 01 / 04 >) */}
                   {banners.length > 1 && (

@@ -3,8 +3,10 @@ import axios from 'axios';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { ArrowLeft, Building2, Share2, Mail, MessageCircle, Globe } from 'lucide-react';
+import { getApiBaseUrl } from '../api/config';
+import { DEFAULT_JOBS, getStoredJobs } from '../data/defaultJobs';
 
-export const JobDetailPage = ({ jobId, onBackToCareers, onApplyJob, onSelectOtherJob, onNavHome, onOpenContactPage, onNavAdmin, isAdminLoggedIn, onAdminLogout }) => {
+export const JobDetailPage = ({ jobId, onBackToCareers, onApplyJob, onSelectOtherJob, onNavHome, onNavServices, onNavAbout, onNavPartners, onNavInsights, onNavChallengeUs, onOpenContactPage, onNavAdmin, isAdminLoggedIn, onAdminLogout }) => {
   const [job, setJob] = useState(null);
   const [otherJobs, setOtherJobs] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -13,13 +15,20 @@ export const JobDetailPage = ({ jobId, onBackToCareers, onApplyJob, onSelectOthe
     const fetchJobDetail = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/jobs/${jobId}`);
+        const apiBase = getApiBaseUrl();
+        const response = await axios.get(`${apiBase}/api/jobs/${jobId}`, { timeout: 5000 });
         if (response.data && response.data.job) {
           setJob(response.data.job);
           setOtherJobs(response.data.otherJobs || []);
+        } else {
+          throw new Error('Job not found in API');
         }
-      } catch (error) {
-        console.error('Error fetching job details:', error);
+      } catch (err) {
+        console.warn('Backend API unavailable, using stored job details:', err);
+        const stored = getStoredJobs();
+        const found = stored.find((j) => String(j.id) === String(jobId)) || stored[0];
+        setJob(found);
+        setOtherJobs(stored.filter((j) => String(j.id) !== String(jobId)));
       } finally {
         setLoading(false);
       }
@@ -27,14 +36,13 @@ export const JobDetailPage = ({ jobId, onBackToCareers, onApplyJob, onSelectOthe
 
     if (jobId) {
       fetchJobDetail();
-      window.scrollTo(0, 0);
     }
   }, [jobId]);
 
   if (loading) {
     return (
       <div style={{ backgroundColor: '#f8fafc', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-        <Navbar onNavHome={onNavHome} onNavCareers={onBackToCareers} onOpenContactPage={onOpenContactPage} />
+        <Navbar onNavHome={onNavHome} onNavServices={onNavServices} onNavAbout={onNavAbout} onNavPartners={onNavPartners} onNavInsights={onNavInsights} onNavCareers={onBackToCareers} onOpenContactPage={onOpenContactPage} />
         <div style={{ padding: '6rem 1rem', textAlign: 'center' }}>
           <div style={{ display: 'inline-block', width: '32px', height: '32px', border: '4px solid #004f6e', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 1s linear infinite' }}></div>
           <p style={{ marginTop: '0.5rem', color: '#475569' }}>Loading job details...</p>
@@ -47,7 +55,7 @@ export const JobDetailPage = ({ jobId, onBackToCareers, onApplyJob, onSelectOthe
   if (!job) {
     return (
       <div style={{ backgroundColor: '#f8fafc', minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-        <Navbar onNavHome={onNavHome} onNavCareers={onBackToCareers} onOpenContactPage={onOpenContactPage} />
+        <Navbar onNavHome={onNavHome} onNavServices={onNavServices} onNavAbout={onNavAbout} onNavPartners={onNavPartners} onNavInsights={onNavInsights} onNavCareers={onBackToCareers} onOpenContactPage={onOpenContactPage} />
         <div style={{ maxWidth: '800px', margin: '5rem auto', textAlign: 'center', padding: '0 1rem' }}>
           <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#1e293b', marginBottom: '0.5rem' }}>Job Not Found</h2>
           <p style={{ color: '#64748b', marginBottom: '1.5rem' }}>The requested position may have been closed or removed.</p>
@@ -68,6 +76,11 @@ export const JobDetailPage = ({ jobId, onBackToCareers, onApplyJob, onSelectOthe
       {/* Navbar */}
       <Navbar
         onNavHome={onNavHome}
+        onNavServices={onNavServices}
+        onNavAbout={onNavAbout}
+        onNavPartners={onNavPartners}
+        onNavInsights={onNavInsights}
+        onNavChallengeUs={onNavChallengeUs}
         onNavCareers={onBackToCareers}
         onOpenContactPage={onOpenContactPage}
         onNavAdmin={onNavAdmin}
@@ -85,18 +98,18 @@ export const JobDetailPage = ({ jobId, onBackToCareers, onApplyJob, onSelectOthe
           <span>Back to Career Opportunities</span>
         </button>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '2.5rem' }}>
+        <div className="vebhor-job-detail-grid">
           {/* Main Left Content Column */}
-          <div style={{ gridColumn: 'span 8', background: '#ffffff', padding: '2.5rem', borderRadius: '8px', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
-            {/* NCS Brand Logo */}
+          <div className="vebhor-job-main-col" style={{ background: '#ffffff', padding: '2.5rem', borderRadius: '8px', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+            {/* Vebhor Brand Logo */}
             <div style={{ marginBottom: '1.5rem' }}>
               <span style={{ fontFamily: "'Outfit', sans-serif", fontSize: '2.2rem', fontWeight: 900, color: '#0f172a' }}>
-                ncs<span style={{ color: '#00b4d8' }}>//</span>
+                vebhor<span style={{ color: '#55E6C1' }}>//</span>
               </span>
             </div>
 
             {/* Job Title */}
-            <h1 style={{ fontSize: '2.2rem', fontWeight: 800, color: '#0f172a', marginBottom: '1rem', lineHeight: 1.25 }}>
+            <h1 style={{ fontSize: '2.2rem', fontWeight: 800, color: '#0f172a', marginBottom: '1rem', lineHeight: 1.25, wordBreak: 'break-word' }}>
               {job.title}
             </h1>
 
@@ -117,7 +130,7 @@ export const JobDetailPage = ({ jobId, onBackToCareers, onApplyJob, onSelectOthe
               <h2 style={{ fontSize: '1.15rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.75rem' }}>Company Description</h2>
               <p style={{ color: '#334155', lineHeight: 1.7, fontSize: '0.95rem', whiteSpace: 'pre-line' }}>
                 {job.company_description ||
-                  'At NCS Australia, we believe in doing technology services better. Our commitment to quality, focus on people, and willingness to challenge traditional thinking set us apart. Our team brings this belief to life by partnering with our clients and communities to make tomorrow together.'}
+                  'At Vebhor, we believe in doing technology services better. Our commitment to quality, focus on people, and willingness to challenge traditional thinking set us apart. Our team brings this belief to life by partnering with our clients and communities to make tomorrow together.'}
               </p>
             </div>
 
@@ -150,8 +163,8 @@ export const JobDetailPage = ({ jobId, onBackToCareers, onApplyJob, onSelectOthe
             )}
           </div>
 
-          {/* Right Sidebar Column (Matching Screenshot 2 Sidebar Layout) */}
-          <div style={{ gridColumn: 'span 4' }}>
+          {/* Right Sidebar Column */}
+          <div className="vebhor-job-side-col">
             <div style={{ background: '#ffffff', padding: '1.75rem', borderRadius: '8px', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', position: 'sticky', top: '100px' }}>
               {/* Primary Action Button: "I'm interested" */}
               <button
@@ -216,7 +229,7 @@ export const JobDetailPage = ({ jobId, onBackToCareers, onApplyJob, onSelectOthe
               {/* Other Jobs At NCS Australia */}
               <div>
                 <h3 style={{ fontSize: '0.75rem', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '1rem' }}>
-                  OTHER JOBS AT NCS AUSTRALIA
+                  OTHER JOBS AT VEBHOR
                 </h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1rem' }}>
                   {otherJobs.map((other) => (

@@ -87,7 +87,7 @@ export const ContactSection = ({
         position: 'relative',
         padding: '5.5rem 1.5rem 6rem 1.5rem',
         fontFamily: "var(--bs-body-font-family), 'Plus Jakarta Sans', sans-serif",
-        backgroundColor: '#060A14',
+        // backgroundColor: '#060A14',
         overflow: 'hidden',
         borderTop: '1px solid rgba(255, 255, 255, 0.06)'
       }}
@@ -133,7 +133,7 @@ export const ContactSection = ({
             left: '10%',
             right: '10%',
             height: '3px',
-            background: 'linear-gradient(90deg, transparent 0%, #7916A8 30%, #38BDF8 70%, transparent 100%)',
+            background: 'linear-gradient(90deg, transparent 0%, #6C5CE7 30%, #55E6C1 70%, transparent 100%)',
             borderRadius: '3px'
           }}
         />
@@ -154,12 +154,12 @@ export const ContactSection = ({
             Get answers to your{' '}
             <span
               style={{
-                backgroundColor: '#7916A8',
+                backgroundColor: '#6C5CE7',
                 color: '#ffffff',
                 padding: '0.2rem 1.15rem',
                 borderRadius: '14px 22px 22px 14px',
                 display: 'inline-block',
-                boxShadow: '0 4px 18px rgba(121, 22, 168, 0.45)'
+                boxShadow: '0 4px 18px rgba(108, 92, 231, 0.45)'
               }}
             >
               questions

@@ -71,6 +71,7 @@ export const AboutSection = () => {
       <div
         style={{
           maxWidth: '1120px',
+          width: '100%',
           margin: '0 auto',
           position: 'relative',
           zIndex: 3,
@@ -78,11 +79,11 @@ export const AboutSection = () => {
           backdropFilter: 'blur(16px)',
           WebkitBackdropFilter: 'blur(16px)',
           border: '1px solid rgba(255, 255, 255, 0.12)',
-          borderRadius: '28px',
-          padding: '3.5rem 3.5rem',
-          boxShadow: '0 25px 60px rgba(0, 0, 0, 0.55), 0 0 40px rgba(121, 22, 168, 0.25)',
+          borderRadius: '24px',
+          padding: 'clamp(1.75rem, 4vw, 3.5rem)',
+          boxShadow: '0 25px 60px rgba(0, 0, 0, 0.55), 0 0 40px rgba(108, 92, 231, 0.25)',
           opacity: isVisible ? 1 : 0,
-          transform: isVisible ? 'translate3d(0, 0, 0) scale(1)' : 'translate3d(0, 40px, 0) scale(0.97)',
+          transform: isVisible ? 'translate3d(0, 0, 0)' : 'translate3d(0, 25px, 0)',
           transition: 'opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)'
         }}
       >
@@ -94,33 +95,33 @@ export const AboutSection = () => {
             left: '10%',
             right: '10%',
             height: '3px',
-            background: 'linear-gradient(90deg, transparent 0%, #7916A8 30%, #38BDF8 70%, transparent 100%)',
+            background: 'linear-gradient(90deg, transparent 0%, #6C5CE7 30%, #55E6C1 70%, transparent 100%)',
             borderRadius: '3px'
           }}
         />
 
-        {/* Center-Aligned About Us Eyebrow Tag Fully in Purple Capsule */}
+        {/* Center-Aligned About Us Eyebrow Tag Fully in Royal Purple Capsule */}
         <div
           style={{
             textAlign: 'center',
-            marginBottom: '2rem',
+            marginBottom: '1.5rem',
             opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateY(0)' : 'translateY(-20px)',
+            transform: isVisible ? 'translateY(0)' : 'translateY(-15px)',
             transition: 'opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.1s, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.1s'
           }}
         >
-          <div style={{ display: 'inline-flex', alignItems: 'center', fontSize: '0.95rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-            <span style={{ backgroundColor: '#7916A8', color: '#ffffff', padding: '0.4rem 1.6rem', borderRadius: '18px 24px 24px 18px', boxShadow: '0 4px 20px rgba(121, 22, 168, 0.5)' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', fontSize: '0.9rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+            <span style={{ backgroundColor: '#6C5CE7', color: '#ffffff', padding: '0.4rem 1.6rem', borderRadius: '18px 24px 24px 18px', boxShadow: '0 4px 20px rgba(108, 92, 231, 0.5)' }}>
               About Us
             </span>
           </div>
         </div>
 
-        {/* Paragraph Narrative with Slide-in & High-Contrast Cyber Glow Highlights */}
+        {/* Paragraph Narrative with High-Contrast Cyber Glow Highlights */}
         <p
           style={{
             fontFamily: "var(--bs-body-font-family), 'Plus Jakarta Sans', sans-serif",
-            fontSize: 'clamp(1.1rem, 1.8vw, 1.35rem)',
+            fontSize: 'clamp(1rem, 1.6vw, 1.3rem)',
             fontWeight: 400,
             color: '#e2e8f0',
             lineHeight: 1.75,
@@ -129,7 +130,7 @@ export const AboutSection = () => {
             letterSpacing: '-0.01em',
             textShadow: '0 2px 10px rgba(0, 0, 0, 0.8)',
             opacity: isVisible ? 1 : 0,
-            transform: isVisible ? 'translateX(0)' : 'translateX(-35px)',
+            transform: isVisible ? 'translateY(0)' : 'translateY(15px)',
             transition: 'opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s, transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s'
           }}
         >

@@ -59,16 +59,6 @@ const DEFAULT_HOMEPAGE_DATA = {
       image_url: '/images/hero_cyber_network.jpg',
       button_text: 'Explore Solutions',
       button_link: '#services'
-    },
-    {
-      id: 4,
-      tag: 'QUALITY & AUTOMATION',
-      title: 'Quality Engineering that powers your growth.',
-      subtitle: 'Accelerating digital speed, intelligent automation, and reliable enterprise delivery across global markets.',
-      image_url: '/images/slider_2.jpg',
-      video_url: '/slider_2.mp4',
-      button_text: 'Explore Quality Solutions',
-      button_link: '#services'
     }
   ],
   services: [

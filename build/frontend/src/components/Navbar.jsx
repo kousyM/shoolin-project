@@ -1,10 +1,27 @@
-import React, { useState } from 'react';
-import { Menu, X, Globe, UserCheck, ArrowRight } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Menu, X, Search, ArrowRight, ChevronDown, ChevronUp, Globe, Mail, Share2 } from 'lucide-react';
 
-export const Navbar = ({ onOpenContactPage, onNavHome, onNavAbout, onNavCareers, onNavPartners, onNavInsights, onNavAdmin, isAdminLoggedIn, onAdminLogout }) => {
+export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNavAbout, onNavCareers, onNavPartners, onNavInsights, onNavServices, onNavChallengeUs, onNavAdmin, isAdminLoggedIn, onAdminLogout }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
   const [careersDropdownOpen, setCareersDropdownOpen] = useState(false);
+  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
+
+  // Mobile Accordion States
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(true);
+  const [mobileAboutOpen, setMobileAboutOpen] = useState(false);
+  const [mobileCareersOpen, setMobileCareersOpen] = useState(false);
+
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
 
   const handleAboutSubnavClick = (e, tabName) => {
     if (e) e.preventDefault();
@@ -24,363 +41,400 @@ export const Navbar = ({ onOpenContactPage, onNavHome, onNavAbout, onNavCareers,
     }
   };
 
+  const handleServicesSubnavClick = (e, tabName = 'overview') => {
+    if (e) e.preventDefault();
+    setServicesDropdownOpen(false);
+    setMobileMenuOpen(false);
+    if (onNavServices) {
+      onNavServices(tabName);
+    }
+  };
+
   return (
-    <nav className="ncs-navbar" style={{ position: 'relative', zIndex: 100 }}>
-      <div className="nav-container">
-        {/* Brand Logo */}
-        <a
-          href="#"
-          onClick={(e) => {
-            e.preventDefault();
-            if (onNavHome) onNavHome();
-          }}
-          className="flex items-center gap-2 text-decoration-none"
-        >
-          <span className="logo-text">
-            NCS<span className="logo-accent">//</span>
-          </span>
-        </a>
+    <>
+      <nav className="ncs-navbar" style={{ position: 'sticky', top: 0, zIndex: 100, backgroundColor: '#060D1F', borderBottom: '1px solid rgba(255, 255, 255, 0.08)', boxShadow: '0 8px 24px rgba(0,0,0,0.4)' }}>
+        <div className="nav-container" style={{ maxWidth: '1360px', margin: '0 auto', padding: '0.85rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
 
-        {/* Desktop Navigation Links */}
-        <ul className="nav-links">
-          {/* 1. About Us with Hover Mega Menu Dropdown */}
-          <li
-            style={{ position: 'relative' }}
-            onMouseEnter={() => setAboutDropdownOpen(true)}
-            onMouseLeave={() => setAboutDropdownOpen(false)}
+          {/* 1. BRAND LOGO (User's Logo Icon + Clean Vebhor Text, NO bottom tagline) */}
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              setMobileMenuOpen(false);
+              if (onNavHome) onNavHome();
+            }}
+            style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.65rem' }}
           >
-            <a
-              href="#code-of-conduct"
-              onClick={(e) => handleAboutSubnavClick(e, 'code-of-conduct')}
-              className="nav-link"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.2rem' }}
-            >
-              About us
-            </a>
-
-            {/* Hover Mega Menu Dropdown Box for About Us */}
-            {aboutDropdownOpen && (
-              <div
-                style={{
-                  position: 'absolute',
-                  top: '100%',
-                  left: '-80px',
-                  width: '720px',
-                  backgroundColor: '#002b49',
-                  color: '#ffffff',
-                  boxShadow: '0 20px 40px rgba(0,0,0,0.35)',
-                  borderRadius: '0 0 8px 8px',
-                  padding: '2rem 2.5rem',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '1.5rem',
-                  animation: 'fadeIn 0.2s ease',
-                  borderTop: '3px solid #00b4d8',
-                  zIndex: 9999
-                }}
-              >
-                <div>
-                  <button
-                    onClick={(e) => handleAboutSubnavClick(e, 'code-of-conduct')}
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '0.4rem',
-                      color: '#ffffff',
-                      fontSize: '1.25rem',
-                      fontWeight: 800,
-                      background: 'none',
-                      border: 'none',
-                      cursor: 'pointer',
-                      padding: 0
-                    }}
-                  >
-                    <span>Overview</span>
-                    <ArrowRight size={18} />
-                  </button>
-                </div>
-
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: '1.2rem', paddingTop: '0.75rem', borderTop: '1px solid rgba(255,255,255,0.15)' }}>
-                  <div>
-                    <button
-                      onClick={(e) => handleAboutSubnavClick(e, 'code-of-conduct')}
-                      style={{ color: '#ffffff', fontSize: '0.88rem', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                    >
-                      Code of Conduct
-                    </button>
-                  </div>
-                  <div>
-                    <button
-                      onClick={(e) => handleAboutSubnavClick(e, 'leadership')}
-                      style={{ color: '#ffffff', fontSize: '0.88rem', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                    >
-                      Leadership
-                    </button>
-                  </div>
-                  <div>
-                    <button
-                      onClick={(e) => handleAboutSubnavClick(e, 'milestones')}
-                      style={{ color: '#ffffff', fontSize: '0.88rem', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                    >
-                      Milestones
-                    </button>
-                  </div>
-                  <div>
-                    <button
-                      onClick={(e) => handleAboutSubnavClick(e, 'newsroom')}
-                      style={{ color: '#ffffff', fontSize: '0.88rem', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                    >
-                      Newsroom
-                    </button>
-                  </div>
-                  <div>
-                    <button
-                      onClick={(e) => handleAboutSubnavClick(e, 'privacy-policy')}
-                      style={{ color: '#ffffff', fontSize: '0.88rem', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                    >
-                      Privacy Policy
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )}
-          </li>
-
-          <li>
-            <a href="#services" onClick={(e) => { e.preventDefault(); onNavHome(); }} className="nav-link">Our services</a>
-          </li>
-          <li>
-            <a href="#case-studies" onClick={(e) => { e.preventDefault(); onNavHome(); }} className="nav-link">Case studies</a>
-          </li>
-          <li>
-            <a
-              href="#insights"
-              onClick={(e) => {
-                e.preventDefault();
-                if (onNavInsights) onNavInsights();
+            <img
+              src="/logo_icon.png"
+              alt="Vebhor"
+              style={{ height: '34px', width: 'auto', objectFit: 'contain' }}
+              onError={(e) => { e.currentTarget.style.display = 'none'; }}
+            />
+            <span
+              className="logo-text"
+              style={{
+                fontFamily: "'Cinzel', 'Outfit', 'Plus Jakarta Sans', sans-serif",
+                fontSize: '1.75rem',
+                fontWeight: 800,
+                letterSpacing: '0.02em',
+                color: '#ffffff'
               }}
-              className="nav-link"
             >
-              Insights
-            </a>
-          </li>
+              vebhor
+            </span>
+          </a>
 
-          {/* 2. Partners Menu Link */}
-          <li>
-            <a
-              href="#partners"
-              onClick={(e) => {
-                e.preventDefault();
-                if (onNavPartners) onNavPartners();
-              }}
-              className="nav-link"
-            >
-              Partners
-            </a>
-          </li>
-
-          {/* 3. Careers with Hover Mega Menu Dropdown */}
-          <li
-            style={{ position: 'relative' }}
-            onMouseEnter={() => setCareersDropdownOpen(true)}
-            onMouseLeave={() => setCareersDropdownOpen(false)}
-          >
-            <a
-              href="#career-stories"
-              onClick={(e) => handleCareersSubnavClick(e, 'career-stories')}
-              className="nav-link nav-link-careers"
-              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.2rem' }}
-            >
-              Careers
-            </a>
-
-            {/* Hover Mega Menu Dropdown Box for Careers */}
-            {careersDropdownOpen && (
-              <div
-                style={{
-                  position: 'absolute',
-                  top: '100%',
-                  left: '-120px',
-                  width: '560px',
-                  backgroundColor: '#002b49',
-                  color: '#ffffff',
-                  boxShadow: '0 20px 40px rgba(0,0,0,0.35)',
-                  borderRadius: '0 0 8px 8px',
-                  padding: '2rem 2.5rem',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '1.5rem',
-                  animation: 'fadeIn 0.2s ease',
-                  borderTop: '3px solid #00b4d8',
-                  zIndex: 9999
+          {/* 2. ORIGINAL DESKTOP NAVIGATION LINKS WITH HOVER & ACTIVE UNDERLINE */}
+          <ul className="nav-links" style={{ display: 'flex', gap: '2rem', alignItems: 'center', listStyle: 'none', margin: 0, padding: 0 }}>
+            {/* About us */}
+            <li>
+              <a
+                href="#about"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (onNavAbout) onNavAbout('code-of-conduct');
                 }}
+                className={`nav-link-item ${activePage === 'about' ? 'active' : ''}`}
               >
-                <div>
-                  <button
-                    onClick={(e) => handleCareersSubnavClick(e, 'career-stories')}
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '0.4rem',
-                      color: '#ffffff',
-                      fontSize: '1.25rem',
-                      fontWeight: 800,
-                      background: 'none',
-                      border: 'none',
-                      cursor: 'pointer',
-                      padding: 0
-                    }}
-                  >
-                    <span>Overview</span>
-                    <ArrowRight size={18} />
-                  </button>
-                </div>
+                About us
+              </a>
+            </li>
 
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem', paddingTop: '0.75rem', borderTop: '1px solid rgba(255,255,255,0.15)' }}>
-                  <div>
-                    <button
-                      onClick={(e) => handleCareersSubnavClick(e, 'career-stories')}
-                      style={{ color: '#ffffff', fontSize: '0.88rem', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                    >
-                      Career Stories
-                    </button>
-                  </div>
-                  <div>
-                    <button
-                      onClick={(e) => handleCareersSubnavClick(e, 'job-opportunities')}
-                      style={{ color: '#ffffff', fontSize: '0.88rem', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                    >
-                      Job Opportunities
-                    </button>
-                  </div>
-                  <div>
-                    <button
-                      onClick={(e) => handleCareersSubnavClick(e, 'life-at-ncs')}
-                      style={{ color: '#ffffff', fontSize: '0.88rem', fontWeight: 600, background: 'none', border: 'none', cursor: 'pointer', textAlign: 'left', padding: 0 }}
-                    >
-                      Life at NCS
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )}
-          </li>
+            {/* Services */}
+            <li>
+              <a
+                href="#services"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (onNavServices) onNavServices('overview');
+                }}
+                className={`nav-link-item ${activePage === 'services' || activePage === 'services-page' ? 'active' : ''}`}
+              >
+                Services
+              </a>
+            </li>
 
-          <li>
-            <a href="#contact" onClick={(e) => { e.preventDefault(); onOpenContactPage(); }} className="nav-link">Contact us</a>
-          </li>
-        </ul>
+            {/* Partners */}
+            <li>
+              <a
+                href="#partners"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (onNavPartners) onNavPartners();
+                }}
+                className={`nav-link-item ${activePage === 'partners' ? 'active' : ''}`}
+              >
+                Partners
+              </a>
+            </li>
 
-        {/* Right Country Badge & Admin Indicator */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.35rem', color: '#cbd5e1', fontSize: '0.75rem', fontWeight: 600, padding: '0.25rem 0.65rem', backgroundColor: 'rgba(255, 255, 255, 0.08)', borderRadius: '20px', border: '1px solid rgba(255, 255, 255, 0.15)' }}>
-            <Globe size={13} style={{ color: '#38bdf8' }} />
-            <span>EN-AU</span>
+            {/* Challenge us */}
+            <li>
+              <a
+                href="#challenge-us"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (onNavChallengeUs) onNavChallengeUs();
+                }}
+                className={`nav-link-item ${activePage === 'challenge-us' ? 'active' : ''}`}
+              >
+                Challenge us
+              </a>
+            </li>
+
+            {/* Careers */}
+            <li>
+              <a
+                href="#job-opportunities"
+                onClick={(e) => handleCareersSubnavClick(e, 'job-opportunities')}
+                className={`nav-link-item ${activePage === 'careers' ? 'active' : ''}`}
+              >
+                Careers
+              </a>
+            </li>
+
+            {/* Contact us */}
+            <li>
+              <a
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (onOpenContactPage) onOpenContactPage();
+                }}
+                className={`nav-link-item ${activePage === 'contact' ? 'active' : ''}`}
+              >
+                Contact us
+              </a>
+            </li>
+          </ul>
+
+          {/* 3. RIGHT ACTION CONTROLS */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+
+            {/* Search Icon Circle Button (Desktop only - Strictly Hidden on Mobile) */}
+            <button
+              className="nav-search-btn desktop-only-action"
+              onClick={() => {
+                if (onNavServices) onNavServices('overview');
+              }}
+              aria-label="Search"
+            >
+              <Search size={18} />
+            </button>
+
+            {/* Get In Touch Pill Button (Desktop only - Strictly Hidden on Mobile) */}
+            <button
+              onClick={() => {
+                if (onOpenContactPage) onOpenContactPage();
+              }}
+              className="navbar-touch-btn desktop-only-action"
+              style={{
+                alignItems: 'center',
+                gap: '0.5rem',
+                padding: '0.62rem 1.4rem',
+                background: 'linear-gradient(135deg, #10B981 0%, #06B6D4 60%, #3B82F6 100%)',
+                color: '#ffffff',
+                border: 'none',
+                borderRadius: '50px',
+                fontSize: '0.92rem',
+                fontWeight: 700,
+                cursor: 'pointer',
+                boxShadow: '0 4px 18px rgba(16, 185, 129, 0.35)',
+                transition: 'all 0.25s ease'
+              }}
+            >
+              <span>Get In Touch</span>
+              <ArrowRight size={16} />
+            </button>
+
+            {/* Mobile Hamburger Toggle (3 Lines) - Prominent, Tapable & Centered */}
+            <button
+              className="mobile-nav-toggle"
+              onClick={() => setMobileMenuOpen(true)}
+              aria-label="Open navigation menu"
+            >
+              <Menu size={22} color="#ffffff" strokeWidth={2.4} />
+            </button>
           </div>
+        </div>
+      </nav>
 
-          {isAdminLoggedIn && (
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+      {/* FULL-HEIGHT LEFT-SIDE MODAL DRAWER (MATCHING SCREENSHOT 2) */}
+      {mobileMenuOpen && (
+        <>
+          {/* Dark Backdrop Overlay */}
+          <div
+            className="mobile-backdrop"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+
+          {/* 100vh Left Drawer Container */}
+          <div className="mobile-drawer-left" style={{ backgroundColor: '#060D1F' }}>
+            {/* Drawer Top Header (Logo + Circle Close X) */}
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+              <a
+                href="#"
+                onClick={(e) => {
+                  e.preventDefault();
+                  setMobileMenuOpen(false);
+                  if (onNavHome) onNavHome();
+                }}
+                style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.65rem' }}
+              >
+                <img
+                  src="/logo_icon.png"
+                  alt="Vebhor"
+                  style={{ height: '30px', width: 'auto', objectFit: 'contain' }}
+                  onError={(e) => { e.currentTarget.style.display = 'none'; }}
+                />
+                <span style={{ fontFamily: "'Cinzel', 'Outfit', sans-serif", fontWeight: 800, fontSize: '1.5rem', letterSpacing: '0.02em', color: '#ffffff' }}>
+                  vebhor
+                </span>
+              </a>
+
+              {/* Circular Close (X) Button matching Screenshot 2 */}
               <button
-                onClick={onNavAdmin}
+                onClick={() => setMobileMenuOpen(false)}
                 style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.3rem',
-                  backgroundColor: '#0284c7',
+                  width: '42px',
+                  height: '42px',
+                  borderRadius: '50%',
+                  backgroundColor: 'rgba(255, 255, 255, 0.12)',
+                  border: '1px solid rgba(255, 255, 255, 0.2)',
                   color: '#ffffff',
-                  fontWeight: 700,
-                  fontSize: '0.78rem',
-                  padding: '0.35rem 0.75rem',
-                  borderRadius: '4px',
-                  border: 'none',
-                  cursor: 'pointer'
-                }}
-              >
-                <UserCheck size={13} />
-                <span>Admin Dashboard</span>
-              </button>
-              <button
-                onClick={onAdminLogout}
-                style={{
-                  color: '#94a3b8',
-                  fontSize: '0.75rem',
-                  background: 'none',
-                  border: 'none',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                   cursor: 'pointer',
-                  textDecoration: 'underline'
+                  transition: 'background 0.2s ease'
                 }}
+                aria-label="Close menu"
               >
-                Logout
+                <X size={20} />
               </button>
             </div>
-          )}
 
-          {/* Mobile Hamburger Button */}
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="mobile-nav-toggle lg:hidden text-white"
-            aria-label="Toggle Menu"
-          >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-      </div>
+            {/* Scrollable Navigation Items */}
+            <div style={{ flex: 1, overflowY: 'auto', paddingRight: '0.5rem' }}>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
+                {/* 0. Home Link */}
+                <li style={{ borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '0.85rem' }}>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setMobileMenuOpen(false);
+                      if (onNavHome) onNavHome();
+                    }}
+                    style={{ color: '#ffffff', background: 'none', border: 'none', fontSize: '1.35rem', fontWeight: 800, cursor: 'pointer', textAlign: 'left', padding: 0, width: '100%' }}
+                  >
+                    Home
+                  </button>
+                </li>
 
-      {/* Mobile Navigation Drawer */}
-      <div className={`mobile-drawer ${mobileMenuOpen ? 'open' : ''}`}>
-        <div className="flex justify-between items-center mb-6">
-          <span className="logo-text">
-            NCS<span className="logo-accent">//</span>
-          </span>
-          <button onClick={() => setMobileMenuOpen(false)} className="text-white">
-            <X size={24} />
-          </button>
-        </div>
+                {/* About us Link */}
+                <li style={{ borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '0.85rem' }}>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setMobileMenuOpen(false);
+                      if (onNavAbout) onNavAbout('code-of-conduct');
+                    }}
+                    style={{ color: '#ffffff', background: 'none', border: 'none', fontSize: '1.35rem', fontWeight: 800, cursor: 'pointer', textAlign: 'left', padding: 0, width: '100%' }}
+                  >
+                    About us
+                  </button>
+                </li>
 
-        <ul className="flex flex-col gap-4 list-none p-0">
-          <li>
-            <button onClick={(e) => handleAboutSubnavClick(e, 'code-of-conduct')} className="text-white text-lg font-medium hover:text-cyan-400 border-none bg-none p-0">
-              About us
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                if (onNavInsights) onNavInsights();
-              }}
-              className="text-white text-lg font-medium hover:text-cyan-400 border-none bg-none p-0"
-            >
-              Insights
-            </button>
-          </li>
-          <li>
-            <button
-              onClick={() => {
-                setMobileMenuOpen(false);
-                if (onNavPartners) onNavPartners();
-              }}
-              className="text-white text-lg font-medium hover:text-cyan-400 border-none bg-none p-0"
-            >
-              Partners
-            </button>
-          </li>
-          <li>
-            <button onClick={(e) => handleCareersSubnavClick(e, 'career-stories')} className="text-white text-lg font-medium hover:text-cyan-400 border-none bg-none p-0">
-              Careers
-            </button>
-            <div className="flex flex-col gap-2 pl-4 pt-2 text-sm text-slate-300">
-              <button onClick={(e) => handleCareersSubnavClick(e, 'career-stories')} className="text-left bg-none border-none p-0 text-slate-300">Career Stories</button>
-              <button onClick={(e) => handleCareersSubnavClick(e, 'job-opportunities')} className="text-left bg-none border-none p-0 text-slate-300">Job Opportunities</button>
-              <button onClick={(e) => handleCareersSubnavClick(e, 'life-at-ncs')} className="text-left bg-none border-none p-0 text-slate-300">Life at NCS</button>
+                {/* Services Link */}
+                <li style={{ borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '0.85rem' }}>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setMobileMenuOpen(false);
+                      if (onNavServices) onNavServices('overview');
+                    }}
+                    style={{ color: '#ffffff', background: 'none', border: 'none', fontSize: '1.35rem', fontWeight: 800, cursor: 'pointer', textAlign: 'left', padding: 0, width: '100%' }}
+                  >
+                    Services
+                  </button>
+                </li>
+
+                {/* 4. Partners */}
+                <li style={{ borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '0.85rem' }}>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setMobileMenuOpen(false);
+                      if (onNavPartners) onNavPartners();
+                    }}
+                    style={{ color: '#ffffff', background: 'none', border: 'none', fontSize: '1.35rem', fontWeight: 800, cursor: 'pointer', textAlign: 'left', padding: 0, width: '100%' }}
+                  >
+                    Partners
+                  </button>
+                </li>
+
+                {/* 5. Careers Direct Link */}
+                <li style={{ borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '0.85rem' }}>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setMobileMenuOpen(false);
+                      handleCareersSubnavClick(e, 'job-opportunities');
+                    }}
+                    style={{ color: '#ffffff', background: 'none', border: 'none', fontSize: '1.35rem', fontWeight: 800, cursor: 'pointer', textAlign: 'left', padding: 0, width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
+                  >
+                    <span>Careers</span>
+                    <ArrowRight size={20} color="#00b4d8" />
+                  </button>
+                </li>
+
+                {/* 5b. Challenge us */}
+                <li style={{ borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '0.85rem' }}>
+                  <button
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      if (onNavChallengeUs) onNavChallengeUs();
+                    }}
+                    style={{ color: '#38bdf8', background: 'none', border: 'none', fontSize: '1.35rem', fontWeight: 800, cursor: 'pointer', textAlign: 'left', padding: 0, width: '100%' }}
+                  >
+                    Challenge us
+                  </button>
+                </li>
+
+                {/* 6. Contact us */}
+                <li style={{ borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '0.85rem' }}>
+                  <button
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      if (onOpenContactPage) onOpenContactPage();
+                    }}
+                    style={{ color: '#ffffff', background: 'none', border: 'none', fontSize: '1.35rem', fontWeight: 800, cursor: 'pointer', textAlign: 'left', padding: 0, width: '100%' }}
+                  >
+                    Contact us
+                  </button>
+                </li>
+              </ul>
+
+              {/* Prominent Mobile Get In Touch Button */}
+              <div style={{ marginTop: '1.5rem', marginBottom: '0.5rem' }}>
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    if (onOpenContactPage) onOpenContactPage();
+                  }}
+                  style={{
+                    width: '100%',
+                    padding: '0.85rem 1.25rem',
+                    background: 'linear-gradient(135deg, #10B981 0%, #06B6D4 60%, #3B82F6 100%)',
+                    color: '#ffffff',
+                    border: 'none',
+                    borderRadius: '50px',
+                    fontSize: '1rem',
+                    fontWeight: 800,
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '0.5rem',
+                    boxShadow: '0 4px 18px rgba(16, 185, 129, 0.4)'
+                  }}
+                >
+                  <span>Get In Touch</span>
+                  <ArrowRight size={18} />
+                </button>
+              </div>
             </div>
-          </li>
-          <li>
-            <a href="#contact" onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); onOpenContactPage(); }} className="text-white text-lg font-medium">Contact us</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+
+            {/* Bottom Footer Section */}
+            <div style={{ paddingTop: '1.25rem', borderTop: '1px solid rgba(255,255,255,0.12)', marginTop: '0.5rem', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+              <span style={{ fontSize: '0.82rem', color: '#94a3b8', fontWeight: 600 }}>Get in touch</span>
+              <a href="mailto:info@vebhor.com" style={{ color: '#38bdf8', fontSize: '0.92rem', textDecoration: 'none', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                <Mail size={16} />
+                <span>info@vebhor.com</span>
+              </a>
+              <span style={{ color: '#cbd5e1', fontSize: '0.85rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+                <Globe size={16} />
+                <span>Australia (AU)</span>
+              </span>
+
+              {/* Social / Contact Icons row */}
+              <div style={{ display: 'flex', gap: '0.75rem', marginTop: '0.35rem' }}>
+                <div style={{ width: '34px', height: '34px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#cbd5e1' }}>
+                  <Share2 size={15} />
+                </div>
+                <div style={{ width: '34px', height: '34px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#cbd5e1' }}>
+                  <Mail size={15} />
+                </div>
+                <div style={{ width: '34px', height: '34px', borderRadius: '50%', backgroundColor: 'rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#cbd5e1' }}>
+                  <Globe size={15} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+    </>
   );
 };
 

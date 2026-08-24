@@ -249,36 +249,92 @@ class ContentController extends Controller
      */
     public function partnerInquiry(Request $request)
     {
-        $validated = $request->validate([
-            'firstName' => 'nullable|string|max:255',
-            'lastName' => 'nullable|string|max:255',
-            'company' => 'nullable|string|max:255',
-            'email' => 'required|email|max:255',
-            'phone' => 'nullable|string|max:255',
-            'enquiry' => 'nullable|string'
-        ]);
+        // Support both Vendor Information Update and General Partner Inquiry
+        $isVendorUpdate = $request->input('type') === 'vendor_update' || $request->has('vendorName');
 
-        $firstName = $validated['firstName'] ?? '';
-        $lastName = $validated['lastName'] ?? '';
-        $fullName = trim($firstName . ' ' . $lastName);
-        if (empty($fullName)) {
-            $fullName = 'Potential Partner';
+        if ($isVendorUpdate) {
+            $validated = $request->validate([
+                'vendorName' => 'nullable|string|max:255',
+                'vendorCode' => 'nullable|string|max:255',
+                'registeredAddress' => 'nullable|string|max:500',
+                'country' => 'nullable|string|max:255',
+                'modesOfHiring' => 'nullable|array',
+                'pocName' => 'nullable|string|max:255',
+                'pocContactNumber' => 'nullable|string|max:255',
+                'pocEmail' => 'nullable|email|max:255',
+                'escalationPocName' => 'nullable|string|max:255',
+                'escalationPocEmail' => 'nullable|email|max:255',
+                'workOrderSigningEmail' => 'nullable|email|max:255',
+                'ceoFounderName' => 'nullable|string|max:255',
+                'ceoFounderEmail' => 'nullable|email|max:255',
+                'email' => 'nullable|email|max:255',
+            ]);
+
+            $vendorName = $validated['vendorName'] ?? 'Vendor Partner';
+            $vendorCode = $validated['vendorCode'] ?? 'N/A';
+            $registeredAddress = $validated['registeredAddress'] ?? 'N/A';
+            $country = $validated['country'] ?? 'N/A';
+            $modesOfHiring = isset($validated['modesOfHiring']) ? (is_array($validated['modesOfHiring']) ? implode(', ', $validated['modesOfHiring']) : $validated['modesOfHiring']) : 'N/A';
+            $pocName = $validated['pocName'] ?? 'POC';
+            $pocContactNumber = $validated['pocContactNumber'] ?? 'N/A';
+            $pocEmail = $validated['pocEmail'] ?? ($validated['email'] ?? ($validated['workOrderSigningEmail'] ?? 'vendor@vebhor.com'));
+            $escalationPocName = $validated['escalationPocName'] ?? 'N/A';
+            $escalationPocEmail = $validated['escalationPocEmail'] ?? 'N/A';
+            $workOrderSigningEmail = $validated['workOrderSigningEmail'] ?? 'N/A';
+            $ceoFounderName = $validated['ceoFounderName'] ?? 'N/A';
+            $ceoFounderEmail = $validated['ceoFounderEmail'] ?? 'N/A';
+
+            $fullName = $pocName ?: $vendorName;
+            $company = $vendorName;
+            $email = $pocEmail;
+            $phone = $pocContactNumber;
+
+            $enquiry = "Vendor Information Update Submission:\n\n" .
+                "- Vendor Name: {$vendorName}\n" .
+                "- Vendor Code: {$vendorCode}\n" .
+                "- Registered Address: {$registeredAddress}\n" .
+                "- Country: {$country}\n" .
+                "- Mode of Hiring: {$modesOfHiring}\n" .
+                "- Primary POC: {$pocName} ({$pocContactNumber}, {$pocEmail})\n" .
+                "- Escalation POC: {$escalationPocName} ({$escalationPocEmail})\n" .
+                "- Work Order Signing Authority Email: {$workOrderSigningEmail}\n" .
+                "- CEO/Founder/MD: {$ceoFounderName} ({$ceoFounderEmail})\n";
+
+            $subject = "Vendor Information Update: {$vendorName} [{$vendorCode}]";
+        } else {
+            $validated = $request->validate([
+                'firstName' => 'nullable|string|max:255',
+                'lastName' => 'nullable|string|max:255',
+                'company' => 'nullable|string|max:255',
+                'email' => 'nullable|email|max:255',
+                'pocEmail' => 'nullable|email|max:255',
+                'phone' => 'nullable|string|max:255',
+                'enquiry' => 'nullable|string'
+            ]);
+
+            $firstName = $validated['firstName'] ?? '';
+            $lastName = $validated['lastName'] ?? '';
+            $fullName = trim($firstName . ' ' . $lastName);
+            if (empty($fullName)) {
+                $fullName = 'Potential Partner';
+            }
+            $company = $validated['company'] ?? 'N/A';
+            $email = $validated['email'] ?? ($validated['pocEmail'] ?? 'partner@vebhor.com');
+            $phone = $validated['phone'] ?? 'N/A';
+            $enquiry = $validated['enquiry'] ?? 'Partner inquiry submitted.';
+            $subject = "Vebhor Partner Program - Inquiry from {$fullName} ({$company})";
         }
-        $company = $validated['company'] ?? 'N/A';
-        $email = $validated['email'];
-        $phone = $validated['phone'] ?? 'N/A';
-        $enquiry = $validated['enquiry'] ?? 'Partner inquiry submitted.';
 
         // Store in DB if Contact model exists
         try {
             Contact::create([
                 'full_name' => $fullName,
-                'first_name' => $firstName,
-                'last_name' => $lastName,
+                'first_name' => $isVendorUpdate ? $pocName : ($validated['firstName'] ?? ''),
+                'last_name' => $isVendorUpdate ? '' : ($validated['lastName'] ?? ''),
                 'email' => $email,
                 'phone' => $phone,
                 'organisation' => $company,
-                'subject' => "Partner Inquiry: {$company}",
+                'subject' => $subject,
                 'message' => $enquiry,
                 'consent' => true
             ]);
@@ -289,16 +345,9 @@ class ContentController extends Controller
         // Dispatch Email
         try {
             $adminEmail = config('mail.admin_address', 'info@vebhor.com');
-            $emailContent = "New Partner Inquiry Received:\n\n" .
-                "Full Name: {$fullName}\n" .
-                "Company: {$company}\n" .
-                "Email: {$email}\n" .
-                "Phone: {$phone}\n\n" .
-                "Enquiry / Details:\n{$enquiry}\n";
-
-            Mail::raw($emailContent, function ($mail) use ($adminEmail, $fullName, $company) {
+            Mail::raw($enquiry, function ($mail) use ($adminEmail, $fullName, $company, $subject) {
                 $mail->to($adminEmail)
-                    ->subject("Vebhor Partner Program - Inquiry from {$fullName} ({$company})");
+                    ->subject($subject);
             });
         } catch (\Exception $e) {
             Log::error('Partner inquiry email notification failed: ' . $e->getMessage());
@@ -306,7 +355,9 @@ class ContentController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Thank you for reaching out! Your partner inquiry has been received.'
+            'message' => $isVendorUpdate
+                ? 'Thank you! Your vendor information has been successfully updated and recorded.'
+                : 'Thank you for reaching out! Your partner inquiry has been received.'
         ]);
     }
 

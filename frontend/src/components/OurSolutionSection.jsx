@@ -88,7 +88,7 @@ export const OurSolutionSection = () => {
       ref={sectionRef}
       id="our-solution"
       style={{
-        backgroundColor: '#060A14',
+        // backgroundColor: '#060A14',
         padding: '5.5rem 1.5rem 6rem 1.5rem',
         fontFamily: "var(--bs-body-font-family), 'Plus Jakarta Sans', sans-serif",
         position: 'relative',
@@ -123,41 +123,41 @@ export const OurSolutionSection = () => {
             transition: 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)'
           }}
         >
-          {/* Eyebrow Tag Fully in Purple Capsule */}
-          <div style={{ display: 'inline-flex', alignItems: 'center', fontSize: '0.95rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1.25rem' }}>
-            <span style={{ backgroundColor: '#7916A8', color: '#ffffff', padding: '0.4rem 1.6rem', borderRadius: '18px 24px 24px 18px', boxShadow: '0 4px 20px rgba(121, 22, 168, 0.5)' }}>
-              Our Solutions
+          {/* Eyebrow Tag Fully in Royal Purple Capsule */}
+          <div style={{ display: 'inline-flex', alignItems: 'center', fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: '1rem' }}>
+            <span style={{ backgroundColor: '#6C5CE7', color: '#ffffff', padding: '0.3rem 1.25rem', borderRadius: '18px 24px 24px 18px', boxShadow: '0 4px 16px rgba(108, 92, 231, 0.45)' }}>
+              OUR SOLUTIONS
             </span>
           </div>
 
-          {/* Original Main Title */}
+          {/* Refined Proportional Main Title */}
           <h2
             style={{
               fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
-              fontSize: 'clamp(1.9rem, 3.5vw, 2.75rem)',
-              fontWeight: 800,
-              color: '#ffffff',
-              letterSpacing: '-0.02em',
-              marginBottom: '0.85rem',
-              lineHeight: 1.3
+              fontSize: 'clamp(1.35rem, 2.3vw, 1.85rem)',
+              fontWeight: 700,
+              color: '#0f172a',
+              letterSpacing: '-0.01em',
+              marginBottom: '0.75rem',
+              lineHeight: 1.35
             }}
           >
             Global Workforce Solutions,{' '}
             <span
               style={{
-                backgroundColor: '#7916A8',
+                backgroundColor: '#6C5CE7',
                 color: '#ffffff',
-                padding: '0.2rem 1.15rem',
-                borderRadius: '16px 24px 24px 16px',
+                padding: '0.15rem 0.95rem',
+                borderRadius: '12px 18px 18px 12px',
                 display: 'inline-block',
-                boxShadow: '0 4px 18px rgba(121, 22, 168, 0.45)'
+                boxShadow: '0 4px 14px rgba(108, 92, 231, 0.4)'
               }}
             >
               Built Around Your Business
             </span>
           </h2>
 
-          <p style={{ fontSize: '1.1rem', color: '#94a3b8', maxWidth: '820px', margin: '0 auto', lineHeight: 1.6, fontWeight: 400 }}>
+          <p style={{ fontSize: '0.98rem', color: '#475569', maxWidth: '720px', margin: '0 auto', lineHeight: 1.55, fontWeight: 400 }}>
             Hire Faster. Manage Smarter. Pay Global Teams with Confidence & Compliance.
           </p>
         </div>
