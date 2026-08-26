@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+﻿import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight } from 'lucide-react';
 
 export const GetStartedStepper = ({ onOpenContact }) => {
@@ -117,7 +117,7 @@ export const GetStartedStepper = ({ onOpenContact }) => {
             letterSpacing: '-0.02em'
           }}
         >
-          <span style={{ color: '#6C5CE7', fontWeight: 800 }}>Get started in 1 hour</span> with Vebhor’s<br />
+          <span style={{ background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontWeight: 800 }}>Get started in 1 hour</span> with Vebhor’s<br />
           <span style={{ color: '#172033' }}>Payroll & Workforce Services</span>
         </h2>
 
@@ -132,7 +132,7 @@ export const GetStartedStepper = ({ onOpenContact }) => {
               left: '12%',
               right: '12%',
               height: '4px',
-              backgroundColor: '#E9D5FF',
+              backgroundColor: '#E2E8F0',
               borderRadius: '4px',
               zIndex: 1,
               overflow: 'hidden'
@@ -150,11 +150,11 @@ export const GetStartedStepper = ({ onOpenContact }) => {
               left: '12%',
               width: `calc(${progressLineWidth} * 0.76)`,
               height: '4px',
-              background: 'linear-gradient(90deg, #6C5CE7 0%, #A855F7 50%, #38BDF8 100%)',
+              background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)',
               borderRadius: '4px',
               zIndex: 2,
               transition: 'width 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
-              boxShadow: '0 0 12px rgba(124, 58, 237, 0.6)'
+              boxShadow: '0 0 12px rgba(6, 182, 212, 0.6)'
             }}
           />
 
@@ -190,9 +190,9 @@ export const GetStartedStepper = ({ onOpenContact }) => {
                       width: '42px',
                       height: '42px',
                       borderRadius: '50%',
-                      border: isPastOrActive ? '2.5px solid #6C5CE7' : '2px solid #D8B4FE',
-                      backgroundColor: isPastOrActive ? '#6C5CE7' : '#ffffff',
-                      color: isPastOrActive ? '#ffffff' : '#6C5CE7',
+                      border: isPastOrActive ? '2.5px solid #06b6d4' : '2px solid #BAE6FD',
+                      background: isPastOrActive ? 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)' : '#ffffff',
+                      color: isPastOrActive ? '#ffffff' : '#0284c7',
                       fontWeight: 800,
                       fontSize: '1rem',
                       display: 'flex',
@@ -200,9 +200,9 @@ export const GetStartedStepper = ({ onOpenContact }) => {
                       justifyContent: 'center',
                       marginBottom: '1.5rem',
                       boxShadow: isCurrent
-                        ? '0 0 0 7px rgba(108, 92, 231, 0.25), 0 8px 24px rgba(108, 92, 231, 0.45)'
+                        ? '0 0 0 7px rgba(6, 182, 212, 0.25), 0 8px 24px rgba(0, 92, 253, 0.45)'
                         : isPastOrActive
-                        ? '0 4px 14px rgba(108, 92, 231, 0.3)'
+                        ? '0 4px 14px rgba(6, 182, 212, 0.3)'
                         : '0 2px 8px rgba(0, 0, 0, 0.04)',
                       transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
                       transform: isCurrent ? 'scale(1.18)' : 'scale(1)'
@@ -217,7 +217,7 @@ export const GetStartedStepper = ({ onOpenContact }) => {
                       fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
                       fontSize: '1.2rem',
                       fontWeight: isCurrent ? 800 : 700,
-                      color: isCurrent ? '#6C5CE7' : '#172033',
+                      color: isCurrent ? '#0284c7' : '#172033',
                       marginBottom: '0.65rem',
                       transition: 'color 0.4s ease'
                     }}
@@ -259,25 +259,23 @@ export const GetStartedStepper = ({ onOpenContact }) => {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.65rem',
-              backgroundColor: '#5842E3',
+              background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)',
               color: '#ffffff',
               fontWeight: 700,
               fontSize: '1rem',
               padding: '0.9rem 2.4rem',
               borderRadius: '8px',
               textDecoration: 'none',
-              boxShadow: '0 8px 24px rgba(88, 66, 227, 0.4)',
+              boxShadow: '0 8px 24px rgba(0, 92, 253, 0.4)',
               transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#4834D4';
               e.currentTarget.style.transform = 'translateY(-3px)';
-              e.currentTarget.style.boxShadow = '0 12px 30px rgba(88, 66, 227, 0.55)';
+              e.currentTarget.style.boxShadow = '0 12px 30px rgba(6, 182, 212, 0.55)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = '#5842E3';
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 8px 24px rgba(88, 66, 227, 0.4)';
+              e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 92, 253, 0.4)';
             }}
           >
             <span>Start Now</span>

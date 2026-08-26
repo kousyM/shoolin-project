@@ -7,6 +7,9 @@ import { DriveCareerBanner } from '../components/DriveCareerBanner';
 import { ContactSection } from '../components/ContactSection';
 import { ArrowRight, Sparkles, Layers, CheckCircle2 } from 'lucide-react';
 
+const BRAND_GRADIENT = 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)';
+const BRAND_SHADOW = '0 4px 18px rgba(0, 92, 253, 0.45)';
+
 export const ServicesPage = ({
   onNavHome,
   onNavServices,
@@ -49,33 +52,19 @@ export const ServicesPage = ({
         <section
           style={{
             position: 'relative',
-            backgroundColor: '#060A14',
-            backgroundImage: `linear-gradient(135deg, rgba(6, 10, 20, 0.94) 0%, rgba(8, 21, 47, 0.88) 100%), url('/images/hero_cyber_network.jpg')`,
+            backgroundColor: '#ffffff',
+            backgroundImage: `linear-gradient(135deg, rgba(255, 255, 255, 0.94) 0%, rgba(248, 250, 252, 0.88) 100%), url('/images/nature_banner_2.jpg?v=2026')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            color: '#ffffff',
+            color: '#0f172a',
             padding: '6.5rem 2rem 5.5rem 2rem',
             textAlign: 'left',
             overflow: 'hidden',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
+            borderBottom: '1px solid #e2e8f0'
           }}
         >
-          {/* Subtle Ambient Radial Light */}
-          <div
-            style={{
-              position: 'absolute',
-              top: '-60px',
-              left: '25%',
-              width: '700px',
-              height: '380px',
-              background: 'radial-gradient(circle, rgba(108, 92, 231, 0.22) 0%, rgba(56, 189, 248, 0.12) 50%, transparent 70%)',
-              pointerEvents: 'none',
-              filter: 'blur(50px)'
-            }}
-          />
-
           <div style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
-            
+
             {/* Tag Badge */}
             <div style={{ marginBottom: '1.25rem' }}>
               <span
@@ -85,11 +74,11 @@ export const ServicesPage = ({
                   textTransform: 'uppercase',
                   letterSpacing: '0.14em',
                   color: '#ffffff',
-                  backgroundColor: '#6C5CE7',
+                  background: BRAND_GRADIENT,
                   padding: '0.4rem 1.4rem',
                   borderRadius: '18px 24px 24px 18px',
                   display: 'inline-block',
-                  boxShadow: '0 4px 18px rgba(108, 92, 231, 0.4)'
+                  boxShadow: BRAND_SHADOW
                 }}
               >
                 OUR SERVICES & SOLUTIONS
@@ -102,7 +91,7 @@ export const ServicesPage = ({
                 fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
                 fontSize: 'clamp(2.4rem, 5vw, 3.6rem)',
                 fontWeight: 800,
-                color: '#ffffff',
+                color: '#0f172a',
                 lineHeight: 1.15,
                 marginBottom: '1.5rem',
                 maxWidth: '920px',
@@ -116,7 +105,7 @@ export const ServicesPage = ({
             <p
               style={{
                 fontSize: '1.2rem',
-                color: '#cbd5e1',
+                color: '#64748b',
                 lineHeight: 1.7,
                 maxWidth: '820px',
                 margin: '0 0 2.25rem 0'
@@ -134,7 +123,7 @@ export const ServicesPage = ({
                 }}
                 style={{
                   padding: '0.85rem 2rem',
-                  backgroundColor: '#6C5CE7',
+                  background: BRAND_GRADIENT,
                   color: '#ffffff',
                   fontSize: '0.95rem',
                   fontWeight: 700,
@@ -144,16 +133,16 @@ export const ServicesPage = ({
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.5rem',
-                  boxShadow: '0 4px 18px rgba(108, 92, 231, 0.45)',
+                  boxShadow: BRAND_SHADOW,
                   transition: 'all 0.25s ease'
                 }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 6px 22px rgba(108, 92, 231, 0.6)';
+                  e.currentTarget.style.boxShadow = '0 6px 22px rgba(0, 92, 253, 0.6)';
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 4px 18px rgba(108, 92, 231, 0.45)';
+                  e.currentTarget.style.boxShadow = BRAND_SHADOW;
                 }}
               >
                 <span>Explore Solutions</span>
@@ -164,23 +153,24 @@ export const ServicesPage = ({
                 onClick={onOpenContactPage}
                 style={{
                   padding: '0.85rem 2rem',
-                  backgroundColor: 'rgba(255, 255, 255, 0.08)',
-                  color: '#ffffff',
+                  backgroundColor: '#f8fafc',
+                  color: '#0f172a',
                   fontSize: '0.95rem',
                   fontWeight: 700,
                   borderRadius: '50px',
-                  border: '1px solid rgba(255, 255, 255, 0.2)',
+                  border: '1.5px solid #e2e8f0',
                   cursor: 'pointer',
-                  backdropFilter: 'blur(10px)',
                   transition: 'all 0.25s ease'
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.16)';
-                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.4)';
+                  e.currentTarget.style.backgroundColor = '#eff6ff';
+                  e.currentTarget.style.borderColor = '#005CFD';
+                  e.currentTarget.style.color = '#005CFD';
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
-                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                  e.currentTarget.style.backgroundColor = '#f8fafc';
+                  e.currentTarget.style.borderColor = '#e2e8f0';
+                  e.currentTarget.style.color = '#0f172a';
                 }}
               >
                 Talk to an Expert

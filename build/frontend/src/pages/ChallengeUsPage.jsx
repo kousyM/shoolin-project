@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import {
-  ArrowRight, Check, AlertCircle,
+  ArrowRight, Check, AlertCircle, ChevronRight,
   GraduationCap, Brain, Car, Building2, ShoppingBag, Zap, Film, CreditCard,
   Settings, MessageSquare, Dna, Scale, Gauge, Store, Cpu, Globe, Sparkles, Users
 } from 'lucide-react';
@@ -99,6 +99,15 @@ export const ChallengeUsPage = ({
     }, 50);
   };
 
+  const scrollToForm = () => {
+    if (formRef.current) {
+      formRef.current.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      const elem = document.getElementById('challenge-form-section');
+      if (elem) elem.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -150,7 +159,7 @@ export const ChallengeUsPage = ({
   };
 
   return (
-    <div style={{ backgroundColor: 'rgb(6, 13, 31)', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#ffffff' }}>
+    <div style={{ backgroundColor: '#ffffff', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif", color: '#0f172a' }}>
       {/* Navbar */}
       <Navbar
         activePage="challenge-us"
@@ -177,29 +186,15 @@ export const ChallengeUsPage = ({
             minHeight: '80vh',
             display: 'flex',
             alignItems: 'center',
-            backgroundColor: 'rgb(6, 13, 31)',
-            backgroundImage: 'linear-gradient(135deg, rgba(6, 13, 31, 0.94) 0%, rgba(11, 22, 49, 0.88) 100%), url("/images/challenge_hero.jpg")',
+            backgroundColor: '#ffffff',
+            backgroundImage: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%), url("/images/challenge_hero.jpg")',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            color: '#ffffff',
+            color: '#0f172a',
             overflow: 'hidden',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
+            borderBottom: '1px solid #e2e8f0'
           }}
         >
-          {/* Subtle Ambient Radial Light */}
-          <div
-            style={{
-              position: 'absolute',
-              top: '-40px',
-              left: '25%',
-              width: '700px',
-              height: '380px',
-              background: 'radial-gradient(circle, rgba(108, 92, 231, 0.25) 0%, rgba(56, 189, 248, 0.12) 50%, transparent 70%)',
-              pointerEvents: 'none',
-              filter: 'blur(50px)'
-            }}
-          />
-
           <div
             style={{
               position: 'relative',
@@ -218,87 +213,109 @@ export const ChallengeUsPage = ({
             }}
           >
             <div style={{ maxWidth: '780px', width: '100%' }}>
+
+              {/* Badge Capsule */}
               <div
                 style={{
                   opacity: heroVisible ? 1 : 0,
                   transform: heroVisible ? 'translateY(0)' : 'translateY(-20px)',
                   transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s',
-                  marginBottom: '1.25rem'
+                  marginBottom: '1.5rem'
                 }}
               >
-                <span style={{ fontSize: '0.82rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.14em', color: '#ffffff', backgroundColor: '#6C5CE7', padding: '0.4rem 1.4rem', borderRadius: '18px 24px 24px 18px', display: 'inline-block', boxShadow: '0 4px 18px rgba(108, 92, 231, 0.4)' }}>
-                  VISA
+                <span
+                  style={{
+                    fontSize: '0.82rem',
+                    fontWeight: 800,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.14em',
+                    color: '#ffffff',
+                    background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)',
+                    padding: '0.4rem 1.4rem',
+                    borderRadius: '18px 24px 24px 18px',
+                    display: 'inline-block',
+                    boxShadow: '0 4px 18px rgba(0, 92, 253, 0.4)'
+                  }}
+                >
+                  SOLVE COMPLEX PROBLEMS
                 </span>
               </div>
 
+              {/* Banner Heading */}
               <h1
                 style={{
-                  fontFamily: "'Outfit', sans-serif",
-                  fontSize: 'clamp(2.1rem, 5vw, 3.6rem)',
+                  fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
+                  fontSize: 'clamp(2.4rem, 4.8vw, 4rem)',
                   fontWeight: 800,
-                  color: '#ffffff',
-                  lineHeight: 1.18,
-                  marginBottom: '1.35rem',
+                  color: '#0f172a',
+                  lineHeight: 1.12,
+                  marginBottom: '1.5rem',
                   letterSpacing: '-0.02em',
-                  wordBreak: 'break-word',
                   opacity: heroVisible ? 1 : 0,
                   transform: heroVisible ? 'translateX(0)' : 'translateX(-40px)',
-                  filter: heroVisible ? 'blur(0)' : 'blur(8px)',
-                  transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s'
+                  transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s'
                 }}
               >
-                Your Global Immigration Partner
+                Bring us your hardest challenges. We'll find the right answers.
               </h1>
+
+              {/* Subheading text */}
               <p
                 style={{
-                  fontSize: 'clamp(1.05rem, 2.5vw, 1.25rem)',
-                  color: '#cbd5e1',
+                  fontSize: '1.25rem',
+                  color: '#64748b',
                   lineHeight: 1.7,
-                  fontWeight: 400,
-                  margin: 0,
-                  wordBreak: 'break-word',
+                  marginBottom: '2.5rem',
                   opacity: heroVisible ? 1 : 0,
-                  transform: heroVisible ? 'translateX(0)' : 'translateX(-25px)',
-                  transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.45s'
+                  transform: heroVisible ? 'translateY(0)' : 'translateY(25px)',
+                  transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.35s'
                 }}
               >
-                Experienced immigration professionals across all regions, supported by industry‑leading technology partners to streamline operations, enhance compliance, and enable workforce innovation.
+                Complex payroll across borders? Rapid scaling requirements? High-compliance contractor management? Tell us what is holding your organisation back.
               </p>
-            </div>
 
-            {/* Giant Slant Slash Graphic with Floating Animation */}
-            <div
-              className="vebhor-banner-slant-logo"
-              style={{
-                display: 'flex',
-                gap: '1.2rem',
-                opacity: heroVisible ? 0.9 : 0,
-                transform: heroVisible ? 'translateX(0) scale(1)' : 'translateX(40px) scale(0.9)',
-                transition: 'all 1s cubic-bezier(0.16, 1, 0.3, 1) 0.3s'
-              }}
-            >
+              {/* Action Button CTA */}
               <div
                 style={{
-                  width: '55px',
-                  height: '160px',
-                  backgroundColor: 'rgba(255, 255, 255, 0.12)',
-                  border: '1.5px solid rgba(255, 255, 255, 0.3)',
-                  transform: 'skewX(-25deg)',
-                  borderRadius: '12px',
-                  boxShadow: '0 15px 35px rgba(0,0,0,0.4)'
+                  display: 'flex',
+                  gap: '1.25rem',
+                  flexWrap: 'wrap',
+                  opacity: heroVisible ? 1 : 0,
+                  transform: heroVisible ? 'translateY(0)' : 'translateY(30px)',
+                  transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.5s'
                 }}
-              />
-              <div
-                style={{
-                  width: '55px',
-                  height: '160px',
-                  backgroundColor: 'rgba(108, 92, 231, 0.25)',
-                  border: '1.5px solid rgba(108, 92, 231, 0.6)',
-                  transform: 'skewX(-25deg)',
-                  borderRadius: '12px',
-                  boxShadow: '0 15px 35px rgba(108, 92, 231, 0.3)'
-                }}
-              />
+              >
+                <button
+                  onClick={scrollToForm}
+                  style={{
+                    padding: '1rem 2.4rem',
+                    background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)',
+                    color: '#ffffff',
+                    fontWeight: 800,
+                    fontSize: '1.05rem',
+                    borderRadius: '50px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.65rem',
+                    boxShadow: '0 8px 25px rgba(0, 92, 253, 0.45)',
+                    transition: 'all 0.25s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-3px)';
+                    e.currentTarget.style.boxShadow = '0 12px 30px rgba(0, 92, 253, 0.65)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 8px 25px rgba(0, 92, 253, 0.45)';
+                  }}
+                >
+                  <span>Challenge us now</span>
+                  <ArrowRight size={20} />
+                </button>
+              </div>
+
             </div>
           </div>
         </section>
@@ -309,16 +326,16 @@ export const ChallengeUsPage = ({
         <section
           ref={audienceRef}
           style={{
-            backgroundColor: 'rgb(6, 13, 31)',
-            color: '#ffffff',
+            backgroundColor: '#f8fafc',
+            color: '#0f172a',
             padding: '6rem 2rem 6.5rem',
             position: 'relative',
             overflow: 'hidden',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.08)'
+            borderBottom: '1px solid #e2e8f0'
           }}
         >
           <div style={{ maxWidth: '1240px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
-            
+
             <div
               style={{
                 opacity: audienceVisible ? 1 : 0,
@@ -326,180 +343,119 @@ export const ChallengeUsPage = ({
                 transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)'
               }}
             >
-              <span style={{ fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.14em', color: '#55E6C1', display: 'inline-block', marginBottom: '1.25rem' }}>
+              <span style={{ fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.14em', color: '#005CFD', display: 'inline-block', marginBottom: '1.25rem' }}>
                 Section – Employer and Individuals
               </span>
 
-              <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: 'clamp(2.3rem, 4vw, 3.4rem)', fontWeight: 800, color: '#ffffff', lineHeight: 1.15, marginBottom: '3.5rem', maxWidth: '700px' }}>
+              <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: 'clamp(2.3rem, 4vw, 3.4rem)', fontWeight: 800, color: '#0f172a', lineHeight: 1.15, marginBottom: '3.5rem', maxWidth: '700px' }}>
                 We want to work with you.
               </h2>
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '2.5rem' }}>
-              
+
               {/* Employers Card */}
               <div
                 style={{
-                  backgroundColor: 'rgba(255, 255, 255, 0.03)',
-                  backdropFilter: 'blur(16px)',
-                  WebkitBackdropFilter: 'blur(16px)',
+                  backgroundColor: '#ffffff',
                   padding: '2.8rem 2.4rem',
                   borderRadius: '24px',
-                  border: '1.5px solid rgba(255, 255, 255, 0.08)',
-                  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)',
+                  border: '1.5px solid #e2e8f0',
+                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.04)',
                   opacity: audienceVisible ? 1 : 0,
-                  transform: audienceVisible ? 'translateX(0)' : 'translateX(-60px)',
-                  transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.1s'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-6px)';
-                  e.currentTarget.style.borderColor = 'rgba(56, 189, 248, 0.5)';
-                  e.currentTarget.style.boxShadow = '0 25px 50px rgba(0,0,0,0.4), 0 0 25px rgba(56, 189, 248, 0.15)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-                  e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.3)';
+                  transform: audienceVisible ? 'translateX(0)' : 'translateX(-40px)',
+                  transition: 'all 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.2s'
                 }}
               >
-                <div
-                  style={{
-                    width: '56px',
-                    height: '56px',
-                    borderRadius: '16px',
-                    backgroundColor: 'rgba(56, 189, 248, 0.15)',
-                    color: '#38bdf8',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginBottom: '1.5rem',
-                    border: '1px solid rgba(56, 189, 248, 0.3)'
-                  }}
-                >
+                <div style={{ width: '56px', height: '56px', borderRadius: '16px', backgroundColor: '#eff6ff', border: '1px solid #bfdbfe', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#005CFD', marginBottom: '2rem' }}>
                   <Building2 size={28} />
                 </div>
-                <h3 style={{ fontSize: '2rem', fontWeight: 800, color: '#ffffff', marginBottom: '1rem' }}>
-                  Employers
+                <h3 style={{ fontSize: '1.85rem', fontWeight: 800, color: '#0f172a', marginBottom: '1rem' }}>
+                  For Employers
                 </h3>
-                <p style={{ fontSize: '1.05rem', color: '#94a3b8', lineHeight: 1.7, marginBottom: '2.5rem', fontWeight: 400 }}>
-                  From small local businesses to the world's largest companies, we can support all of your immigration needs, all over the world.
+                <p style={{ fontSize: '1.1rem', color: '#64748b', lineHeight: 1.7, marginBottom: '2rem' }}>
+                  Whether you are scaling across Australia or deploying international specialists, we take care of EOR, compliance, and end-to-end talent lifecycle management.
                 </p>
                 <button
-                  onClick={() => {
-                    if (onNavEmployers) {
-                      onNavEmployers();
-                    } else {
-                      handleSelectAudience('employers');
-                    }
-                  }}
+                  onClick={() => onNavServices && onNavServices('employers')}
                   style={{
-                    padding: '0.85rem 1.8rem',
-                    backgroundColor: '#6C5CE7',
-                    color: '#ffffff',
+                    padding: '0.8rem 1.8rem',
+                    backgroundColor: '#f8fafc',
+                    color: '#0f172a',
+                    border: '1.5px solid #e2e8f0',
+                    borderRadius: '50px',
                     fontWeight: 700,
                     fontSize: '0.95rem',
-                    borderRadius: '50px',
-                    border: 'none',
                     cursor: 'pointer',
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '0.6rem',
-                    boxShadow: '0 4px 18px rgba(108, 92, 231, 0.45)',
-                    transition: 'all 0.25s ease'
+                    gap: '0.5rem',
+                    transition: 'all 0.2s ease'
                   }}
+                  onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#005CFD'; e.currentTarget.style.color = '#ffffff'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#f8fafc'; e.currentTarget.style.color = '#0f172a'; }}
                 >
-                  <span>Read more</span>
-                  <ArrowRight size={18} />
+                  <span>Explore Employer Services</span>
+                  <ChevronRight size={18} />
                 </button>
               </div>
 
               {/* Individuals Card */}
               <div
                 style={{
-                  backgroundColor: 'rgba(255, 255, 255, 0.03)',
-                  backdropFilter: 'blur(16px)',
-                  WebkitBackdropFilter: 'blur(16px)',
+                  backgroundColor: '#ffffff',
                   padding: '2.8rem 2.4rem',
                   borderRadius: '24px',
-                  border: '1.5px solid rgba(255, 255, 255, 0.08)',
-                  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)',
+                  border: '1.5px solid #e2e8f0',
+                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.04)',
                   opacity: audienceVisible ? 1 : 0,
-                  transform: audienceVisible ? 'translateX(0)' : 'translateX(60px)',
-                  transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-6px)';
-                  e.currentTarget.style.borderColor = 'rgba(85, 230, 193, 0.5)';
-                  e.currentTarget.style.boxShadow = '0 25px 50px rgba(0,0,0,0.4), 0 0 25px rgba(85, 230, 193, 0.15)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-                  e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.3)';
+                  transform: audienceVisible ? 'translateX(0)' : 'translateX(40px)',
+                  transition: 'all 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.35s'
                 }}
               >
-                <div
-                  style={{
-                    width: '56px',
-                    height: '56px',
-                    borderRadius: '16px',
-                    backgroundColor: 'rgba(85, 230, 193, 0.15)',
-                    color: '#55E6C1',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginBottom: '1.5rem',
-                    border: '1px solid rgba(85, 230, 193, 0.3)'
-                  }}
-                >
+                <div style={{ width: '56px', height: '56px', borderRadius: '16px', backgroundColor: '#f0fdf4', border: '1px solid #bbf7d0', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#16a34a', marginBottom: '2rem' }}>
                   <Users size={28} />
                 </div>
-                <h3 style={{ fontSize: '2rem', fontWeight: 800, color: '#ffffff', marginBottom: '1rem' }}>
-                  Individuals
+                <h3 style={{ fontSize: '1.85rem', fontWeight: 800, color: '#0f172a', marginBottom: '1rem' }}>
+                  For Individuals
                 </h3>
-                <p style={{ fontSize: '1.05rem', color: '#94a3b8', lineHeight: 1.7, marginBottom: '2.5rem', fontWeight: 400 }}>
-                  We offer comprehensive immigration solutions and guidance for individuals, their families and their advisors around the globe.
+                <p style={{ fontSize: '1.1rem', color: '#64748b', lineHeight: 1.7, marginBottom: '2rem' }}>
+                  Looking for contract opportunities, immigration sponsorship, or a career move in high-growth enterprise domains? Let our experts connect you with the right teams.
                 </p>
                 <button
-                  onClick={() => {
-                    if (onNavIndividuals) {
-                      onNavIndividuals();
-                    } else {
-                      handleSelectAudience('individuals');
-                    }
-                  }}
+                  onClick={() => onNavServices && onNavServices('individuals')}
                   style={{
-                    padding: '0.85rem 1.8rem',
-                    backgroundColor: '#6C5CE7',
-                    color: '#ffffff',
+                    padding: '0.8rem 1.8rem',
+                    backgroundColor: '#f8fafc',
+                    color: '#0f172a',
+                    border: '1.5px solid #e2e8f0',
+                    borderRadius: '50px',
                     fontWeight: 700,
                     fontSize: '0.95rem',
-                    borderRadius: '50px',
-                    border: 'none',
                     cursor: 'pointer',
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '0.6rem',
-                    boxShadow: '0 4px 18px rgba(108, 92, 231, 0.45)',
-                    transition: 'all 0.25s ease'
+                    gap: '0.5rem',
+                    transition: 'all 0.2s ease'
                   }}
+                  onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#16a34a'; e.currentTarget.style.color = '#ffffff'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#f8fafc'; e.currentTarget.style.color = '#0f172a'; }}
                 >
-                  <span>Read more</span>
-                  <ArrowRight size={18} />
+                  <span>Explore Individual Services</span>
+                  <ChevronRight size={18} />
                 </button>
               </div>
 
             </div>
-
           </div>
         </section>
 
         {/* ============================================================ */}
-        {/* 3. INDUSTRIES WE SERVE SECTION */}
+        {/* 3. SECTION: INDUSTRIES WE SERVE */}
         {/* ============================================================ */}
         <section
           ref={industriesRef}
-          style={{ padding: '6rem 2rem 6.5rem', backgroundColor: 'rgb(6, 13, 31)', borderBottom: '1px solid rgba(255, 255, 255, 0.08)' }}
+          style={{ padding: '6rem 2rem 6.5rem', backgroundColor: '#ffffff', borderBottom: '1px solid #e2e8f0' }}
         >
           <div style={{ maxWidth: '1240px', margin: '0 auto' }}>
             <div
@@ -509,13 +465,13 @@ export const ChallengeUsPage = ({
                 transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)'
               }}
             >
-              <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.6rem', fontWeight: 800, color: '#ffffff', marginBottom: '3.5rem', letterSpacing: '-0.02em' }}>
+              <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.6rem', fontWeight: 800, color: '#0f172a', marginBottom: '3.5rem', letterSpacing: '-0.02em' }}>
                 Industries we serve
               </h2>
             </div>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '0 4rem' }}>
-              
+
               {/* Left Column */}
               <div style={{ display: 'flex', flexDirection: 'column' }}>
                 {[
@@ -538,16 +494,16 @@ export const ChallengeUsPage = ({
                         alignItems: 'center',
                         gap: '1.25rem',
                         padding: '1.35rem 0',
-                        borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+                        borderBottom: '1px solid #e2e8f0',
                         opacity: industriesVisible ? 1 : 0,
                         transform: industriesVisible ? 'translateX(0)' : 'translateX(-30px)',
                         transition: `all 0.75s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.06}s`
                       }}
                     >
-                      <div style={{ color: '#38bdf8', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <div style={{ color: '#005CFD', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                         <IconComp size={24} strokeWidth={1.6} />
                       </div>
-                      <span style={{ fontSize: '1.02rem', color: '#e2e8f0', fontWeight: 600, lineHeight: 1.4 }}>
+                      <span style={{ fontSize: '1.02rem', color: '#1e293b', fontWeight: 600, lineHeight: 1.4 }}>
                         {item.name}
                       </span>
                     </div>
@@ -577,16 +533,16 @@ export const ChallengeUsPage = ({
                         alignItems: 'center',
                         gap: '1.25rem',
                         padding: '1.35rem 0',
-                        borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+                        borderBottom: '1px solid #e2e8f0',
                         opacity: industriesVisible ? 1 : 0,
                         transform: industriesVisible ? 'translateX(0)' : 'translateX(30px)',
                         transition: `all 0.75s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.06}s`
                       }}
                     >
-                      <div style={{ color: '#55E6C1', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <div style={{ color: '#005CFD', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                         <IconComp size={24} strokeWidth={1.6} />
                       </div>
-                      <span style={{ fontSize: '1.02rem', color: '#e2e8f0', fontWeight: 600, lineHeight: 1.4 }}>
+                      <span style={{ fontSize: '1.02rem', color: '#1e293b', fontWeight: 600, lineHeight: 1.4 }}>
                         {item.name}
                       </span>
                     </div>
@@ -605,48 +561,31 @@ export const ChallengeUsPage = ({
           ref={formRef}
           id="challenge-form-section"
           style={{
-            backgroundColor: 'rgb(6, 13, 31)',
-            color: '#ffffff',
+            backgroundColor: '#f8fafc',
+            color: '#0f172a',
             padding: '6.5rem 2rem 7.5rem',
             position: 'relative',
             overflow: 'hidden'
           }}
         >
-          {/* Subtle Ambient Radial Light */}
-          <div
-            style={{
-              position: 'absolute',
-              top: '10%',
-              left: '50%',
-              transform: 'translateX(-50%)',
-              width: '800px',
-              height: '400px',
-              background: 'radial-gradient(circle, rgba(108, 92, 231, 0.18) 0%, rgba(56, 189, 248, 0.08) 50%, transparent 70%)',
-              pointerEvents: 'none',
-              filter: 'blur(60px)'
-            }}
-          />
-
           <div
             style={{
               maxWidth: '920px',
               margin: '0 auto',
               position: 'relative',
               zIndex: 2,
-              backgroundColor: 'rgba(255, 255, 255, 0.03)',
-              backdropFilter: 'blur(16px)',
-              WebkitBackdropFilter: 'blur(16px)',
-              border: '1.5px solid rgba(255, 255, 255, 0.08)',
+              backgroundColor: '#ffffff',
+              border: '1.5px solid #e2e8f0',
               borderRadius: '24px',
               padding: '3.5rem 3rem',
-              boxShadow: '0 25px 60px rgba(0, 0, 0, 0.4)',
+              boxShadow: '0 20px 50px rgba(0, 0, 0, 0.05)',
               opacity: formVisible ? 1 : 0,
               transform: formVisible ? 'translateY(0)' : 'translateY(40px)',
               transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1)'
             }}
           >
             <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-              <span style={{ fontSize: '0.82rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.14em', color: '#ffffff', backgroundColor: '#6C5CE7', padding: '0.4rem 1.4rem', borderRadius: '18px 24px 24px 18px', display: 'inline-block', marginBottom: '1.25rem', boxShadow: '0 4px 18px rgba(108, 92, 231, 0.4)' }}>
+              <span style={{ fontSize: '0.82rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.14em', color: '#ffffff', background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)', padding: '0.4rem 1.4rem', borderRadius: '18px 24px 24px 18px', display: 'inline-block', marginBottom: '1.25rem', boxShadow: '0 4px 18px rgba(0, 92, 253, 0.4)' }}>
                 GET IN TOUCH
               </span>
               <h2
@@ -654,14 +593,14 @@ export const ChallengeUsPage = ({
                   fontFamily: "'Outfit', sans-serif",
                   fontSize: 'clamp(2.2rem, 4vw, 3.2rem)',
                   fontWeight: 800,
-                  color: '#ffffff',
+                  color: '#0f172a',
                   marginBottom: '1rem',
                   letterSpacing: '-0.02em'
                 }}
               >
                 Challenge us
               </h2>
-              <p style={{ fontSize: '1.15rem', color: '#94a3b8', margin: 0, lineHeight: 1.6 }}>
+              <p style={{ fontSize: '1.15rem', color: '#64748b', margin: 0, lineHeight: 1.6 }}>
                 What challenge are you facing? Let's work together to break it down and find a way forward.
               </p>
             </div>
@@ -670,9 +609,9 @@ export const ChallengeUsPage = ({
             {submitStatus && (
               <div
                 style={{
-                  backgroundColor: submitStatus.type === 'success' ? 'rgba(16, 185, 129, 0.2)' : 'rgba(239, 68, 68, 0.2)',
-                  border: `1.5px solid ${submitStatus.type === 'success' ? '#10b981' : '#ef4444'}`,
-                  color: '#ffffff',
+                  backgroundColor: submitStatus.type === 'success' ? '#f0fdf4' : '#fef2f2',
+                  border: `1.5px solid ${submitStatus.type === 'success' ? '#bbf7d0' : '#fecaca'}`,
+                  color: submitStatus.type === 'success' ? '#16a34a' : '#ef4444',
                   padding: '1.25rem',
                   borderRadius: '12px',
                   marginBottom: '2.5rem',
@@ -682,10 +621,10 @@ export const ChallengeUsPage = ({
                   textAlign: 'left',
                   fontSize: '0.98rem',
                   fontWeight: 600,
-                  boxShadow: '0 8px 24px rgba(0,0,0,0.25)'
+                  boxShadow: '0 4px 14px rgba(0,0,0,0.04)'
                 }}
               >
-                {submitStatus.type === 'success' ? <Check size={24} color="#10b981" /> : <AlertCircle size={24} color="#ef4444" />}
+                {submitStatus.type === 'success' ? <Check size={24} color="#16a34a" /> : <AlertCircle size={24} color="#ef4444" />}
                 <div>{submitStatus.message}</div>
               </div>
             )}
@@ -695,7 +634,7 @@ export const ChallengeUsPage = ({
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: '1.5rem' }}>
                 {/* First name */}
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 700, marginBottom: '0.45rem', color: '#cbd5e1' }}>
+                  <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 700, marginBottom: '0.45rem', color: '#1e293b' }}>
                     First name *
                   </label>
                   <input
@@ -709,9 +648,9 @@ export const ChallengeUsPage = ({
                       width: '100%',
                       padding: '0.85rem 1rem',
                       borderRadius: '10px',
-                      border: '1px solid rgba(255, 255, 255, 0.12)',
-                      backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                      color: '#ffffff',
+                      border: '1.5px solid #e2e8f0',
+                      backgroundColor: '#f8fafc',
+                      color: '#0f172a',
                       fontSize: '0.95rem',
                       outline: 'none'
                     }}
@@ -720,7 +659,7 @@ export const ChallengeUsPage = ({
 
                 {/* Last name */}
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 700, marginBottom: '0.45rem', color: '#cbd5e1' }}>
+                  <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 700, marginBottom: '0.45rem', color: '#1e293b' }}>
                     Last name *
                   </label>
                   <input
@@ -734,9 +673,9 @@ export const ChallengeUsPage = ({
                       width: '100%',
                       padding: '0.85rem 1rem',
                       borderRadius: '10px',
-                      border: '1px solid rgba(255, 255, 255, 0.12)',
-                      backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                      color: '#ffffff',
+                      border: '1.5px solid #e2e8f0',
+                      backgroundColor: '#f8fafc',
+                      color: '#0f172a',
                       fontSize: '0.95rem',
                       outline: 'none'
                     }}
@@ -745,7 +684,7 @@ export const ChallengeUsPage = ({
 
                 {/* Role */}
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 700, marginBottom: '0.45rem', color: '#cbd5e1' }}>
+                  <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 700, marginBottom: '0.45rem', color: '#1e293b' }}>
                     Role *
                   </label>
                   <input
@@ -759,9 +698,9 @@ export const ChallengeUsPage = ({
                       width: '100%',
                       padding: '0.85rem 1rem',
                       borderRadius: '10px',
-                      border: '1px solid rgba(255, 255, 255, 0.12)',
-                      backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                      color: '#ffffff',
+                      border: '1.5px solid #e2e8f0',
+                      backgroundColor: '#f8fafc',
+                      color: '#0f172a',
                       fontSize: '0.95rem',
                       outline: 'none'
                     }}
@@ -770,7 +709,7 @@ export const ChallengeUsPage = ({
 
                 {/* Organisation */}
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 700, marginBottom: '0.45rem', color: '#cbd5e1' }}>
+                  <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 700, marginBottom: '0.45rem', color: '#1e293b' }}>
                     Organisation *
                   </label>
                   <input
@@ -784,9 +723,9 @@ export const ChallengeUsPage = ({
                       width: '100%',
                       padding: '0.85rem 1rem',
                       borderRadius: '10px',
-                      border: '1px solid rgba(255, 255, 255, 0.12)',
-                      backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                      color: '#ffffff',
+                      border: '1.5px solid #e2e8f0',
+                      backgroundColor: '#f8fafc',
+                      color: '#0f172a',
                       fontSize: '0.95rem',
                       outline: 'none'
                     }}
@@ -795,7 +734,7 @@ export const ChallengeUsPage = ({
 
                 {/* Business email address */}
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 700, marginBottom: '0.45rem', color: '#cbd5e1' }}>
+                  <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 700, marginBottom: '0.45rem', color: '#1e293b' }}>
                     Business email address *
                   </label>
                   <input
@@ -809,9 +748,9 @@ export const ChallengeUsPage = ({
                       width: '100%',
                       padding: '0.85rem 1rem',
                       borderRadius: '10px',
-                      border: '1px solid rgba(255, 255, 255, 0.12)',
-                      backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                      color: '#ffffff',
+                      border: '1.5px solid #e2e8f0',
+                      backgroundColor: '#f8fafc',
+                      color: '#0f172a',
                       fontSize: '0.95rem',
                       outline: 'none'
                     }}
@@ -820,7 +759,7 @@ export const ChallengeUsPage = ({
 
                 {/* Phone */}
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 700, marginBottom: '0.45rem', color: '#cbd5e1' }}>
+                  <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 700, marginBottom: '0.45rem', color: '#1e293b' }}>
                     Phone *
                   </label>
                   <input
@@ -834,9 +773,9 @@ export const ChallengeUsPage = ({
                       width: '100%',
                       padding: '0.85rem 1rem',
                       borderRadius: '10px',
-                      border: '1px solid rgba(255, 255, 255, 0.12)',
-                      backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                      color: '#ffffff',
+                      border: '1.5px solid #e2e8f0',
+                      backgroundColor: '#f8fafc',
+                      color: '#0f172a',
                       fontSize: '0.95rem',
                       outline: 'none'
                     }}
@@ -846,7 +785,7 @@ export const ChallengeUsPage = ({
 
               {/* Challenge Message / Details */}
               <div>
-                <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 700, marginBottom: '0.45rem', color: '#cbd5e1' }}>
+                <label style={{ display: 'block', fontSize: '0.88rem', fontWeight: 700, marginBottom: '0.45rem', color: '#1e293b' }}>
                   What challenge are you facing? *
                 </label>
                 <textarea
@@ -860,9 +799,9 @@ export const ChallengeUsPage = ({
                     width: '100%',
                     padding: '0.85rem 1rem',
                     borderRadius: '10px',
-                    border: '1px solid rgba(255, 255, 255, 0.12)',
-                    backgroundColor: 'rgba(255, 255, 255, 0.05)',
-                    color: '#ffffff',
+                    border: '1.5px solid #e2e8f0',
+                    backgroundColor: '#f8fafc',
+                    color: '#0f172a',
                     fontSize: '0.95rem',
                     outline: 'none',
                     resize: 'vertical'
@@ -878,9 +817,9 @@ export const ChallengeUsPage = ({
                   name="consent"
                   checked={formData.consent}
                   onChange={handleInputChange}
-                  style={{ width: '20px', height: '20px', marginTop: '3px', cursor: 'pointer', flexShrink: 0 }}
+                  style={{ width: '20px', height: '20px', marginTop: '3px', cursor: 'pointer', flexShrink: 0, accentColor: '#005CFD' }}
                 />
-                <label htmlFor="consent" style={{ fontSize: '0.88rem', color: '#94a3b8', lineHeight: 1.6, cursor: 'pointer' }}>
+                <label htmlFor="consent" style={{ fontSize: '0.88rem', color: '#64748b', lineHeight: 1.6, cursor: 'pointer' }}>
                   I have read, understood, and agree to be bound by Vebhor’s Data Protection Notice, which may be amended from time to time. I consent to Vebhor collecting, using, and disclosing my personal data as provided in this form, in accordance with the Data Protection Notice, for the purposes stated therein and for matters relating to responding to my enquiry or feedback.
                 </label>
               </div>
@@ -892,26 +831,28 @@ export const ChallengeUsPage = ({
                   disabled={isSubmitting}
                   style={{
                     padding: '1rem 3.5rem',
-                    backgroundColor: '#6C5CE7',
+                    background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)',
                     color: '#ffffff',
                     fontWeight: 800,
                     fontSize: '1rem',
                     borderRadius: '50px',
                     border: 'none',
                     cursor: isSubmitting ? 'not-allowed' : 'pointer',
-                    boxShadow: '0 8px 25px rgba(108, 92, 231, 0.45)',
+                    boxShadow: '0 8px 25px rgba(0, 92, 253, 0.45)',
                     transition: 'all 0.25s ease',
                     opacity: isSubmitting ? 0.7 : 1
                   }}
                   onMouseEnter={(e) => {
                     if (!isSubmitting) {
                       e.currentTarget.style.transform = 'translateY(-3px)';
-                      e.currentTarget.style.boxShadow = '0 12px 30px rgba(108, 92, 231, 0.6)';
+                      e.currentTarget.style.boxShadow = '0 12px 30px rgba(0, 92, 253, 0.65)';
                     }
                   }}
                   onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = '0 8px 25px rgba(108, 92, 231, 0.45)';
+                    if (!isSubmitting) {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.boxShadow = '0 8px 25px rgba(0, 92, 253, 0.45)';
+                    }
                   }}
                 >
                   {isSubmitting ? 'SUBMITTING...' : 'SUBMIT'}

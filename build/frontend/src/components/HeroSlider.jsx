@@ -1,6 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, ArrowRight, Sparkles } from 'lucide-react';
 
+const getSlideTagStyle = (idx) => {
+  switch (idx) {
+    case 0: // Slider 1: Next-Gen HR Tech
+      return {
+        background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)',
+        boxShadow: '0 4px 16px rgba(0, 92, 253, 0.45)'
+      };
+    case 1: // Slider 2: Workforce Transformation (Introducing Vebhor)
+      return {
+        background: 'linear-gradient(135deg, rgb(30, 93, 27) 0%, rgb(27, 67, 20) 100%)',
+        boxShadow: '0 4px 16px rgba(30, 93, 27, 0.5)'
+      };
+    case 2: // Slider 3: AI & Tech Innovation
+      return {
+        background: 'linear-gradient(135deg, rgb(215, 124, 27) 0%, rgb(40, 31, 16) 100%)',
+        boxShadow: '0 4px 16px rgba(215, 124, 27, 0.4)'
+      };
+    default:
+      return {
+        background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)',
+        boxShadow: '0 4px 16px rgba(0, 92, 253, 0.45)'
+      };
+  }
+};
+
 export const HeroSlider = ({ banners = [] }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -38,92 +63,51 @@ export const HeroSlider = ({ banners = [] }) => {
               alignItems: 'stretch',
               justifyContent: 'flex-start',
               opacity: index === currentSlide ? 1 : 0,
-              zIndex: index === currentSlide ? 10 : 1,
-              transition: 'opacity 0.8s ease-in-out'
+              visibility: index === currentSlide ? 'visible' : 'hidden',
+              transition: 'opacity 1s ease-in-out, visibility 1s ease-in-out',
+              zIndex: index === currentSlide ? 2 : 1
             }}
           >
+            {/* Background: Video or High-Res Image with High-Contrast Linear Overlay */}
             {isVideo ? (
               <video
                 autoPlay
                 loop
                 muted
                 playsInline
-                className="hero-bg-img"
-                style={{ objectFit: 'cover', width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 1 }}
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover'
+                }}
               >
-                <source src={banner.video_url || "/hero_video.mp4"} type="video/mp4" />
+                <source src={banner.video_url} type="video/mp4" />
               </video>
             ) : (
-              <img
-                src={banner.image_url}
-                alt={banner.title}
-                className="hero-bg-img"
-                style={{ objectFit: 'cover', width: '100%', height: '100%', position: 'absolute', top: 0, left: 0, zIndex: 1 }}
-              />
-            )}
-
-            {/* Background Dark Overlay for Readability (Removed for Slider 1) */}
-            {index !== 0 && (
               <div
                 style={{
                   position: 'absolute',
                   inset: 0,
-                  background: index === 1
-                    ? 'linear-gradient(135deg, rgba(6, 13, 31, 0.45) 0%, rgba(6, 13, 31, 0.25) 50%, rgba(6, 13, 31, 0.65) 100%)'
-                    : 'linear-gradient(180deg, rgba(6, 13, 31, 0.35) 0%, rgba(6, 13, 31, 0.75) 100%)',
-                  zIndex: 2
+                  backgroundImage: `linear-gradient(90deg, rgba(6, 13, 31, 0.88) 0%, rgba(6, 13, 31, 0.6) 45%, rgba(6, 13, 31, 0.25) 100%), url(${banner.image_url})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat'
                 }}
               />
             )}
 
-            {/* 3D Tech Graphic with Motion Glow & Data Nodes for Slider 2 (Innovate) */}
-            {index === 1 && (
-              <>
-                {/* 1. Futuristic 3D Data Sphere Motion Glow */}
-                <div className="hero-sphere-ambient-glow" />
-
-                {/* 2. Glowing Blue Circuit Lines & Rays */}
-                <div className="hero-circuit-ray" style={{ top: '28%', left: '10%', width: '450px', animation: 'techRayMove 7s ease-in-out infinite' }} />
-                <div className="hero-circuit-ray" style={{ top: '68%', left: '30%', width: '380px', animation: 'techRayMove 9s ease-in-out infinite 2s' }} />
-                <div className="hero-circuit-ray" style={{ top: '45%', right: '5%', width: '320px', animation: 'techRayMove 6s ease-in-out infinite 1s' }} />
-
-                {/* 3. Glowing Data Nodes */}
-                <div className="hero-data-node" style={{ top: '27%', left: '35%', animationDelay: '0s' }} />
-                <div className="hero-data-node" style={{ top: '67%', left: '55%', animationDelay: '1.2s' }} />
-                <div className="hero-data-node" style={{ top: '44%', right: '22%', animationDelay: '0.6s' }} />
-                <div className="hero-data-node" style={{ top: '72%', right: '12%', animationDelay: '1.8s' }} />
-              </>
-            )}
-
-            {/* 3D Rotating Holographic Cyber Globe for Slider 3 (Global Workforce) */}
-            {index === 2 && (
-              <div className="hero-cyber-globe-wrapper">
-                {/* Outer Orbiting Rings with Traveling Data Satellites */}
-                <div className="hero-orbit-ring-1">
-                  <div className="hero-satellite-dot" />
-                </div>
-                <div className="hero-orbit-ring-2">
-                  <div className="hero-satellite-dot" style={{ backgroundColor: '#A855F7', boxShadow: '0 0 14px #A855F7' }} />
-                </div>
-
-                {/* Rotating Cyber Globe Core */}
-                <div className="hero-globe-core">
-                  <div className="hero-globe-latitudes" />
-                  <div className="hero-globe-longitudes" />
-                </div>
-              </div>
-            )}
-
-            {/* Main Content Layout Container */}
+            {/* Slide Content Layout */}
             <div
-              className="hero-content"
+              className="hero-content-wrapper"
               style={{
                 position: 'relative',
-                zIndex: 3,
-                maxWidth: '1280px',
+                zIndex: 10,
+                width: '100%',
+                maxWidth: '1360px',
                 margin: '0 auto',
                 padding: '2.5rem 2rem 2.5rem 2rem',
-                width: '100%',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
@@ -132,27 +116,14 @@ export const HeroSlider = ({ banners = [] }) => {
             >
               {/* TOP SECTION: Tag Badge & Heading */}
               <div style={{ alignSelf: 'flex-start', maxWidth: '960px', marginTop: '1.25rem' }}>
-                {/* CloudMarc Floating Innovate Badge for Slider 2 */}
-                {index === 1 ? (
-                  <div style={{ marginBottom: '1rem' }} className={index === currentSlide ? 'hero-animate-tag' : ''}>
-                    <a
-                      href="#contact"
-                      className="cloudmarc-floating-badge"
-                    >
-                      <div className="badge-icon">
-                        <Sparkles size={18} />
-                      </div>
-                      <span>Innovate</span>
-                    </a>
-                  </div>
-                ) : banner.tag ? (
+                {banner.tag && (
                   <div className={index === currentSlide ? 'hero-animate-tag' : ''}>
                     <span
                       className="hero-tag"
                       style={{
                         display: 'inline-block',
                         padding: '0.35rem 1.15rem',
-                        backgroundColor: '#6C5CE7',
+                        ...getSlideTagStyle(index),
                         color: '#ffffff',
                         borderRadius: '50px',
                         fontSize: '0.8rem',
@@ -160,53 +131,55 @@ export const HeroSlider = ({ banners = [] }) => {
                         letterSpacing: '0.08em',
                         textTransform: 'uppercase',
                         marginBottom: '1rem',
-                        boxShadow: '0 4px 14px rgba(108, 92, 231, 0.45)'
+                        transition: 'all 0.4s ease'
                       }}
                     >
                       {banner.tag}
                     </span>
                   </div>
-                ) : null}
+                )}
 
                 <h1
                   className={`hero-title ${index === currentSlide ? 'hero-animate-title' : ''}`}
                   style={{
                     fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
                     fontSize: 'clamp(1.5rem, 3.2vw, 2.35rem)',
-                    fontWeight: 700,
+                    fontWeight: 800,
                     color: '#ffffff',
                     lineHeight: 1.25,
                     margin: 0,
+                    marginBottom: '0.85rem',
                     letterSpacing: '-0.01em',
                     whiteSpace: 'normal',
                     wordBreak: 'break-word',
-                    textShadow: '0 2px 10px rgba(0, 0, 0, 0.75)'
+                    textShadow: '0 2px 12px rgba(0, 0, 0, 0.95), 0 4px 20px rgba(0, 0, 0, 0.8)'
                   }}
                 >
                   {banner.title}
                 </h1>
-              </div>
 
-              {/* BOTTOM SECTION: Subtitle + Button + Counter */}
-              <div style={{ width: '100%', marginTop: 'auto', marginBottom: '0.5rem' }}>
-
-                {/* Paragraph Subtitle */}
+                {/* Subtitle Paragraph directly below Heading */}
                 {banner.subtitle && (
                   <p
                     className={`hero-subtitle ${index === currentSlide ? 'hero-animate-subtitle' : ''}`}
                     style={{
-                      fontSize: '1.08rem',
-                      color: '#F1F5F9',
-                      lineHeight: 1.6,
-                      marginBottom: '1.5rem',
-                      fontWeight: 400,
-                      maxWidth: '720px',
-                      textShadow: '0 2px 8px rgba(0, 0, 0, 0.75)'
+                      fontSize: '1.12rem',
+                      color: '#ffffff',
+                      lineHeight: 1.65,
+                      marginTop: '0.65rem',
+                      marginBottom: '0',
+                      fontWeight: 500,
+                      maxWidth: '740px',
+                      textShadow: '0 2px 10px rgba(0, 0, 0, 0.95), 0 4px 20px rgba(0, 0, 0, 0.85), 0 0 25px rgba(0, 0, 0, 0.7)'
                     }}
                   >
                     {banner.subtitle}
                   </p>
                 )}
+              </div>
+
+              {/* BOTTOM SECTION: Button + Counter */}
+              <div style={{ width: '100%', marginTop: 'auto', marginBottom: '0.5rem' }}>
 
                 {/* Right-aligned Vertical Stack */}
                 <div
@@ -227,14 +200,14 @@ export const HeroSlider = ({ banners = [] }) => {
                         display: 'inline-flex',
                         alignItems: 'center',
                         gap: '0.65rem',
-                        backgroundColor: '#6C5CE7',
+                        background: 'linear-gradient(135deg, #0066ff 0%, #00a8ff 100%)',
                         color: '#ffffff',
                         fontWeight: 700,
                         fontSize: '0.96rem',
                         padding: '0.8rem 2.2rem',
                         borderRadius: '8px',
                         textDecoration: 'none',
-                        boxShadow: '0 6px 20px rgba(108, 92, 231, 0.45)',
+                        boxShadow: '0 6px 20px rgba(0, 102, 255, 0.45)',
                         transition: 'all 0.3s ease'
                       }}
                     >
@@ -274,7 +247,7 @@ export const HeroSlider = ({ banners = [] }) => {
                               width: idx === currentSlide ? '20px' : '8px',
                               height: '7px',
                               borderRadius: '4px',
-                              backgroundColor: idx === currentSlide ? '#55E6C1' : 'rgba(255, 255, 255, 0.4)',
+                              backgroundColor: idx === currentSlide ? '#019CFE' : 'rgba(255, 255, 255, 0.4)',
                               border: 'none',
                               cursor: 'pointer',
                               transition: 'all 0.3s ease'

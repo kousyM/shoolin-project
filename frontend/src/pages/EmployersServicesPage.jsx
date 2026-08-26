@@ -56,8 +56,8 @@ const EmployersServicesPage = ({
       title: 'Connecting Employers with Skilled Displaced Individuals',
       desc: 'Assistance with integrating displaced individuals into your talent pipeline.',
       icon: <Users size={26} />,
-      iconBg: '#f3e8ff',
-      iconColor: '#6C5CE7'
+      iconBg: '#cffafe',
+      iconColor: '#0891b2'
     },
     {
       title: 'Consular Services',
@@ -98,8 +98,8 @@ const EmployersServicesPage = ({
       title: 'Immigration Litigation Services',
       desc: 'Experienced, skilled immigration litigation to help you resolve complex situations.',
       icon: <Scale size={26} />,
-      iconBg: '#fae8ff',
-      iconColor: '#a855f7'
+      iconBg: '#d1fae5',
+      iconColor: '#059669'
     },
     {
       title: 'Immigration Work Permit Services',
@@ -125,7 +125,7 @@ const EmployersServicesPage = ({
   ];
 
   return (
-    <div style={{ backgroundColor: 'rgb(6, 13, 31)', color: '#ffffff', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+    <div style={{ backgroundColor: '#ffffff', color: '#0f172a', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
       {/* 1. Header Navigation */}
       <Navbar
         activePage="challenge-us"
@@ -147,37 +147,37 @@ const EmployersServicesPage = ({
         <section
           style={{
             position: 'relative',
-            backgroundColor: 'rgb(6, 13, 31)',
-            color: '#ffffff',
+            backgroundColor: '#ffffff',
+            color: '#0f172a',
             padding: '7rem 2rem 5rem',
-            backgroundImage: 'linear-gradient(180deg, rgba(6, 13, 31, 0.8) 0%, rgba(6, 13, 31, 0.98) 100%), url("/images/slider_1.jpg")',
+            backgroundImage: 'linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(248, 250, 252, 0.98) 100%), url("/images/nature_banner_2.jpg?v=2026")',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            borderBottom: '1px solid rgba(255, 255, 255, 0.06)'
+            borderBottom: '1px solid #e2e8f0'
           }}
         >
           <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', backgroundColor: 'rgba(2, 132, 199, 0.2)', border: '1px solid rgba(56, 189, 248, 0.4)', padding: '0.4rem 1rem', borderRadius: '30px', marginBottom: '1.5rem' }}>
-              <Building2 size={16} color="#38bdf8" />
-              <span style={{ fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#e0f2fe' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', backgroundColor: '#eff6ff', border: '1px solid #bfdbfe', padding: '0.4rem 1rem', borderRadius: '30px', marginBottom: '1.5rem' }}>
+              <Building2 size={16} color="#005CFD" />
+              <span style={{ fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#005CFD' }}>
                 For Employers
               </span>
             </div>
 
-            <h1 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '3.2rem', fontWeight: 800, color: '#ffffff', lineHeight: 1.15, marginBottom: '1.5rem', maxWidth: '850px' }}>
+            <h1 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '3.2rem', fontWeight: 800, color: '#0f172a', lineHeight: 1.15, marginBottom: '1.5rem', maxWidth: '850px' }}>
               Corporate Immigration & Workforce Solutions for Employers
             </h1>
-            
-            <p style={{ fontSize: '1.2rem', color: '#94a3b8', lineHeight: 1.7, maxWidth: '800px', margin: 0 }}>
+
+            <p style={{ fontSize: '1.2rem', color: '#64748b', lineHeight: 1.7, maxWidth: '800px', margin: 0 }}>
               World-class corporate immigration services, compliance management, and strategic technology to help you optimize your immigration operations and scale global teams seamlessly.
             </p>
           </div>
         </section>
 
         {/* 3. 11 Employer Services Grid */}
-        <section style={{ padding: '6rem 2rem', backgroundColor: 'rgb(6, 13, 31)', position: 'relative' }}>
+        <section style={{ padding: '6rem 2rem', backgroundColor: '#f8fafc', position: 'relative', borderBottom: '1px solid #e2e8f0' }}>
           <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            
+
             <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
               <span
                 style={{
@@ -186,20 +186,20 @@ const EmployersServicesPage = ({
                   textTransform: 'uppercase',
                   letterSpacing: '0.12em',
                   color: '#ffffff',
-                  backgroundColor: '#6C5CE7',
+                  background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)',
                   padding: '0.4rem 1.4rem',
                   borderRadius: '18px 24px 24px 18px',
                   display: 'inline-block',
                   marginBottom: '1rem',
-                  boxShadow: '0 4px 14px rgba(108, 92, 231, 0.4)'
+                  boxShadow: '0 4px 14px rgba(0, 92, 253, 0.4)'
                 }}
               >
                 OUR WORKFORCE PORTFOLIO
               </span>
-              <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.5rem', fontWeight: 800, color: '#ffffff', marginBottom: '1rem', letterSpacing: '-0.02em' }}>
+              <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.5rem', fontWeight: 800, color: '#0f172a', marginBottom: '1rem', letterSpacing: '-0.02em' }}>
                 Our Employer Services
               </h2>
-              <p style={{ fontSize: '1.1rem', color: '#94a3b8', maxWidth: '720px', margin: '0 auto', lineHeight: 1.7 }}>
+              <p style={{ fontSize: '1.1rem', color: '#64748b', maxWidth: '720px', margin: '0 auto', lineHeight: 1.7 }}>
                 From business visas and work permits to compliance and litigation, we support your entire global workforce mobility lifecycle.
               </p>
             </div>
@@ -209,24 +209,24 @@ const EmployersServicesPage = ({
                 <div
                   key={idx}
                   style={{
-                    backgroundColor: 'rgba(255, 255, 255, 0.03)',
-                    border: '1.5px solid rgba(255, 255, 255, 0.08)',
+                    backgroundColor: '#ffffff',
+                    border: '1.5px solid #e2e8f0',
                     borderRadius: '20px',
                     padding: '2.2rem 1.85rem',
                     display: 'flex',
                     flexDirection: 'column',
-                    boxShadow: '0 12px 30px rgba(0, 0, 0, 0.25)',
+                    boxShadow: '0 4px 16px rgba(0, 0, 0, 0.04)',
                     transition: 'all 0.3s ease'
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-6px)';
-                    e.currentTarget.style.borderColor = 'rgba(108, 92, 231, 0.5)';
-                    e.currentTarget.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.4), 0 0 25px rgba(108, 92, 231, 0.15)';
+                    e.currentTarget.style.borderColor = '#005CFD';
+                    e.currentTarget.style.boxShadow = '0 12px 28px rgba(0, 92, 253, 0.12)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
-                    e.currentTarget.style.boxShadow = '0 12px 30px rgba(0, 0, 0, 0.25)';
+                    e.currentTarget.style.borderColor = '#e2e8f0';
+                    e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.04)';
                   }}
                 >
                   <div
@@ -244,10 +244,10 @@ const EmployersServicesPage = ({
                   >
                     {item.icon}
                   </div>
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.75rem', lineHeight: 1.35 }}>
+                  <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.75rem', lineHeight: 1.35 }}>
                     {item.title}
                   </h3>
-                  <p style={{ fontSize: '0.96rem', color: '#94a3b8', lineHeight: 1.65, margin: 0, flexGrow: 1 }}>
+                  <p style={{ fontSize: '0.96rem', color: '#64748b', lineHeight: 1.65, margin: 0, flexGrow: 1 }}>
                     {item.desc}
                   </p>
                 </div>
@@ -258,7 +258,7 @@ const EmployersServicesPage = ({
         </section>
 
         {/* 4. Contact Form Section */}
-        <div id="contact-form-section" style={{ backgroundColor: 'rgb(6, 13, 31)' }}>
+        <div id="contact-form-section" style={{ backgroundColor: '#ffffff' }}>
           <ContactSection />
         </div>
       </main>

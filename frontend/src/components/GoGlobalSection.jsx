@@ -62,21 +62,21 @@ export const GoGlobalSection = ({ onNavCareers }) => {
 
   return (
     <section ref={sectionRef} style={{ backgroundColor: '#F7F9FC', padding: '5.5rem 1.5rem', borderTop: '1px solid #e2e8f0', fontFamily: "var(--bs-body-font-family), 'Plus Jakarta Sans', sans-serif", position: 'relative', overflow: 'hidden' }}>
-      
+
       {/* Background Ambient Glow Orb */}
       <div style={{ position: 'absolute', bottom: '-50px', right: '10%', width: '500px', height: '300px', background: 'radial-gradient(circle, rgba(37, 99, 235, 0.06) 0%, transparent 70%)', pointerEvents: 'none' }} />
 
       <div style={{ maxWidth: '1320px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
-        
+
         {/* Header Section */}
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3.5rem', gap: '1.5rem' }}>
           <div>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: '#7C3AED', backgroundColor: '#EDE9FE', padding: '0.35rem 0.95rem', borderRadius: '50px', fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.85rem' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: '#ffffff', background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)', padding: '0.35rem 1rem', borderRadius: '50px', fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.85rem', boxShadow: '0 4px 14px rgba(0, 92, 253, 0.35)' }}>
               <Globe size={14} />
               <span>GLOBAL PRESENCE</span>
             </div>
             <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.6rem', fontWeight: 800, color: '#172033', margin: 0, letterSpacing: '-0.02em', lineHeight: 1.2 }}>
-              Go <span style={{ background: 'linear-gradient(135deg, #2563EB 0%, #7C3AED 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Global</span> With Us...
+              Go <span style={{ background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Global</span> With Us...
             </h2>
           </div>
           <div style={{ maxWidth: '440px' }}>
@@ -105,14 +105,14 @@ export const GoGlobalSection = ({ onNavCareers }) => {
                   height: '430px',
                   borderRadius: '16px',
                   overflow: 'hidden',
-                  boxShadow: isHovered ? '0 24px 48px rgba(37, 99, 235, 0.35)' : '0 6px 20px rgba(0,0,0,0.06)',
+                  boxShadow: isHovered ? '0 24px 48px rgba(0, 92, 253, 0.35)' : '0 6px 20px rgba(0,0,0,0.06)',
                   transform: isVisible
                     ? isHovered
                       ? 'translateY(-12px) scale(1.02)'
                       : 'translateY(0) scale(1)'
                     : 'translateY(40px) scale(0.96)',
                   opacity: isVisible ? 1 : 0,
-                  border: isHovered ? '2px solid #55E6C1' : '2px solid transparent',
+                  border: isHovered ? '2px solid #06b6d4' : '2px solid transparent',
                   cursor: 'pointer',
                   transition: `opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1) ${idx * 120}ms, transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s ease, border 0.3s ease`
                 }}
@@ -136,7 +136,7 @@ export const GoGlobalSection = ({ onNavCareers }) => {
                     position: 'absolute',
                     inset: 0,
                     background: isHovered
-                      ? 'linear-gradient(180deg, rgba(15, 23, 42, 0.3) 0%, rgba(37, 99, 235, 0.82) 60%, rgba(124, 58, 237, 0.95) 100%)'
+                      ? 'linear-gradient(180deg, rgba(6, 13, 31, 0.3) 0%, rgba(6, 182, 212, 0.75) 55%, rgba(16, 185, 129, 0.92) 100%)'
                       : 'linear-gradient(180deg, rgba(15, 23, 42, 0.35) 0%, rgba(15, 23, 42, 0.85) 100%)',
                     transition: 'background 0.4s ease'
                   }}
@@ -182,8 +182,8 @@ export const GoGlobalSection = ({ onNavCareers }) => {
                     position: 'absolute',
                     bottom: 0,
                     right: 0,
-                    backgroundColor: isHovered ? '#55E6C1' : 'rgba(0, 0, 0, 0.7)',
-                    color: isHovered ? '#08152F' : '#ffffff',
+                    background: isHovered ? 'linear-gradient(135deg, rgb(16, 185, 129) 0%, rgb(6, 182, 212) 100%)' : 'rgba(0, 0, 0, 0.7)',
+                    color: '#ffffff',
                     width: '46px',
                     height: '46px',
                     display: 'flex',
@@ -193,7 +193,7 @@ export const GoGlobalSection = ({ onNavCareers }) => {
                     borderBottomRightRadius: '16px',
                     zIndex: 5,
                     boxSizing: 'border-box',
-                    boxShadow: isHovered ? '0 0 16px rgba(85, 230, 193, 0.6)' : 'none',
+                    boxShadow: isHovered ? '0 0 16px rgba(6, 182, 212, 0.6)' : 'none',
                     transition: 'all 0.3s ease'
                   }}
                 >

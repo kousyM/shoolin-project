@@ -11,7 +11,7 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
       tag: 'GLOBAL DELIVERY CENTRES',
       heading: 'From Overseas Centres to Outcome-Based Delivery',
       description: 'We help organisations move beyond traditional offshore delivery models by building high-performing global teams focused on measurable business outcomes. From capability design and team setup to delivery governance and continuous optimisation, we create scalable models that combine global talent, technology, and local expertise to deliver greater agility, efficiency, and business value.',
-      imageUrl: '/images/hero_cyber_network.jpg',
+      imageUrl: '/images/service_outcome_delivery.jpg',
       stat: '99.4% SLA Delivery'
     },
     {
@@ -20,7 +20,7 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
       tag: 'GLOBAL MOBILITY & IMMIGRATION',
       heading: 'Seamless International Relocation & Visa Compliance',
       description: 'Accelerate global expansion with end-to-end visa sponsorship, work permit processing, and immigration compliance across 150+ countries. We handle legal paperwork, tax residency assessments, and relocation logistics so your talent can work anywhere with complete peace of mind.',
-      imageUrl: '/images/slider_2.jpg',
+      imageUrl: '/images/service_immigration_visa.jpg',
       stat: '150+ Countries'
     },
     {
@@ -29,7 +29,7 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
       tag: 'DIGITAL TRANSFORMATION',
       heading: 'Human-Centred UX & Intelligent Operating Platforms',
       description: 'Reimagine customer and employee journeys through intuitive digital design, modern application development, and seamless cloud integration. We craft responsive web applications and portals that drive engagement, efficiency, and business growth.',
-      imageUrl: '/images/team_collaboration.jpg',
+      imageUrl: '/images/service_digital_experience.jpg',
       stat: '3x Faster Time-to-Market'
     },
     {
@@ -38,7 +38,7 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
       tag: 'PROCESS AUTOMATION & BPM',
       heading: 'Streamlining Operations for Scalable Productivity',
       description: 'Optimise business processes through intelligent workflow automation, robotic process automation (RPA), and enterprise governance frameworks. We eliminate operational bottlenecks, reduce costs, and elevate overall performance across all departments.',
-      imageUrl: '/images/slider_1.jpg',
+      imageUrl: '/images/service_bpm_ops.jpg',
       stat: '40% Cost Optimization'
     },
     {
@@ -47,7 +47,7 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
       tag: 'EMPLOYER OF RECORD (EOR)',
       heading: 'Global Hiring Without Entity Setup',
       description: 'Hire, onboard, and manage international employees in days without opening foreign legal entities. Vebhor acts as legal employer of record handling localized employment contracts, payroll, statutory benefits, and local tax compliance seamlessly.',
-      imageUrl: '/images/country_singapore.jpg',
+      imageUrl: '/images/service_eor.jpg',
       stat: '100% Audit Compliance'
     },
     {
@@ -56,7 +56,7 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
       tag: 'CONTRACTOR MANAGEMENT',
       heading: 'Compliant Independent Contractor Solutions',
       description: 'Engage global freelancers and independent contractors securely without misclassification risks. Our automated system handles localized agreements, multi-currency invoicing, tax documentation, and instant payout execution.',
-      imageUrl: '/images/country_sydney.jpg',
+      imageUrl: '/images/service_contractor_mgmt.jpg',
       stat: '24hr Contractor Setup'
     },
     {
@@ -65,7 +65,7 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
       tag: 'VENDOR CONSOLIDATION',
       heading: 'Unified Partner & Supplier Governance',
       description: 'Consolidate multiple recruitment, IT, and operational vendors under one centralized management platform. Simplify vendor contracts, SLA tracking, invoice reconciliation, and global risk management.',
-      imageUrl: '/images/country_melbourne.jpg',
+      imageUrl: '/images/service_vendor_consolidation.jpg',
       stat: 'Single Invoice Flow'
     },
     {
@@ -74,7 +74,7 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
       tag: 'MANAGED IT & INFRASTRUCTURE',
       heading: '24/7 Managed Tech Support & Device Provisioning',
       description: 'Empower remote and hybrid workforces with enterprise IT service desk support, laptop provisioning, endpoint security, and cloud infrastructure management tailored for global operations.',
-      imageUrl: '/images/country_brisbane.jpg',
+      imageUrl: '/images/service_it_support.jpg',
       stat: '24/7 Enterprise Support'
     },
     {
@@ -83,7 +83,7 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
       tag: 'PEOPLE & HR ADVISORY',
       heading: 'Strategic HR Services & Employee Experience',
       description: 'Elevate employee retention and organizational culture with customized HR advisory, performance management systems, local benefit benchmarking, and transparent HR operations across all regions.',
-      imageUrl: '/images/country_india.jpg',
+      imageUrl: '/images/service_hr_support.jpg',
       stat: '98% Retention Rate'
     }
   ];
@@ -97,20 +97,66 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
 
       <div style={{ maxWidth: '1340px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
 
-        {/* 1. SECTION HEADER WITH OUR SERVICES FULLY IN ROYAL PURPLE CAPSULE HIGHLIGHT */}
-        <div style={{ textAlign: 'center', marginBottom: '3.25rem' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', fontSize: '0.95rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1.25rem' }}>
-            <span style={{ backgroundColor: '#6C5CE7', color: '#ffffff', padding: '0.4rem 1.6rem', borderRadius: '18px 24px 24px 18px', boxShadow: '0 4px 20px rgba(108, 92, 231, 0.45)' }}>
-              Our Services
+        {/* 1. SECTION HEADER MATCHING USER SCREENSHOT EXACTLY */}
+        <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+          {/* Top Pill Tag */}
+          <div style={{ display: 'inline-flex', alignItems: 'center', fontSize: '0.88rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1.25rem' }}>
+            <span
+              style={{
+                background: 'linear-gradient(135deg, #0070f3 0%, #0099ff 100%)',
+                color: '#ffffff',
+                padding: '0.45rem 1.8rem',
+                borderRadius: '50px',
+                boxShadow: '0 4px 18px rgba(0, 112, 243, 0.45)'
+              }}
+            >
+              OUR SERVICES
             </span>
           </div>
 
-          <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: 'clamp(1.9rem, 3.5vw, 2.75rem)', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.02em', marginBottom: '0.9rem', lineHeight: 1.25 }}>
-            Everything you need to scale global workforce & operations
+          {/* Heading Line 1 */}
+          <h2
+            style={{
+              fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
+              fontWeight: 800,
+              color: '#0f172a',
+              letterSpacing: '-0.02em',
+              marginBottom: '0.75rem',
+              lineHeight: 1.25
+            }}
+          >
+            Quality Engineering & Processing that powers your growth
           </h2>
 
-          <p style={{ fontSize: '1.1rem', color: '#64748b', maxWidth: '840px', margin: '0 auto', lineHeight: 1.6, fontWeight: 400 }}>
-            Explore our 9 multi-vertical workforce solutions—from Outcome-Based delivery and global mobility to Employer of Record and digital operations.
+          {/* Subheading Line 2 */}
+          <h3
+            style={{
+              fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
+              fontSize: 'clamp(1.15rem, 1.8vw, 1.3rem)',
+              fontWeight: 400,
+              color: '#0f172a',
+              marginBottom: '1.15rem',
+              letterSpacing: '-0.01em'
+            }}
+          >
+            At Vebhor, quality is more than a standard—it’s the way we operate.
+          </h3>
+
+          {/* Descriptive Paragraph Line 3 */}
+          <p
+            style={{
+              width: '100%',
+              maxWidth: '970px',
+              margin: '0 auto',
+              textAlign: 'center',
+              fontFamily: '"Archivo", sans-serif',
+              fontSize: '18px',
+              fontWeight: 400,
+              lineHeight: '28px',
+              color: '#64748b'
+            }}
+          >
+            As industry leaders, we deliver exceptional Quality Engineering services powered by intelligence, automation, and a relentless focus on driving business outcomes. Our success is measured by one thing: the growth and success we help our customers achieve
           </p>
         </div>
 
@@ -269,62 +315,70 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
               }}
               style={{
                 flex: 1,
-                backgroundColor: '#0A1128',
+                backgroundColor: '#ffffff',
                 borderRadius: '16px',
                 padding: '2rem 1.75rem',
-                color: '#ffffff',
+                color: '#0f172a',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
                 cursor: 'pointer',
                 transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                boxShadow: '0 8px 24px rgba(10, 17, 40, 0.15)',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
+                boxShadow: '0 10px 25px rgba(0, 0, 0, 0.04)',
+                border: '1.5px solid #e2e8f0',
                 position: 'relative',
                 overflow: 'hidden'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-4px)';
-                e.currentTarget.style.boxShadow = '0 16px 36px rgba(37, 99, 235, 0.25)';
-                e.currentTarget.style.borderColor = 'rgba(56, 189, 248, 0.5)';
+                e.currentTarget.style.boxShadow = '0 16px 36px rgba(0, 92, 253, 0.12)';
+                e.currentTarget.style.borderColor = '#005CFD';
                 const circle = e.currentTarget.querySelector('.card-circle-btn');
-                if (circle) circle.style.transform = 'scale(1.15) translateX(3px)';
+                if (circle) {
+                  circle.style.transform = 'scale(1.15) translateX(3px)';
+                  circle.style.backgroundColor = '#005CFD';
+                  circle.style.color = '#ffffff';
+                }
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 8px 24px rgba(10, 17, 40, 0.15)';
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.04)';
+                e.currentTarget.style.borderColor = '#e2e8f0';
                 const circle = e.currentTarget.querySelector('.card-circle-btn');
-                if (circle) circle.style.transform = 'scale(1) translateX(0)';
+                if (circle) {
+                  circle.style.transform = 'scale(1) translateX(0)';
+                  circle.style.backgroundColor = '#f1f5f9';
+                  circle.style.color = '#0f172a';
+                }
               }}
             >
               <div>
-                <div style={{ width: '42px', height: '42px', borderRadius: '10px', backgroundColor: 'rgba(56, 189, 248, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#38bdf8', marginBottom: '1.25rem' }}>
+                <div style={{ width: '42px', height: '42px', borderRadius: '10px', backgroundColor: '#eff6ff', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#005CFD', marginBottom: '1.25rem' }}>
                   <MessageSquare size={20} />
                 </div>
-                <h4 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '1.35rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.5rem' }}>
+                <h4 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '1.35rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.5rem' }}>
                   Let's Talk
                 </h4>
-                <p style={{ fontSize: '0.88rem', color: '#94a3b8', lineHeight: 1.5, margin: 0 }}>
+                <p style={{ fontSize: '0.88rem', color: '#64748b', lineHeight: 1.5, margin: 0 }}>
                   Ready to transform and scale your enterprise workforce? Speak with our specialists today.
                 </p>
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1.5rem' }}>
-                <span style={{ fontSize: '0.88rem', fontWeight: 700, color: '#38bdf8' }}>Contact Us</span>
+                <span style={{ fontSize: '0.88rem', fontWeight: 700, color: '#005CFD' }}>Contact Us</span>
                 <div
                   className="card-circle-btn"
                   style={{
                     width: '38px',
                     height: '38px',
                     borderRadius: '50%',
-                    backgroundColor: '#ffffff',
+                    backgroundColor: '#f1f5f9',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: '#0A1128',
+                    color: '#0f172a',
                     transition: 'all 0.3s ease',
-                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)'
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)'
                   }}
                 >
                   <ArrowRight size={18} />
@@ -343,62 +397,70 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
               }}
               style={{
                 flex: 1,
-                backgroundColor: '#1E1B4B',
+                backgroundColor: '#ffffff',
                 borderRadius: '16px',
                 padding: '2rem 1.75rem',
-                color: '#ffffff',
+                color: '#0f172a',
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
                 cursor: 'pointer',
                 transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
-                boxShadow: '0 8px 24px rgba(30, 27, 75, 0.15)',
-                border: '1px solid rgba(255, 255, 255, 0.08)',
+                boxShadow: '0 10px 25px rgba(0, 0, 0, 0.04)',
+                border: '1.5px solid #e2e8f0',
                 position: 'relative',
                 overflow: 'hidden'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-4px)';
-                e.currentTarget.style.boxShadow = '0 16px 36px rgba(124, 58, 237, 0.25)';
-                e.currentTarget.style.borderColor = 'rgba(192, 132, 252, 0.5)';
+                e.currentTarget.style.boxShadow = '0 16px 36px rgba(124, 58, 237, 0.12)';
+                e.currentTarget.style.borderColor = '#7c3aed';
                 const circle = e.currentTarget.querySelector('.card-circle-btn-2');
-                if (circle) circle.style.transform = 'scale(1.15) translateX(3px)';
+                if (circle) {
+                  circle.style.transform = 'scale(1.15) translateX(3px)';
+                  circle.style.backgroundColor = '#7c3aed';
+                  circle.style.color = '#ffffff';
+                }
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 8px 24px rgba(30, 27, 75, 0.15)';
-                e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.08)';
+                e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.04)';
+                e.currentTarget.style.borderColor = '#e2e8f0';
                 const circle = e.currentTarget.querySelector('.card-circle-btn-2');
-                if (circle) circle.style.transform = 'scale(1) translateX(0)';
+                if (circle) {
+                  circle.style.transform = 'scale(1) translateX(0)';
+                  circle.style.backgroundColor = '#f1f5f9';
+                  circle.style.color = '#0f172a';
+                }
               }}
             >
               <div>
-                <div style={{ width: '42px', height: '42px', borderRadius: '10px', backgroundColor: 'rgba(192, 132, 252, 0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#c084fc', marginBottom: '1.25rem' }}>
+                <div style={{ width: '42px', height: '42px', borderRadius: '10px', backgroundColor: '#f5f3ff', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#7c3aed', marginBottom: '1.25rem' }}>
                   <Users size={20} />
                 </div>
-                <h4 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '1.35rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.5rem' }}>
+                <h4 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '1.35rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.5rem' }}>
                   Join Our Team
                 </h4>
-                <p style={{ fontSize: '0.88rem', color: '#cbd5e1', lineHeight: 1.5, margin: 0 }}>
+                <p style={{ fontSize: '0.88rem', color: '#64748b', lineHeight: 1.5, margin: 0 }}>
                   Build the future of workforce technology with a high-impact global career.
                 </p>
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1.5rem' }}>
-                <span style={{ fontSize: '0.88rem', fontWeight: 700, color: '#c084fc' }}>Explore Careers</span>
+                <span style={{ fontSize: '0.88rem', fontWeight: 700, color: '#7c3aed' }}>Explore Careers</span>
                 <div
                   className="card-circle-btn-2"
                   style={{
                     width: '38px',
                     height: '38px',
                     borderRadius: '50%',
-                    backgroundColor: '#ffffff',
+                    backgroundColor: '#f1f5f9',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    color: '#1E1B4B',
+                    color: '#0f172a',
                     transition: 'all 0.3s ease',
-                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)'
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)'
                   }}
                 >
                   <ArrowRight size={18} />
@@ -409,7 +471,7 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
         </div>
 
       </div>
-    </section>
+    </section >
   );
 };
 

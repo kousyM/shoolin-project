@@ -13,22 +13,22 @@ export const PartnersSection = ({ onNavPartners }) => {
   const marqueeList = [...partners, ...partners, ...partners, ...partners];
 
   return (
-    <section style={{ backgroundColor: '#060D1F', padding: '5.5rem 1.5rem 5rem 1.5rem', position: 'relative', overflow: 'hidden', borderTop: '1px solid rgba(255, 255, 255, 0.06)' }}>
+    <section style={{ backgroundColor: '#ffffff', padding: '5.5rem 1.5rem 5rem 1.5rem', position: 'relative', overflow: 'hidden', borderTop: '1px solid #e2e8f0' }}>
       <div style={{ maxWidth: '1280px', margin: '0 auto', textAlign: 'center' }}>
         
         {/* Eyebrow Tag */}
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: '#55E6C1', backgroundColor: 'rgba(85, 230, 193, 0.12)', border: '1px solid rgba(85, 230, 193, 0.3)', padding: '0.35rem 1rem', borderRadius: '50px', fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: '1.25rem' }}>
-          <Sparkles size={14} color="#55E6C1" />
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: '#ffffff', background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)', padding: '0.35rem 1.25rem', borderRadius: '50px', fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: '1.25rem', boxShadow: '0 4px 16px rgba(0, 92, 253, 0.45)' }}>
+          <Sparkles size={14} color="#ffffff" />
           <span>STRATEGIC ALLIANCES</span>
         </div>
 
         {/* Section Header */}
-        <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.6rem', fontWeight: 800, color: '#ffffff', letterSpacing: '-0.02em', marginBottom: '1rem', lineHeight: 1.2 }}>
+        <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.6rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.02em', marginBottom: '1rem', lineHeight: 1.2 }}>
           Meet our partners
         </h2>
 
         {/* Subtitle */}
-        <p style={{ fontSize: '1.1rem', color: '#94a3b8', maxWidth: '780px', margin: '0 auto 3rem auto', lineHeight: 1.6, fontWeight: 400 }}>
+        <p style={{ fontSize: '1.1rem', color: '#64748b', maxWidth: '780px', margin: '0 auto 3rem auto', lineHeight: 1.6, fontWeight: 400 }}>
           Partnering with world-leading technology innovators, cloud platforms, and global enterprise ecosystems to accelerate your business.
         </p>
 
@@ -51,7 +51,7 @@ export const PartnersSection = ({ onNavPartners }) => {
                     alt={partner.name}
                   />
                 ) : (
-                  <span style={{ fontSize: '1.1rem', fontWeight: 700, color: '#ffffff' }}>{partner.name}</span>
+                  <span style={{ fontSize: '1.1rem', fontWeight: 700, color: '#0f172a' }}>{partner.name}</span>
                 )}
               </div>
             ))}
@@ -75,25 +75,28 @@ export const PartnersSection = ({ onNavPartners }) => {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.65rem',
-              color: '#ffffff',
-              backgroundColor: 'transparent',
-              border: '1.5px solid rgba(255, 255, 255, 0.4)',
+              color: '#0f172a',
+              backgroundColor: '#ffffff',
+              border: '1.5px solid #cbd5e1',
               padding: '0.75rem 2rem',
               borderRadius: '50px',
               fontWeight: 700,
               fontSize: '0.98rem',
               cursor: 'pointer',
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)',
               transition: 'all 0.3s ease'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#2563eb';
-              e.currentTarget.style.borderColor = '#2563eb';
-              e.currentTarget.style.boxShadow = '0 6px 20px rgba(37, 99, 235, 0.45)';
+              e.currentTarget.style.backgroundColor = '#005CFD';
+              e.currentTarget.style.borderColor = '#005CFD';
+              e.currentTarget.style.color = '#ffffff';
+              e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 92, 253, 0.3)';
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = 'transparent';
-              e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.4)';
-              e.currentTarget.style.boxShadow = 'none';
+              e.currentTarget.style.backgroundColor = '#ffffff';
+              e.currentTarget.style.borderColor = '#cbd5e1';
+              e.currentTarget.style.color = '#0f172a';
+              e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.04)';
             }}
           >
             <span>Find out more</span>

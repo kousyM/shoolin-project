@@ -31,7 +31,7 @@ export const DriveCareerBanner = ({ onNavCareers }) => {
       ref={sectionRef}
       className="career-banner-container"
       style={{
-        backgroundColor: '#08152F',
+        backgroundColor: 'rgb(6 13 31)',
         overflow: 'hidden',
         position: 'relative',
         borderTop: '1px solid rgba(255, 255, 255, 0.06)',
@@ -101,19 +101,19 @@ export const DriveCareerBanner = ({ onNavCareers }) => {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.45rem',
-                color: '#55E6C1',
+                color: '#019CFE',
                 fontSize: '1.25rem',
                 fontWeight: 700,
                 textDecoration: 'none',
                 transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.color = '#38bdf8';
+                e.currentTarget.style.color = '#ffffff';
                 const icon = e.currentTarget.querySelector('.browse-chevron-arrow');
                 if (icon) icon.style.transform = 'translateX(8px) scale(1.15)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.color = '#55E6C1';
+                e.currentTarget.style.color = '#019CFE';
                 const icon = e.currentTarget.querySelector('.browse-chevron-arrow');
                 if (icon) icon.style.transform = 'translateX(0) scale(1)';
               }}

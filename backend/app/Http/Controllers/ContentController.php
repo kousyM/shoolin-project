@@ -395,19 +395,28 @@ class ContentController extends Controller
         return [
             [
                 'id' => 1,
-                'tag' => 'TRANSFORM WITH CONFIDENCE',
-                'title' => 'What challenge are you facing?',
-                'subtitle' => 'We partner with governments and enterprises to navigate complex digital transformations with Next-Gen technology, cloud innovation, and AI.',
-                'image_url' => 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1920&q=80',
-                'button_text' => 'Explore Our Solutions',
+                'tag' => 'NEXT-GEN HR TECH & WORKFORCE',
+                'title' => 'Engineering the Future of Business.',
+                'subtitle' => 'Next-generation Payroll and Workforce Solutions that drive performance, ensure compliance and empower people.',
+                'image_url' => '/images/slider_3.png',
+                'button_text' => 'Explore Solutions',
                 'button_link' => '#services'
             ],
             [
                 'id' => 2,
-                'tag' => 'GLOBAL TALENT & COMPLIANCE',
-                'title' => 'Build smarter. Hire globally. Pay compliantly. Grow without limits.',
-                'subtitle' => 'Our workforce solutions supports international talent hiring, optimise operations, and strengthen organisational growth through continuity, compliance, and excellence.',
-                'image_url' => '/slider_2.jpg',
+                'tag' => 'WORKFORCE TRANSFORMATION',
+                'title' => 'Introducing Vebhor',
+                'subtitle' => 'A refreshed identity that reflects our workforce transformation and future‑ready vision.',
+                'image_url' => '/images/slider_2.jpg',
+                'button_text' => 'Explore Our Solutions',
+                'button_link' => '#services'
+            ],
+            [
+                'id' => 3,
+                'tag' => 'AI & TECH INNOVATION',
+                'title' => 'Smarter Teams',
+                'subtitle' => 'Tech‑powered workforce solutions for smarter hiring, faster scaling, and confident operations.',
+                'image_url' => '/images/slider_1.webp',
                 'button_text' => 'Get In Touch',
                 'button_link' => '#contact'
             ]

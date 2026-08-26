@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ShieldCheck, Lock, Globe, Zap, Layers, Check } from 'lucide-react';
 
+const BRAND_GRADIENT = 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)';
+const BRAND_SHADOW = '0 4px 16px rgba(0, 92, 253, 0.45)';
+
 export const OurSolutionSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef(null);
@@ -32,8 +35,8 @@ export const OurSolutionSection = () => {
       title: 'Global Payroll Compliance',
       description: 'Stay compliant across markets with locally informed payroll expertise. Vebhor manages evolving payroll regulations, statutory requirements, tax obligations, and reporting, helping ensure your workforce is paid accurately and on time while reducing compliance risk and administrative complexity.',
       icon: ShieldCheck,
-      badgeBg: 'rgba(108, 92, 231, 0.15)',
-      iconColor: '#a855f7',
+      badgeBg: 'rgba(16, 185, 129, 0.15)',
+      iconColor: '#10b981',
       initialTransform: 'translate3d(-80px, -40px, 0)' // Top-Left entrance
     },
     {
@@ -41,8 +44,8 @@ export const OurSolutionSection = () => {
       title: 'Global Payroll',
       description: 'Simplify payroll across borders with accurate, compliant, and scalable global payroll solutions. Vebhor manages payroll processing, statutory requirements, tax obligations, and local compliance, helping you pay your workforce accurately and on time while reducing administrative complexity.',
       icon: Globe,
-      badgeBg: 'rgba(37, 99, 235, 0.15)',
-      iconColor: '#38bdf8',
+      badgeBg: 'rgba(6, 182, 212, 0.15)',
+      iconColor: '#06b6d4',
       initialTransform: 'translate3d(0, -80px, 0)' // Top-Down entrance
     },
     {
@@ -50,8 +53,8 @@ export const OurSolutionSection = () => {
       title: 'Consolidate Multiple Vendors',
       description: 'Simplify your workforce operations by bringing recruitment, contractor management, payroll, compliance, and workforce services under one trusted partner. Vebhor helps reduce vendor complexity, streamline processes, improve visibility, and create a more consistent workforce experience across markets.',
       icon: Layers,
-      badgeBg: 'rgba(2, 132, 199, 0.15)',
-      iconColor: '#06b6d4',
+      badgeBg: 'rgba(59, 130, 246, 0.15)',
+      iconColor: '#3b82f6',
       initialTransform: 'translate3d(80px, -40px, 0)' // Top-Right entrance
     },
     {
@@ -59,7 +62,7 @@ export const OurSolutionSection = () => {
       title: 'Seamless Onboarding',
       description: 'With Vebhor Payroll’s Partner & Contractor onboarding application, teams can activate payroll and compliance instantly—no heavy integrations, no delays. Just connect, configure, and go.',
       icon: Zap,
-      badgeBg: 'rgba(5, 150, 105, 0.15)',
+      badgeBg: 'rgba(16, 185, 129, 0.15)',
       iconColor: '#10b981',
       initialTransform: 'translate3d(-80px, 50px, 0)' // Bottom-Left entrance
     },
@@ -88,7 +91,6 @@ export const OurSolutionSection = () => {
       ref={sectionRef}
       id="our-solution"
       style={{
-        // backgroundColor: '#060A14',
         padding: '5.5rem 1.5rem 6rem 1.5rem',
         fontFamily: "var(--bs-body-font-family), 'Plus Jakarta Sans', sans-serif",
         position: 'relative',
@@ -96,7 +98,7 @@ export const OurSolutionSection = () => {
         borderTop: '1px solid rgba(255, 255, 255, 0.06)'
       }}
     >
-      {/* Background Soft Purple & Blue Radial Glow Light */}
+      {/* Background Soft Glow Light */}
       <div
         style={{
           position: 'absolute',
@@ -105,7 +107,7 @@ export const OurSolutionSection = () => {
           transform: 'translateX(-50%)',
           width: '900px',
           height: '500px',
-          background: 'radial-gradient(ellipse at center, rgba(121, 22, 168, 0.22) 0%, rgba(37, 99, 235, 0.1) 40%, transparent 70%)',
+          background: 'radial-gradient(ellipse at center, rgba(6, 182, 212, 0.18) 0%, rgba(16, 185, 129, 0.1) 40%, transparent 70%)',
           pointerEvents: 'none',
           filter: 'blur(30px)'
         }}
@@ -123,9 +125,9 @@ export const OurSolutionSection = () => {
             transition: 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)'
           }}
         >
-          {/* Eyebrow Tag Fully in Royal Purple Capsule */}
+          {/* Eyebrow Tag in Brand Gradient Capsule */}
           <div style={{ display: 'inline-flex', alignItems: 'center', fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: '1rem' }}>
-            <span style={{ backgroundColor: '#6C5CE7', color: '#ffffff', padding: '0.3rem 1.25rem', borderRadius: '18px 24px 24px 18px', boxShadow: '0 4px 16px rgba(108, 92, 231, 0.45)' }}>
+            <span style={{ background: BRAND_GRADIENT, color: '#ffffff', padding: '0.3rem 1.25rem', borderRadius: '18px 24px 24px 18px', boxShadow: BRAND_SHADOW }}>
               OUR SOLUTIONS
             </span>
           </div>
@@ -145,12 +147,12 @@ export const OurSolutionSection = () => {
             Global Workforce Solutions,{' '}
             <span
               style={{
-                backgroundColor: '#6C5CE7',
+                background: BRAND_GRADIENT,
                 color: '#ffffff',
                 padding: '0.15rem 0.95rem',
                 borderRadius: '12px 18px 18px 12px',
                 display: 'inline-block',
-                boxShadow: '0 4px 14px rgba(108, 92, 231, 0.4)'
+                boxShadow: '0 4px 14px rgba(0, 92, 253, 0.4)'
               }}
             >
               Built Around Your Business
@@ -162,7 +164,7 @@ export const OurSolutionSection = () => {
           </p>
         </div>
 
-        {/* 2. 6 DIRECTIONAL ENTRANCE CARDS (TOP/BOTTOM/SIDE ANIMATIONS) WITHOUT EXPLORE LINK */}
+        {/* 2. 6 DIRECTIONAL ENTRANCE CARDS */}
         <div
           style={{
             display: 'grid',
@@ -200,31 +202,32 @@ export const OurSolutionSection = () => {
                     boxShadow: `0 4px 14px ${card.badgeBg}`
                   }}
                 >
-                  <IconComp size={25} />
+                  <IconComp size={26} />
                 </div>
 
-                {/* ORIGINAL CARD TITLE */}
+                {/* TITLE */}
                 <h3
                   style={{
                     fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
-                    fontSize: '1.35rem',
+                    fontSize: '1.25rem',
                     fontWeight: 700,
                     color: '#ffffff',
                     marginBottom: '0.85rem',
+                    letterSpacing: '-0.01em',
                     lineHeight: 1.3
                   }}
                 >
                   {card.title}
                 </h3>
 
-                {/* ORIGINAL CARD DESCRIPTION */}
+                {/* DESCRIPTION */}
                 <p
                   style={{
-                    fontSize: '0.94rem',
+                    fontSize: '0.92rem',
                     color: '#94a3b8',
                     lineHeight: 1.65,
-                    margin: 0,
-                    fontWeight: 400
+                    fontWeight: 400,
+                    margin: 0
                   }}
                 >
                   {card.description}

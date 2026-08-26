@@ -153,8 +153,10 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
     setLoading(true);
     try {
       const apiBase = getApiBaseUrl();
+      const primaryEmail = vendorData.pocEmail || vendorData.workOrderSigningEmail || vendorData.ceoFounderEmail || 'vendor@vebhor.com';
       await axios.post(`${apiBase}/api/partner`, {
         type: 'vendor_update',
+        email: primaryEmail,
         ...vendorData
       }, { timeout: 8000 });
       setVendorFormSubmitted(true);
@@ -192,17 +194,18 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
         <section
           ref={heroRef}
           style={{
-            backgroundColor: '#001938',
-            backgroundImage: `linear-gradient(90deg, rgba(0, 25, 56, 0.92) 0%, rgba(0, 25, 56, 0.78) 50%, rgba(0, 25, 56, 0.48) 100%), url('/images/partners_hero.jpg')`,
+            backgroundColor: '#ffffff',
+            backgroundImage: `linear-gradient(90deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 50%, rgba(255, 255, 255, 0.75) 100%), url('/images/partners_hero.jpg')`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
-            color: '#ffffff',
+            color: '#0f172a',
             padding: '6.5rem 2rem 6rem',
             minHeight: '380px',
             display: 'flex',
             alignItems: 'center',
             position: 'relative',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            borderBottom: '1px solid #e2e8f0'
           }}
         >
           <div style={{ maxWidth: '1240px', margin: '0 auto', width: '100%', position: 'relative', zIndex: 2 }}>
@@ -214,7 +217,7 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                 marginBottom: '1.25rem'
               }}
             >
-              <span style={{ fontSize: '0.82rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#ffffff', backgroundColor: '#6C5CE7', padding: '0.4rem 1.4rem', borderRadius: '18px 24px 24px 18px', display: 'inline-block', boxShadow: '0 4px 18px rgba(108, 92, 231, 0.5)' }}>
+              <span style={{ fontSize: '0.82rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#ffffff', background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)', padding: '0.4rem 1.4rem', borderRadius: '18px 24px 24px 18px', display: 'inline-block', boxShadow: '0 4px 18px rgba(0, 92, 253, 0.4)' }}>
                 PARTNERSHIPS & VENDORS
               </span>
             </div>
@@ -224,7 +227,7 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                 fontFamily: "'Outfit', sans-serif",
                 fontSize: 'clamp(1.85rem, 5vw, 3.2rem)',
                 fontWeight: 800,
-                color: '#ffffff',
+                color: '#0f172a',
                 maxWidth: '900px',
                 lineHeight: 1.25,
                 marginBottom: '1.35rem',
@@ -240,7 +243,7 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
             <p
               style={{
                 fontSize: 'clamp(1rem, 2.5vw, 1.2rem)',
-                color: '#e2e8f0',
+                color: '#64748b',
                 maxWidth: '780px',
                 lineHeight: 1.65,
                 wordBreak: 'break-word',
@@ -408,7 +411,7 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                   transition: 'opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.2s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.2s'
                 }}
               >
-                <div className="partner-icon-box" style={{ width: '52px', height: '52px', borderRadius: '14px', backgroundColor: '#f3e8ff', color: '#6C5CE7', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.35rem' }}>
+                <div className="partner-icon-box" style={{ width: '52px', height: '52px', borderRadius: '14px', backgroundColor: 'rgba(6, 182, 212, 0.12)', color: '#06b6d4', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.35rem' }}>
                   <Layers size={28} />
                 </div>
                 <h3 style={{ fontSize: '1.3rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.75rem', lineHeight: 1.3 }}>
@@ -472,13 +475,12 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
         <section
           ref={talkRef}
           style={{
-            backgroundColor: '#001938',
-            backgroundImage: 'radial-gradient(ellipse at 50% 0%, rgba(108, 92, 231, 0.25) 0%, rgba(0, 25, 56, 0.95) 75%)',
-            color: '#ffffff',
+            backgroundColor: '#f8fafc',
+            color: '#0f172a',
             padding: '6rem 2rem 7rem',
             position: 'relative',
             overflow: 'hidden',
-            borderTop: '1px solid rgba(255, 255, 255, 0.08)'
+            borderTop: '1px solid #e2e8f0'
           }}
         >
           <div
@@ -501,23 +503,23 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                     textTransform: 'uppercase',
                     letterSpacing: '0.14em',
                     color: '#ffffff',
-                    backgroundColor: '#6C5CE7',
+                    background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)',
                     padding: '0.4rem 1.4rem',
                     borderRadius: '18px 24px 24px 18px',
                     display: 'inline-block',
-                    boxShadow: '0 4px 18px rgba(108, 92, 231, 0.5)'
+                    boxShadow: '0 4px 18px rgba(0, 92, 253, 0.4)'
                   }}
                 >
                   PARTNER & VENDOR PORTAL
                 </span>
               </div>
 
-              <h2 style={{ fontFamily: "'Outfit', sans-serif", fontSize: 'clamp(2.2rem, 4vw, 3.2rem)', fontWeight: 800, color: '#ffffff', marginBottom: '0.85rem' }}>
+              <h2 style={{ fontFamily: "'Outfit', sans-serif", fontSize: 'clamp(2.2rem, 4vw, 3.2rem)', fontWeight: 800, color: '#0f172a', marginBottom: '0.85rem' }}>
                 {activeFormTab === 'vendor' ? 'Vendor Information - Update' : "Let's Connect & Partner"}
               </h2>
 
               {/* Form Switcher Pill Tabs */}
-              <div style={{ display: 'inline-flex', gap: '0.5rem', backgroundColor: 'rgba(255, 255, 255, 0.08)', padding: '0.4rem', borderRadius: '50px', border: '1px solid rgba(255, 255, 255, 0.15)', margin: '1rem 0 1.5rem' }}>
+              <div style={{ display: 'inline-flex', gap: '0.5rem', backgroundColor: '#ffffff', padding: '0.4rem', borderRadius: '50px', border: '1.5px solid #e2e8f0', margin: '1rem 0 1.5rem', boxShadow: '0 2px 8px rgba(0,0,0,0.04)' }}>
                 <button
                   type="button"
                   onClick={() => setActiveFormTab('vendor')}
@@ -525,13 +527,13 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                     padding: '0.6rem 1.5rem',
                     borderRadius: '50px',
                     border: 'none',
-                    backgroundColor: activeFormTab === 'vendor' ? '#6C5CE7' : 'transparent',
-                    color: '#ffffff',
+                    background: activeFormTab === 'vendor' ? 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)' : 'transparent',
+                    color: activeFormTab === 'vendor' ? '#ffffff' : '#64748b',
                     fontWeight: 700,
                     fontSize: '0.9rem',
                     cursor: 'pointer',
                     transition: 'all 0.25s ease',
-                    boxShadow: activeFormTab === 'vendor' ? '0 4px 15px rgba(108, 92, 231, 0.5)' : 'none'
+                    boxShadow: activeFormTab === 'vendor' ? '0 4px 15px rgba(0, 92, 253, 0.4)' : 'none'
                   }}
                 >
                   Vendor Information Update
@@ -543,13 +545,13 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                     padding: '0.6rem 1.5rem',
                     borderRadius: '50px',
                     border: 'none',
-                    backgroundColor: activeFormTab === 'enquiry' ? '#6C5CE7' : 'transparent',
-                    color: '#ffffff',
+                    background: activeFormTab === 'enquiry' ? 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)' : 'transparent',
+                    color: activeFormTab === 'enquiry' ? '#ffffff' : '#64748b',
                     fontWeight: 700,
                     fontSize: '0.9rem',
                     cursor: 'pointer',
                     transition: 'all 0.25s ease',
-                    boxShadow: activeFormTab === 'enquiry' ? '0 4px 15px rgba(108, 92, 231, 0.5)' : 'none'
+                    boxShadow: activeFormTab === 'enquiry' ? '0 4px 15px rgba(0, 92, 253, 0.4)' : 'none'
                   }}
                 >
                   General Partner Enquiry
@@ -558,20 +560,20 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
 
               {/* Instructions Paragraph for Vendor Form */}
               {activeFormTab === 'vendor' && (
-                <div style={{ maxWidth: '840px', margin: '0 auto', textAlign: 'left', backgroundColor: 'rgba(10, 25, 60, 0.65)', border: '1px solid rgba(108, 92, 231, 0.35)', borderRadius: '14px', padding: '1.25rem 1.6rem', color: '#cbd5e1', fontSize: '0.95rem', lineHeight: 1.6 }}>
+                <div style={{ maxWidth: '840px', margin: '0 auto', textAlign: 'left', backgroundColor: '#eff6ff', border: '1px solid #bfdbfe', borderRadius: '14px', padding: '1.25rem 1.6rem', color: '#1e293b', fontSize: '0.95rem', lineHeight: 1.6 }}>
                   <p style={{ margin: '0 0 0.5rem 0' }}>
                     These details are being collected to update the <strong>Vendor POC and Escalation POC</strong> information in the database. Kindly provide the details for each country-specific agreement. If you have agreements covering multiple countries, please submit a separate response for each country. The POC details can remain the same across multiple responses, if applicable.
                   </p>
-                  <p style={{ margin: 0, fontSize: '0.88rem', color: '#94a3b8' }}>
+                  <p style={{ margin: 0, fontSize: '0.88rem', color: '#64748b' }}>
                     When you submit this form, it will not automatically collect your details like name and email address unless you provide it yourself.
                   </p>
                   <div style={{ marginTop: '0.75rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem' }}>
-                    <span style={{ color: '#f87171', fontWeight: 700, fontSize: '0.85rem' }}>* Required</span>
+                    <span style={{ color: '#ef4444', fontWeight: 700, fontSize: '0.85rem' }}>* Required</span>
                     <a
                       href="https://forms.cloud.microsoft/pages/responsepage.aspx?id=iVI1_x5y102mY6_sYqudVMhxEyRJlKlOrNk-G3hIjphUN0VDRFVRQzRMRlNISk9NRVJSRUtXNTZRWC4u&route=shorturl"
                       target="_blank"
                       rel="noopener noreferrer"
-                      style={{ color: '#55E6C1', fontSize: '0.85rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.35rem', textDecoration: 'none' }}
+                      style={{ color: '#005CFD', fontSize: '0.85rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.35rem', textDecoration: 'none' }}
                     >
                       Open in Microsoft Forms <ExternalLink size={14} />
                     </a>
@@ -586,35 +588,33 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
             {activeFormTab === 'vendor' && (
               <div
                 style={{
-                  backgroundColor: 'rgba(7, 17, 38, 0.85)',
-                  backdropFilter: 'blur(20px)',
-                  WebkitBackdropFilter: 'blur(20px)',
-                  border: '1.5px solid rgba(108, 92, 231, 0.4)',
+                  backgroundColor: '#ffffff',
+                  border: '1.5px solid #e2e8f0',
                   borderRadius: '24px',
                   padding: '3rem 2.5rem',
-                  boxShadow: '0 25px 60px rgba(0, 0, 0, 0.5), 0 0 35px rgba(108, 92, 231, 0.15)'
+                  boxShadow: '0 10px 40px rgba(0, 0, 0, 0.05)'
                 }}
               >
                 {vendorFormSubmitted ? (
                   <div style={{ textAlign: 'center', padding: '3rem 1rem' }}>
-                    <CheckCircle2 size={64} style={{ color: '#55E6C1', margin: '0 auto 1.25rem' }} />
-                    <h3 style={{ fontSize: '2rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.5rem' }}>
+                    <CheckCircle2 size={64} style={{ color: '#16a34a', margin: '0 auto 1.25rem' }} />
+                    <h3 style={{ fontSize: '2rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.5rem' }}>
                       Vendor Details Submitted Successfully!
                     </h3>
-                    <p style={{ color: '#cbd5e1', fontSize: '1.1rem', maxWidth: '580px', margin: '0.5rem auto 2rem', lineHeight: 1.6 }}>
+                    <p style={{ color: '#64748b', fontSize: '1.1rem', maxWidth: '580px', margin: '0.5rem auto 2rem', lineHeight: 1.6 }}>
                       Thank you for updating your Vendor and POC information. Our Vendor Management Team has received your details.
                     </p>
                     <button
                       onClick={() => setVendorFormSubmitted(false)}
                       style={{
                         padding: '0.85rem 2.5rem',
-                        backgroundColor: '#6C5CE7',
+                        background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)',
                         color: '#ffffff',
                         fontWeight: 800,
                         borderRadius: '50px',
                         border: 'none',
                         cursor: 'pointer',
-                        boxShadow: '0 4px 18px rgba(108, 92, 231, 0.5)'
+                        boxShadow: '0 4px 18px rgba(0, 92, 253, 0.4)'
                       }}
                     >
                       Submit Another Country Response
@@ -624,11 +624,11 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                   <form onSubmit={handleVendorSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.75rem' }}>
                     
                     {/* Field 1: Vendor Name */}
-                    <div style={{ backgroundColor: 'rgba(15, 25, 55, 0.6)', padding: '1.35rem 1.6rem', borderRadius: '14px', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
-                      <label style={{ display: 'block', fontSize: '1rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.25rem' }}>
-                        1. Vendor Name <span style={{ color: '#f87171' }}>*</span>
+                    <div style={{ backgroundColor: '#f8fafc', padding: '1.35rem 1.6rem', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
+                      <label style={{ display: 'block', fontSize: '1rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.25rem' }}>
+                        1. Vendor Name <span style={{ color: '#ef4444' }}>*</span>
                       </label>
-                      <p style={{ fontSize: '0.85rem', color: '#94a3b8', margin: '0 0 0.75rem 0' }}>
+                      <p style={{ fontSize: '0.85rem', color: '#64748b', margin: '0 0 0.75rem 0' }}>
                         Legal Entity Full Name as per respective country and agreement
                       </p>
                       <input
@@ -638,16 +638,16 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                         onChange={handleVendorInputChange}
                         placeholder="Enter your answer"
                         required
-                        style={{ width: '100%', padding: '0.85rem 1rem', borderRadius: '10px', border: '1px solid rgba(255, 255, 255, 0.18)', backgroundColor: '#071126', color: '#ffffff', fontSize: '0.95rem', outline: 'none' }}
+                        style={{ width: '100%', padding: '0.85rem 1rem', borderRadius: '10px', border: '1.5px solid #e2e8f0', backgroundColor: '#ffffff', color: '#0f172a', fontSize: '0.95rem', outline: 'none' }}
                       />
                     </div>
 
                     {/* Field 2: Vendor Code */}
-                    <div style={{ backgroundColor: 'rgba(15, 25, 55, 0.6)', padding: '1.35rem 1.6rem', borderRadius: '14px', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
-                      <label style={{ display: 'block', fontSize: '1rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.25rem' }}>
-                        2. Vendor Code <span style={{ color: '#f87171' }}>*</span>
+                    <div style={{ backgroundColor: '#f8fafc', padding: '1.35rem 1.6rem', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
+                      <label style={{ display: 'block', fontSize: '1rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.25rem' }}>
+                        2. Vendor Code <span style={{ color: '#ef4444' }}>*</span>
                       </label>
-                      <p style={{ fontSize: '0.85rem', color: '#94a3b8', margin: '0 0 0.75rem 0' }}>
+                      <p style={{ fontSize: '0.85rem', color: '#64748b', margin: '0 0 0.75rem 0' }}>
                         Code as per the Supplier 360
                       </p>
                       <input
@@ -657,16 +657,16 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                         onChange={handleVendorInputChange}
                         placeholder="Enter your answer"
                         required
-                        style={{ width: '100%', padding: '0.85rem 1rem', borderRadius: '10px', border: '1px solid rgba(255, 255, 255, 0.18)', backgroundColor: '#071126', color: '#ffffff', fontSize: '0.95rem', outline: 'none' }}
+                        style={{ width: '100%', padding: '0.85rem 1rem', borderRadius: '10px', border: '1.5px solid #e2e8f0', backgroundColor: '#ffffff', color: '#0f172a', fontSize: '0.95rem', outline: 'none' }}
                       />
                     </div>
 
                     {/* Field 3: Registered Address */}
-                    <div style={{ backgroundColor: 'rgba(15, 25, 55, 0.6)', padding: '1.35rem 1.6rem', borderRadius: '14px', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
-                      <label style={{ display: 'block', fontSize: '1rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.25rem' }}>
-                        3. Registered Address <span style={{ color: '#f87171' }}>*</span>
+                    <div style={{ backgroundColor: '#f8fafc', padding: '1.35rem 1.6rem', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
+                      <label style={{ display: 'block', fontSize: '1rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.25rem' }}>
+                        3. Registered Address <span style={{ color: '#ef4444' }}>*</span>
                       </label>
-                      <p style={{ fontSize: '0.85rem', color: '#94a3b8', margin: '0 0 0.75rem 0' }}>
+                      <p style={{ fontSize: '0.85rem', color: '#64748b', margin: '0 0 0.75rem 0' }}>
                         Provide the registered address as per the agreement
                       </p>
                       <textarea
@@ -676,16 +676,16 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                         onChange={handleVendorInputChange}
                         placeholder="Enter your answer"
                         required
-                        style={{ width: '100%', padding: '0.85rem 1rem', borderRadius: '10px', border: '1px solid rgba(255, 255, 255, 0.18)', backgroundColor: '#071126', color: '#ffffff', fontSize: '0.95rem', outline: 'none', resize: 'vertical' }}
+                        style={{ width: '100%', padding: '0.85rem 1rem', borderRadius: '10px', border: '1.5px solid #e2e8f0', backgroundColor: '#ffffff', color: '#0f172a', fontSize: '0.95rem', outline: 'none', resize: 'vertical' }}
                       />
                     </div>
 
                     {/* Field 4: Country */}
-                    <div style={{ backgroundColor: 'rgba(15, 25, 55, 0.6)', padding: '1.35rem 1.6rem', borderRadius: '14px', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
-                      <label style={{ display: 'block', fontSize: '1rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.25rem' }}>
-                        4. Country <span style={{ color: '#f87171' }}>*</span>
+                    <div style={{ backgroundColor: '#f8fafc', padding: '1.35rem 1.6rem', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
+                      <label style={{ display: 'block', fontSize: '1rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.25rem' }}>
+                        4. Country <span style={{ color: '#ef4444' }}>*</span>
                       </label>
-                      <p style={{ fontSize: '0.85rem', color: '#94a3b8', margin: '0 0 0.75rem 0' }}>
+                      <p style={{ fontSize: '0.85rem', color: '#64748b', margin: '0 0 0.75rem 0' }}>
                         Requesting you update country name as per the signed agreement
                       </p>
                       <input
@@ -695,28 +695,28 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                         onChange={handleVendorInputChange}
                         placeholder="Enter your answer"
                         required
-                        style={{ width: '100%', padding: '0.85rem 1rem', borderRadius: '10px', border: '1px solid rgba(255, 255, 255, 0.18)', backgroundColor: '#071126', color: '#ffffff', fontSize: '0.95rem', outline: 'none' }}
+                        style={{ width: '100%', padding: '0.85rem 1rem', borderRadius: '10px', border: '1.5px solid #e2e8f0', backgroundColor: '#ffffff', color: '#0f172a', fontSize: '0.95rem', outline: 'none' }}
                       />
                     </div>
 
                     {/* Field 5: Mode of Hiring (Checkboxes) */}
-                    <div style={{ backgroundColor: 'rgba(15, 25, 55, 0.6)', padding: '1.35rem 1.6rem', borderRadius: '14px', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
-                      <label style={{ display: 'block', fontSize: '1rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.25rem' }}>
-                        5. Mode of Hiring <span style={{ color: '#f87171' }}>*</span>
+                    <div style={{ backgroundColor: '#f8fafc', padding: '1.35rem 1.6rem', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
+                      <label style={{ display: 'block', fontSize: '1rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.25rem' }}>
+                        5. Mode of Hiring <span style={{ color: '#ef4444' }}>*</span>
                       </label>
-                      <p style={{ fontSize: '0.85rem', color: '#94a3b8', margin: '0 0 0.85rem 0' }}>
+                      <p style={{ fontSize: '0.85rem', color: '#64748b', margin: '0 0 0.85rem 0' }}>
                         Requesting you to select the mode of hiring based on agreement for respective country with LTM
                       </p>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                         {['Permanent', 'Subcon', 'HTD (Hire Train Deploy)'].map((mode) => (
-                          <label key={mode} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer', color: '#e2e8f0', fontSize: '0.95rem' }}>
+                          <label key={mode} style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', cursor: 'pointer', color: '#1e293b', fontSize: '0.95rem' }}>
                             <input
                               type="checkbox"
                               name="modeOfHiring"
                               value={mode}
                               checked={(vendorData.modesOfHiring || []).includes(mode)}
                               onChange={handleVendorInputChange}
-                              style={{ width: '18px', height: '18px', accentColor: '#6C5CE7', cursor: 'pointer' }}
+                              style={{ width: '18px', height: '18px', accentColor: '#005CFD', cursor: 'pointer' }}
                             />
                             <span>{mode}</span>
                           </label>
@@ -726,9 +726,9 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
 
                     {/* Field 6 & 7: POC Name & POC Contact Number */}
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-                      <div style={{ backgroundColor: 'rgba(15, 25, 55, 0.6)', padding: '1.35rem 1.6rem', borderRadius: '14px', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
-                        <label style={{ display: 'block', fontSize: '1rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.25rem' }}>
-                          6. Vendor Point of Contact (POC) Name <span style={{ color: '#f87171' }}>*</span>
+                      <div style={{ backgroundColor: '#f8fafc', padding: '1.35rem 1.6rem', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
+                        <label style={{ display: 'block', fontSize: '1rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.25rem' }}>
+                          6. Vendor Point of Contact (POC) Name <span style={{ color: '#ef4444' }}>*</span>
                         </label>
                         <input
                           type="text"
@@ -737,12 +737,12 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                           onChange={handleVendorInputChange}
                           placeholder="Enter your answer"
                           required
-                          style={{ width: '100%', marginTop: '0.5rem', padding: '0.85rem 1rem', borderRadius: '10px', border: '1px solid rgba(255, 255, 255, 0.18)', backgroundColor: '#071126', color: '#ffffff', fontSize: '0.95rem', outline: 'none' }}
+                          style={{ width: '100%', marginTop: '0.5rem', padding: '0.85rem 1rem', borderRadius: '10px', border: '1.5px solid #e2e8f0', backgroundColor: '#ffffff', color: '#0f172a', fontSize: '0.95rem', outline: 'none' }}
                         />
                       </div>
-                      <div style={{ backgroundColor: 'rgba(15, 25, 55, 0.6)', padding: '1.35rem 1.6rem', borderRadius: '14px', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
-                        <label style={{ display: 'block', fontSize: '1rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.25rem' }}>
-                          7. POC Contact Number <span style={{ color: '#f87171' }}>*</span>
+                      <div style={{ backgroundColor: '#f8fafc', padding: '1.35rem 1.6rem', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
+                        <label style={{ display: 'block', fontSize: '1rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.25rem' }}>
+                          7. POC Contact Number <span style={{ color: '#ef4444' }}>*</span>
                         </label>
                         <input
                           type="text"
@@ -751,15 +751,15 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                           onChange={handleVendorInputChange}
                           placeholder="Enter your answer"
                           required
-                          style={{ width: '100%', marginTop: '0.5rem', padding: '0.85rem 1rem', borderRadius: '10px', border: '1px solid rgba(255, 255, 255, 0.18)', backgroundColor: '#071126', color: '#ffffff', fontSize: '0.95rem', outline: 'none' }}
+                          style={{ width: '100%', marginTop: '0.5rem', padding: '0.85rem 1rem', borderRadius: '10px', border: '1.5px solid #e2e8f0', backgroundColor: '#ffffff', color: '#0f172a', fontSize: '0.95rem', outline: 'none' }}
                         />
                       </div>
                     </div>
 
                     {/* Field 8: POC Email ID */}
-                    <div style={{ backgroundColor: 'rgba(15, 25, 55, 0.6)', padding: '1.35rem 1.6rem', borderRadius: '14px', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
-                      <label style={{ display: 'block', fontSize: '1rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.25rem' }}>
-                        8. POC Email ID <span style={{ color: '#f87171' }}>*</span>
+                    <div style={{ backgroundColor: '#f8fafc', padding: '1.35rem 1.6rem', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
+                      <label style={{ display: 'block', fontSize: '1rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.25rem' }}>
+                        8. POC Email ID <span style={{ color: '#ef4444' }}>*</span>
                       </label>
                       <input
                         type="email"
@@ -768,14 +768,14 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                         onChange={handleVendorInputChange}
                         placeholder="Enter your answer"
                         required
-                        style={{ width: '100%', marginTop: '0.5rem', padding: '0.85rem 1rem', borderRadius: '10px', border: '1px solid rgba(255, 255, 255, 0.18)', backgroundColor: '#071126', color: '#ffffff', fontSize: '0.95rem', outline: 'none' }}
+                        style={{ width: '100%', marginTop: '0.5rem', padding: '0.85rem 1rem', borderRadius: '10px', border: '1.5px solid #e2e8f0', backgroundColor: '#ffffff', color: '#0f172a', fontSize: '0.95rem', outline: 'none' }}
                       />
                     </div>
 
                     {/* Field 9 & 10: Escalation POC Name & Escalation POC Email ID */}
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-                      <div style={{ backgroundColor: 'rgba(15, 25, 55, 0.6)', padding: '1.35rem 1.6rem', borderRadius: '14px', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
-                        <label style={{ display: 'block', fontSize: '1rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.25rem' }}>
+                      <div style={{ backgroundColor: '#f8fafc', padding: '1.35rem 1.6rem', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
+                        <label style={{ display: 'block', fontSize: '1rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.25rem' }}>
                           9. Escalation POC Name
                         </label>
                         <input
@@ -784,11 +784,11 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                           value={vendorData.escalationPocName}
                           onChange={handleVendorInputChange}
                           placeholder="Enter your answer"
-                          style={{ width: '100%', marginTop: '0.5rem', padding: '0.85rem 1rem', borderRadius: '10px', border: '1px solid rgba(255, 255, 255, 0.18)', backgroundColor: '#071126', color: '#ffffff', fontSize: '0.95rem', outline: 'none' }}
+                          style={{ width: '100%', marginTop: '0.5rem', padding: '0.85rem 1rem', borderRadius: '10px', border: '1.5px solid #e2e8f0', backgroundColor: '#ffffff', color: '#0f172a', fontSize: '0.95rem', outline: 'none' }}
                         />
                       </div>
-                      <div style={{ backgroundColor: 'rgba(15, 25, 55, 0.6)', padding: '1.35rem 1.6rem', borderRadius: '14px', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
-                        <label style={{ display: 'block', fontSize: '1rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.25rem' }}>
+                      <div style={{ backgroundColor: '#f8fafc', padding: '1.35rem 1.6rem', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
+                        <label style={{ display: 'block', fontSize: '1rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.25rem' }}>
                           10. Escalation POC Email ID
                         </label>
                         <input
@@ -797,15 +797,15 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                           value={vendorData.escalationPocEmail}
                           onChange={handleVendorInputChange}
                           placeholder="Enter your answer"
-                          style={{ width: '100%', marginTop: '0.5rem', padding: '0.85rem 1rem', borderRadius: '10px', border: '1px solid rgba(255, 255, 255, 0.18)', backgroundColor: '#071126', color: '#ffffff', fontSize: '0.95rem', outline: 'none' }}
+                          style={{ width: '100%', marginTop: '0.5rem', padding: '0.85rem 1rem', borderRadius: '10px', border: '1.5px solid #e2e8f0', backgroundColor: '#ffffff', color: '#0f172a', fontSize: '0.95rem', outline: 'none' }}
                         />
                       </div>
                     </div>
 
                     {/* Field 11: Work Order Signing Authority Email id */}
-                    <div style={{ backgroundColor: 'rgba(15, 25, 55, 0.6)', padding: '1.35rem 1.6rem', borderRadius: '14px', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
-                      <label style={{ display: 'block', fontSize: '1rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.25rem' }}>
-                        11. Work Order Signing Authority Email id <span style={{ color: '#f87171' }}>*</span>
+                    <div style={{ backgroundColor: '#f8fafc', padding: '1.35rem 1.6rem', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
+                      <label style={{ display: 'block', fontSize: '1rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.25rem' }}>
+                        11. Work Order Signing Authority Email id <span style={{ color: '#ef4444' }}>*</span>
                       </label>
                       <input
                         type="email"
@@ -814,15 +814,15 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                         onChange={handleVendorInputChange}
                         placeholder="Enter your answer"
                         required
-                        style={{ width: '100%', marginTop: '0.5rem', padding: '0.85rem 1rem', borderRadius: '10px', border: '1px solid rgba(255, 255, 255, 0.18)', backgroundColor: '#071126', color: '#ffffff', fontSize: '0.95rem', outline: 'none' }}
+                        style={{ width: '100%', marginTop: '0.5rem', padding: '0.85rem 1rem', borderRadius: '10px', border: '1.5px solid #e2e8f0', backgroundColor: '#ffffff', color: '#0f172a', fontSize: '0.95rem', outline: 'none' }}
                       />
                     </div>
 
                     {/* Field 12 & 13: CEO/Founder/MD Name & Email ID */}
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-                      <div style={{ backgroundColor: 'rgba(15, 25, 55, 0.6)', padding: '1.35rem 1.6rem', borderRadius: '14px', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
-                        <label style={{ display: 'block', fontSize: '1rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.25rem' }}>
-                          12. CEO/Founder/MD Name <span style={{ color: '#f87171' }}>*</span>
+                      <div style={{ backgroundColor: '#f8fafc', padding: '1.35rem 1.6rem', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
+                        <label style={{ display: 'block', fontSize: '1rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.25rem' }}>
+                          12. CEO/Founder/MD Name <span style={{ color: '#ef4444' }}>*</span>
                         </label>
                         <input
                           type="text"
@@ -831,12 +831,12 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                           onChange={handleVendorInputChange}
                           placeholder="Enter your answer"
                           required
-                          style={{ width: '100%', marginTop: '0.5rem', padding: '0.85rem 1rem', borderRadius: '10px', border: '1px solid rgba(255, 255, 255, 0.18)', backgroundColor: '#071126', color: '#ffffff', fontSize: '0.95rem', outline: 'none' }}
+                          style={{ width: '100%', marginTop: '0.5rem', padding: '0.85rem 1rem', borderRadius: '10px', border: '1.5px solid #e2e8f0', backgroundColor: '#ffffff', color: '#0f172a', fontSize: '0.95rem', outline: 'none' }}
                         />
                       </div>
-                      <div style={{ backgroundColor: 'rgba(15, 25, 55, 0.6)', padding: '1.35rem 1.6rem', borderRadius: '14px', border: '1px solid rgba(255, 255, 255, 0.08)' }}>
-                        <label style={{ display: 'block', fontSize: '1rem', fontWeight: 800, color: '#ffffff', marginBottom: '0.25rem' }}>
-                          13. CEO/Founder/MD Email ID <span style={{ color: '#f87171' }}>*</span>
+                      <div style={{ backgroundColor: '#f8fafc', padding: '1.35rem 1.6rem', borderRadius: '14px', border: '1px solid #e2e8f0' }}>
+                        <label style={{ display: 'block', fontSize: '1rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.25rem' }}>
+                          13. CEO/Founder/MD Email ID <span style={{ color: '#ef4444' }}>*</span>
                         </label>
                         <input
                           type="email"
@@ -845,7 +845,7 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                           onChange={handleVendorInputChange}
                           placeholder="Enter your answer"
                           required
-                          style={{ width: '100%', marginTop: '0.5rem', padding: '0.85rem 1rem', borderRadius: '10px', border: '1px solid rgba(255, 255, 255, 0.18)', backgroundColor: '#071126', color: '#ffffff', fontSize: '0.95rem', outline: 'none' }}
+                          style={{ width: '100%', marginTop: '0.5rem', padding: '0.85rem 1rem', borderRadius: '10px', border: '1.5px solid #e2e8f0', backgroundColor: '#ffffff', color: '#0f172a', fontSize: '0.95rem', outline: 'none' }}
                         />
                       </div>
                     </div>
@@ -857,14 +857,14 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                         disabled={loading}
                         style={{
                           padding: '1rem 4rem',
-                          backgroundColor: '#6C5CE7',
+                          background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)',
                           color: '#ffffff',
                           fontWeight: 800,
                           fontSize: '1.05rem',
                           borderRadius: '50px',
                           border: 'none',
                           cursor: loading ? 'not-allowed' : 'pointer',
-                          boxShadow: '0 8px 25px rgba(108, 92, 231, 0.55)',
+                          boxShadow: '0 8px 25px rgba(0, 92, 253, 0.45)',
                           transition: 'all 0.25s ease'
                         }}
                       >
@@ -883,25 +883,23 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
             {activeFormTab === 'enquiry' && (
               <div
                 style={{
-                  backgroundColor: 'rgba(7, 17, 38, 0.85)',
-                  backdropFilter: 'blur(20px)',
-                  WebkitBackdropFilter: 'blur(20px)',
-                  border: '1.5px solid rgba(108, 92, 231, 0.4)',
+                  backgroundColor: '#ffffff',
+                  border: '1.5px solid #e2e8f0',
                   borderRadius: '24px',
                   padding: '3rem 2.5rem',
-                  boxShadow: '0 25px 60px rgba(0, 0, 0, 0.5)'
+                  boxShadow: '0 10px 40px rgba(0, 0, 0, 0.05)'
                 }}
               >
                 {formSubmitted ? (
-                  <div style={{ backgroundColor: '#ffffff', color: '#0f172a', padding: '3.5rem', borderRadius: '18px', textAlign: 'center', boxShadow: '0 20px 50px rgba(0,0,0,0.3)' }}>
+                  <div style={{ backgroundColor: '#ffffff', color: '#0f172a', padding: '3.5rem', borderRadius: '18px', textAlign: 'center', boxShadow: '0 4px 16px rgba(0,0,0,0.04)' }}>
                     <CheckCircle2 size={64} style={{ color: '#16a34a', margin: '0 auto 1.25rem' }} />
                     <h3 style={{ fontSize: '1.8rem', fontWeight: 800 }}>Enquiry Received!</h3>
-                    <p style={{ color: '#475569', fontSize: '1.1rem', marginTop: '0.5rem', maxWidth: '500px', margin: '0.5rem auto 2rem' }}>
+                    <p style={{ color: '#64748b', fontSize: '1.1rem', marginTop: '0.5rem', maxWidth: '500px', margin: '0.5rem auto 2rem' }}>
                       Thank you for reaching out. One of our technology partner specialists will connect with you shortly.
                     </p>
                     <button
                       onClick={() => setFormSubmitted(false)}
-                      style={{ padding: '0.85rem 2.25rem', backgroundColor: '#6C5CE7', color: '#ffffff', fontWeight: 800, borderRadius: '50px', border: 'none', cursor: 'pointer', boxShadow: '0 4px 15px rgba(108, 92, 231, 0.4)' }}
+                      style={{ padding: '0.85rem 2.25rem', background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)', color: '#ffffff', fontWeight: 800, borderRadius: '50px', border: 'none', cursor: 'pointer', boxShadow: '0 4px 15px rgba(0, 92, 253, 0.4)' }}
                     >
                       Send Another Enquiry
                     </button>
@@ -910,8 +908,8 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                   <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.6rem' }}>
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.6rem' }}>
                       <div>
-                        <label style={{ display: 'block', fontSize: '0.9rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.4rem' }}>
-                          First name <span style={{ color: '#f87171' }}>*</span>
+                        <label style={{ display: 'block', fontSize: '0.9rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.4rem' }}>
+                          First name <span style={{ color: '#ef4444' }}>*</span>
                         </label>
                         <input
                           type="text"
@@ -920,12 +918,12 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                           onChange={handleInputChange}
                           placeholder="First name"
                           required
-                          style={{ width: '100%', padding: '0.9rem 1.1rem', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.18)', fontSize: '0.95rem', outline: 'none', backgroundColor: '#071126', color: '#ffffff' }}
+                          style={{ width: '100%', padding: '0.9rem 1.1rem', borderRadius: '10px', border: '1.5px solid #e2e8f0', fontSize: '0.95rem', outline: 'none', backgroundColor: '#f8fafc', color: '#0f172a' }}
                         />
                       </div>
                       <div>
-                        <label style={{ display: 'block', fontSize: '0.9rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.4rem' }}>
-                          Last name <span style={{ color: '#f87171' }}>*</span>
+                        <label style={{ display: 'block', fontSize: '0.9rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.4rem' }}>
+                          Last name <span style={{ color: '#ef4444' }}>*</span>
                         </label>
                         <input
                           type="text"
@@ -934,15 +932,15 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                           onChange={handleInputChange}
                           placeholder="Last name"
                           required
-                          style={{ width: '100%', padding: '0.9rem 1.1rem', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.18)', fontSize: '0.95rem', outline: 'none', backgroundColor: '#071126', color: '#ffffff' }}
+                          style={{ width: '100%', padding: '0.9rem 1.1rem', borderRadius: '10px', border: '1.5px solid #e2e8f0', fontSize: '0.95rem', outline: 'none', backgroundColor: '#f8fafc', color: '#0f172a' }}
                         />
                       </div>
                     </div>
 
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.6rem' }}>
                       <div>
-                        <label style={{ display: 'block', fontSize: '0.9rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.4rem' }}>
-                          Role <span style={{ color: '#f87171' }}>*</span>
+                        <label style={{ display: 'block', fontSize: '0.9rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.4rem' }}>
+                          Role <span style={{ color: '#ef4444' }}>*</span>
                         </label>
                         <input
                           type="text"
@@ -951,12 +949,12 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                           onChange={handleInputChange}
                           placeholder="Role"
                           required
-                          style={{ width: '100%', padding: '0.9rem 1.1rem', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.18)', fontSize: '0.95rem', outline: 'none', backgroundColor: '#071126', color: '#ffffff' }}
+                          style={{ width: '100%', padding: '0.9rem 1.1rem', borderRadius: '10px', border: '1.5px solid #e2e8f0', fontSize: '0.95rem', outline: 'none', backgroundColor: '#f8fafc', color: '#0f172a' }}
                         />
                       </div>
                       <div>
-                        <label style={{ display: 'block', fontSize: '0.9rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.4rem' }}>
-                          Organisation <span style={{ color: '#f87171' }}>*</span>
+                        <label style={{ display: 'block', fontSize: '0.9rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.4rem' }}>
+                          Organisation <span style={{ color: '#ef4444' }}>*</span>
                         </label>
                         <input
                           type="text"
@@ -965,15 +963,15 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                           onChange={handleInputChange}
                           placeholder="Organisation"
                           required
-                          style={{ width: '100%', padding: '0.9rem 1.1rem', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.18)', fontSize: '0.95rem', outline: 'none', backgroundColor: '#071126', color: '#ffffff' }}
+                          style={{ width: '100%', padding: '0.9rem 1.1rem', borderRadius: '10px', border: '1.5px solid #e2e8f0', fontSize: '0.95rem', outline: 'none', backgroundColor: '#f8fafc', color: '#0f172a' }}
                         />
                       </div>
                     </div>
 
                     <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.6rem' }}>
                       <div>
-                        <label style={{ display: 'block', fontSize: '0.9rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.4rem' }}>
-                          Business email address <span style={{ color: '#f87171' }}>*</span>
+                        <label style={{ display: 'block', fontSize: '0.9rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.4rem' }}>
+                          Business email address <span style={{ color: '#ef4444' }}>*</span>
                         </label>
                         <input
                           type="email"
@@ -982,12 +980,12 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                           onChange={handleInputChange}
                           placeholder="Business email address"
                           required
-                          style={{ width: '100%', padding: '0.9rem 1.1rem', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.18)', fontSize: '0.95rem', outline: 'none', backgroundColor: '#071126', color: '#ffffff' }}
+                          style={{ width: '100%', padding: '0.9rem 1.1rem', borderRadius: '10px', border: '1.5px solid #e2e8f0', fontSize: '0.95rem', outline: 'none', backgroundColor: '#f8fafc', color: '#0f172a' }}
                         />
                       </div>
                       <div>
-                        <label style={{ display: 'block', fontSize: '0.9rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.4rem' }}>
-                          Phone <span style={{ color: '#f87171' }}>*</span>
+                        <label style={{ display: 'block', fontSize: '0.9rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.4rem' }}>
+                          Phone <span style={{ color: '#ef4444' }}>*</span>
                         </label>
                         <input
                           type="text"
@@ -996,14 +994,14 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                           onChange={handleInputChange}
                           placeholder="Phone"
                           required
-                          style={{ width: '100%', padding: '0.9rem 1.1rem', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.18)', fontSize: '0.95rem', outline: 'none', backgroundColor: '#071126', color: '#ffffff' }}
+                          style={{ width: '100%', padding: '0.9rem 1.1rem', borderRadius: '10px', border: '1.5px solid #e2e8f0', fontSize: '0.95rem', outline: 'none', backgroundColor: '#f8fafc', color: '#0f172a' }}
                         />
                       </div>
                     </div>
 
                     <div>
-                      <label style={{ display: 'block', fontSize: '0.9rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.4rem' }}>
-                        Tell us more about your enquiry <span style={{ color: '#f87171' }}>*</span>
+                      <label style={{ display: 'block', fontSize: '0.9rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.4rem' }}>
+                        Tell us more about your enquiry <span style={{ color: '#ef4444' }}>*</span>
                       </label>
                       <textarea
                         name="enquiry"
@@ -1012,7 +1010,7 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                         onChange={handleInputChange}
                         placeholder="Tell us more about your enquiry"
                         required
-                        style={{ width: '100%', padding: '0.9rem 1.1rem', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.18)', fontSize: '0.95rem', outline: 'none', backgroundColor: '#071126', color: '#ffffff', resize: 'vertical' }}
+                        style={{ width: '100%', padding: '0.9rem 1.1rem', borderRadius: '10px', border: '1.5px solid #e2e8f0', fontSize: '0.95rem', outline: 'none', backgroundColor: '#f8fafc', color: '#0f172a', resize: 'vertical' }}
                       ></textarea>
                     </div>
 
@@ -1022,14 +1020,14 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                         disabled={loading}
                         style={{
                           padding: '1rem 3.5rem',
-                          backgroundColor: '#6C5CE7',
+                          background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)',
                           color: '#ffffff',
                           fontWeight: 800,
                           fontSize: '1.05rem',
                           borderRadius: '50px',
                           border: 'none',
                           cursor: loading ? 'not-allowed' : 'pointer',
-                          boxShadow: '0 8px 25px rgba(108, 92, 231, 0.55)',
+                          boxShadow: '0 8px 25px rgba(0, 92, 253, 0.45)',
                           transition: 'all 0.25s ease'
                         }}
                       >
@@ -1099,7 +1097,7 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                   <p style={{ fontSize: '1.02rem', color: '#64748b', lineHeight: 1.6, marginBottom: '1.5rem' }}>
                     Join our growing global team of engineers, recruiters, HR leaders, and workforce consultants.
                   </p>
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', color: '#6C5CE7', fontWeight: 800, fontSize: '0.95rem' }}>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', color: '#06b6d4', fontWeight: 800, fontSize: '0.95rem' }}>
                     Explore open roles <ArrowRight size={18} />
                   </span>
                 </div>
@@ -1137,7 +1135,7 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                   <p style={{ fontSize: '1.02rem', color: '#64748b', lineHeight: 1.6, marginBottom: '1.5rem' }}>
                     Have a complex workforce or talent scaling problem? Challenge our specialists to engineer a high-impact solution.
                   </p>
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', color: '#6C5CE7', fontWeight: 800, fontSize: '0.95rem' }}>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', color: '#06b6d4', fontWeight: 800, fontSize: '0.95rem' }}>
                     Submit a challenge <ArrowRight size={18} />
                   </span>
                 </div>

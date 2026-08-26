@@ -93,7 +93,7 @@ export const DeelServicesSubpage = ({ onOpenContactPage }) => {
 
   return (
     <div id="services-tabs-section" style={{ backgroundColor: '#ffffff', color: '#111827', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-      
+
       {/* SECTION HEADER */}
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '4rem 1.5rem 2rem', textAlign: 'center' }}>
         <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.5rem', fontWeight: 700, color: '#0f172a', letterSpacing: '-0.02em', marginBottom: '1rem', lineHeight: 1.15 }}>

@@ -43,21 +43,21 @@ export const Footer = ({ onOpenContactPage, onNavAdmin, onNavAbout }) => {
   };
 
   return (
-    <footer style={{ backgroundColor: 'rgb(6, 13, 31)', borderTop: '1px solid rgba(255, 255, 255, 0.08)', color: '#ffffff', fontFamily: "var(--bs-body-font-family), 'Plus Jakarta Sans', sans-serif" }}>
+    <footer style={{ backgroundColor: '#f8fafc', borderTop: '1px solid #e2e8f0', color: '#0f172a', fontFamily: "var(--bs-body-font-family), 'Plus Jakarta Sans', sans-serif" }}>
 
       {/* ============================================================ */}
-      {/* 1. DEEL-STYLE NEWSLETTER BANNER MATCHING IMAGE 2 */}
+      {/* 1. DEEL-STYLE NEWSLETTER BANNER */}
       {/* ============================================================ */}
-      <div style={{ borderBottom: '1px solid rgba(255, 255, 255, 0.08)', padding: '3rem 1.5rem' }}>
+      <div style={{ borderBottom: '1px solid #e2e8f0', padding: '3rem 1.5rem' }}>
         <div style={{ maxWidth: '1280px', margin: '0 auto', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '2rem' }}>
 
           {/* Left: Brand Logo & Social Icons */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
               <img
-                src="/logo_icon.png"
+                src="/logo_icon.png?v=2026"
                 alt="Vebhor"
-                style={{ height: '36px', width: 'auto', objectFit: 'contain' }}
+                style={{ height: '55px', width: 'auto', objectFit: 'contain' }}
                 onError={(e) => { e.currentTarget.style.display = 'none'; }}
               />
               <span
@@ -65,15 +65,16 @@ export const Footer = ({ onOpenContactPage, onNavAdmin, onNavAbout }) => {
                   fontFamily: "'Cinzel', 'Outfit', 'Plus Jakarta Sans', sans-serif",
                   fontSize: '1.9rem',
                   fontWeight: 800,
-                  color: '#ffffff',
-                  letterSpacing: '0.02em'
+                  color: '#000000',
+                  letterSpacing: '0.04em',
+                  textTransform: 'uppercase'
                 }}
               >
-                vebhor
+                VEBHOR
               </span>
             </div>
 
-            {/* Social Circular Icon Badges matching Image 2 */}
+            {/* Social Circular Icon Badges */}
             <div style={{ display: 'flex', gap: '0.65rem' }}>
               {/* LinkedIn */}
               <a
@@ -84,14 +85,18 @@ export const Footer = ({ onOpenContactPage, onNavAdmin, onNavAbout }) => {
                   width: '38px',
                   height: '38px',
                   borderRadius: '50%',
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  backgroundColor: '#ffffff',
+                  border: '1px solid #e2e8f0',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: '#ffffff',
+                  color: '#0f172a',
                   textDecoration: 'none',
+                  boxShadow: '0 2px 6px rgba(0,0,0,0.04)',
                   transition: 'all 0.2s ease'
                 }}
+                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#005CFD'; e.currentTarget.style.color = '#ffffff'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#ffffff'; e.currentTarget.style.color = '#0f172a'; }}
                 aria-label="LinkedIn"
               >
                 <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
@@ -108,14 +113,18 @@ export const Footer = ({ onOpenContactPage, onNavAdmin, onNavAbout }) => {
                   width: '38px',
                   height: '38px',
                   borderRadius: '50%',
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  backgroundColor: '#ffffff',
+                  border: '1px solid #e2e8f0',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: '#ffffff',
+                  color: '#0f172a',
                   textDecoration: 'none',
+                  boxShadow: '0 2px 6px rgba(0,0,0,0.04)',
                   transition: 'all 0.2s ease'
                 }}
+                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#E1306C'; e.currentTarget.style.color = '#ffffff'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#ffffff'; e.currentTarget.style.color = '#0f172a'; }}
                 aria-label="Instagram"
               >
                 <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
@@ -132,14 +141,18 @@ export const Footer = ({ onOpenContactPage, onNavAdmin, onNavAbout }) => {
                   width: '38px',
                   height: '38px',
                   borderRadius: '50%',
-                  backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                  backgroundColor: '#ffffff',
+                  border: '1px solid #e2e8f0',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  color: '#ffffff',
+                  color: '#0f172a',
                   textDecoration: 'none',
+                  boxShadow: '0 2px 6px rgba(0,0,0,0.04)',
                   transition: 'all 0.2s ease'
                 }}
+                onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#1877F2'; e.currentTarget.style.color = '#ffffff'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#ffffff'; e.currentTarget.style.color = '#0f172a'; }}
                 aria-label="Facebook"
               >
                 <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
@@ -151,12 +164,12 @@ export const Footer = ({ onOpenContactPage, onNavAdmin, onNavAbout }) => {
 
           {/* Right: Newsletter Email Subscribe Box */}
           <div style={{ maxWidth: '440px', width: '100%' }}>
-            <h4 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '1.25rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.85rem' }}>
+            <h4 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '1.25rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.85rem' }}>
               Subscribe to our monthly newsletter
             </h4>
 
             {subscribed ? (
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#55E6C1', backgroundColor: 'rgba(85, 230, 193, 0.12)', padding: '0.85rem 1.25rem', borderRadius: '50px', marginBottom: '0.85rem', border: '1px solid rgba(85, 230, 193, 0.3)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', color: '#16a34a', backgroundColor: '#f0fdf4', padding: '0.85rem 1.25rem', borderRadius: '50px', marginBottom: '0.85rem', border: '1px solid #bbf7d0' }}>
                 <CheckCircle2 size={20} />
                 <span style={{ fontSize: '0.92rem', fontWeight: 700 }}>Thank you for subscribing!</span>
               </div>
@@ -172,12 +185,12 @@ export const Footer = ({ onOpenContactPage, onNavAdmin, onNavAbout }) => {
                     width: '100%',
                     padding: '0.85rem 3.5rem 0.85rem 1.5rem',
                     borderRadius: '50px',
-                    border: 'none',
+                    border: '1.5px solid #e2e8f0',
                     backgroundColor: '#ffffff',
-                    color: '#08152F',
+                    color: '#0f172a',
                     fontSize: '0.95rem',
                     outline: 'none',
-                    boxShadow: '0 4px 15px rgba(0,0,0,0.2)'
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.04)'
                   }}
                 />
                 <button
@@ -188,14 +201,15 @@ export const Footer = ({ onOpenContactPage, onNavAdmin, onNavAbout }) => {
                     width: '38px',
                     height: '38px',
                     borderRadius: '50%',
-                    backgroundColor: '#18181b',
+                    backgroundColor: '#005CFD',
                     color: '#ffffff',
                     border: 'none',
                     cursor: 'pointer',
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    transition: 'all 0.2s ease'
+                    transition: 'all 0.2s ease',
+                    boxShadow: '0 2px 8px rgba(0, 92, 253, 0.4)'
                   }}
                   aria-label="Subscribe"
                 >
@@ -204,20 +218,18 @@ export const Footer = ({ onOpenContactPage, onNavAdmin, onNavAbout }) => {
               </form>
             )}
 
-            <p style={{ fontSize: '0.82rem', color: '#94a3b8', margin: 0, lineHeight: 1.5 }}>
+            <p style={{ fontSize: '0.82rem', color: '#64748b', margin: 0, lineHeight: 1.5 }}>
               I confirm that I have read{' '}
               <a
                 href="#privacy-policy"
                 onClick={handlePrivacyClick}
                 style={{
                   fontWeight: 700,
-                  color: '#ffffff',
+                  color: '#005CFD',
                   textDecoration: 'underline',
                   cursor: 'pointer',
                   transition: 'color 0.2s ease'
                 }}
-                onMouseEnter={(e) => e.currentTarget.style.color = '#55E6C1'}
-                onMouseLeave={(e) => e.currentTarget.style.color = '#ffffff'}
               >
                 Vebhor's Privacy Policy
               </a>{' '}
@@ -231,7 +243,7 @@ export const Footer = ({ onOpenContactPage, onNavAdmin, onNavAbout }) => {
       {/* ============================================================ */}
       {/* 2. BOTTOM LEGAL FOOTER */}
       {/* ============================================================ */}
-      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '2rem 1.5rem', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', fontSize: '0.85rem', color: '#a1a1aa' }}>
+      <div style={{ maxWidth: '1280px', margin: '0 auto', padding: '2rem 1.5rem', display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'center', gap: '1rem', fontSize: '0.85rem', color: '#64748b' }}>
         <div>
           © 2026 Vebhor Consultancy Services. All rights reserved.
         </div>
@@ -243,18 +255,18 @@ export const Footer = ({ onOpenContactPage, onNavAdmin, onNavAbout }) => {
               if (onNavAbout) onNavAbout('code-of-conduct');
               else window.location.hash = '#about';
             }}
-            style={{ color: '#a1a1aa', textDecoration: 'none', transition: 'color 0.2s ease' }}
-            onMouseEnter={(e) => e.currentTarget.style.color = '#55E6C1'}
-            onMouseLeave={(e) => e.currentTarget.style.color = '#a1a1aa'}
+            style={{ color: '#64748b', textDecoration: 'none', transition: 'color 0.2s ease', fontWeight: 600 }}
+            onMouseEnter={(e) => e.currentTarget.style.color = '#005CFD'}
+            onMouseLeave={(e) => e.currentTarget.style.color = '#64748b'}
           >
             About Us
           </a>
           <a
             href="#privacy-policy"
             onClick={handlePrivacyClick}
-            style={{ color: '#a1a1aa', textDecoration: 'none', transition: 'color 0.2s ease' }}
-            onMouseEnter={(e) => e.currentTarget.style.color = '#55E6C1'}
-            onMouseLeave={(e) => e.currentTarget.style.color = '#a1a1aa'}
+            style={{ color: '#64748b', textDecoration: 'none', transition: 'color 0.2s ease', fontWeight: 600 }}
+            onMouseEnter={(e) => e.currentTarget.style.color = '#005CFD'}
+            onMouseLeave={(e) => e.currentTarget.style.color = '#64748b'}
           >
             Privacy Policy
           </a>
