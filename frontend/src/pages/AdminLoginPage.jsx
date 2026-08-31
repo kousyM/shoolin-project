@@ -48,7 +48,7 @@ export const AdminLoginPage = ({ onLoginSuccess, onNavHome, onNavCareers, onOpen
   };
 
   return (
-    <div style={{ backgroundColor: '#0b132b', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif", display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+    <div style={{ backgroundColor: '#f8fafc', minHeight: '100vh', fontFamily: "'Plus Jakarta Sans', sans-serif", display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
       {/* Header Navbar */}
       <Navbar
         onNavHome={onNavHome}
@@ -63,10 +63,10 @@ export const AdminLoginPage = ({ onLoginSuccess, onNavHome, onNavCareers, onOpen
             maxWidth: '460px',
             width: '100%',
             backgroundColor: '#ffffff',
-            borderRadius: '12px',
-            boxShadow: '0 20px 40px rgba(0, 0, 0, 0.3)',
+            borderRadius: '16px',
+            boxShadow: '0 10px 35px rgba(0, 0, 0, 0.05)',
             padding: '2.5rem',
-            border: '1px solid rgba(255, 255, 255, 0.1)'
+            border: '1.5px solid #e2e8f0'
           }}
         >
           {/* Top Logo & Icon Header */}

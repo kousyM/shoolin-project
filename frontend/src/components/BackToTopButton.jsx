@@ -34,19 +34,19 @@ export const BackToTopButton = () => {
         bottom: '2rem',
         right: '2rem',
         zIndex: 9999,
-        backgroundColor: '#3b82f6',
+        background: 'linear-gradient(135deg, #E11D48 0%, #BE123C 100%)',
         color: '#ffffff',
         fontWeight: 700,
         fontSize: '0.9rem',
         padding: '0.65rem 1.25rem',
-        borderRadius: '8px',
+        borderRadius: '50px',
         border: 'none',
         cursor: 'pointer',
         display: 'inline-flex',
         alignItems: 'center',
         gap: '0.5rem',
-        boxShadow: '0 6px 20px rgba(59, 130, 246, 0.45)',
-        transition: 'all 0.25 ease'
+        boxShadow: '0 6px 20px rgba(2, 41, 176, 0.45)',
+        transition: 'all 0.25s ease'
       }}
     >
       <span>Back to top</span>

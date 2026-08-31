@@ -26,6 +26,7 @@ import AboutPage from './pages/AboutPage';
 import ChallengeUsPage from './pages/ChallengeUsPage';
 import EmployersServicesPage from './pages/EmployersServicesPage';
 import IndividualsServicesPage from './pages/IndividualsServicesPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import Footer from './components/Footer';
 import BackToTopButton from './components/BackToTopButton';
 import { getApiBaseUrl } from './api/config';
@@ -35,30 +36,23 @@ const DEFAULT_HOMEPAGE_DATA = {
     {
       id: 1,
       tag: 'WORKFORCE TRANSFORMATION',
-      title: 'Introducing Vebhor',
+      title: 'Introducing Shoolin',
       subtitle: 'A refreshed identity that reflects our workforce transformation and future‑ready vision.',
-      image_url: '/images/slider_1.jpg',
-      video_url: '/hero_video.mp4',
-      button_text: 'Explore Our Solutions',
-      button_link: '#services'
+      image_url: '/images/banner_1_transform.jpg'
     },
     {
       id: 2,
       tag: 'AI & TECH INNOVATION',
       title: 'Smarter Teams, Powered by AI.',
       subtitle: 'Tech‑powered workforce solutions for smarter hiring, faster scaling, and confident operations.',
-      image_url: '/slider_2.jpg',
-      button_text: 'Get In Touch',
-      button_link: '#contact'
+      image_url: '/images/banner_2_ai.jpg'
     },
     {
       id: 3,
       tag: 'NEXT-GEN HR TECH & WORKFORCE',
       title: 'Engineering the Future of Business.',
       subtitle: 'Next-generation Payroll and Workforce Solutions that drive performance, ensure compliance and empower people.',
-      image_url: '/images/hero_cyber_network.jpg',
-      button_text: 'Explore Solutions',
-      button_link: '#services'
+      image_url: '/images/banner_3_hrtech.jpg'
     }
   ],
   services: [
@@ -66,8 +60,8 @@ const DEFAULT_HOMEPAGE_DATA = {
       id: 1,
       icon: 'Code',
       title: 'Employer of Record (EOR)',
-      summary: 'Expand globally without opening an entity. Vebhor handles local employment, contracts, compliance, payroll, benefits, and taxes seamlessly.',
-      description: 'Expand globally without opening an entity. Vebhor handles local employment, contracts, compliance, payroll, benefits, and taxes so you can hire top talent anywhere in the world seamlessly.',
+      summary: 'Expand globally without opening an entity. Shoolin handles local employment, contracts, compliance, payroll, benefits, and taxes seamlessly.',
+      description: 'Expand globally without opening an entity. Shoolin handles local employment, contracts, compliance, payroll, benefits, and taxes so you can hire top talent anywhere in the world seamlessly.',
       features: ['150+ Countries Supported', 'Localized Employment Contracts', 'Automated Payroll & Benefits', '100% Tax & Labor Compliance']
     },
     {
@@ -161,9 +155,8 @@ export function App() {
       } else if (hash.includes('newsroom')) {
         setAboutInitialTab('newsroom');
         setCurrentPage('about');
-      } else if (hash.includes('privacy-policy')) {
-        setAboutInitialTab('privacy-policy');
-        setCurrentPage('about');
+      } else if (hash.includes('privacy-policy') || hash.includes('privacy')) {
+        setCurrentPage('privacy-policy');
       } else if (hash.includes('about')) {
         setAboutInitialTab('code-of-conduct');
         setCurrentPage('about');
@@ -183,7 +176,7 @@ export function App() {
         setCurrentPage('insights');
       } else if (hash.includes('employers')) {
         setCurrentPage('employers-services');
-      } else if (hash.includes('individuals')) {
+      } else if (hash.includes('individuals') || hash.includes('visa') || hash.includes('immigration')) {
         setCurrentPage('individuals-services');
       } else if (hash.includes('challenge-us')) {
         setCurrentPage('challenge-us');
@@ -221,6 +214,8 @@ export function App() {
           setCurrentPage('insights');
         } else if (path.includes('partners')) {
           setCurrentPage('partners');
+        } else if (path.includes('visa') || path.includes('individuals')) {
+          setCurrentPage('individuals-services');
         } else if (path.includes('admin')) {
           const storedToken = localStorage.getItem('adminToken');
           setCurrentPage(storedToken ? 'admin-dashboard' : 'admin-login');
@@ -310,6 +305,7 @@ export function App() {
         onNavPartners={() => navigateTo('partners', 'partners')}
         onNavInsights={() => navigateTo('insights', 'insights')}
         onNavChallengeUs={() => navigateTo('challenge-us', 'challenge-us')}
+        onNavVisa={() => navigateTo('individuals-services', 'visa')}
         onOpenContactPage={() => navigateTo('contact', 'contact')}
         onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
         isAdminLoggedIn={!!adminUser}
@@ -330,7 +326,9 @@ export function App() {
         onNavPartners={() => navigateTo('partners', 'partners')}
         onNavInsights={() => navigateTo('insights', 'insights')}
         onNavChallengeUs={() => navigateTo('challenge-us', 'challenge-us')}
+        onNavVisa={() => navigateTo('individuals-services', 'visa')}
         onOpenContactPage={() => navigateTo('contact', 'contact')}
+        onNavPrivacyPolicy={() => navigateTo('privacy-policy', 'privacy-policy')}
         onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
         isAdminLoggedIn={!!adminUser}
         onAdminLogout={handleAdminLogout}
@@ -349,7 +347,9 @@ export function App() {
         onNavPartners={() => navigateTo('partners', 'partners')}
         onNavInsights={() => navigateTo('insights', 'insights')}
         onNavChallengeUs={() => navigateTo('challenge-us', 'challenge-us')}
+        onNavVisa={() => navigateTo('individuals-services', 'visa')}
         onOpenContactPage={() => navigateTo('contact', 'contact')}
+        onNavPrivacyPolicy={() => navigateTo('privacy-policy', 'privacy-policy')}
         onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
         isAdminLoggedIn={!!adminUser}
         onAdminLogout={handleAdminLogout}
@@ -368,7 +368,9 @@ export function App() {
         onNavPartners={() => navigateTo('partners', 'partners')}
         onNavInsights={() => navigateTo('insights', 'insights')}
         onNavChallengeUs={() => navigateTo('challenge-us', 'challenge-us')}
+        onNavVisa={() => navigateTo('individuals-services', 'visa')}
         onOpenContactPage={() => navigateTo('contact', 'contact')}
+        onNavPrivacyPolicy={() => navigateTo('privacy-policy', 'privacy-policy')}
         onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
         isAdminLoggedIn={!!adminUser}
         onAdminLogout={handleAdminLogout}
@@ -387,7 +389,9 @@ export function App() {
         onNavPartners={() => navigateTo('partners', 'partners')}
         onNavInsights={() => navigateTo('insights', 'insights')}
         onNavChallengeUs={() => navigateTo('challenge-us', 'challenge-us')}
+        onNavVisa={() => navigateTo('individuals-services', 'visa')}
         onOpenContactPage={() => navigateTo('contact', 'contact')}
+        onNavPrivacyPolicy={() => navigateTo('privacy-policy', 'privacy-policy')}
         onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
         isAdminLoggedIn={!!adminUser}
         onAdminLogout={handleAdminLogout}
@@ -410,7 +414,9 @@ export function App() {
         onNavInsights={() => navigateTo('insights', 'insights')}
         onNavServices={() => navigateTo('services', 'services-page')}
         onNavChallengeUs={() => navigateTo('challenge-us', 'challenge-us')}
+        onNavVisa={() => navigateTo('individuals-services', 'visa')}
         onOpenContactPage={() => navigateTo('contact', 'contact')}
+        onNavPrivacyPolicy={() => navigateTo('privacy-policy', 'privacy-policy')}
         onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
         isAdminLoggedIn={!!adminUser}
         onAdminLogout={handleAdminLogout}
@@ -434,6 +440,7 @@ export function App() {
         }}
         onNavHome={() => navigateTo('home', '')}
         onNavChallengeUs={() => navigateTo('challenge-us', 'challenge-us')}
+        onNavVisa={() => navigateTo('individuals-services', 'visa')}
         onOpenContactPage={() => navigateTo('contact', 'contact')}
         onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
         isAdminLoggedIn={!!adminUser}
@@ -450,6 +457,7 @@ export function App() {
         onBackToJob={() => navigateTo('job-detail', 'job-detail')}
         onNavHome={() => navigateTo('home', '')}
         onNavChallengeUs={() => navigateTo('challenge-us', 'challenge-us')}
+        onNavVisa={() => navigateTo('individuals-services', 'visa')}
         onOpenContactPage={() => navigateTo('contact', 'contact')}
         onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
         isAdminLoggedIn={!!adminUser}
@@ -497,7 +505,9 @@ export function App() {
         onNavInsights={() => navigateTo('insights', 'insights')}
         onNavEmployers={() => navigateTo('employers-services', 'employers')}
         onNavIndividuals={() => navigateTo('individuals-services', 'individuals')}
+        onNavVisa={() => navigateTo('individuals-services', 'visa')}
         onOpenContactPage={() => navigateTo('contact', 'contact')}
+        onNavPrivacyPolicy={() => navigateTo('privacy-policy', 'privacy-policy')}
         onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
         isAdminLoggedIn={!!adminUser}
         onAdminLogout={handleAdminLogout}
@@ -516,7 +526,9 @@ export function App() {
         onNavPartners={() => navigateTo('partners', 'partners')}
         onNavInsights={() => navigateTo('insights', 'insights')}
         onNavChallengeUs={() => navigateTo('challenge-us', 'challenge-us')}
+        onNavVisa={() => navigateTo('individuals-services', 'visa')}
         onOpenContactPage={() => navigateTo('contact', 'contact')}
+        onNavPrivacyPolicy={() => navigateTo('privacy-policy', 'privacy-policy')}
         onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
         isAdminLoggedIn={!!adminUser}
         onAdminLogout={handleAdminLogout}
@@ -535,6 +547,28 @@ export function App() {
         onNavPartners={() => navigateTo('partners', 'partners')}
         onNavInsights={() => navigateTo('insights', 'insights')}
         onNavChallengeUs={() => navigateTo('challenge-us', 'challenge-us')}
+        onNavVisa={() => navigateTo('individuals-services', 'visa')}
+        onOpenContactPage={() => navigateTo('contact', 'contact')}
+        onNavPrivacyPolicy={() => navigateTo('privacy-policy', 'privacy-policy')}
+        onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
+        isAdminLoggedIn={!!adminUser}
+        onAdminLogout={handleAdminLogout}
+      />
+    );
+  }
+
+  // 14. Standalone Privacy Policy Page
+  if (currentPage === 'privacy-policy') {
+    return (
+      <PrivacyPolicyPage
+        onNavHome={() => navigateTo('home', '')}
+        onNavServices={(cat) => navigateTo('services', 'services-page', cat)}
+        onNavAbout={(subTab = 'code-of-conduct') => navigateTo('about', subTab, subTab)}
+        onNavCareers={(subTab = 'career-stories') => navigateTo('careers', subTab, subTab)}
+        onNavPartners={() => navigateTo('partners', 'partners')}
+        onNavInsights={() => navigateTo('insights', 'insights')}
+        onNavChallengeUs={() => navigateTo('challenge-us', 'challenge-us')}
+        onNavVisa={() => navigateTo('individuals-services', 'visa')}
         onOpenContactPage={() => navigateTo('contact', 'contact')}
         onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
         isAdminLoggedIn={!!adminUser}
@@ -543,7 +577,7 @@ export function App() {
     );
   }
 
-  // 12. Homepage (Default)
+  // 15. Homepage (Default)
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans antialiased">
       {/* 1. Header Navigation */}
@@ -557,6 +591,7 @@ export function App() {
         onNavInsights={() => navigateTo('insights', 'insights')}
         onNavServices={() => navigateTo('services', 'services-page')}
         onNavChallengeUs={() => navigateTo('challenge-us', 'challenge-us')}
+        onNavVisa={() => navigateTo('individuals-services', 'visa')}
         onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
         isAdminLoggedIn={!!adminUser}
         onAdminLogout={handleAdminLogout}
@@ -588,11 +623,16 @@ export function App() {
         <DriveCareerBanner onNavCareers={() => navigateTo('careers', 'job-opportunities', 'job-opportunities')} />
 
         {/* 9. Contact Section (Cognizant Form: Get answers to your questions) */}
-        <ContactSection />
+        <ContactSection onNavPrivacyPolicy={() => navigateTo('privacy-policy', 'privacy-policy')} />
       </main>
 
       {/* 11. Footer */}
-      <Footer onOpenContactPage={() => navigateTo('contact', 'contact')} onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')} />
+      <Footer
+        onOpenContactPage={() => navigateTo('contact', 'contact')}
+        onNavAbout={(subTab = 'code-of-conduct') => navigateTo('about', subTab, subTab)}
+        onNavPrivacyPolicy={() => navigateTo('privacy-policy', 'privacy-policy')}
+        onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
+      />
     </div>
   );
 }

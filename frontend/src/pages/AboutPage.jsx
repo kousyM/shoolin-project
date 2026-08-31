@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import {
@@ -6,18 +6,89 @@ import {
   CheckCircle2,
   ShieldCheck,
   Target,
-  Eye
+  Eye,
+  Sparkles,
+  Zap,
+  Building2,
+  Users,
+  Compass,
+  Cpu,
+  Layers,
+  Globe
 } from 'lucide-react';
 
-export const AboutPage = ({ onNavHome, onNavCareers, onNavPartners, onNavInsights, onNavServices, onNavChallengeUs, onOpenContactPage, onNavAdmin, isAdminLoggedIn, onAdminLogout }) => {
+const BRAND_GRADIENT = 'linear-gradient(135deg, #E11D48 0%, #BE123C 100%)';
+const BRAND_SHADOW = '0 4px 18px rgba(2, 41, 176, 0.42)';
+
+export const AboutPage = ({
+  onNavHome,
+  onNavCareers,
+  onNavPartners,
+  onNavInsights,
+  onNavServices,
+  onNavChallengeUs,
+  onOpenContactPage,
+  onNavPrivacyPolicy,
+  onNavAdmin,
+  isAdminLoggedIn,
+  onAdminLogout
+}) => {
+  const [heroVisible, setHeroVisible] = useState(false);
+  const [evolutionVisible, setEvolutionVisible] = useState(false);
+  const [deliverVisible, setDeliverVisible] = useState(false);
+  const [conductVisible, setConductVisible] = useState(false);
+  const [clientsVisible, setClientsVisible] = useState(false);
+  const [missionVisible, setMissionVisible] = useState(false);
+
+  const heroRef = useRef(null);
+  const evolutionRef = useRef(null);
+  const deliverRef = useRef(null);
+  const conductRef = useRef(null);
+  const clientsRef = useRef(null);
+  const missionRef = useRef(null);
+
   useEffect(() => {
     window.scrollTo(0, 0);
+    setHeroVisible(true);
+  }, []);
+
+  // IntersectionObserver for smooth scroll animations
+  useEffect(() => {
+    const createObserver = (ref, setter) => {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            setter(true);
+          }
+        },
+        { threshold: 0.1 }
+      );
+      if (ref.current) observer.observe(ref.current);
+      return () => {
+        if (ref.current) observer.unobserve(ref.current);
+      };
+    };
+
+    const cleanupEvolution = createObserver(evolutionRef, setEvolutionVisible);
+    const cleanupDeliver = createObserver(deliverRef, setDeliverVisible);
+    const cleanupConduct = createObserver(conductRef, setConductVisible);
+    const cleanupClients = createObserver(clientsRef, setClientsVisible);
+    const cleanupMission = createObserver(missionRef, setMissionVisible);
+
+    return () => {
+      cleanupEvolution();
+      cleanupDeliver();
+      cleanupConduct();
+      cleanupClients();
+      cleanupMission();
+    };
   }, []);
 
   return (
-    <div style={{ backgroundColor: '#ffffff', minHeight: '100vh', fontFamily: "var(--bs-body-font-family), 'Plus Jakarta Sans', sans-serif" }}>
+    <div style={{ backgroundColor: '#ffffff', minHeight: '100vh', fontFamily: "var(--bs-body-font-family), 'Plus Jakarta Sans', sans-serif", color: '#0f172a' }}>
       {/* Navbar */}
       <Navbar
+        activePage="about"
         onNavHome={onNavHome}
         onNavServices={onNavServices}
         onNavCareers={onNavCareers}
@@ -33,135 +104,553 @@ export const AboutPage = ({ onNavHome, onNavCareers, onNavPartners, onNavInsight
       <main style={{ paddingTop: 0, marginTop: 0 }}>
 
         {/* ============================================================ */}
-        {/* 1. HERO BANNER SECTION */}
+        {/* 1. HERO BANNER: ABOUT US (SIGNATURE LINES & ANGLED CUTOUT) */}
         {/* ============================================================ */}
         <section
+          ref={heroRef}
+          className="signature-hero-banner-section"
           style={{
             position: 'relative',
-            backgroundColor: '#1e1b4b',
-            backgroundImage: `linear-gradient(135deg, rgba(30, 27, 75, 0.95) 0%, rgba(15, 23, 42, 0.92) 100%), url('/images/team_collaboration.jpg')`,
+            backgroundColor: '#f6f4ed',
+            backgroundImage: `url('/images/career_lines_bg.png')`,
             backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            color: '#ffffff',
+            backgroundPosition: 'left center',
             padding: '5.5rem 2rem 5rem 2rem',
-            textAlign: 'left'
+            minHeight: '480px',
+            display: 'flex',
+            alignItems: 'center',
+            textAlign: 'left',
+            overflow: 'hidden',
+            borderBottom: '1px solid #e2e8f0'
           }}
         >
-          <div style={{ maxWidth: '1040px', margin: '0 auto' }}>
-            <span style={{ fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#55E6C1', backgroundColor: 'rgba(85, 230, 193, 0.15)', padding: '0.45rem 1.25rem', borderRadius: '50px', display: 'inline-block', marginBottom: '1.5rem', border: '1px solid rgba(85, 230, 193, 0.3)' }}>
-              ABOUT US
-            </span>
+          {/* Angled Cutout Architecture Photo Container */}
+          <div
+            className="career-banner-visual-clip"
+            style={{
+              position: 'absolute',
+              right: 0,
+              top: 0,
+              bottom: 0,
+              width: '52%',
+              minWidth: '380px',
+              clipPath: 'polygon(18% 0%, 100% 0%, 100% 68%, 0% 100%)',
+              overflow: 'hidden',
+              zIndex: 1
+            }}
+          >
+            <img
+              src="/images/about_hero_v2.png"
+              alt="About Shoolin"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center 35%'
+              }}
+            />
+          </div>
 
-            {/* Banner Heading with start alignment */}
-            <h1 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '1.75rem', fontWeight: 600, color: '#ffffff', marginBottom: '1.5rem', lineHeight: 1.3, letterSpacing: '-0.01em', textAlign: 'left' }}>
-              Vebhor is a next‑generation Payroll and Workforce Solutions company
-            </h1>
+          <div style={{ maxWidth: '1280px', width: '100%', margin: '0 auto', position: 'relative', zIndex: 3 }}>
+            <div style={{ maxWidth: '540px' }}>
 
-            <p style={{ fontSize: '1.18rem', color: '#DCD6F7', fontWeight: 400, maxWidth: '960px', margin: '0 0 1.5rem 0', lineHeight: 1.7, textAlign: 'left' }}>
-              Vebhor is a next‑generation Payroll and Workforce Solutions company that helps enterprises build, manage, and scale global teams with precision, compliance, and AI‑driven efficiency. With deep expertise across talent management, payrolling, contractor operations, and global mobility, we deliver industry‑specific solutions that meet the complex workforce needs of modern businesses.
-            </p>
+              {/* Blue Capsule Badge */}
+              <div style={{ marginBottom: '1.1rem' }}>
+                <span
+                  style={{
+                    fontSize: '0.8rem',
+                    fontWeight: 800,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.12em',
+                    color: '#ffffff',
+                    background: BRAND_GRADIENT,
+                    padding: '0.35rem 1.25rem',
+                    borderRadius: '50px',
+                    display: 'inline-block',
+                    boxShadow: '0 4px 14px rgba(2, 41, 176, 0.25)'
+                  }}
+                >
+                  SHOOLIN
+                </span>
+              </div>
 
-            <p style={{ fontSize: '1.12rem', color: '#cbd5e1', fontWeight: 400, maxWidth: '960px', margin: '0 0 2.25rem 0', lineHeight: 1.7, textAlign: 'left' }}>
-              For clients, we are the partner that builds and manages the workforce behind their success. For investors, we are a scalable, process‑driven consulting firm with strong market demand, recurring revenue models, and technology‑powered delivery.
-            </p>
-
-            {/* Partner With Us Button Linked to Partners Page */}
-            <div style={{ display: 'flex', justifyContent: 'flex-start', gap: '1rem' }}>
-              <button
-                onClick={onNavPartners}
+              {/* Title */}
+              <h1
                 style={{
-                  padding: '0.85rem 2.25rem',
-                  backgroundColor: '#6C5CE7',
-                  color: '#ffffff',
-                  fontWeight: 700,
-                  fontSize: '1rem',
-                  borderRadius: '8px',
-                  border: 'none',
-                  cursor: 'pointer',
-                  boxShadow: '0 6px 20px rgba(108, 92, 231, 0.45)',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.6rem'
+                  fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
+                  fontSize: 'clamp(1.75rem, 3.2vw, 2.45rem)',
+                  fontWeight: 800,
+                  color: '#0a1128',
+                  marginBottom: '0.85rem',
+                  lineHeight: 1.2,
+                  letterSpacing: '-0.02em',
+                  opacity: heroVisible ? 1 : 0,
+                  transform: heroVisible ? 'translateX(0)' : 'translateX(-30px)',
+                  transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s'
                 }}
               >
-                <span>Partner With Us</span>
-                <ArrowRight size={18} />
-              </button>
+                About Us
+              </h1>
+
+              {/* Existing Content / Subtitle */}
+              <p
+                style={{
+                  fontSize: 'clamp(0.98rem, 1.2vw, 1.12rem)',
+                  color: '#334155',
+                  marginBottom: '2rem',
+                  lineHeight: 1.6,
+                  fontWeight: 450,
+                  opacity: heroVisible ? 1 : 0,
+                  transform: heroVisible ? 'translateX(0)' : 'translateX(-20px)',
+                  transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.35s'
+                }}
+              >
+                Shoolin, your local partner for Workforce Services & Solutions.
+              </p>
+
+              {/* Quick Action CTAs */}
+              <div
+                style={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: '1rem',
+                  opacity: heroVisible ? 1 : 0,
+                  transform: heroVisible ? 'translateY(0)' : 'translateY(20px)',
+                  transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s'
+                }}
+              >
+                <button
+                  onClick={() => {
+                    const el = document.getElementById('our-evolution-section');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  style={{
+                    padding: '0.85rem 2.2rem',
+                    background: BRAND_GRADIENT,
+                    color: '#ffffff',
+                    fontSize: '0.95rem',
+                    fontWeight: 700,
+                    borderRadius: '50px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    boxShadow: '0 6px 20px rgba(2, 41, 176, 0.35)',
+                    transition: 'all 0.25s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 8px 25px rgba(40, 129, 251, 0.55)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(2, 41, 176, 0.35)';
+                  }}
+                >
+                  <span>Our Evolution</span>
+                  <ArrowRight size={18} />
+                </button>
+
+                <button
+                  onClick={onNavPartners}
+                  style={{
+                    padding: '0.85rem 2.2rem',
+                    backgroundColor: '#ffffff',
+                    color: '#0f172a',
+                    fontSize: '0.95rem',
+                    fontWeight: 700,
+                    borderRadius: '50px',
+                    border: '1.5px solid #cbd5e1',
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    boxShadow: '0 4px 14px rgba(0, 0, 0, 0.05)',
+                    transition: 'all 0.25s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#f8fafc';
+                    e.currentTarget.style.borderColor = '#94a3b8';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = '#ffffff';
+                    e.currentTarget.style.borderColor = '#cbd5e1';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                  }}
+                >
+                  <span>Meet Our Partners</span>
+                </button>
+              </div>
+
             </div>
           </div>
         </section>
 
         {/* ============================================================ */}
-        {/* 2. OUR STORY SECTION */}
+        {/* 2. ABOUT US NARRATIVE & PURPOSE: OUR MISSION & VISION */}
         {/* ============================================================ */}
-        <section style={{ backgroundColor: '#f8fafc', padding: '5rem 2rem', borderBottom: '1px solid #e2e8f0' }}>
-          <div style={{ maxWidth: '1140px', margin: '0 auto' }}>
-            <div className="our-story-container" style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: '3.5rem', alignItems: 'center' }}>
-              <div className="our-story-text-col" style={{ gridColumn: 'span 6' }}>
-                <span style={{ fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#6C5CE7', backgroundColor: '#DCD6F7', padding: '0.4rem 1.1rem', borderRadius: '50px', display: 'inline-block', marginBottom: '1.25rem' }}>
-                  OUR STORY
-                </span>
-                <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.5rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.02em', marginBottom: '1.5rem', lineHeight: 1.25 }}>
-                  Our Story
-                </h2>
-                <p style={{ fontSize: '1.08rem', color: '#475569', lineHeight: 1.7, marginBottom: '1.25rem' }}>
-                  Vebhor was founded with a simple belief: organisations grow when their people systems work effortlessly. Over the years, we’ve evolved into a trusted partner for startups, scale‑ups, and enterprises across industries—delivering workforce solutions that are transparent, compliant, and built for scale.
-                </p>
-                <p style={{ fontSize: '1.08rem', color: '#475569', lineHeight: 1.7, margin: 0 }}>
-                  As a mid‑size firm, we offer the agility of a boutique consultancy with the capability of an enterprise provider. Our teams operate across recruitment, HR, payroll, vendor management, and IT support, ensuring continuity and operational excellence at every stage of the workforce lifecycle.
-                </p>
-              </div>
+        <section
+          id="our-evolution-section"
+          ref={evolutionRef}
+          style={{
+            backgroundColor: '#ffffff',
+            padding: '5rem 2rem 5.5rem 2rem',
+            position: 'relative',
+            overflow: 'hidden',
+            borderBottom: '1px solid #e2e8f0'
+          }}
+        >
+          <div style={{ maxWidth: '1180px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
 
-              <div className="our-story-img-col" style={{ gridColumn: 'span 6' }}>
-                <div style={{ position: 'relative', borderRadius: '16px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}>
-                  <img
-                    src="/images/team_collaboration.jpg"
-                    alt="Our Story"
-                    style={{ width: '100%', height: '420px', objectFit: 'cover', display: 'block' }}
-                  />
-                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, rgba(15, 23, 42, 0.1) 0%, rgba(15, 23, 42, 0.6) 100%)' }} />
-                  <div style={{ position: 'absolute', bottom: '2rem', left: '2rem', right: '2rem', color: '#ffffff' }}>
-                    <span style={{ fontSize: '0.85rem', fontWeight: 700, color: '#55E6C1', textTransform: 'uppercase', letterSpacing: '0.1em' }}>BOUTIQUE AGILITY • ENTERPRISE CAPABILITY</span>
-                    <h3 style={{ fontSize: '1.35rem', fontWeight: 800, margin: '0.4rem 0 0 0', color: '#ffffff' }}>End-to-End Workforce Lifecycle</h3>
-                  </div>
-                </div>
-              </div>
+            {/* Narrative Paragraph */}
+            <div
+              style={{
+                maxWidth: '1000px',
+                margin: '0 auto 3.5rem auto',
+                opacity: evolutionVisible ? 1 : 0,
+                transform: evolutionVisible ? 'translateY(0)' : 'translateY(25px)',
+                transition: 'all 0.85s cubic-bezier(0.16, 1, 0.3, 1)'
+              }}
+            >
+              <p
+                style={{
+                  fontFamily: "var(--bs-body-font-family), 'Plus Jakarta Sans', sans-serif",
+                  fontSize: 'clamp(1.1rem, 1.7vw, 1.28rem)',
+                  fontWeight: 400,
+                  color: 'rgb(30, 41, 59)',
+                  lineHeight: 1.85,
+                  textAlign: 'justify',
+                  margin: '0px',
+                  letterSpacing: '-0.01em'
+                }}
+              >
+                Shoolin is a forward‑looking workforce and digital solutions partner dedicated to helping organisations grow and operate with strength. We blend strategic thinking, modern digital capabilities, and proven industry processes to deliver services that support sustainable scaling and operational excellence. Our purpose is to enable enterprises, teams, and communities to rise—creating equal opportunities, future‑ready capabilities, and lasting value.
+              </p>
             </div>
-          </div>
-        </section>
 
-        {/* ============================================================ */}
-        {/* 3. WHAT WE DELIVER SECTION (EXACT 7 POINTS ONLY) */}
-        {/* ============================================================ */}
-        <section style={{ backgroundColor: '#ffffff', padding: '5.5rem 2rem 4.5rem 2rem', borderBottom: '1px solid #f1f5f9' }}>
-          <div style={{ maxWidth: '1140px', margin: '0 auto' }}>
-            <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-              <span style={{ fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#6C5CE7', backgroundColor: '#DCD6F7', padding: '0.4rem 1.1rem', borderRadius: '50px', display: 'inline-block', marginBottom: '1rem' }}>
-                WHAT WE DELIVER
+            {/* PURPOSE Badge & Heading */}
+            <div
+              style={{
+                textAlign: 'center',
+                marginBottom: '3rem',
+                opacity: evolutionVisible ? 1 : 0,
+                transform: evolutionVisible ? 'translateY(0)' : 'translateY(-20px)',
+                transition: 'all 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.15s'
+              }}
+            >
+              <span
+                style={{
+                  fontSize: '0.82rem',
+                  fontWeight: 800,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.12em',
+                  color: '#ffffff',
+                  background: BRAND_GRADIENT,
+                  padding: '0.4rem 1.4rem',
+                  borderRadius: '18px 24px 24px 18px',
+                  display: 'inline-block',
+                  marginBottom: '1.25rem',
+                  boxShadow: BRAND_SHADOW
+                }}
+              >
+                PURPOSE
               </span>
-              <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.5rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.02em', marginBottom: '1rem' }}>
-                We help organisations:
+              <h2
+                style={{
+                  fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
+                  fontSize: '2.6rem',
+                  fontWeight: 800,
+                  color: '#0f172a',
+                  letterSpacing: '-0.02em',
+                  margin: 0
+                }}
+              >
+                Our Mission & Vision
               </h2>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.25rem', marginBottom: '2.5rem' }}>
+            {/* Mission & Vision 2-Column Cards */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '2.5rem' }}>
+
+              {/* Mission Card */}
+              <div
+                style={{
+                  backgroundColor: '#f8fafc',
+                  color: '#0f172a',
+                  padding: '3.5rem 2.8rem',
+                  borderRadius: '24px',
+                  border: '1.5px solid #e2e8f0',
+                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.04)',
+                  opacity: evolutionVisible ? 1 : 0,
+                  transform: evolutionVisible ? 'translateX(0)' : 'translateX(-30px)',
+                  transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s'
+                }}
+              >
+                <div style={{ width: '56px', height: '56px', backgroundColor: '#f0fdf4', border: '1.5px solid #bbf7d0', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.75rem', color: '#16a34a' }}>
+                  <Target size={30} />
+                </div>
+                <h3 style={{ fontSize: '1.85rem', fontWeight: 800, color: '#0f172a', marginBottom: '1rem' }}>
+                  Our Mission
+                </h3>
+                <p style={{ fontSize: '1.15rem', color: '#64748b', lineHeight: 1.7, margin: 0, fontWeight: 400 }}>
+                  To empower organisations with workforce solutions that are simple, compliant, and built for growth.
+                </p>
+              </div>
+
+              {/* Vision Card */}
+              <div
+                style={{
+                  backgroundColor: '#f8fafc',
+                  color: '#0f172a',
+                  padding: '3.5rem 2.8rem',
+                  borderRadius: '24px',
+                  border: '1.5px solid #e2e8f0',
+                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.04)',
+                  opacity: evolutionVisible ? 1 : 0,
+                  transform: evolutionVisible ? 'translateX(0)' : 'translateX(30px)',
+                  transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.35s'
+                }}
+              >
+                <div style={{ width: '56px', height: '56px', backgroundColor: '#eff6ff', border: '1.5px solid #bfdbfe', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.75rem', color: '#E11D48' }}>
+                  <Eye size={30} />
+                </div>
+                <h3 style={{ fontSize: '1.85rem', fontWeight: 800, color: '#0f172a', marginBottom: '1rem' }}>
+                  Our Vision
+                </h3>
+                <p style={{ fontSize: '1.15rem', color: '#64748b', lineHeight: 1.7, margin: 0, fontWeight: 400 }}>
+                  To become the most trusted mid‑size workforce consultancy—where technology, people, and operations come together to help businesses scale globally.
+                </p>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+        {/* ============================================================ */}
+        {/* 3. THE TEAM BEHIND THE TEAMS (4 SIGNATURE PILLARS) */}
+        {/* ============================================================ */}
+        <section
+          style={{
+            backgroundColor: '#f8fafc',
+            color: '#0f172a',
+            padding: '6rem 2rem',
+            position: 'relative',
+            overflow: 'hidden',
+            borderBottom: '1px solid #e2e8f0'
+          }}
+        >
+          <div style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
+
+            {/* Top Mission Statement (Paragraph 4) */}
+            <div
+              style={{
+                backgroundColor: '#ffffff',
+                border: '1.5px solid #e2e8f0',
+                borderRadius: '24px',
+                padding: '3rem 3rem',
+                textAlign: 'center',
+                maxWidth: '1000px',
+                margin: '0 auto 3.5rem auto',
+                boxShadow: '0 10px 30px rgba(0,0,0,0.04)'
+              }}
+            >
+              <span
+                style={{
+                  fontSize: '0.82rem',
+                  fontWeight: 800,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.14em',
+                  color: '#E11D48',
+                  display: 'inline-block',
+                  marginBottom: '1rem'
+                }}
+              >
+                OUR COMMITMENT
+              </span>
+              <h2
+                style={{
+                  fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
+                  fontSize: 'clamp(1.9rem, 3.5vw, 2.6rem)',
+                  fontWeight: 800,
+                  color: '#0f172a',
+                  lineHeight: 1.3,
+                  marginBottom: '1.25rem'
+                }}
+              >
+                The Team Behind the Teams
+              </h2>
+              <p
+                style={{
+                  fontSize: '1.15rem',
+                  color: '#64748b',
+                  lineHeight: 1.8,
+                  margin: 0
+                }}
+              >
+                Today, Shoolin stands as the team behind the teams—helping clients hire, mobilise, pay, and manage talent with confidence. We bring together industry expertise, global reach, and technology‑powered delivery to simplify the complex and enable organisations to focus on what matters: growth, innovation, and impact.
+              </p>
+            </div>
+
+            {/* 4 Signature Callout Cards */}
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
+                gap: '1.5rem'
+              }}
+            >
               {[
-                'Hire globally and compliantly',
-                'Manage employees, contractors, and vendors in one system',
-                'Run payroll accurately and on time',
-                'Streamline HR operations and employee support',
-                'Deliver IT and device lifecycle management',
-                'Build scalable workforce processes and digital experiences',
-                'Reduce operational friction and accelerate growth'
-              ].map((point, idx) => (
-                <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '1rem', backgroundColor: '#f8fafc', padding: '1.25rem 1.5rem', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: '0 2px 8px rgba(0,0,0,0.02)' }}>
-                  <CheckCircle2 size={22} style={{ color: '#6C5CE7', flexShrink: 0 }} />
-                  <span style={{ fontSize: '1.05rem', fontWeight: 700, color: '#1e293b' }}>{point}</span>
+                {
+                  tag: 'PARTNERSHIP',
+                  title: 'More than a provider',
+                  desc: 'Shoolin is more than a service provider.'
+                },
+                {
+                  tag: 'DRIVING SUCCESS',
+                  title: 'Workforce Engine',
+                  desc: 'We are the workforce engine behind modern enterprises.'
+                },
+                {
+                  tag: 'SCALABILITY',
+                  title: 'Scales With You',
+                  desc: 'We are the partner that scales with you.'
+                },
+                {
+                  tag: 'INNOVATION',
+                  title: 'Next Generation',
+                  desc: 'We are the next generation of workforce solutions.'
+                }
+              ].map((item, idx) => (
+                <div
+                  key={idx}
+                  style={{
+                    backgroundColor: '#ffffff',
+                    border: '1.5px solid #e2e8f0',
+                    borderRadius: '20px',
+                    padding: '2rem 1.75rem',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    boxShadow: '0 4px 16px rgba(0, 0, 0, 0.04)',
+                    transition: 'all 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-5px)';
+                    e.currentTarget.style.borderColor = '#E11D48';
+                    e.currentTarget.style.boxShadow = '0 12px 28px rgba(2, 41, 176, 0.12)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.borderColor = '#e2e8f0';
+                    e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.04)';
+                  }}
+                >
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.85rem' }}>
+                    <CheckCircle2 size={18} style={{ color: '#16a34a', flexShrink: 0 }} />
+                    <span style={{ fontSize: '0.78rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#E11D48' }}>
+                      {item.tag}
+                    </span>
+                  </div>
+                  <h4 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.4rem' }}>
+                    {item.title}
+                  </h4>
+                  <p style={{ fontSize: '0.98rem', color: '#64748b', lineHeight: 1.6, margin: 0 }}>
+                    {item.desc}
+                  </p>
                 </div>
               ))}
             </div>
 
-            <div style={{ backgroundColor: '#f1f5f9', padding: '1.5rem 2rem', borderRadius: '12px', textAlign: 'center', borderLeft: '4px solid #6C5CE7' }}>
+          </div>
+        </section>
+
+        {/* ============================================================ */}
+        {/* 4. WHAT WE DELIVER SECTION */}
+        {/* ============================================================ */}
+        <section
+          ref={deliverRef}
+          style={{
+            position: 'relative',
+            backgroundColor: '#f8fafc',
+            backgroundImage: `url('/images/what_we_deliver_bg.jpg?v=2026')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            padding: '6rem 2rem 5.5rem 2rem',
+            borderBottom: '1px solid #e2e8f0',
+            overflow: 'hidden'
+          }}
+        >
+          <div style={{ maxWidth: '1180px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
+            <div
+              style={{
+                textAlign: 'center',
+                marginBottom: '3.5rem',
+                opacity: deliverVisible ? 1 : 0,
+                transform: deliverVisible ? 'translateY(0)' : 'translateY(-30px)',
+                transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)'
+              }}
+            >
+              <span style={{ fontSize: '0.82rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#ffffff', background: BRAND_GRADIENT, padding: '0.4rem 1.4rem', borderRadius: '18px 24px 24px 18px', display: 'inline-block', marginBottom: '1.25rem', boxShadow: BRAND_SHADOW }}>
+                WHAT WE DELIVER
+              </span>
+              <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.5rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.02em', marginBottom: '1rem', textShadow: '0 1px 4px rgba(255, 255, 255, 0.8)' }}>
+                We help organisations:
+              </h2>
+            </div>
+
+            {/* 6 Directional Cards */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '1.35rem', marginBottom: '2.5rem' }}>
+              {[
+                'Hire globally and compliantly',
+                'Manage employees, contractors, and vendors in one system',
+                'Run payroll accurately and on time',
+                'From HR operations to full IT and device lifecycle management—we make workforce support seamless',
+                'Build scalable workforce processes and digital experiences',
+                'Reduce operational friction and accelerate growth'
+              ].map((point, idx) => {
+                const isEven = idx % 2 === 0;
+                return (
+                  <div
+                    key={idx}
+                    className="about-deliver-card"
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '1rem',
+                      backgroundColor: 'rgba(255, 255, 255, 0.94)',
+                      backdropFilter: 'blur(10px)',
+                      padding: '1.4rem 1.6rem',
+                      borderRadius: '16px',
+                      border: '1.5px solid rgba(226, 232, 240, 0.9)',
+                      boxShadow: '0 6px 20px rgba(0, 0, 0, 0.04)',
+                      opacity: deliverVisible ? 1 : 0,
+                      transform: deliverVisible ? 'translate(0, 0)' : isEven ? 'translateX(-40px)' : 'translateX(40px)',
+                      transition: `opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.08}s, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.08}s`
+                    }}
+                  >
+                    <CheckCircle2 size={24} style={{ color: '#10b981', flexShrink: 0 }} />
+                    <span style={{ fontSize: '1.05rem', fontWeight: 700, color: '#1e293b' }}>{point}</span>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div
+              style={{
+                backgroundColor: 'rgba(255, 255, 255, 0.94)',
+                backdropFilter: 'blur(10px)',
+                padding: '1.6rem 2.2rem',
+                borderRadius: '16px',
+                textAlign: 'center',
+                border: '1.5px solid rgba(226, 232, 240, 0.9)',
+                boxShadow: '0 6px 20px rgba(0, 0, 0, 0.04)',
+                opacity: deliverVisible ? 1 : 0,
+                transform: deliverVisible ? 'translateY(0)' : 'translateY(30px)',
+                transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s'
+              }}
+            >
               <p style={{ fontSize: '1.1rem', color: '#334155', fontWeight: 600, margin: 0 }}>
                 Our solutions are designed to reduce complexity, strengthen compliance, and create predictable, scalable operations.
               </p>
@@ -170,213 +659,199 @@ export const AboutPage = ({ onNavHome, onNavCareers, onNavPartners, onNavInsight
         </section>
 
         {/* ============================================================ */}
-        {/* 4. OUR CODE OF CONDUCT SECTION (HEADER WRAPPED IN BOX) */}
+        {/* 5. OUR CODE OF CONDUCT SECTION */}
         {/* ============================================================ */}
-        <section id="code-of-conduct" style={{ backgroundColor: '#0f172a', color: '#ffffff', padding: '5.5rem 2rem 5rem 2rem' }}>
-          <div style={{ maxWidth: '1140px', margin: '0 auto' }}>
+        <section
+          ref={conductRef}
+          id="code-of-conduct"
+          style={{
+            backgroundColor: '#ffffff',
+            color: '#0f172a',
+            padding: '6rem 2rem 5.5rem 2rem',
+            position: 'relative',
+            overflow: 'hidden',
+            borderBottom: '1px solid #e2e8f0'
+          }}
+        >
+          <div style={{ maxWidth: '1180px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
 
-            {/* Unified Header Box (Matching Screenshot 2) */}
+            {/* Unified Header Box */}
             <div
               style={{
-                backgroundColor: 'rgba(30, 41, 59, 0.65)',
-                backdropFilter: 'blur(10px)',
+                backgroundColor: '#f8fafc',
                 padding: '3rem 2.5rem',
-                borderRadius: '20px',
-                border: '1px solid rgba(255, 255, 255, 0.12)',
-                boxShadow: '0 12px 32px rgba(0,0,0,0.25)',
+                borderRadius: '24px',
+                border: '1.5px solid #e2e8f0',
+                boxShadow: '0 10px 30px rgba(0,0,0,0.04)',
                 textAlign: 'center',
-                marginBottom: '3.5rem'
+                marginBottom: '3.5rem',
+                opacity: conductVisible ? 1 : 0,
+                transform: conductVisible ? 'translateY(0)' : 'translateY(-30px)',
+                transition: 'all 0.85s cubic-bezier(0.16, 1, 0.3, 1)'
               }}
             >
-              <span style={{ fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#55E6C1', backgroundColor: 'rgba(85, 230, 193, 0.15)', padding: '0.4rem 1.1rem', borderRadius: '50px', display: 'inline-block', marginBottom: '1.25rem', border: '1px solid rgba(85, 230, 193, 0.3)' }}>
-                OUR GOVERNANCE
-              </span>
-              <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.6rem', fontWeight: 800, color: '#ffffff', letterSpacing: '-0.02em', marginBottom: '1.25rem' }}>
-                Our Code of conduct
+              <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.4rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.02em', marginBottom: '1.5rem' }}>
+                Our Code of Conduct — The Shoolin Way
               </h2>
-              <p style={{ fontSize: '1.15rem', color: '#cbd5e1', maxWidth: '880px', margin: '0 auto', lineHeight: 1.7, fontWeight: 400 }}>
-                At Vebhor Consultancy, integrity is the foundation of how we operate—with governments, communities, clients, partners, and our people. Our Code of Conduct guides every decision we make and every relationship we build.
-              </p>
+              <div style={{ maxWidth: '900px', margin: '0 auto', display: 'flex', flexDirection: 'column', gap: '1.1rem' }}>
+                <p style={{ fontSize: '1.1rem', color: '#475569', lineHeight: 1.75, fontWeight: 400, margin: 0 }}>
+                  At Shoolin, integrity isn’t just a principle—it’s the story of how we choose to show up every day. From the way we work with governments and communities to how we support clients, partners, and our own people, integrity shapes every decision, every interaction, and every commitment we make.
+                </p>
+                <p style={{ fontSize: '1.1rem', color: '#475569', lineHeight: 1.75, fontWeight: 400, margin: 0 }}>
+                  It is the thread that connects our past to our future, guiding us as we grow, evolve, and build relationships grounded in trust. Our Code of Conduct is the compass that keeps us aligned—ensuring that no matter where we operate or who we work with, we act with transparency, respect, and responsibility.
+                </p>
+                <p style={{ fontSize: '1.12rem', color: '#E11D48', lineHeight: 1.8, fontWeight: 700, margin: '0.5rem 0 0 0', letterSpacing: '0.01em' }}>
+                  This is who we are.<br />
+                  This is how we lead.<br />
+                  This is the Shoolin way.
+                </p>
+              </div>
             </div>
 
-            {/* 5 Box-by-Box Integrity Pillar Cards */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem', marginBottom: '3rem' }}>
+            {/* 3 Box-by-Box Integrity Pillar Cards */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem', marginBottom: 0 }}>
               {[
                 {
-                  title: 'Integrity with governments',
-                  desc: 'We are committed to full compliance with the laws and regulations of every country in which we operate. We maintain transparent, ethical relationships with government bodies and strictly enforce a zero‑tolerance policy towards corruption, bribery, or any improper influence.'
+                  title: 'Integrity with our clients and government',
+                  desc: 'We comply fully with the laws and regulations of every country we operate in and maintain transparent, ethical relationships with government bodies. We enforce a strict zero‑tolerance policy toward corruption, bribery, or any improper influence.'
                 },
                 {
-                  title: 'Integrity with communities',
-                  desc: 'We support and promote environmental responsibility and sustainable practices in the way we work. We safeguard Vebhor’s brand, information, and intellectual property, and we strive to communicate clearly, act responsibly, and make a positive impact on the communities we serve.'
-                },
-                {
-                  title: 'Integrity with our clients',
-                  desc: 'We respect and protect the privacy, data, and confidential information of our clients. We act with honesty and fairness in all client engagements and support fair competition, delivering services with professionalism, transparency, and accountability.'
+                  title: 'Integrity with communities and people',
+                  desc: 'We promote environmental responsibility and sustainable practices in everything we do. We safeguard Shoolin’s brand, information, and intellectual property, and we communicate with clarity and accountability. We are committed to a safe, healthy, and inclusive workplace, upholding meritocracy, non‑discrimination, and diversity while protecting our people, our assets, and our business.'
                 },
                 {
                   title: 'Integrity with partners and suppliers',
-                  desc: 'We work with partners and suppliers who share our commitment to ethical conduct and compliance. We avoid conflicts of interest and do not solicit or accept gifts, hospitality, or travel from third parties for personal gain.'
-                },
-                {
-                  title: 'Integrity with our people',
-                  desc: 'We are committed to providing a safe, healthy, and inclusive work environment. We promote meritocracy, non‑discrimination, and diversity, and we take responsibility for protecting our people, our assets, and our business.'
+                  desc: 'We work with partners and suppliers who share our commitment to ethical conduct and compliance. We avoid conflicts of interest and uphold strict standards of transparency, fairness, and professionalism in all engagements.'
                 }
               ].map((pillar, idx) => (
                 <div
                   key={idx}
                   style={{
-                    backgroundColor: 'rgba(30, 41, 59, 0.75)',
-                    backdropFilter: 'blur(10px)',
-                    padding: '2rem',
-                    borderRadius: '16px',
-                    border: '1px solid rgba(255, 255, 255, 0.12)',
-                    boxShadow: '0 8px 24px rgba(0,0,0,0.2)'
+                    backgroundColor: '#ffffff',
+                    padding: '2.4rem 2rem',
+                    borderRadius: '22px',
+                    border: '1.5px solid #e2e8f0',
+                    boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
+                    opacity: conductVisible ? 1 : 0,
+                    transform: conductVisible ? 'translateY(0)' : 'translateY(30px)',
+                    transition: `all 0.8s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.12}s`
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-4px)';
+                    e.currentTarget.style.borderColor = '#E11D48';
+                    e.currentTarget.style.boxShadow = '0 12px 28px rgba(2, 41, 176, 0.12)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.borderColor = '#e2e8f0';
+                    e.currentTarget.style.boxShadow = '0 4px 16px rgba(0,0,0,0.04)';
                   }}
                 >
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
-                    <ShieldCheck size={24} style={{ color: '#55E6C1' }} />
-                    <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#ffffff', margin: 0 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.9rem', marginBottom: '1.2rem' }}>
+                    <div
+                      style={{
+                        width: '46px',
+                        height: '46px',
+                        borderRadius: '12px',
+                        backgroundColor: '#f0fdf4',
+                        border: '1px solid #bbf7d0',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: '#16a34a'
+                      }}
+                    >
+                      <ShieldCheck size={26} />
+                    </div>
+                    <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0f172a', margin: 0, lineHeight: 1.3 }}>
                       {pillar.title}
                     </h3>
                   </div>
-                  <p style={{ fontSize: '0.98rem', color: '#cbd5e1', lineHeight: 1.65, margin: 0 }}>
+                  <p style={{ fontSize: '0.98rem', color: '#64748b', lineHeight: 1.7, margin: 0 }}>
                     {pillar.desc}
                   </p>
                 </div>
               ))}
             </div>
-
-            <div style={{ backgroundColor: 'rgba(108, 92, 231, 0.18)', padding: '1.5rem 2rem', borderRadius: '12px', border: '1px solid rgba(108, 92, 231, 0.35)', textAlign: 'center' }}>
-              <p style={{ fontSize: '1.05rem', color: '#DCD6F7', fontWeight: 600, margin: 0 }}>
-                Every individual at Vebhor Consultancy is expected to uphold this Code of Conduct and embody our values in their daily work.
-              </p>
-            </div>
           </div>
         </section>
 
         {/* ============================================================ */}
-        {/* 5. WHY CLIENTS & WHY INVESTORS SECTION */}
+        {/* 6. WHY CLIENTS WORK WITH US SECTION */}
         {/* ============================================================ */}
-        <section style={{ backgroundColor: '#ffffff', padding: '5.5rem 2rem 4.5rem 2rem', borderBottom: '1px solid #f1f5f9' }}>
-          <div style={{ maxWidth: '1140px', margin: '0 auto' }}>
+        <section
+          ref={clientsRef}
+          style={{
+            backgroundColor: '#ffffff',
+            padding: '6rem 2rem 5rem 2rem',
+            borderBottom: '1px solid #e2e8f0'
+          }}
+        >
+          <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
 
-            {/* Why Clients Work With Us */}
-            <div style={{ marginBottom: '4.5rem' }}>
-              <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-                <span style={{ fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#6C5CE7', backgroundColor: '#DCD6F7', padding: '0.4rem 1.1rem', borderRadius: '50px', display: 'inline-block', marginBottom: '1rem' }}>
-                  CLIENT ADVANTAGE
-                </span>
-                <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.4rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.02em', margin: 0 }}>
-                  Why Clients Work With Us
-                </h2>
-              </div>
-
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.25rem', marginBottom: '2.5rem' }}>
-                {[
-                  'End‑to‑end workforce delivery from hiring to payroll',
-                  'Technology‑enabled operations for speed, accuracy, and visibility',
-                  'Compliance‑first approach across regions and worker types',
-                  'Transparent pricing with no hidden fees',
-                  'Dedicated support teams for HR, payroll, IT, and onboarding',
-                  'Scalable processes that grow with your organisation'
-                ].map((point, idx) => (
-                  <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '1rem', backgroundColor: '#f8fafc', padding: '1.25rem 1.5rem', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
-                    <CheckCircle2 size={22} style={{ color: '#6C5CE7', flexShrink: 0 }} />
-                    <span style={{ fontSize: '1.02rem', fontWeight: 700, color: '#1e293b' }}>{point}</span>
-                  </div>
-                ))}
-              </div>
-
-              <div style={{ backgroundColor: '#f1f5f9', padding: '1.5rem 2rem', borderRadius: '12px', textAlign: 'center', borderLeft: '4px solid #6C5CE7' }}>
-                <p style={{ fontSize: '1.1rem', color: '#334155', fontWeight: 700, margin: 0 }}>
-                  We operate as an extension of your team—ensuring continuity, compliance, and confidence.
-                </p>
-              </div>
-            </div>
-
-            {/* Why Investors Believe in Us */}
-            <div>
-              <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-                <span style={{ fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#0284c7', backgroundColor: '#e0f2fe', padding: '0.4rem 1.1rem', borderRadius: '50px', display: 'inline-block', marginBottom: '1rem' }}>
-                  INVESTOR PROOF
-                </span>
-                <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.4rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.02em', margin: 0 }}>
-                  Why Investors Believe in Us
-                </h2>
-              </div>
-
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem', marginBottom: '2.5rem' }}>
-                {[
-                  { title: 'High‑growth market', desc: 'Global workforce, EOR, payroll, and compliance services' },
-                  { title: 'Recurring revenue', desc: 'Payroll, HR support, device management, and vendor operations' },
-                  { title: 'Technology leverage', desc: 'Automation, digital onboarding, and integrated workflows' },
-                  { title: 'Operational efficiency', desc: 'Standardised processes and multi‑vertical delivery' },
-                  { title: 'Scalable model', desc: 'Expandable across industries and geographies' },
-                  { title: 'Strong client retention', desc: 'Long‑term partnerships built on trust and transparency' }
-                ].map((inv, idx) => (
-                  <div key={idx} style={{ backgroundColor: '#f8fafc', padding: '1.5rem', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
-                    <h3 style={{ fontSize: '1.15rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.4rem' }}>
-                      {inv.title}
-                    </h3>
-                    <p style={{ fontSize: '0.98rem', color: '#64748b', margin: 0, lineHeight: 1.5 }}>
-                      {inv.desc}
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-              <div style={{ backgroundColor: '#0f172a', color: '#ffffff', padding: '1.5rem 2rem', borderRadius: '12px', textAlign: 'center' }}>
-                <p style={{ fontSize: '1.08rem', color: '#55E6C1', fontWeight: 700, margin: 0 }}>
-                  Vebhor is positioned to scale through technology, process optimisation, and multi‑vertical workforce solutions.
-                </p>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        {/* ============================================================ */}
-        {/* MISSION & VISION SECTION */}
-        {/* ============================================================ */}
-        <section style={{ backgroundColor: '#f8fafc', padding: '5.5rem 2rem 5rem 2rem' }}>
-          <div style={{ maxWidth: '1140px', margin: '0 auto' }}>
-            <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-              <span style={{ fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#6C5CE7', backgroundColor: '#DCD6F7', padding: '0.4rem 1.1rem', borderRadius: '50px', display: 'inline-block', marginBottom: '1rem' }}>
-                PURPOSE
+            <div
+              style={{
+                textAlign: 'center',
+                marginBottom: '3rem',
+                opacity: clientsVisible ? 1 : 0,
+                transform: clientsVisible ? 'translateY(0)' : 'translateY(-30px)',
+                transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)'
+              }}
+            >
+              <span style={{ fontSize: '0.82rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#ffffff', background: BRAND_GRADIENT, padding: '0.4rem 1.4rem', borderRadius: '18px 24px 24px 18px', display: 'inline-block', marginBottom: '1.25rem', boxShadow: BRAND_SHADOW }}>
+                CLIENT ADVANTAGE
               </span>
               <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.5rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.02em', margin: 0 }}>
-                Our Mission & Vision
+                Why Clients Work With Us
               </h2>
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '2.5rem' }}>
-              {/* Mission Card */}
-              <div style={{ backgroundColor: '#1e1b4b', color: '#ffffff', padding: '3rem 2.5rem', borderRadius: '20px', boxShadow: '0 15px 35px rgba(30, 27, 75, 0.3)' }}>
-                <div style={{ width: '52px', height: '52px', backgroundColor: 'rgba(255, 255, 255, 0.1)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', color: '#55E6C1' }}>
-                  <Target size={28} />
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(340px, 1fr))', gap: '1.35rem', marginBottom: '2.5rem' }}>
+              {[
+                'End‑to‑end workforce delivery from hiring to payroll',
+                'Technology‑enabled operations for speed, accuracy, and visibility',
+                'Compliance‑first approach across regions and worker types',
+                'Transparent pricing with no hidden fees',
+                'Dedicated support teams for HR, payroll, IT, and onboarding',
+                'Scalable processes that grow with your organisation'
+              ].map((point, idx) => (
+                <div
+                  key={idx}
+                  className="about-deliver-card"
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '1rem',
+                    backgroundColor: '#f8fafc',
+                    padding: '1.35rem 1.6rem',
+                    borderRadius: '14px',
+                    border: '1.5px solid #e2e8f0',
+                    opacity: clientsVisible ? 1 : 0,
+                    transform: clientsVisible ? 'translateY(0)' : 'translateY(35px)',
+                    transition: `all 0.75s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.08}s`
+                  }}
+                >
+                  <CheckCircle2 size={24} style={{ color: '#10b981', flexShrink: 0 }} />
+                  <span style={{ fontSize: '1.02rem', fontWeight: 700, color: '#1e293b' }}>{point}</span>
                 </div>
-                <h3 style={{ fontSize: '1.75rem', fontWeight: 800, color: '#ffffff', marginBottom: '1rem' }}>
-                  Our Mission
-                </h3>
-                <p style={{ fontSize: '1.18rem', color: '#DCD6F7', lineHeight: 1.65, margin: 0, fontWeight: 400 }}>
-                  To empower organisations with workforce solutions that are simple, compliant, and built for growth.
-                </p>
-              </div>
-
-              {/* Vision Card */}
-              <div style={{ backgroundColor: '#0284c7', color: '#ffffff', padding: '3rem 2.5rem', borderRadius: '20px', boxShadow: '0 15px 35px rgba(2, 132, 199, 0.3)' }}>
-                <div style={{ width: '52px', height: '52px', backgroundColor: 'rgba(255, 255, 255, 0.15)', borderRadius: '12px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.5rem', color: '#ffffff' }}>
-                  <Eye size={28} />
-                </div>
-                <h3 style={{ fontSize: '1.75rem', fontWeight: 800, color: '#ffffff', marginBottom: '1rem' }}>
-                  Our Vision
-                </h3>
-                <p style={{ fontSize: '1.18rem', color: '#e0f2fe', lineHeight: 1.65, margin: 0, fontWeight: 400 }}>
-                  To become the most trusted mid‑size workforce consultancy—where technology, people, and operations come together to help businesses scale globally.
-                </p>
-              </div>
+              ))}
             </div>
+
+            <div
+              style={{
+                backgroundColor: '#f8fafc',
+                padding: '1.6rem 2.2rem',
+                borderRadius: '14px',
+                textAlign: 'center',
+                border: '1.5px solid #e2e8f0',
+                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.03)'
+              }}
+            >
+              <p style={{ fontSize: '1.1rem', color: '#334155', fontWeight: 700, margin: 0 }}>
+                We operate as an extension of your team—ensuring continuity, compliance, and confidence.
+              </p>
+            </div>
+
           </div>
         </section>
 
@@ -391,6 +866,7 @@ export const AboutPage = ({ onNavHome, onNavCareers, onNavPartners, onNavInsight
         onNavInsights={onNavInsights}
         onNavChallengeUs={onNavChallengeUs}
         onOpenContactPage={onOpenContactPage}
+        onNavPrivacyPolicy={onNavPrivacyPolicy}
       />
     </div>
   );

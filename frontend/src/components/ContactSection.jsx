@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { CheckCircle2, ArrowRight } from 'lucide-react';
+import { CheckCircle2, ArrowRight, Sparkles, Send } from 'lucide-react';
 import { getApiBaseUrl } from '../api/config';
 
 export const ContactSection = ({
   title = "Get answers to your questions",
-  subtitle = "Fill out the form below and a Vebhor representative will get back to you shortly."
+  subtitle = "Fill out the form below and a Shoolin representative will get back to you shortly.",
+  onNavPrivacyPolicy
 }) => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -20,6 +21,29 @@ export const ContactSection = ({
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -57,34 +81,87 @@ export const ContactSection = ({
   };
 
   return (
-    <section id="contact" style={{ backgroundColor: '#ffffff', padding: '5rem 1.5rem', fontFamily: "var(--bs-body-font-family), 'Plus Jakarta Sans', sans-serif" }}>
-      <div style={{ maxWidth: '960px', margin: '0 auto', backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '16px', padding: '3.5rem 3rem', boxShadow: '0 10px 30px rgba(0,0,0,0.04)' }}>
-        
+    <section
+      ref={sectionRef}
+      id="contact"
+      style={{
+        position: 'relative',
+        padding: '5.5rem 1.5rem 6rem 1.5rem',
+        fontFamily: "var(--bs-body-font-family), 'Plus Jakarta Sans', sans-serif",
+        backgroundColor: '#ffffff',
+        overflow: 'hidden',
+        borderTop: '1px solid #e2e8f0'
+      }}
+    >
+      {/* 2. CLEAN WHITE FORM CONTAINER */}
+      <div
+        style={{
+          maxWidth: '960px',
+          width: '100%',
+          margin: '0 auto',
+          position: 'relative',
+          zIndex: 3,
+          backgroundColor: '#ffffff',
+          border: '1.5px solid #e2e8f0',
+          borderRadius: '24px',
+          padding: '3.5rem 3rem',
+          boxShadow: '0 20px 50px rgba(0, 0, 0, 0.05)',
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translate3d(0, 0, 0) scale(1)' : 'translate3d(0, 45px, 0) scale(0.97)',
+          transition: 'opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1)'
+        }}
+      >
+        {/* Glowing Top Ambient Line */}
+        <div
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: '10%',
+            right: '10%',
+            height: '3px',
+            background: 'linear-gradient(90deg, transparent 0%, #E11D48 30%, #E11D48 70%, transparent 100%)',
+            borderRadius: '3px'
+          }}
+        />
+
         {/* Header Section */}
         <div style={{ textAlign: 'left', marginBottom: '2.5rem' }}>
-          <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.75rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.75rem', letterSpacing: '-0.02em' }}>
-            {title}
+          <h2
+            style={{
+              fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
+              fontSize: 'clamp(2rem, 3.5vw, 2.75rem)',
+              fontWeight: 800,
+              color: '#0f172a',
+              marginBottom: '0.75rem',
+              letterSpacing: '-0.02em',
+              lineHeight: 1.25
+            }}
+          >
+            Get answers to your{' '}
+            <span style={{ color: '#E11D48' }}>
+              questions
+            </span>
           </h2>
-          <p style={{ fontSize: '1.1rem', color: '#64748b', margin: 0, fontWeight: 400 }}>
+          <p style={{ fontSize: '1.08rem', color: '#64748b', margin: 0, fontWeight: 400, lineHeight: 1.6 }}>
             {subtitle}
           </p>
         </div>
 
         {/* Success State */}
         {submitted ? (
-          <div style={{ backgroundColor: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '12px', padding: '3rem 2rem', textAlign: 'center' }}>
-            <CheckCircle2 size={48} color="#16a34a" style={{ margin: '0 auto 1rem' }} />
-            <h3 style={{ fontSize: '1.4rem', fontWeight: 700, color: '#16a34a', marginBottom: '0.5rem' }}>Thank You!</h3>
-            <p style={{ fontSize: '1rem', color: '#334155' }}>Your enquiry has been received. One of our workforce specialists will contact you shortly.</p>
+          <div style={{ backgroundColor: '#f0fdf4', border: '1px solid #bbf7d0', borderRadius: '14px', padding: '3rem 2rem', textAlign: 'center' }}>
+            <CheckCircle2 size={52} color="#16a34a" style={{ margin: '0 auto 1rem' }} />
+            <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#16a34a', marginBottom: '0.5rem' }}>Thank You!</h3>
+            <p style={{ fontSize: '1.05rem', color: '#334155', margin: 0 }}>Your enquiry has been received. One of our workforce specialists will contact you shortly.</p>
           </div>
         ) : (
-          /* Form matching Screenshot exactly */
+          /* Form with Clean Light Controls */
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            
+
             {/* Row 1: First Name* & Last Name */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
               <div>
-                <label style={{ display: 'block', fontSize: '0.92rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.5rem' }}>
+                <label style={{ display: 'block', fontSize: '0.92rem', fontWeight: 700, color: '#1e293b', marginBottom: '0.5rem' }}>
                   First Name <span style={{ color: '#ef4444' }}>*</span>
                 </label>
                 <input
@@ -96,19 +173,30 @@ export const ContactSection = ({
                   onChange={handleChange}
                   style={{
                     width: '100%',
-                    padding: '0.85rem 1.1rem',
-                    backgroundColor: '#ffffff',
-                    border: '1px solid #cbd5e1',
-                    borderRadius: '8px',
-                    fontSize: '0.95rem',
+                    padding: '0.9rem 1.15rem',
+                    backgroundColor: '#f8fafc',
+                    border: '1.5px solid #e2e8f0',
+                    borderRadius: '10px',
+                    fontSize: '0.96rem',
                     color: '#0f172a',
                     outline: 'none',
-                    boxSizing: 'border-box'
+                    boxSizing: 'border-box',
+                    transition: 'all 0.25s ease'
+                  }}
+                  onFocus={(e) => {
+                    e.currentTarget.style.borderColor = '#E11D48';
+                    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(2, 41, 176, 0.15)';
+                    e.currentTarget.style.backgroundColor = '#ffffff';
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.borderColor = '#e2e8f0';
+                    e.currentTarget.style.boxShadow = 'none';
+                    e.currentTarget.style.backgroundColor = '#f8fafc';
                   }}
                 />
               </div>
               <div>
-                <label style={{ display: 'block', fontSize: '0.92rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.5rem' }}>
+                <label style={{ display: 'block', fontSize: '0.92rem', fontWeight: 700, color: '#1e293b', marginBottom: '0.5rem' }}>
                   Last Name
                 </label>
                 <input
@@ -119,14 +207,25 @@ export const ContactSection = ({
                   onChange={handleChange}
                   style={{
                     width: '100%',
-                    padding: '0.85rem 1.1rem',
-                    backgroundColor: '#ffffff',
-                    border: '1px solid #cbd5e1',
-                    borderRadius: '8px',
-                    fontSize: '0.95rem',
+                    padding: '0.9rem 1.15rem',
+                    backgroundColor: '#f8fafc',
+                    border: '1.5px solid #e2e8f0',
+                    borderRadius: '10px',
+                    fontSize: '0.96rem',
                     color: '#0f172a',
                     outline: 'none',
-                    boxSizing: 'border-box'
+                    boxSizing: 'border-box',
+                    transition: 'all 0.25s ease'
+                  }}
+                  onFocus={(e) => {
+                    e.currentTarget.style.borderColor = '#E11D48';
+                    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(2, 41, 176, 0.15)';
+                    e.currentTarget.style.backgroundColor = '#ffffff';
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.borderColor = '#e2e8f0';
+                    e.currentTarget.style.boxShadow = 'none';
+                    e.currentTarget.style.backgroundColor = '#f8fafc';
                   }}
                 />
               </div>
@@ -135,7 +234,7 @@ export const ContactSection = ({
             {/* Row 2: Email Address* & Phone Number */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
               <div>
-                <label style={{ display: 'block', fontSize: '0.92rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.5rem' }}>
+                <label style={{ display: 'block', fontSize: '0.92rem', fontWeight: 700, color: '#1e293b', marginBottom: '0.5rem' }}>
                   Email Address <span style={{ color: '#ef4444' }}>*</span>
                 </label>
                 <input
@@ -147,19 +246,30 @@ export const ContactSection = ({
                   onChange={handleChange}
                   style={{
                     width: '100%',
-                    padding: '0.85rem 1.1rem',
-                    backgroundColor: '#ffffff',
-                    border: '1px solid #cbd5e1',
-                    borderRadius: '8px',
-                    fontSize: '0.95rem',
+                    padding: '0.9rem 1.15rem',
+                    backgroundColor: '#f8fafc',
+                    border: '1.5px solid #e2e8f0',
+                    borderRadius: '10px',
+                    fontSize: '0.96rem',
                     color: '#0f172a',
                     outline: 'none',
-                    boxSizing: 'border-box'
+                    boxSizing: 'border-box',
+                    transition: 'all 0.25s ease'
+                  }}
+                  onFocus={(e) => {
+                    e.currentTarget.style.borderColor = '#E11D48';
+                    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(2, 41, 176, 0.15)';
+                    e.currentTarget.style.backgroundColor = '#ffffff';
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.borderColor = '#e2e8f0';
+                    e.currentTarget.style.boxShadow = 'none';
+                    e.currentTarget.style.backgroundColor = '#f8fafc';
                   }}
                 />
               </div>
               <div>
-                <label style={{ display: 'block', fontSize: '0.92rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.5rem' }}>
+                <label style={{ display: 'block', fontSize: '0.92rem', fontWeight: 700, color: '#1e293b', marginBottom: '0.5rem' }}>
                   Phone Number
                 </label>
                 <input
@@ -170,14 +280,25 @@ export const ContactSection = ({
                   onChange={handleChange}
                   style={{
                     width: '100%',
-                    padding: '0.85rem 1.1rem',
-                    backgroundColor: '#ffffff',
-                    border: '1px solid #cbd5e1',
-                    borderRadius: '8px',
-                    fontSize: '0.95rem',
+                    padding: '0.9rem 1.15rem',
+                    backgroundColor: '#f8fafc',
+                    border: '1.5px solid #e2e8f0',
+                    borderRadius: '10px',
+                    fontSize: '0.96rem',
                     color: '#0f172a',
                     outline: 'none',
-                    boxSizing: 'border-box'
+                    boxSizing: 'border-box',
+                    transition: 'all 0.25s ease'
+                  }}
+                  onFocus={(e) => {
+                    e.currentTarget.style.borderColor = '#E11D48';
+                    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(2, 41, 176, 0.15)';
+                    e.currentTarget.style.backgroundColor = '#ffffff';
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.borderColor = '#e2e8f0';
+                    e.currentTarget.style.boxShadow = 'none';
+                    e.currentTarget.style.backgroundColor = '#f8fafc';
                   }}
                 />
               </div>
@@ -186,7 +307,7 @@ export const ContactSection = ({
             {/* Row 3: Organisation & Enquiry Type* */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.5rem' }}>
               <div>
-                <label style={{ display: 'block', fontSize: '0.92rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.5rem' }}>
+                <label style={{ display: 'block', fontSize: '0.92rem', fontWeight: 700, color: '#1e293b', marginBottom: '0.5rem' }}>
                   Organisation
                 </label>
                 <input
@@ -197,19 +318,30 @@ export const ContactSection = ({
                   onChange={handleChange}
                   style={{
                     width: '100%',
-                    padding: '0.85rem 1.1rem',
-                    backgroundColor: '#ffffff',
-                    border: '1px solid #cbd5e1',
-                    borderRadius: '8px',
-                    fontSize: '0.95rem',
+                    padding: '0.9rem 1.15rem',
+                    backgroundColor: '#f8fafc',
+                    border: '1.5px solid #e2e8f0',
+                    borderRadius: '10px',
+                    fontSize: '0.96rem',
                     color: '#0f172a',
                     outline: 'none',
-                    boxSizing: 'border-box'
+                    boxSizing: 'border-box',
+                    transition: 'all 0.25s ease'
+                  }}
+                  onFocus={(e) => {
+                    e.currentTarget.style.borderColor = '#E11D48';
+                    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(2, 41, 176, 0.15)';
+                    e.currentTarget.style.backgroundColor = '#ffffff';
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.borderColor = '#e2e8f0';
+                    e.currentTarget.style.boxShadow = 'none';
+                    e.currentTarget.style.backgroundColor = '#f8fafc';
                   }}
                 />
               </div>
               <div>
-                <label style={{ display: 'block', fontSize: '0.92rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.5rem' }}>
+                <label style={{ display: 'block', fontSize: '0.92rem', fontWeight: 700, color: '#1e293b', marginBottom: '0.5rem' }}>
                   Enquiry Type <span style={{ color: '#ef4444' }}>*</span>
                 </label>
                 <select
@@ -219,30 +351,41 @@ export const ContactSection = ({
                   onChange={handleChange}
                   style={{
                     width: '100%',
-                    padding: '0.85rem 1.1rem',
-                    backgroundColor: '#ffffff',
-                    border: '1px solid #cbd5e1',
-                    borderRadius: '8px',
-                    fontSize: '0.95rem',
+                    padding: '0.9rem 1.15rem',
+                    backgroundColor: '#f8fafc',
+                    border: '1.5px solid #e2e8f0',
+                    borderRadius: '10px',
+                    fontSize: '0.96rem',
                     color: formData.enquiryType ? '#0f172a' : '#64748b',
                     outline: 'none',
-                    boxSizing: 'border-box'
+                    boxSizing: 'border-box',
+                    transition: 'all 0.25s ease'
+                  }}
+                  onFocus={(e) => {
+                    e.currentTarget.style.borderColor = '#E11D48';
+                    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(2, 41, 176, 0.15)';
+                    e.currentTarget.style.backgroundColor = '#ffffff';
+                  }}
+                  onBlur={(e) => {
+                    e.currentTarget.style.borderColor = '#e2e8f0';
+                    e.currentTarget.style.boxShadow = 'none';
+                    e.currentTarget.style.backgroundColor = '#f8fafc';
                   }}
                 >
-                  <option value="">Select Enquiry Type</option>
-                  <option value="Employer of Record">Employer of Record & Global Employment</option>
-                  <option value="Contractor Management">Contractor Management & Payroll</option>
-                  <option value="Visa & Immigration">Visas & Global Mobility</option>
-                  <option value="IT & HR Support">IT & HR Managed Services</option>
-                  <option value="Digital Transformation">Digital Experience & Transformation</option>
-                  <option value="Other">General Enquiry</option>
+                  <option value="" style={{ backgroundColor: '#ffffff', color: '#64748b' }}>Select Enquiry Type</option>
+                  <option value="Employer of Record" style={{ backgroundColor: '#ffffff', color: '#0f172a' }}>Employer of Record & Global Employment</option>
+                  <option value="Contractor Management" style={{ backgroundColor: '#ffffff', color: '#0f172a' }}>Contractor Management & Payroll</option>
+                  <option value="Visa & Immigration" style={{ backgroundColor: '#ffffff', color: '#0f172a' }}>Visas & Global Mobility</option>
+                  <option value="IT & HR Support" style={{ backgroundColor: '#ffffff', color: '#0f172a' }}>IT & HR Managed Services</option>
+                  <option value="Digital Transformation" style={{ backgroundColor: '#ffffff', color: '#0f172a' }}>Digital Experience & Transformation</option>
+                  <option value="Other" style={{ backgroundColor: '#ffffff', color: '#0f172a' }}>General Enquiry</option>
                 </select>
               </div>
             </div>
 
             {/* Row 4: Subject* */}
             <div>
-              <label style={{ display: 'block', fontSize: '0.92rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.5rem' }}>
+              <label style={{ display: 'block', fontSize: '0.92rem', fontWeight: 700, color: '#1e293b', marginBottom: '0.5rem' }}>
                 Subject <span style={{ color: '#ef4444' }}>*</span>
               </label>
               <input
@@ -254,21 +397,32 @@ export const ContactSection = ({
                 onChange={handleChange}
                 style={{
                   width: '100%',
-                  padding: '0.85rem 1.1rem',
-                  backgroundColor: '#ffffff',
-                  border: '1px solid #cbd5e1',
-                  borderRadius: '8px',
-                  fontSize: '0.95rem',
+                  padding: '0.9rem 1.15rem',
+                  backgroundColor: '#f8fafc',
+                  border: '1.5px solid #e2e8f0',
+                  borderRadius: '10px',
+                  fontSize: '0.96rem',
                   color: '#0f172a',
                   outline: 'none',
-                  boxSizing: 'border-box'
+                  boxSizing: 'border-box',
+                  transition: 'all 0.25s ease'
+                }}
+                onFocus={(e) => {
+                  e.currentTarget.style.borderColor = '#E11D48';
+                  e.currentTarget.style.boxShadow = '0 0 0 3px rgba(2, 41, 176, 0.15)';
+                  e.currentTarget.style.backgroundColor = '#ffffff';
+                }}
+                onBlur={(e) => {
+                  e.currentTarget.style.borderColor = '#e2e8f0';
+                  e.currentTarget.style.boxShadow = 'none';
+                  e.currentTarget.style.backgroundColor = '#f8fafc';
                 }}
               />
             </div>
 
             {/* Row 5: Message* */}
             <div>
-              <label style={{ display: 'block', fontSize: '0.92rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.5rem' }}>
+              <label style={{ display: 'block', fontSize: '0.92rem', fontWeight: 700, color: '#1e293b', marginBottom: '0.5rem' }}>
                 Message <span style={{ color: '#ef4444' }}>*</span>
               </label>
               <textarea
@@ -280,56 +434,94 @@ export const ContactSection = ({
                 onChange={handleChange}
                 style={{
                   width: '100%',
-                  padding: '0.85rem 1.1rem',
-                  backgroundColor: '#ffffff',
-                  border: '1px solid #cbd5e1',
-                  borderRadius: '8px',
-                  fontSize: '0.95rem',
+                  padding: '0.9rem 1.15rem',
+                  backgroundColor: '#f8fafc',
+                  border: '1.5px solid #e2e8f0',
+                  borderRadius: '10px',
+                  fontSize: '0.96rem',
                   color: '#0f172a',
                   outline: 'none',
                   boxSizing: 'border-box',
-                  resize: 'vertical'
+                  resize: 'vertical',
+                  transition: 'all 0.25s ease'
+                }}
+                onFocus={(e) => {
+                  e.currentTarget.style.borderColor = '#E11D48';
+                  e.currentTarget.style.boxShadow = '0 0 0 3px rgba(2, 41, 176, 0.15)';
+                  e.currentTarget.style.backgroundColor = '#ffffff';
+                }}
+                onBlur={(e) => {
+                  e.currentTarget.style.borderColor = '#e2e8f0';
+                  e.currentTarget.style.boxShadow = 'none';
+                  e.currentTarget.style.backgroundColor = '#f8fafc';
                 }}
               />
             </div>
 
             {/* Row 6: Checkbox */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginTop: '0.5rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginTop: '0.25rem' }}>
               <input
                 type="checkbox"
                 id="agree"
                 name="agree"
                 checked={formData.agree}
                 onChange={handleChange}
-                style={{ width: '18px', height: '18px', cursor: 'pointer' }}
+                style={{ width: '18px', height: '18px', cursor: 'pointer', accentColor: '#E11D48' }}
               />
-              <label htmlFor="agree" style={{ fontSize: '0.92rem', color: '#475569', cursor: 'pointer' }}>
-                I agree to the Privacy Policy and terms.
+              <label htmlFor="agree" style={{ fontSize: '0.92rem', color: '#64748b', cursor: 'pointer' }}>
+                I agree to the{' '}
+                <a
+                  href="#privacy-policy"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (onNavPrivacyPolicy) {
+                      e.preventDefault();
+                      onNavPrivacyPolicy();
+                    }
+                  }}
+                  style={{ color: '#E11D48', fontWeight: 600, textDecoration: 'underline' }}
+                >
+                  Privacy Policy
+                </a>{' '}
+                and terms.
               </label>
             </div>
 
-            {/* Submit Button */}
+            {/* Submit Button with Hover Flow */}
             <div style={{ marginTop: '1rem' }}>
               <button
                 type="submit"
                 disabled={loading}
                 style={{
-                  padding: '0.9rem 2.5rem',
-                  backgroundColor: '#6C5CE7',
+                  padding: '0.95rem 2.8rem',
+                  background: 'linear-gradient(135deg, #E11D48 0%, #BE123C 100%)',
                   color: '#ffffff',
                   fontWeight: 700,
                   fontSize: '1.05rem',
-                  borderRadius: '8px',
+                  borderRadius: '10px',
                   border: 'none',
                   cursor: loading ? 'not-allowed' : 'pointer',
-                  boxShadow: '0 6px 20px rgba(108, 92, 231, 0.45)',
+                  boxShadow: '0 8px 24px rgba(2, 41, 176, 0.45)',
                   display: 'inline-flex',
                   alignItems: 'center',
-                  gap: '0.6rem'
+                  gap: '0.65rem',
+                  transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+                }}
+                onMouseEnter={(e) => {
+                  if (!loading) {
+                    e.currentTarget.style.transform = 'translateY(-3px)';
+                    e.currentTarget.style.boxShadow = '0 14px 34px rgba(2, 41, 176, 0.65)';
+                  }
+                }}
+                onMouseLeave={(e) => {
+                  if (!loading) {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 8px 24px rgba(2, 41, 176, 0.45)';
+                  }
                 }}
               >
                 <span>{loading ? 'Submitting...' : 'Submit Enquiry'}</span>
-                <ArrowRight size={18} />
+                <Send size={18} />
               </button>
             </div>
 

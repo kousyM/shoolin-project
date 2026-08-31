@@ -98,14 +98,16 @@ export const JobDetailPage = ({ jobId, onBackToCareers, onApplyJob, onSelectOthe
           <span>Back to Career Opportunities</span>
         </button>
 
-        <div className="vebhor-job-detail-grid">
+        <div className="shoolin-job-detail-grid">
           {/* Main Left Content Column */}
-          <div className="vebhor-job-main-col" style={{ background: '#ffffff', padding: '2.5rem', borderRadius: '8px', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
-            {/* Vebhor Brand Logo */}
+          <div className="shoolin-job-main-col" style={{ background: '#ffffff', padding: '2.5rem', borderRadius: '8px', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.05)' }}>
+            {/* Shoolin Brand Logo */}
             <div style={{ marginBottom: '1.5rem' }}>
-              <span style={{ fontFamily: "'Outfit', sans-serif", fontSize: '2.2rem', fontWeight: 900, color: '#0f172a' }}>
-                vebhor<span style={{ color: '#55E6C1' }}>//</span>
-              </span>
+              <img
+                src="/shoolin_official_logo.png?v=2026_sharp"
+                alt="Shoolin Consultancy"
+                style={{ height: '46px', width: 'auto', objectFit: 'contain', maxWidth: '240px' }}
+              />
             </div>
 
             {/* Job Title */}
@@ -130,7 +132,7 @@ export const JobDetailPage = ({ jobId, onBackToCareers, onApplyJob, onSelectOthe
               <h2 style={{ fontSize: '1.15rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.75rem' }}>Company Description</h2>
               <p style={{ color: '#334155', lineHeight: 1.7, fontSize: '0.95rem', whiteSpace: 'pre-line' }}>
                 {job.company_description ||
-                  'At Vebhor, we believe in doing technology services better. Our commitment to quality, focus on people, and willingness to challenge traditional thinking set us apart. Our team brings this belief to life by partnering with our clients and communities to make tomorrow together.'}
+                  'At Shoolin, we believe in doing technology services better. Our commitment to quality, focus on people, and willingness to challenge traditional thinking set us apart. Our team brings this belief to life by partnering with our clients and communities to make tomorrow together.'}
               </p>
             </div>
 
@@ -164,23 +166,33 @@ export const JobDetailPage = ({ jobId, onBackToCareers, onApplyJob, onSelectOthe
           </div>
 
           {/* Right Sidebar Column */}
-          <div className="vebhor-job-side-col">
+          <div className="shoolin-job-side-col">
             <div style={{ background: '#ffffff', padding: '1.75rem', borderRadius: '8px', border: '1px solid #e2e8f0', boxShadow: '0 1px 3px rgba(0,0,0,0.05)', position: 'sticky', top: '100px' }}>
               {/* Primary Action Button: "I'm interested" */}
               <button
                 onClick={() => onApplyJob(job.id)}
                 style={{
                   width: '100%',
-                  backgroundColor: '#002b49',
+                  background: 'linear-gradient(135deg, #E11D48 0%, #BE123C 100%)',
                   color: '#ffffff',
-                  fontSize: '1.1rem',
-                  fontWeight: 700,
+                  fontSize: '1.05rem',
+                  fontWeight: 800,
                   padding: '0.9rem 1.5rem',
-                  borderRadius: '4px',
+                  borderRadius: '50px',
                   border: 'none',
                   cursor: 'pointer',
                   marginBottom: '0.75rem',
-                  textAlign: 'center'
+                  textAlign: 'center',
+                  boxShadow: '0 4px 18px rgba(2, 41, 176, 0.4)',
+                  transition: 'all 0.25s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 8px 25px rgba(2, 41, 176, 0.6)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 4px 18px rgba(2, 41, 176, 0.4)';
                 }}
               >
                 I'm interested
@@ -229,7 +241,7 @@ export const JobDetailPage = ({ jobId, onBackToCareers, onApplyJob, onSelectOthe
               {/* Other Jobs At NCS Australia */}
               <div>
                 <h3 style={{ fontSize: '0.75rem', fontWeight: 700, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: '1rem' }}>
-                  OTHER JOBS AT VEBHOR
+                  OTHER JOBS AT SHOOLIN
                 </h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1rem' }}>
                   {otherJobs.map((other) => (

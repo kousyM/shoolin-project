@@ -21,6 +21,21 @@ export const JoinTeamSection = ({ onOpenCareers }) => {
                 if (onOpenCareers) onOpenCareers();
               }}
               className="ncs-join-pill-btn"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                padding: '0.75rem 2rem',
+                background: 'linear-gradient(135deg, #E11D48 0%, #BE123C 100%)',
+                color: '#ffffff',
+                border: 'none',
+                borderRadius: '50px',
+                fontSize: '0.98rem',
+                fontWeight: 700,
+                cursor: 'pointer',
+                boxShadow: '0 4px 18px rgba(2, 41, 176, 0.4)',
+                transition: 'all 0.25s ease'
+              }}
             >
               Explore Careers
             </button>
@@ -31,7 +46,7 @@ export const JoinTeamSection = ({ onOpenCareers }) => {
         <div className="ncs-join-right">
           <img
             src="/images/team_collaboration.jpg"
-            alt="Join an extraordinary team at Vebhor"
+            alt="Join an extraordinary team at Shoolin"
             className="ncs-join-img"
           />
         </div>

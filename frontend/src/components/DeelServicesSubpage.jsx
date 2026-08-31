@@ -16,7 +16,7 @@ export const DEEL_SERVICES_DATA = [
     tabName: 'Immigration & Visa',
     heroTag: 'GLOBAL MOBILITY',
     headline: 'Immigration & Visa',
-    description: 'Expand your workforce anywhere. Vebhor’s immigration and visa services handle every step—assessment, paperwork, compliance, and approvals—so your hires move across borders smoothly. Our expert partners ensure fast processing and full compliance with local regulations, keeping onboarding on track.',
+    description: 'Expand your workforce anywhere. Shoolin’s immigration and visa services handle every step—assessment, paperwork, compliance, and approvals—so your hires move across borders smoothly. Our expert partners ensure fast processing and full compliance with local regulations, keeping onboarding on track.',
     cardBgColor: '#fafaf9',
     icon: Building2
   },
@@ -43,7 +43,7 @@ export const DEEL_SERVICES_DATA = [
     tabName: 'Employer of Record',
     heroTag: 'GLOBAL EMPLOYMENT',
     headline: 'Employer of Record',
-    description: 'Expand globally without opening an entity. Vebhor handles local employment, contracts, compliance, payroll, benefits, and taxes so you can hire top talent anywhere in the world seamlessly.',
+    description: 'Expand globally without opening an entity. Shoolin handles local employment, contracts, compliance, payroll, benefits, and taxes so you can hire top talent anywhere in the world seamlessly.',
     cardBgColor: '#f8fafc',
     icon: Globe
   },
@@ -52,7 +52,7 @@ export const DEEL_SERVICES_DATA = [
     tabName: 'Contractor',
     heroTag: 'CONTRACTOR MANAGEMENT',
     headline: 'Contractor',
-    description: 'Manage your entire contractor workforce across countries with one unified platform. Vebhor handles onboarding, contracts, compliance, invoicing, and payments—ensuring every contractor is engaged and paid correctly, no matter where they work.',
+    description: 'Manage your entire contractor workforce across countries with one unified platform. Shoolin handles onboarding, contracts, compliance, invoicing, and payments—ensuring every contractor is engaged and paid correctly, no matter where they work.',
     cardBgColor: '#f9fafb',
     icon: Users
   },
@@ -61,7 +61,7 @@ export const DEEL_SERVICES_DATA = [
     tabName: 'Vendor',
     heroTag: 'VENDOR MANAGEMENT',
     headline: 'Vendor',
-    description: 'Streamline how you work with vendors worldwide. Vebhor automates onboarding, documentation, compliance, and payouts, ensuring every vendor is verified, contracted, and managed with complete transparency.',
+    description: 'Streamline how you work with vendors worldwide. Shoolin automates onboarding, documentation, compliance, and payouts, ensuring every vendor is verified, contracted, and managed with complete transparency.',
     cardBgColor: '#f8fafc',
     icon: Shield
   },
@@ -70,7 +70,7 @@ export const DEEL_SERVICES_DATA = [
     tabName: 'IT Support',
     heroTag: 'MANAGED IT SERVICES',
     headline: 'IT Support',
-    description: 'Vebhor provides end to end IT assistance—from onboarding devices and managing access to resolving technical issues quickly. Your workforce gets fast, dependable support that keeps operations moving without interruption.',
+    description: 'Shoolin provides end to end IT assistance—from onboarding devices and managing access to resolving technical issues quickly. Your workforce gets fast, dependable support that keeps operations moving without interruption.',
     cardBgColor: '#f8fafc',
     icon: Monitor
   },
@@ -79,7 +79,7 @@ export const DEEL_SERVICES_DATA = [
     tabName: 'HR Support',
     heroTag: 'HUMAN CAPITAL SUPPORT',
     headline: 'HR Support',
-    description: 'From onboarding to offboarding, Vebhor delivers reliable HR support that keeps your teams informed, compliant, and productive. We manage employee queries, documentation, policy guidance, and issue resolution so your operations never slow down.',
+    description: 'From onboarding to offboarding, Shoolin delivers reliable HR support that keeps your teams informed, compliant, and productive. We manage employee queries, documentation, policy guidance, and issue resolution so your operations never slow down.',
     cardBgColor: '#fafaf9',
     icon: FileText
   }
@@ -92,8 +92,8 @@ export const DeelServicesSubpage = ({ onOpenContactPage }) => {
   const IconComp = activeService.icon;
 
   return (
-    <div style={{ backgroundColor: '#ffffff', color: '#111827', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
-      
+    <div id="services-tabs-section" style={{ backgroundColor: '#ffffff', color: '#111827', fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+
       {/* SECTION HEADER */}
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '4rem 1.5rem 2rem', textAlign: 'center' }}>
         <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.5rem', fontWeight: 700, color: '#0f172a', letterSpacing: '-0.02em', marginBottom: '1rem', lineHeight: 1.15 }}>
@@ -130,10 +130,10 @@ export const DeelServicesSubpage = ({ onOpenContactPage }) => {
                   padding: '0.65rem 0.85rem',
                   fontSize: '0.88rem',
                   fontWeight: isActive ? 700 : 500,
-                  color: isActive ? '#0284c7' : '#64748b',
+                  color: isActive ? '#E11D48' : '#64748b',
                   border: 'none',
-                  borderBottom: isActive ? '3px solid #0284c7' : '3px solid transparent',
-                  backgroundColor: isActive ? '#f0f9ff' : 'transparent',
+                  borderBottom: isActive ? '3px solid #E11D48' : '3px solid transparent',
+                  backgroundColor: isActive ? '#eff6ff' : 'transparent',
                   borderRadius: '6px 6px 0 0',
                   cursor: 'pointer',
                   whiteSpace: 'nowrap',
@@ -161,7 +161,7 @@ export const DeelServicesSubpage = ({ onOpenContactPage }) => {
             boxShadow: '0 6px 20px rgba(0,0,0,0.02)'
           }}
         >
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: '#0284c7', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1rem' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: '#E11D48', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1rem' }}>
             <IconComp size={16} />
             <span>{activeService.heroTag}</span>
           </div>

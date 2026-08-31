@@ -1,36 +1,84 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 export const AboutSection = () => {
-  return (
-    <section id="about" style={{ backgroundColor: '#ffffff', padding: '4.5rem 2rem 4rem 2rem', borderBottom: '1px solid #f1f5f9' }}>
-      <div style={{ maxWidth: '1080px', margin: '0 auto' }}>
-        
-        {/* Center-Aligned ABOUT US Eyebrow Tag */}
-        <div style={{ textAlign: 'center', marginBottom: '1.75rem' }}>
-          <span style={{ fontSize: '0.82rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#6C5CE7', backgroundColor: '#DCD6F7', padding: '0.4rem 1.1rem', borderRadius: '50px', display: 'inline-block' }}>
-            ABOUT US
-          </span>
-        </div>
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef(null);
 
-        {/* Paragraph Narrative with text-align: start */}
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.15 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => {
+      if (sectionRef.current) {
+        observer.unobserve(sectionRef.current);
+      }
+    };
+  }, []);
+
+  return (
+    <section
+      ref={sectionRef}
+      id="about"
+      style={{
+        position: 'relative',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '2.5rem 1.5rem 1.75rem 1.5rem',
+        backgroundColor: '#ffffff'
+      }}
+    >
+      {/* Centered Clean Container */}
+      <div
+        style={{
+          maxWidth: '1120px',
+          width: '100%',
+          margin: '0 auto',
+          position: 'relative',
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translate3d(0, 0, 0)' : 'translate3d(0, 20px, 0)',
+          transition: 'opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1)'
+        }}
+      >
+        {/* Glowing Top Ambient Accent Line */}
+        <div
+          style={{
+            height: '3px',
+            maxWidth: '880px',
+            margin: '0 auto 1.75rem auto',
+            background: 'linear-gradient(90deg, transparent 0%, #E11D48 30%, #E11D48 70%, transparent 100%)',
+            borderRadius: '3px'
+          }}
+        />
+
+        {/* Paragraph Narrative */}
         <p
           style={{
-            fontFamily: "var(--bs-body-font-family), 'Plus Jakarta Sans', sans-serif",
-            fontSize: '1.4rem',
+            width: '100%',
+            maxWidth: '1200px',
+            margin: '0px auto',
+            textAlign: 'justify',
+            fontFamily: '"Archivo", sans-serif',
+            fontSize: '20px',
             fontWeight: 400,
-            color: '#334155',
-            lineHeight: 1.65,
-            textAlign: 'start',
-            margin: '0 0 1.5rem 0',
-            letterSpacing: '-0.01em'
+            lineHeight: '28px',
+            color: 'rgb(100, 116, 139)'
           }}
         >
-          Vebhor is a next‑generation HR Tech and Workforce Solutions company that helps enterprises build, manage, and scale global teams with{' '}
-          <strong style={{ color: '#0284c7', fontWeight: 700 }}>precision</strong>,{' '}
-          <strong style={{ color: '#0284c7', fontWeight: 700 }}>compliance</strong>, and{' '}
-          <strong style={{ color: '#0284c7', fontWeight: 700 }}>AI‑driven efficiency</strong>. With deep expertise across talent management, payrolling, contractor operations, and global mobility, we deliver industry‑specific solutions that meet the complex workforce needs of modern businesses. Our multi‑vertical model mirrors the strength of leading global IT and consulting firms, enabling us to support clients across diverse sectors with{' '}
-          <span style={{ color: '#0f172a', fontWeight: 600 }}>tailored workforce strategies</span>, transparent operations, and{' '}
-          <span style={{ color: '#0f172a', fontWeight: 600 }}>end‑to‑end execution</span>.
+          Shoolin is a next‑generation Workforce Enablement Services company that helps enterprises build, manage, & scale global teams{' '}
+          <strong style={{ color: '#E11D48', fontWeight: 700 }}>precision</strong>,{' '}
+          <strong style={{ color: '#00c9a7', fontWeight: 700 }}>compliance</strong>, &{' '}
+          <strong style={{ color: '#E11D48', fontWeight: 700 }}>AI‑driven efficiency</strong>. With deep expertise across talent management, payrolling, contractor operations, & global mobility, we deliver industry‑specific solutions that meet the complex workforce needs of modern businesses. tailored workforce strategies, transparent operations, & end‑to‑end execution.
         </p>
 
       </div>

@@ -1,190 +1,466 @@
 import React, { useState } from 'react';
-import { CheckCircle2, ArrowRight } from 'lucide-react';
+import { ArrowRight, Sparkles, MessageSquare, Users } from 'lucide-react';
 
-export const WorkforceSolutionsTabSection = () => {
-  const [activeTabId, setActiveTabId] = useState('outcome');
+export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
+  const [selectedServiceId, setSelectedServiceId] = useState('offshore');
 
-  const tabsData = [
+  const servicesList = [
     {
-      id: 'outcome',
-      label: 'Outcome Delivery',
-      tag: 'GLOBAL DELIVERY CENTRES',
-      heading: 'From Overseas Centres to Outcome-Based delivery',
-      description: 'We help organisations move beyond traditional offshore delivery models by building high-performing global teams focused on measurable business outcomes. From capability design and team setup to delivery governance and continuous optimisation, we create scalable models that combine global talent, technology, and local expertise to deliver greater agility, efficiency, and business value.'
+      id: 'offshore',
+      title: 'Facilities & Support',
+      tag: 'OFFSHORE DEVELOPMENT CENTRE',
+      heading: 'Offshore Development Centre: Facilities & Support',
+      description: 'We help organisations move beyond traditional offshore delivery models by building high-performing global teams focused on measurable business outcomes. From capability design and team setup to delivery governance and continuous optimisation, we create scalable models that combine global talent, technology, and local expertise to deliver greater agility, efficiency, and business value.',
+      imageUrl: '/images/service_outcome_delivery.jpg',
+      stat: '99.4% SLA Delivery'
     },
     {
       id: 'immigration',
-      label: 'Immigration & Visa',
+      title: 'Immigration & Visa',
       tag: 'GLOBAL MOBILITY & IMMIGRATION',
       heading: 'Seamless International Relocation & Visa Compliance',
-      description: 'Accelerate global expansion with end-to-end visa sponsorship, work permit processing, and immigration compliance across 150+ countries. We handle legal paperwork, tax residency assessments, and relocation logistics so your talent can work anywhere with complete peace of mind.'
+      description: 'Accelerate global expansion with end-to-end visa sponsorship, work permit processing, and immigration compliance across 150+ countries. We handle legal paperwork, tax residency assessments, and relocation logistics so your talent can work anywhere with complete peace of mind.',
+      imageUrl: '/images/service_immigration_visa.jpg',
+      stat: '150+ Countries'
     },
     {
       id: 'digital',
-      label: 'Digital Experience',
+      title: 'Digital Experience',
       tag: 'DIGITAL TRANSFORMATION',
       heading: 'Human-Centred UX & Intelligent Operating Platforms',
-      description: 'Reimagine customer and employee journeys through intuitive digital design, modern application development, and seamless cloud integration. We craft responsive web applications and portals that drive engagement, efficiency, and business growth.'
+      description: 'Reimagine customer and employee journeys through intuitive digital design, modern application development, and seamless cloud integration. We craft responsive web applications and portals that drive engagement, efficiency, and business growth.',
+      imageUrl: '/images/service_digital_experience.jpg',
+      stat: '3x Faster Time-to-Market'
     },
     {
       id: 'bpm',
-      label: 'BPM & Ops',
-      tag: 'PROCESS AUTOMATION & BPM',
-      heading: 'Streamlining Operations for Scalable Productivity',
-      description: 'Optimise business processes through intelligent workflow automation, robotic process automation (RPA), and enterprise governance frameworks. We eliminate operational bottlenecks, reduce costs, and elevate overall performance across all departments.'
+      title: 'Business Process Management & Operations',
+      tag: 'BPM & OPS',
+      heading: 'BPM & Ops: Business Process Management & Operations',
+      description: 'Optimise business processes through intelligent workflow automation, robotic process automation (RPA), and enterprise governance frameworks. We eliminate operational bottlenecks, reduce costs, and elevate overall performance across all departments.',
+      imageUrl: '/images/service_bpm_ops.jpg',
+      stat: '40% Cost Optimization'
     },
     {
       id: 'eor',
-      label: 'Employer of Record',
+      title: 'Employer of Record',
       tag: 'EMPLOYER OF RECORD (EOR)',
       heading: 'Global Hiring Without Entity Setup',
-      description: 'Hire, onboard, and manage international employees in days without opening foreign legal entities. Vebhor acts as legal employer of record handling localized employment contracts, payroll, statutory benefits, and local tax compliance seamlessly.'
+      description: 'Hire, onboard, and manage international employees in days without opening foreign legal entities. Shoolin acts as legal employer of record handling localized employment contracts, payroll, statutory benefits, and local tax compliance seamlessly.',
+      imageUrl: '/images/service_eor.jpg',
+      stat: '100% Audit Compliance'
     },
     {
       id: 'contractor',
-      label: 'Contractor',
+      title: 'Contractor Management',
       tag: 'CONTRACTOR MANAGEMENT',
       heading: 'Compliant Independent Contractor Solutions',
-      description: 'Engage global freelancers and independent contractors securely without misclassification risks. Our automated system handles localized agreements, multi-currency invoicing, tax documentation, and instant payout execution.'
+      description: 'Engage global freelancers and independent contractors securely without misclassification risks. Our automated system handles localized agreements, multi-currency invoicing, tax documentation, and instant payout execution.',
+      imageUrl: '/images/service_contractor_mgmt.jpg',
+      stat: '24hr Contractor Setup'
     },
     {
       id: 'vendor',
-      label: 'Vendor',
+      title: 'Vendor Consolidation',
       tag: 'VENDOR CONSOLIDATION',
       heading: 'Unified Partner & Supplier Governance',
-      description: 'Consolidate multiple recruitment, IT, and operational vendors under one centralized management platform. Simplify vendor contracts, SLA tracking, invoice reconciliation, and global risk management.'
+      description: 'Consolidate multiple recruitment, IT, and operational vendors under one centralized management platform. Simplify vendor contracts, SLA tracking, invoice reconciliation, and global risk management.',
+      imageUrl: '/images/service_vendor_consolidation.jpg',
+      stat: 'Single Invoice Flow'
     },
     {
       id: 'itsupport',
-      label: 'IT Support',
+      title: 'IT Support',
       tag: 'MANAGED IT & INFRASTRUCTURE',
       heading: '24/7 Managed Tech Support & Device Provisioning',
-      description: 'Empower remote and hybrid workforces with enterprise IT service desk support, laptop provisioning, endpoint security, and cloud infrastructure management tailored for global operations.'
+      description: 'Empower remote and hybrid workforces with enterprise IT service desk support, laptop provisioning, endpoint security, and cloud infrastructure management tailored for global operations.',
+      imageUrl: '/images/service_it_support.jpg',
+      stat: '24/7 Enterprise Support'
     },
     {
       id: 'hrsupport',
-      label: 'HR Support',
-      tag: 'PEOPLE & HR ADVISORY',
+      title: 'HR Services & Experience',
+      tag: 'HR SERVICES & EXPERIENCE',
       heading: 'Strategic HR Services & Employee Experience',
-      description: 'Elevate employee retention and organizational culture with customized HR advisory, performance management systems, local benefit benchmarking, and transparent HR operations across all regions.'
+      description: 'Elevate employee retention and organizational culture with customized HR advisory, performance management systems, local benefit benchmarking, and transparent HR operations across all regions.',
+      imageUrl: '/images/service_hr_support.jpg',
+      stat: '98% Retention Rate'
     }
   ];
 
-  const activeContent = tabsData.find((tab) => tab.id === activeTabId) || tabsData[0];
+  const activeService = servicesList.find((s) => s.id === selectedServiceId) || servicesList[0];
 
   return (
-    <section style={{ backgroundColor: '#ffffff', padding: '5.5rem 1.5rem 4.5rem 1.5rem', fontFamily: "var(--bs-body-font-family), 'Plus Jakarta Sans', sans-serif" }}>
-      <div style={{ maxWidth: '1280px', margin: '0 auto', textAlign: 'center' }}>
-        
-        {/* Eyebrow Badge Tag */}
-        <span style={{ fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#7C3AED', backgroundColor: '#EDE9FE', padding: '0.4rem 1.1rem', borderRadius: '50px', display: 'inline-block', marginBottom: '1.25rem' }}>
-          OUR SERVICES
-        </span>
+    <section id="services" style={{ backgroundColor: '#F8FAFC', padding: '3.25rem 1.5rem 4.5rem 1.5rem', fontFamily: "var(--bs-body-font-family), 'Plus Jakarta Sans', sans-serif", position: 'relative', overflow: 'hidden', borderBottom: '1px solid #E2E8F0' }}>
+      {/* Subtle Ambient Radial Light */}
+      <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: '1000px', height: '400px', background: 'radial-gradient(ellipse at 50% 0%, rgba(37, 99, 235, 0.06) 0%, transparent 70%)', pointerEvents: 'none' }} />
 
-        {/* Title Matching User Screenshot */}
-        <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.5rem', fontWeight: 800, color: '#172033', letterSpacing: '-0.02em', marginBottom: '1rem', lineHeight: 1.25 }}>
-          Everything you need to scale global workforce & operations
-        </h2>
+      <div style={{ maxWidth: '1340px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
 
-        {/* Subtitle Matching User Screenshot */}
-        <p style={{ fontSize: '1.1rem', color: '#64748b', maxWidth: '860px', margin: '0 auto 3rem', lineHeight: 1.6, fontWeight: 400 }}>
-          Explore our multi-vertical workforce solutions—from Employer of Record and global contractor management to Outcome-Based delivery and digital transformation.
-        </p>
+        {/* 1. SECTION HEADER */}
+        <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+          {/* Main Heading with Highlighted Quality Engineering & Processing */}
+          <h2
+            style={{
+              fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
+              fontSize: 'clamp(1.45rem, 2.3vw, 1.95rem)',
+              fontWeight: 800,
+              color: '#0f172a',
+              letterSpacing: '-0.02em',
+              marginBottom: '0.65rem',
+              lineHeight: 1.3
+            }}
+          >
+            <span style={{ color: '#E11D48' }}>
+              Quality Engineering & Processing:
+            </span>{' '}
+            Empower your growth
+          </h2>
 
-        {/* Single Line Horizontal Tab Navigation Bar - All 9 In One Line, No Scroll, Zero Overlap */}
-        <div
-          className="workforce-tabs-bar"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(9, minmax(0, 1fr))',
-            gap: '0.2rem',
-            backgroundColor: '#F1F5F9',
-            padding: '0.35rem',
-            borderRadius: '50px',
-            maxWidth: '1280px',
-            margin: '0 auto 3rem auto',
-            border: '1px solid #E2E8F0',
-            boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.02)',
-            overflow: 'hidden',
-            width: '100%',
-            boxSizing: 'border-box'
-          }}
-        >
-          {tabsData.map((tab) => {
-            const isActive = tab.id === activeTabId;
-            return (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTabId(tab.id)}
-                className={`workforce-tab-btn ${isActive ? 'active' : ''}`}
-                style={{
-                  background: isActive ? 'linear-gradient(135deg, #2563EB 0%, #1D4ED8 100%)' : 'transparent',
-                  border: 'none',
-                  padding: '0.65rem 0.2rem',
-                  fontSize: 'clamp(0.72rem, 0.85vw, 0.84rem)',
-                  fontWeight: isActive ? 700 : 600,
-                  color: isActive ? '#ffffff' : '#64748B',
-                  borderRadius: '50px',
-                  cursor: 'pointer',
-                  transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
-                  whiteSpace: 'nowrap',
-                  textAlign: 'center',
-                  minWidth: 0,
-                  width: '100%',
-                  overflow: 'hidden',
-                  textOverflow: 'ellipsis',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  boxSizing: 'border-box',
-                  boxShadow: isActive ? '0 4px 14px rgba(37, 99, 235, 0.35)' : 'none'
-                }}
-                title={tab.label}
-              >
-                <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
-                  {tab.label}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Animated Active Content Card */}
-        <div
-          key={activeContent.id}
-          className="workforce-active-card animated-fade-slide"
-          style={{
-            backgroundColor: '#ffffff',
-            borderRadius: '24px',
-            padding: '3.5rem 3.5rem',
-            textAlign: 'left',
-            boxShadow: '0 20px 50px rgba(0, 0, 0, 0.06)',
-            border: '1px solid #E2E8F0',
-            position: 'relative',
-            overflow: 'hidden'
-          }}
-        >
-          {/* Subtle Accent Glow Top Border */}
-          <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '4px', background: 'linear-gradient(90deg, #2563EB 0%, #7C3AED 50%, #10B981 100%)' }} />
-
-          {/* Active Category Tag */}
-          <span style={{ fontSize: '0.82rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#2563EB', backgroundColor: '#EFF6FF', padding: '0.35rem 1rem', borderRadius: '6px', display: 'inline-block', marginBottom: '1.25rem' }}>
-            {activeContent.tag}
-          </span>
-
-          {/* Card Heading */}
-          <h3 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2rem', fontWeight: 800, color: '#172033', letterSpacing: '-0.02em', marginBottom: '1.25rem', lineHeight: 1.3 }}>
-            {activeContent.heading}
+          {/* Subheading Line 2 */}
+          <h3
+            style={{
+              fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
+              fontSize: 'clamp(1.15rem, 1.8vw, 1.3rem)',
+              fontWeight: 400,
+              color: '#0f172a',
+              marginBottom: '1.15rem',
+              letterSpacing: '-0.01em'
+            }}
+          >
+            At Shoolin, quality is more than a standard—it’s the way we operate.
           </h3>
 
-          {/* Card Description */}
-          <p style={{ fontSize: '1.08rem', color: '#475569', lineHeight: 1.7, margin: 0, fontWeight: 400 }}>
-            {activeContent.description}
+          {/* Descriptive Paragraph Line 3 */}
+          <p
+            style={{
+              width: '100%',
+              maxWidth: '970px',
+              margin: '0 auto',
+              textAlign: 'center',
+              fontFamily: '"Archivo", sans-serif',
+              fontSize: '18px',
+              fontWeight: 400,
+              lineHeight: '28px',
+              color: '#64748b'
+            }}
+          >
+            As industry leaders, we deliver exceptional Quality Engineering services powered by intelligence, automation, and a relentless focus on driving business outcomes. Our success is measured by one thing: the growth and success we help our customers achieve
           </p>
         </div>
 
+        {/* 2. THREE-COLUMN RESPONSIVE LAYOUT (STACKS ON MOBILE/TABLET) */}
+        <div className="workforce-grid-container">
+          {/* LEFT COLUMN: All 9 Services */}
+          <div className="workforce-left-col">
+            {servicesList.map((service) => {
+              const isSelected = service.id === selectedServiceId;
+
+              return (
+                <div
+                  key={service.id}
+                  onMouseEnter={() => setSelectedServiceId(service.id)}
+                  onClick={() => setSelectedServiceId(service.id)}
+                  style={{
+                    backgroundColor: isSelected ? '#f8faff' : '#ffffff',
+                    border: isSelected ? '1.5px solid #E11D48' : '1px solid #E2E8F0',
+                    borderLeft: isSelected ? '4px solid #E11D48' : '1px solid #E2E8F0',
+                    borderRadius: '10px',
+                    padding: '0.65rem 0.95rem',
+                    cursor: 'pointer',
+                    transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
+                    boxShadow: isSelected
+                      ? '0 10px 24px -3px rgba(40, 129, 251, 0.22), 0 4px 6px -2px rgba(40, 129, 251, 0.12)'
+                      : '0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -2px rgba(0, 0, 0, 0.03)',
+                    transform: isSelected ? 'translateX(4px)' : 'translateX(0)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between',
+                    gap: '0.5rem'
+                  }}
+                >
+                  <div style={{ overflow: 'hidden' }}>
+                    <span style={{ fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', color: isSelected ? '#E11D48' : '#94A3B8', display: 'block', marginBottom: '0.1rem', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
+                      {service.tag}
+                    </span>
+                    <h3 style={{ fontSize: '0.92rem', fontWeight: isSelected ? 700 : 600, color: isSelected ? '#0F172A' : '#334155', margin: 0, whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
+                      {service.title}
+                    </h3>
+                  </div>
+
+                  <div
+                    style={{
+                      width: '24px',
+                      height: '24px',
+                      borderRadius: '50%',
+                      background: isSelected ? 'linear-gradient(135deg, #E11D48 0%, #BE123C 100%)' : '#F1F5F9',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: isSelected ? '#ffffff' : '#64748B',
+                      flexShrink: 0,
+                      transition: 'all 0.25s ease',
+                      transform: isSelected ? 'scale(1.1)' : 'scale(1)'
+                    }}
+                  >
+                    <ArrowRight size={13} />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+
+          {/* CENTER COLUMN: Dynamic Preview Image & Complete Original Narrative Description */}
+          <div
+            className="workforce-center-col"
+            style={{
+              backgroundColor: '#ffffff',
+              border: '1px solid #E2E8F0',
+              borderRadius: '16px',
+              padding: '1.75rem',
+              boxShadow: '0 20px 25px -5px rgba(15, 23, 42, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04)',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between',
+              position: 'relative',
+              overflow: 'hidden'
+            }}
+          >
+            {/* Dynamic Technology Preview Image */}
+            <div
+              style={{
+                width: '100%',
+                height: '200px',
+                borderRadius: '12px',
+                overflow: 'hidden',
+                position: 'relative',
+                marginBottom: '1.25rem',
+                backgroundColor: '#0F172A'
+              }}
+            >
+              <img
+                key={activeService.id}
+                src={activeService.imageUrl}
+                alt={activeService.heading}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  transition: 'opacity 0.35s ease, transform 0.4s ease',
+                  animation: 'heroImgKenBurns 8s ease-in-out infinite alternate'
+                }}
+              />
+              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(180deg, transparent 40%, rgba(15, 23, 42, 0.75) 100%)' }} />
+
+              {/* Stat Badge Over Image */}
+              <div
+                style={{
+                  position: 'absolute',
+                  bottom: '10px',
+                  left: '12px',
+                  backgroundColor: 'rgba(15, 23, 42, 0.85)',
+                  backdropFilter: 'blur(8px)',
+                  border: '1px solid rgba(255, 255, 255, 0.15)',
+                  padding: '0.3rem 0.8rem',
+                  borderRadius: '30px',
+                  color: '#55E6C1',
+                  fontSize: '0.8rem',
+                  fontWeight: 700,
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.4rem'
+                }}
+              >
+                <Sparkles size={12} color="#55E6C1" />
+                <span>{activeService.stat}</span>
+              </div>
+            </div>
+
+            {/* Dynamic Content: Original Paragraph */}
+            <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <span style={{ fontSize: '0.76rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#E11D48', backgroundColor: '#EFF6FF', padding: '0.25rem 0.8rem', borderRadius: '6px', display: 'inline-block', marginBottom: '0.75rem', width: 'fit-content' }}>
+                {activeService.tag}
+              </span>
+
+              <h3 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '1.35rem', fontWeight: 700, color: '#0F172A', lineHeight: 1.35, marginBottom: '0.9rem' }}>
+                {activeService.heading}
+              </h3>
+
+              <p style={{ fontSize: '0.98rem', color: '#475569', lineHeight: 1.7, margin: 0, fontWeight: 400 }}>
+                {activeService.description}
+              </p>
+            </div>
+          </div>
+
+          {/* RIGHT COLUMN: Interactive Action Cards */}
+          <div
+            className="workforce-right-col"
+          >
+            {/* Card 1: Let's Talk */}
+            <div
+              onClick={() => {
+                const contactEl = document.getElementById('contact');
+                if (contactEl) contactEl.scrollIntoView({ behavior: 'smooth' });
+              }}
+              style={{
+                flex: 1,
+                backgroundColor: '#ffffff',
+                borderRadius: '16px',
+                padding: '2rem 1.75rem',
+                color: '#0f172a',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                cursor: 'pointer',
+                transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                boxShadow: '0 10px 25px rgba(0, 0, 0, 0.04)',
+                border: '1.5px solid #e2e8f0',
+                position: 'relative',
+                overflow: 'hidden'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.boxShadow = '0 16px 36px rgba(2, 41, 176, 0.16)';
+                e.currentTarget.style.borderColor = '#E11D48';
+                const circle = e.currentTarget.querySelector('.card-circle-btn');
+                if (circle) {
+                  circle.style.transform = 'scale(1.15) translateX(3px)';
+                  circle.style.background = 'linear-gradient(135deg, #E11D48 0%, #BE123C 100%)';
+                  circle.style.color = '#ffffff';
+                }
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.04)';
+                e.currentTarget.style.borderColor = '#e2e8f0';
+                const circle = e.currentTarget.querySelector('.card-circle-btn');
+                if (circle) {
+                  circle.style.transform = 'scale(1) translateX(0)';
+                  circle.style.background = '#f1f5f9';
+                  circle.style.color = '#0f172a';
+                }
+              }}
+            >
+              <div>
+                <div style={{ width: '42px', height: '42px', borderRadius: '10px', backgroundColor: '#eff6ff', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#E11D48', marginBottom: '1.25rem' }}>
+                  <MessageSquare size={20} />
+                </div>
+                <h4 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '1.35rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.5rem' }}>
+                  Let's Talk
+                </h4>
+                <p style={{ fontSize: '0.88rem', color: '#64748b', lineHeight: 1.5, margin: 0 }}>
+                  Ready to transform and scale your enterprise workforce? Speak with our specialists today.
+                </p>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1.5rem' }}>
+                <span style={{ fontSize: '0.88rem', fontWeight: 700, color: '#E11D48' }}>Contact Us</span>
+                <div
+                  className="card-circle-btn"
+                  style={{
+                    width: '38px',
+                    height: '38px',
+                    borderRadius: '50%',
+                    backgroundColor: '#f1f5f9',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#0f172a',
+                    transition: 'all 0.3s ease',
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)'
+                  }}
+                >
+                  <ArrowRight size={18} />
+                </div>
+              </div>
+            </div>
+
+            {/* Card 2: Join Our Team */}
+            <div
+              onClick={() => {
+                if (onNavCareers) {
+                  onNavCareers();
+                } else {
+                  window.location.hash = 'careers';
+                }
+              }}
+              style={{
+                flex: 1,
+                backgroundColor: '#ffffff',
+                borderRadius: '16px',
+                padding: '2rem 1.75rem',
+                color: '#0f172a',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'space-between',
+                cursor: 'pointer',
+                transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)',
+                boxShadow: '0 10px 25px rgba(0, 0, 0, 0.04)',
+                border: '1.5px solid #e2e8f0',
+                position: 'relative',
+                overflow: 'hidden'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'translateY(-4px)';
+                e.currentTarget.style.boxShadow = '0 16px 36px rgba(2, 41, 176, 0.16)';
+                e.currentTarget.style.borderColor = '#E11D48';
+                const circle = e.currentTarget.querySelector('.card-circle-btn-2');
+                if (circle) {
+                  circle.style.transform = 'scale(1.15) translateX(3px)';
+                  circle.style.background = 'linear-gradient(135deg, #E11D48 0%, #BE123C 100%)';
+                  circle.style.color = '#ffffff';
+                }
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.04)';
+                e.currentTarget.style.borderColor = '#e2e8f0';
+                const circle = e.currentTarget.querySelector('.card-circle-btn-2');
+                if (circle) {
+                  circle.style.transform = 'scale(1) translateX(0)';
+                  circle.style.background = '#f1f5f9';
+                  circle.style.color = '#0f172a';
+                }
+              }}
+            >
+              <div>
+                <div style={{ width: '42px', height: '42px', borderRadius: '10px', backgroundColor: '#eff6ff', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#E11D48', marginBottom: '1.25rem' }}>
+                  <Users size={20} />
+                </div>
+                <h4 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '1.35rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.5rem' }}>
+                  Join Our Team
+                </h4>
+                <p style={{ fontSize: '0.88rem', color: '#64748b', lineHeight: 1.5, margin: 0 }}>
+                  Build the future of workforce technology with a high-impact global career.
+                </p>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1.5rem' }}>
+                <span style={{ fontSize: '0.88rem', fontWeight: 700, color: '#E11D48' }}>Explore Careers</span>
+                <div
+                  className="card-circle-btn-2"
+                  style={{
+                    width: '38px',
+                    height: '38px',
+                    borderRadius: '50%',
+                    backgroundColor: '#f1f5f9',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    color: '#0f172a',
+                    transition: 'all 0.3s ease',
+                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)'
+                  }}
+                >
+                  <ArrowRight size={18} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
-    </section>
+    </section >
   );
 };
 
