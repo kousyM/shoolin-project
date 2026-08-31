@@ -940,7 +940,14 @@ export const ChallengeUsPage = ({
                   style={{ width: '20px', height: '20px', marginTop: '3px', cursor: 'pointer', flexShrink: 0, accentColor: 'rgb(2, 41, 176)' }}
                 />
                 <label htmlFor="consent" style={{ fontSize: '0.88rem', color: '#64748b', lineHeight: 1.6, cursor: 'pointer' }}>
-                  I have read, understood, and agree to be bound by Vebhor’s Data Protection Notice, which may be amended from time to time. I consent to Vebhor collecting, using, and disclosing my personal data as provided in this form, in accordance with the Data Protection Notice, for the purposes stated therein and for matters relating to responding to my enquiry or feedback.
+                  I have read, understood, and agree to be bound by{' '}
+                  <a
+                    href="#privacy-policy"
+                    style={{ color: 'rgb(2, 41, 176)', fontWeight: 600, textDecoration: 'underline' }}
+                  >
+                    Data Protection Notice & Privacy Policy
+                  </a>
+                  , which may be amended from time to time. I consent to collecting, using, and disclosing my personal data as provided in this form, in accordance with the Data Protection Notice, for the purposes stated therein and for matters relating to responding to my enquiry or feedback.
                 </label>
               </div>
 

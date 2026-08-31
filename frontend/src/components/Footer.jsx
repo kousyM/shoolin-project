@@ -3,7 +3,7 @@ import axios from 'axios';
 import { ArrowRight, CheckCircle2 } from 'lucide-react';
 import { getApiBaseUrl } from '../api/config';
 
-export const Footer = ({ onOpenContactPage, onNavAdmin, onNavAbout }) => {
+export const Footer = ({ onOpenContactPage, onNavAdmin, onNavAbout, onNavPrivacy }) => {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -29,17 +29,12 @@ export const Footer = ({ onOpenContactPage, onNavAdmin, onNavAbout }) => {
 
   const handlePrivacyClick = (e) => {
     e.preventDefault();
-    if (onNavAbout) {
-      onNavAbout('privacy-policy');
+    if (onNavPrivacy) {
+      onNavPrivacy();
     } else {
       window.location.hash = '#privacy-policy';
     }
-    setTimeout(() => {
-      const el = document.getElementById('privacy-policy');
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 100);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (

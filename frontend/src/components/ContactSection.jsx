@@ -5,7 +5,8 @@ import { getApiBaseUrl } from '../api/config';
 
 export const ContactSection = ({
   title = "Get answers to your questions",
-  subtitle = "Fill out the form below and a Vebhor representative will get back to you shortly."
+  subtitle = "Fill out the form below and a Vebhor representative will get back to you shortly.",
+  onNavPrivacy
 }) => {
   const [formData, setFormData] = useState({
     firstName: '',
@@ -475,7 +476,21 @@ export const ContactSection = ({
                 style={{ width: '18px', height: '18px', cursor: 'pointer', accentColor: 'rgb(2, 41, 176)' }}
               />
               <label htmlFor="agree" style={{ fontSize: '0.92rem', color: '#64748b', cursor: 'pointer' }}>
-                I agree to the Privacy Policy and terms.
+                I agree to the{' '}
+                <a
+                  href="#privacy-policy"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (onNavPrivacy) {
+                      e.preventDefault();
+                      onNavPrivacy();
+                    }
+                  }}
+                  style={{ color: 'rgb(2, 41, 176)', fontWeight: 600, textDecoration: 'underline' }}
+                >
+                  Privacy Policy
+                </a>{' '}
+                and terms.
               </label>
             </div>
 

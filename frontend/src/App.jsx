@@ -23,6 +23,7 @@ import JobApplyPage from './pages/JobApplyPage';
 import AdminLoginPage from './pages/AdminLoginPage';
 import AdminDashboardPage from './pages/AdminDashboardPage';
 import AboutPage from './pages/AboutPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import ChallengeUsPage from './pages/ChallengeUsPage';
 import EmployersServicesPage from './pages/EmployersServicesPage';
 import IndividualsServicesPage from './pages/IndividualsServicesPage';
@@ -160,9 +161,8 @@ export function App() {
       } else if (hash.includes('newsroom')) {
         setAboutInitialTab('newsroom');
         setCurrentPage('about');
-      } else if (hash.includes('privacy-policy')) {
-        setAboutInitialTab('privacy-policy');
-        setCurrentPage('about');
+      } else if (hash.includes('privacy-policy') || hash.includes('privacy')) {
+        setCurrentPage('privacy-policy');
       } else if (hash.includes('about')) {
         setAboutInitialTab('code-of-conduct');
         setCurrentPage('about');
@@ -227,6 +227,8 @@ export function App() {
           setCurrentPage(storedToken ? 'admin-dashboard' : 'admin-login');
         } else if (path.includes('careers')) {
           setCurrentPage('careers');
+        } else if (path.includes('privacy')) {
+          setCurrentPage('privacy-policy');
         } else if (path.includes('contact')) {
           setCurrentPage('contact');
         }
@@ -555,7 +557,27 @@ export function App() {
     );
   }
 
-  // 14. Homepage (Default)
+  // 14. Privacy Policy Standalone Page
+  if (currentPage === 'privacy-policy') {
+    return (
+      <PrivacyPolicyPage
+        onNavHome={() => navigateTo('home', '')}
+        onNavServices={(cat) => navigateTo('services', 'services-page', cat)}
+        onNavAbout={(subTab = 'code-of-conduct') => navigateTo('about', subTab, subTab)}
+        onNavCareers={(subTab = 'career-stories') => navigateTo('careers', subTab, subTab)}
+        onNavPartners={() => navigateTo('partners', 'partners')}
+        onNavInsights={() => navigateTo('insights', 'insights')}
+        onNavChallengeUs={() => navigateTo('challenge-us', 'challenge-us')}
+        onNavVisa={() => navigateTo('individuals-services', 'visa')}
+        onOpenContactPage={() => navigateTo('contact', 'contact')}
+        onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
+        isAdminLoggedIn={!!adminUser}
+        onAdminLogout={handleAdminLogout}
+      />
+    );
+  }
+
+  // 15. Homepage (Default)
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 font-sans antialiased">
       {/* 1. Header Navigation */}
@@ -601,11 +623,16 @@ export function App() {
         <DriveCareerBanner onNavCareers={() => navigateTo('careers', 'job-opportunities', 'job-opportunities')} />
 
         {/* 9. Contact Section (Cognizant Form: Get answers to your questions) */}
-        <ContactSection />
+        <ContactSection onNavPrivacy={() => navigateTo('privacy-policy', 'privacy-policy')} />
       </main>
 
       {/* 11. Footer */}
-      <Footer onOpenContactPage={() => navigateTo('contact', 'contact')} onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')} />
+      <Footer
+        onOpenContactPage={() => navigateTo('contact', 'contact')}
+        onNavAdmin={() => navigateTo(adminUser ? 'admin-dashboard' : 'admin-login', 'admin-login')}
+        onNavAbout={(subTab = 'code-of-conduct') => navigateTo('about', subTab, subTab)}
+        onNavPrivacy={() => navigateTo('privacy-policy', 'privacy-policy')}
+      />
     </div>
   );
 }

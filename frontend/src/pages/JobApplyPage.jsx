@@ -889,6 +889,19 @@ export const JobApplyPage = ({ jobId, onBackToJob, onNavHome, onNavServices, onN
               />
             </div>
 
+            {/* Privacy Acknowledgment */}
+            <div style={{ background: '#f8fafc', padding: '0.85rem 1rem', borderRadius: '6px', border: '1px solid #e2e8f0' }}>
+              <p style={{ fontSize: '0.85rem', color: '#475569', margin: 0, lineHeight: 1.5 }}>
+                By submitting this application, you acknowledge that your personal data will be processed in accordance with our{' '}
+                <a
+                  href="#privacy-policy"
+                  style={{ color: 'rgb(2, 41, 176)', fontWeight: 600, textDecoration: 'underline' }}
+                >
+                  Data Protection & Privacy Notice
+                </a>.
+              </p>
+            </div>
+
             {/* Submit Button */}
             <div>
               <button
