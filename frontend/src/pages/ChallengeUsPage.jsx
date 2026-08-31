@@ -177,95 +177,101 @@ export const ChallengeUsPage = ({
 
       <main>
         {/* ============================================================ */}
-        {/* 1. HERO BANNER SECTION */}
+        {/* 1. HERO BANNER SECTION (SIGNATURE LINES & ANGLED CUTOUT) */}
         {/* ============================================================ */}
         <section
           ref={heroRef}
+          className="signature-hero-banner-section"
           style={{
             position: 'relative',
-            minHeight: '80vh',
+            backgroundColor: '#f6f4ed',
+            backgroundImage: `url('/images/career_lines_bg.png')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'left center',
+            padding: '5.5rem 2rem 5rem 2rem',
+            minHeight: '480px',
             display: 'flex',
             alignItems: 'center',
-            backgroundColor: '#ffffff',
-            backgroundImage: 'linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 100%), url("/images/challenge_hero.jpg")',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            color: '#0f172a',
+            textAlign: 'left',
             overflow: 'hidden',
             borderBottom: '1px solid #e2e8f0'
           }}
         >
+          {/* Angled Cutout Visa & Mobility Photo Container */}
           <div
+            className="career-banner-visual-clip"
             style={{
-              position: 'relative',
-              zIndex: 2,
-              maxWidth: '1280px',
-              margin: '0 auto',
-              padding: '5rem 2rem',
-              width: '100%',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              flexWrap: 'wrap',
-              gap: '2.5rem',
+              position: 'absolute',
+              right: 0,
+              top: 0,
+              bottom: 0,
+              width: '52%',
+              minWidth: '380px',
+              clipPath: 'polygon(18% 0%, 100% 0%, 100% 68%, 0% 100%)',
               overflow: 'hidden',
-              boxSizing: 'border-box'
+              zIndex: 1
             }}
           >
-            <div style={{ maxWidth: '780px', width: '100%' }}>
+            <img
+              src="/images/visa_banner_v2.png"
+              alt="Visa & Challenge Us"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center 20%'
+              }}
+            />
+          </div>
 
-              {/* Badge Capsule */}
-              <div
-                style={{
-                  opacity: heroVisible ? 1 : 0,
-                  transform: heroVisible ? 'translateY(0)' : 'translateY(-20px)',
-                  transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s',
-                  marginBottom: '1.5rem'
-                }}
-              >
+          <div style={{ maxWidth: '1280px', width: '100%', margin: '0 auto', position: 'relative', zIndex: 3 }}>
+            <div style={{ maxWidth: '640px' }}>
+
+              {/* Blue Capsule Badge */}
+              <div style={{ marginBottom: '1.1rem' }}>
                 <span
                   style={{
-                    fontSize: '0.82rem',
+                    fontSize: '0.8rem',
                     fontWeight: 800,
                     textTransform: 'uppercase',
-                    letterSpacing: '0.14em',
+                    letterSpacing: '0.12em',
                     color: '#ffffff',
-                    background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)',
-                    padding: '0.4rem 1.4rem',
-                    borderRadius: '18px 24px 24px 18px',
+                    background: 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)',
+                    padding: '0.35rem 1.25rem',
+                    borderRadius: '50px',
                     display: 'inline-block',
-                    boxShadow: '0 4px 18px rgba(0, 92, 253, 0.4)'
+                    boxShadow: '0 4px 14px rgba(2, 41, 176, 0.25)'
                   }}
                 >
                   SOLVE COMPLEX PROBLEMS
                 </span>
               </div>
 
-              {/* Banner Heading */}
               <h1
                 style={{
                   fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
-                  fontSize: 'clamp(2.4rem, 4.8vw, 4rem)',
+                  fontSize: 'clamp(1.75rem, 3vw, 2.35rem)',
                   fontWeight: 800,
-                  color: '#0f172a',
-                  lineHeight: 1.12,
-                  marginBottom: '1.5rem',
+                  color: '#0a1128',
+                  lineHeight: 1.25,
+                  marginBottom: '0.85rem',
                   letterSpacing: '-0.02em',
                   opacity: heroVisible ? 1 : 0,
                   transform: heroVisible ? 'translateX(0)' : 'translateX(-40px)',
                   transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s'
                 }}
               >
-                Bring us your hardest challenges. We'll find the right answers.
+                Bring us your hardest challenges<br />
+                We'll find the right answers
               </h1>
 
-              {/* Subheading text */}
               <p
                 style={{
-                  fontSize: '1.25rem',
-                  color: '#64748b',
-                  lineHeight: 1.7,
-                  marginBottom: '2.5rem',
+                  fontSize: 'clamp(1rem, 1.25vw, 1.15rem)',
+                  color: '#334155',
+                  lineHeight: 1.65,
+                  margin: '0 0 2rem 0',
+                  fontWeight: 450,
                   opacity: heroVisible ? 1 : 0,
                   transform: heroVisible ? 'translateY(0)' : 'translateY(25px)',
                   transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.35s'
@@ -278,8 +284,9 @@ export const ChallengeUsPage = ({
               <div
                 style={{
                   display: 'flex',
-                  gap: '1.25rem',
+                  gap: '1rem',
                   flexWrap: 'wrap',
+                  alignItems: 'center',
                   opacity: heroVisible ? 1 : 0,
                   transform: heroVisible ? 'translateY(0)' : 'translateY(30px)',
                   transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.5s'
@@ -288,31 +295,62 @@ export const ChallengeUsPage = ({
                 <button
                   onClick={scrollToForm}
                   style={{
-                    padding: '1rem 2.4rem',
-                    background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)',
+                    padding: '0.85rem 2.2rem',
+                    background: 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)',
                     color: '#ffffff',
-                    fontWeight: 800,
-                    fontSize: '1.05rem',
+                    fontSize: '0.95rem',
+                    fontWeight: 700,
                     borderRadius: '50px',
                     border: 'none',
                     cursor: 'pointer',
                     display: 'inline-flex',
                     alignItems: 'center',
-                    gap: '0.65rem',
-                    boxShadow: '0 8px 25px rgba(0, 92, 253, 0.45)',
+                    gap: '0.5rem',
+                    boxShadow: '0 6px 20px rgba(2, 41, 176, 0.35)',
                     transition: 'all 0.25s ease'
                   }}
                   onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-3px)';
-                    e.currentTarget.style.boxShadow = '0 12px 30px rgba(0, 92, 253, 0.65)';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 8px 25px rgba(40, 129, 251, 0.55)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = '0 8px 25px rgba(0, 92, 253, 0.45)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(2, 41, 176, 0.35)';
                   }}
                 >
-                  <span>Challenge us now</span>
-                  <ArrowRight size={20} />
+                  <span>Start The Challenge</span>
+                  <ArrowRight size={18} />
+                </button>
+
+                <button
+                  onClick={onNavServices}
+                  style={{
+                    padding: '0.85rem 2.2rem',
+                    backgroundColor: '#ffffff',
+                    color: '#0f172a',
+                    fontSize: '0.95rem',
+                    fontWeight: 700,
+                    borderRadius: '50px',
+                    border: '1.5px solid #cbd5e1',
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    boxShadow: '0 4px 14px rgba(0, 0, 0, 0.05)',
+                    transition: 'all 0.25s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#f8fafc';
+                    e.currentTarget.style.borderColor = '#94a3b8';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = '#ffffff';
+                    e.currentTarget.style.borderColor = '#cbd5e1';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                  }}
+                >
+                  <span>Explore Solutions</span>
                 </button>
               </div>
 
@@ -343,7 +381,7 @@ export const ChallengeUsPage = ({
                 transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)'
               }}
             >
-              <span style={{ fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.14em', color: '#005CFD', display: 'inline-block', marginBottom: '1.25rem' }}>
+              <span style={{ fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'rgb(2, 41, 176)', display: 'inline-block', marginBottom: '1.25rem' }}>
                 Section – Employer and Individuals
               </span>
 
@@ -356,18 +394,30 @@ export const ChallengeUsPage = ({
 
               {/* Employers Card */}
               <div
+                onClick={() => onNavEmployers ? onNavEmployers() : (onNavServices && onNavServices('employers'))}
                 style={{
                   backgroundColor: '#ffffff',
                   padding: '2.8rem 2.4rem',
                   borderRadius: '24px',
                   border: '1.5px solid #e2e8f0',
                   boxShadow: '0 4px 20px rgba(0, 0, 0, 0.04)',
+                  cursor: 'pointer',
                   opacity: audienceVisible ? 1 : 0,
                   transform: audienceVisible ? 'translateX(0)' : 'translateX(-40px)',
-                  transition: 'all 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.2s'
+                  transition: 'all 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-4px)';
+                  e.currentTarget.style.borderColor = 'rgb(2, 41, 176)';
+                  e.currentTarget.style.boxShadow = '0 16px 36px rgba(2, 41, 176, 0.12)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.borderColor = '#e2e8f0';
+                  e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.04)';
                 }}
               >
-                <div style={{ width: '56px', height: '56px', borderRadius: '16px', backgroundColor: '#eff6ff', border: '1px solid #bfdbfe', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#005CFD', marginBottom: '2rem' }}>
+                <div style={{ width: '56px', height: '56px', borderRadius: '16px', backgroundColor: '#eff6ff', border: '1px solid #bfdbfe', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgb(2, 41, 176)', marginBottom: '2rem' }}>
                   <Building2 size={28} />
                 </div>
                 <h3 style={{ fontSize: '1.85rem', fontWeight: 800, color: '#0f172a', marginBottom: '1rem' }}>
@@ -377,12 +427,16 @@ export const ChallengeUsPage = ({
                   Whether you are scaling across Australia or deploying international specialists, we take care of EOR, compliance, and end-to-end talent lifecycle management.
                 </p>
                 <button
-                  onClick={() => onNavServices && onNavServices('employers')}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (onNavEmployers) onNavEmployers();
+                    else if (onNavServices) onNavServices('employers');
+                  }}
                   style={{
-                    padding: '0.8rem 1.8rem',
-                    backgroundColor: '#f8fafc',
-                    color: '#0f172a',
-                    border: '1.5px solid #e2e8f0',
+                    padding: '0.85rem 2rem',
+                    background: 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)',
+                    color: '#ffffff',
+                    border: 'none',
                     borderRadius: '50px',
                     fontWeight: 700,
                     fontSize: '0.95rem',
@@ -390,10 +444,17 @@ export const ChallengeUsPage = ({
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: '0.5rem',
+                    boxShadow: '0 4px 14px rgba(2, 41, 176, 0.35)',
                     transition: 'all 0.2s ease'
                   }}
-                  onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#005CFD'; e.currentTarget.style.color = '#ffffff'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#f8fafc'; e.currentTarget.style.color = '#0f172a'; }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(2, 41, 176, 0.55)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 4px 14px rgba(2, 41, 176, 0.35)';
+                  }}
                 >
                   <span>Explore Employer Services</span>
                   <ChevronRight size={18} />
@@ -402,18 +463,30 @@ export const ChallengeUsPage = ({
 
               {/* Individuals Card */}
               <div
+                onClick={() => onNavIndividuals ? onNavIndividuals() : (onNavServices && onNavServices('individuals'))}
                 style={{
                   backgroundColor: '#ffffff',
                   padding: '2.8rem 2.4rem',
                   borderRadius: '24px',
                   border: '1.5px solid #e2e8f0',
                   boxShadow: '0 4px 20px rgba(0, 0, 0, 0.04)',
+                  cursor: 'pointer',
                   opacity: audienceVisible ? 1 : 0,
                   transform: audienceVisible ? 'translateX(0)' : 'translateX(40px)',
-                  transition: 'all 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.35s'
+                  transition: 'all 0.3s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-4px)';
+                  e.currentTarget.style.borderColor = 'rgb(40, 129, 251)';
+                  e.currentTarget.style.boxShadow = '0 16px 36px rgba(2, 41, 176, 0.16)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.borderColor = '#e2e8f0';
+                  e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.04)';
                 }}
               >
-                <div style={{ width: '56px', height: '56px', borderRadius: '16px', backgroundColor: '#f0fdf4', border: '1px solid #bbf7d0', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#16a34a', marginBottom: '2rem' }}>
+                <div style={{ width: '56px', height: '56px', borderRadius: '16px', backgroundColor: '#eff6ff', border: '1px solid #bfdbfe', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgb(2, 41, 176)', marginBottom: '2rem' }}>
                   <Users size={28} />
                 </div>
                 <h3 style={{ fontSize: '1.85rem', fontWeight: 800, color: '#0f172a', marginBottom: '1rem' }}>
@@ -423,12 +496,16 @@ export const ChallengeUsPage = ({
                   Looking for contract opportunities, immigration sponsorship, or a career move in high-growth enterprise domains? Let our experts connect you with the right teams.
                 </p>
                 <button
-                  onClick={() => onNavServices && onNavServices('individuals')}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (onNavIndividuals) onNavIndividuals();
+                    else if (onNavServices) onNavServices('individuals');
+                  }}
                   style={{
-                    padding: '0.8rem 1.8rem',
-                    backgroundColor: '#f8fafc',
-                    color: '#0f172a',
-                    border: '1.5px solid #e2e8f0',
+                    padding: '0.85rem 2rem',
+                    background: 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)',
+                    color: '#ffffff',
+                    border: 'none',
                     borderRadius: '50px',
                     fontWeight: 700,
                     fontSize: '0.95rem',
@@ -436,10 +513,17 @@ export const ChallengeUsPage = ({
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: '0.5rem',
+                    boxShadow: '0 4px 14px rgba(2, 41, 176, 0.4)',
                     transition: 'all 0.2s ease'
                   }}
-                  onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#16a34a'; e.currentTarget.style.color = '#ffffff'; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#f8fafc'; e.currentTarget.style.color = '#0f172a'; }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(2, 41, 176, 0.55)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 4px 14px rgba(2, 41, 176, 0.4)';
+                  }}
                 >
                   <span>Explore Individual Services</span>
                   <ChevronRight size={18} />
@@ -451,21 +535,60 @@ export const ChallengeUsPage = ({
         </section>
 
         {/* ============================================================ */}
-        {/* 3. SECTION: INDUSTRIES WE SERVE */}
+        {/* 6. INDUSTRIES WE SERVE */}
         {/* ============================================================ */}
         <section
           ref={industriesRef}
-          style={{ padding: '6rem 2rem 6.5rem', backgroundColor: '#ffffff', borderBottom: '1px solid #e2e8f0' }}
+          style={{
+            padding: '6rem 2rem 6.5rem',
+            backgroundColor: '#f6f4ed',
+            position: 'relative',
+            overflow: 'hidden',
+            borderBottom: '1px solid #e2e8f0'
+          }}
         >
-          <div style={{ maxWidth: '1240px', margin: '0 auto' }}>
+          {/* Light Warm Isometric Tile / Grid Background Pattern (matching OurSolutions) */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              backgroundImage: 'url(/images/services_grid_bg.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              filter: 'invert(1)',
+              opacity: 0.12,
+              pointerEvents: 'none',
+              zIndex: 0
+            }}
+          />
+
+          <div style={{ maxWidth: '1240px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
             <div
               style={{
                 opacity: industriesVisible ? 1 : 0,
                 transform: industriesVisible ? 'translateY(0)' : 'translateY(-25px)',
-                transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)'
+                transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)',
+                marginBottom: '3rem'
               }}
             >
-              <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.6rem', fontWeight: 800, color: '#0f172a', marginBottom: '3.5rem', letterSpacing: '-0.02em' }}>
+              <span
+                style={{
+                  fontSize: '0.8rem',
+                  fontWeight: 800,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.12em',
+                  color: '#ffffff',
+                  background: 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)',
+                  padding: '0.35rem 1.2rem',
+                  borderRadius: '50px',
+                  display: 'inline-block',
+                  marginBottom: '1rem',
+                  boxShadow: '0 4px 14px rgba(2, 41, 176, 0.25)'
+                }}
+              >
+                SECTORS & EXPERTISE
+              </span>
+              <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.6rem', fontWeight: 800, color: '#0f172a', margin: 0, letterSpacing: '-0.02em' }}>
                 Industries we serve
               </h2>
             </div>
@@ -494,13 +617,13 @@ export const ChallengeUsPage = ({
                         alignItems: 'center',
                         gap: '1.25rem',
                         padding: '1.35rem 0',
-                        borderBottom: '1px solid #e2e8f0',
+                        borderBottom: '1px solid rgba(226, 232, 240, 0.8)',
                         opacity: industriesVisible ? 1 : 0,
                         transform: industriesVisible ? 'translateX(0)' : 'translateX(-30px)',
                         transition: `all 0.75s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.06}s`
                       }}
                     >
-                      <div style={{ color: '#005CFD', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <div style={{ color: 'rgb(2, 41, 176)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                         <IconComp size={24} strokeWidth={1.6} />
                       </div>
                       <span style={{ fontSize: '1.02rem', color: '#1e293b', fontWeight: 600, lineHeight: 1.4 }}>
@@ -533,13 +656,13 @@ export const ChallengeUsPage = ({
                         alignItems: 'center',
                         gap: '1.25rem',
                         padding: '1.35rem 0',
-                        borderBottom: '1px solid #e2e8f0',
+                        borderBottom: '1px solid rgba(226, 232, 240, 0.8)',
                         opacity: industriesVisible ? 1 : 0,
                         transform: industriesVisible ? 'translateX(0)' : 'translateX(30px)',
                         transition: `all 0.75s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.06}s`
                       }}
                     >
-                      <div style={{ color: '#005CFD', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                      <div style={{ color: 'rgb(2, 41, 176)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
                         <IconComp size={24} strokeWidth={1.6} />
                       </div>
                       <span style={{ fontSize: '1.02rem', color: '#1e293b', fontWeight: 600, lineHeight: 1.4 }}>
@@ -563,7 +686,7 @@ export const ChallengeUsPage = ({
           style={{
             backgroundColor: '#f8fafc',
             color: '#0f172a',
-            padding: '6.5rem 2rem 7.5rem',
+            padding: '4rem 2rem 6.5rem',
             position: 'relative',
             overflow: 'hidden'
           }}
@@ -577,24 +700,21 @@ export const ChallengeUsPage = ({
               backgroundColor: '#ffffff',
               border: '1.5px solid #e2e8f0',
               borderRadius: '24px',
-              padding: '3.5rem 3rem',
+              padding: '3rem 3rem 3.5rem',
               boxShadow: '0 20px 50px rgba(0, 0, 0, 0.05)',
               opacity: formVisible ? 1 : 0,
               transform: formVisible ? 'translateY(0)' : 'translateY(40px)',
               transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1)'
             }}
           >
-            <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-              <span style={{ fontSize: '0.82rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.14em', color: '#ffffff', background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)', padding: '0.4rem 1.4rem', borderRadius: '18px 24px 24px 18px', display: 'inline-block', marginBottom: '1.25rem', boxShadow: '0 4px 18px rgba(0, 92, 253, 0.4)' }}>
-                GET IN TOUCH
-              </span>
+            <div style={{ textAlign: 'center', marginBottom: '2.5rem' }}>
               <h2
                 style={{
                   fontFamily: "'Outfit', sans-serif",
                   fontSize: 'clamp(2.2rem, 4vw, 3.2rem)',
                   fontWeight: 800,
                   color: '#0f172a',
-                  marginBottom: '1rem',
+                  margin: '0 0 0.75rem 0',
                   letterSpacing: '-0.02em'
                 }}
               >
@@ -817,7 +937,7 @@ export const ChallengeUsPage = ({
                   name="consent"
                   checked={formData.consent}
                   onChange={handleInputChange}
-                  style={{ width: '20px', height: '20px', marginTop: '3px', cursor: 'pointer', flexShrink: 0, accentColor: '#005CFD' }}
+                  style={{ width: '20px', height: '20px', marginTop: '3px', cursor: 'pointer', flexShrink: 0, accentColor: 'rgb(2, 41, 176)' }}
                 />
                 <label htmlFor="consent" style={{ fontSize: '0.88rem', color: '#64748b', lineHeight: 1.6, cursor: 'pointer' }}>
                   I have read, understood, and agree to be bound by Vebhor’s Data Protection Notice, which may be amended from time to time. I consent to Vebhor collecting, using, and disclosing my personal data as provided in this form, in accordance with the Data Protection Notice, for the purposes stated therein and for matters relating to responding to my enquiry or feedback.
@@ -831,27 +951,27 @@ export const ChallengeUsPage = ({
                   disabled={isSubmitting}
                   style={{
                     padding: '1rem 3.5rem',
-                    background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)',
+                    background: 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)',
                     color: '#ffffff',
                     fontWeight: 800,
                     fontSize: '1rem',
                     borderRadius: '50px',
                     border: 'none',
                     cursor: isSubmitting ? 'not-allowed' : 'pointer',
-                    boxShadow: '0 8px 25px rgba(0, 92, 253, 0.45)',
+                    boxShadow: '0 8px 25px rgba(2, 41, 176, 0.45)',
                     transition: 'all 0.25s ease',
                     opacity: isSubmitting ? 0.7 : 1
                   }}
                   onMouseEnter={(e) => {
                     if (!isSubmitting) {
                       e.currentTarget.style.transform = 'translateY(-3px)';
-                      e.currentTarget.style.boxShadow = '0 12px 30px rgba(0, 92, 253, 0.65)';
+                      e.currentTarget.style.boxShadow = '0 12px 30px rgba(2, 41, 176, 0.65)';
                     }
                   }}
                   onMouseLeave={(e) => {
                     if (!isSubmitting) {
                       e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 8px 25px rgba(0, 92, 253, 0.45)';
+                      e.currentTarget.style.boxShadow = '0 8px 25px rgba(2, 41, 176, 0.45)';
                     }
                   }}
                 >

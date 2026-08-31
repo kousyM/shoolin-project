@@ -469,7 +469,7 @@ export const InsightsPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '3.5rem' }}>
               {/* Card 1: Industries */}
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#005CFD', marginBottom: '0.85rem' }}>
+                <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'rgb(2, 41, 176)', marginBottom: '0.85rem' }}>
                   Industries
                 </h3>
                 <p style={{ color: '#64748b', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.75rem', maxWidth: '320px' }}>
@@ -480,7 +480,7 @@ export const InsightsPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                   style={{
                     background: 'none',
                     border: 'none',
-                    color: '#005CFD',
+                    color: 'rgb(2, 41, 176)',
                     fontWeight: 800,
                     fontSize: '0.88rem',
                     letterSpacing: '0.08em',
@@ -497,7 +497,7 @@ export const InsightsPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
 
               {/* Card 2: Services */}
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#005CFD', marginBottom: '0.85rem' }}>
+                <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'rgb(2, 41, 176)', marginBottom: '0.85rem' }}>
                   Services
                 </h3>
                 <p style={{ color: '#64748b', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.75rem', maxWidth: '320px' }}>
@@ -508,7 +508,7 @@ export const InsightsPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                   style={{
                     background: 'none',
                     border: 'none',
-                    color: '#005CFD',
+                    color: 'rgb(2, 41, 176)',
                     fontWeight: 800,
                     fontSize: '0.88rem',
                     letterSpacing: '0.08em',
@@ -525,7 +525,7 @@ export const InsightsPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
 
               {/* Card 3: Contact Us */}
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#005CFD', marginBottom: '0.85rem' }}>
+                <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'rgb(2, 41, 176)', marginBottom: '0.85rem' }}>
                   Contact Us
                 </h3>
                 <p style={{ color: '#64748b', fontSize: '0.95rem', lineHeight: 1.6, marginBottom: '1.75rem', maxWidth: '320px' }}>
@@ -536,7 +536,7 @@ export const InsightsPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                   style={{
                     background: 'none',
                     border: 'none',
-                    color: '#005CFD',
+                    color: 'rgb(2, 41, 176)',
                     fontWeight: 800,
                     fontSize: '0.88rem',
                     letterSpacing: '0.08em',

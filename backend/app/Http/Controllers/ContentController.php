@@ -395,20 +395,20 @@ class ContentController extends Controller
         return [
             [
                 'id' => 1,
-                'tag' => 'NEXT-GEN HR TECH & WORKFORCE',
-                'title' => 'Engineering the Future of Business.',
-                'subtitle' => 'Next-generation Payroll and Workforce Solutions that drive performance, ensure compliance and empower people.',
-                'image_url' => '/images/slider_3.png',
-                'button_text' => 'Explore Solutions',
-                'button_link' => '#services'
-            ],
-            [
-                'id' => 2,
                 'tag' => 'WORKFORCE TRANSFORMATION',
                 'title' => 'Introducing Vebhor',
                 'subtitle' => 'A refreshed identity that reflects our workforce transformation and future‑ready vision.',
                 'image_url' => '/images/slider_2.jpg',
                 'button_text' => 'Explore Our Solutions',
+                'button_link' => '#services'
+            ],
+            [
+                'id' => 2,
+                'tag' => 'NEXT-GEN HR TECH & WORKFORCE',
+                'title' => 'Engineering the Future of Business',
+                'subtitle' => 'Next-generation Payroll and Workforce Solutions that drive performance, ensure compliance and empower people.',
+                'image_url' => '/images/slider_3.png',
+                'button_text' => 'Explore Solutions',
                 'button_link' => '#services'
             ],
             [

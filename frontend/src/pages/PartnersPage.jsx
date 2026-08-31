@@ -189,71 +189,109 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
       <main style={{ paddingTop: 0, marginTop: 0 }}>
         
         {/* ============================================================ */}
-        {/* 1. HERO BANNER SECTION */}
+        {/* 1. HERO BANNER SECTION (SIGNATURE LINES & ANGLED CUTOUT) */}
         {/* ============================================================ */}
         <section
           ref={heroRef}
+          className="signature-hero-banner-section"
           style={{
-            backgroundColor: '#ffffff',
-            backgroundImage: `linear-gradient(90deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 250, 252, 0.9) 50%, rgba(255, 255, 255, 0.75) 100%), url('/images/partners_hero.jpg')`,
+            position: 'relative',
+            backgroundColor: '#f6f4ed',
+            backgroundImage: `url('/images/career_lines_bg.png')`,
             backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            color: '#0f172a',
-            padding: '6.5rem 2rem 6rem',
-            minHeight: '380px',
+            backgroundPosition: 'left center',
+            padding: '5.5rem 2rem 5rem 2rem',
+            minHeight: '480px',
             display: 'flex',
             alignItems: 'center',
-            position: 'relative',
+            textAlign: 'left',
             overflow: 'hidden',
             borderBottom: '1px solid #e2e8f0'
           }}
         >
-          <div style={{ maxWidth: '1240px', margin: '0 auto', width: '100%', position: 'relative', zIndex: 2 }}>
-            <div
+          {/* Angled Cutout Partners Photo Container */}
+          <div
+            className="career-banner-visual-clip"
+            style={{
+              position: 'absolute',
+              right: 0,
+              top: 0,
+              bottom: 0,
+              width: '52%',
+              minWidth: '380px',
+              clipPath: 'polygon(18% 0%, 100% 0%, 100% 68%, 0% 100%)',
+              overflow: 'hidden',
+              zIndex: 1
+            }}
+          >
+            <img
+              src="/images/partners_banner_v2.png"
+              alt="Strategic Partnerships"
               style={{
-                opacity: heroVisible ? 1 : 0,
-                transform: heroVisible ? 'translateY(0)' : 'translateY(-20px)',
-                transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s',
-                marginBottom: '1.25rem'
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center 20%'
               }}
-            >
-              <span style={{ fontSize: '0.82rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#ffffff', background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)', padding: '0.4rem 1.4rem', borderRadius: '18px 24px 24px 18px', display: 'inline-block', boxShadow: '0 4px 18px rgba(0, 92, 253, 0.4)' }}>
-                PARTNERSHIPS & VENDORS
-              </span>
-            </div>
+            />
+          </div>
 
-            <h1
-              style={{
-                fontFamily: "'Outfit', sans-serif",
-                fontSize: 'clamp(1.85rem, 5vw, 3.2rem)',
-                fontWeight: 800,
-                color: '#0f172a',
-                maxWidth: '900px',
-                lineHeight: 1.25,
-                marginBottom: '1.35rem',
-                wordBreak: 'break-word',
-                opacity: heroVisible ? 1 : 0,
-                transform: heroVisible ? 'translateX(0)' : 'translateX(-45px)',
-                filter: heroVisible ? 'blur(0)' : 'blur(8px)',
-                transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s'
-              }}
-            >
-              A Connected Partner Ecosystem Powering Workforce Innovation
-            </h1>
-            <p
-              style={{
-                fontSize: 'clamp(1rem, 2.5vw, 1.2rem)',
-                color: '#64748b',
-                maxWidth: '780px',
-                lineHeight: 1.65,
-                wordBreak: 'break-word',
-                opacity: heroVisible ? 1 : 0,
-                transform: heroVisible ? 'translateX(0)' : 'translateX(-30px)',
-                transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.45s'
-              }}
-            >
-              By teaming with industry‑leading technology providers and verified vendors, we help clients streamline operations, enhance compliance, and prepare for what’s next.
-            </p>
+          <div style={{ maxWidth: '1280px', width: '100%', margin: '0 auto', position: 'relative', zIndex: 3 }}>
+            <div style={{ maxWidth: '580px' }}>
+
+              {/* Blue Capsule Badge */}
+              <div style={{ marginBottom: '1.1rem' }}>
+                <span
+                  style={{
+                    fontSize: '0.8rem',
+                    fontWeight: 800,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.12em',
+                    color: '#ffffff',
+                    background: 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)',
+                    padding: '0.35rem 1.25rem',
+                    borderRadius: '50px',
+                    display: 'inline-block',
+                    boxShadow: '0 4px 14px rgba(2, 41, 176, 0.25)'
+                  }}
+                >
+                  PARTNERSHIPS & VENDORS
+                </span>
+              </div>
+
+              <h1
+                style={{
+                  fontFamily: "'Outfit', sans-serif",
+                  fontSize: 'clamp(1.75rem, 3vw, 2.35rem)',
+                  fontWeight: 800,
+                  color: '#0a1128',
+                  lineHeight: 1.2,
+                  marginBottom: '0.85rem',
+                  letterSpacing: '-0.02em',
+                  wordBreak: 'break-word',
+                  opacity: heroVisible ? 1 : 0,
+                  transform: heroVisible ? 'translateX(0)' : 'translateX(-45px)',
+                  transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s'
+                }}
+              >
+                A Connected Partner Ecosystem Powering Workforce Innovation
+              </h1>
+              <p
+                style={{
+                  fontSize: 'clamp(1rem, 1.25vw, 1.15rem)',
+                  color: '#334155',
+                  lineHeight: 1.65,
+                  margin: 0,
+                  fontWeight: 450,
+                  wordBreak: 'break-word',
+                  opacity: heroVisible ? 1 : 0,
+                  transform: heroVisible ? 'translateX(0)' : 'translateX(-30px)',
+                  transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.45s'
+                }}
+              >
+                By teaming with industry‑leading technology providers and verified vendors, we help clients streamline operations, enhance compliance, and prepare for what’s next.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -262,9 +300,31 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
         {/* ============================================================ */}
         <section
           ref={partnersRef}
-          style={{ backgroundColor: '#ffffff', padding: '5.5rem 2rem 4.5rem', textAlign: 'center', borderBottom: '1px solid #e2e8f0' }}
+          style={{
+            backgroundColor: '#f6f4ed',
+            padding: '5.5rem 2rem 4.5rem',
+            textAlign: 'center',
+            borderBottom: '1px solid #e2e8f0',
+            position: 'relative',
+            overflow: 'hidden'
+          }}
         >
-          <div style={{ maxWidth: '1240px', margin: '0 auto' }}>
+          {/* Light Warm Isometric Tile / Grid Background Pattern (matching OurSolutions) */}
+          <div
+            style={{
+              position: 'absolute',
+              inset: 0,
+              backgroundImage: 'url(/images/services_grid_bg.png)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              filter: 'invert(1)',
+              opacity: 0.12,
+              pointerEvents: 'none',
+              zIndex: 0
+            }}
+          />
+
+          <div style={{ maxWidth: '1240px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
             <div
               style={{
                 opacity: partnersVisible ? 1 : 0,
@@ -283,10 +343,11 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
               style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))',
+                backgroundColor: '#ffffff',
                 border: '1.5px solid #e2e8f0',
                 borderRadius: '16px',
                 overflow: 'hidden',
-                boxShadow: '0 4px 20px rgba(0,0,0,0.03)',
+                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.04)',
                 opacity: partnersVisible ? 1 : 0,
                 transform: partnersVisible ? 'translateY(0) scale(1)' : 'translateY(35px) scale(0.97)',
                 transition: 'all 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.2s'
@@ -346,7 +407,7 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
             </div>
 
             {/* Sub-text quote under logos */}
-            <p style={{ marginTop: '2.5rem', fontSize: '1.05rem', color: '#64748b', fontStyle: 'italic', maxWidth: '650px', margin: '2.5rem auto 0' }}>
+            <p style={{ marginTop: '2.5rem', fontSize: '1.05rem', color: '#475569', fontStyle: 'italic', maxWidth: '680px', margin: '2.5rem auto 0' }}>
               "Partnering with leading tech enterprises to engineer secure, resilient, and high-performance workforce systems."
             </p>
           </div>
@@ -474,6 +535,7 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
         {/* ============================================================ */}
         <section
           ref={talkRef}
+          id="vendor-registration-form"
           style={{
             backgroundColor: '#f8fafc',
             color: '#0f172a',
@@ -503,11 +565,11 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                     textTransform: 'uppercase',
                     letterSpacing: '0.14em',
                     color: '#ffffff',
-                    background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)',
+                    background: 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)',
                     padding: '0.4rem 1.4rem',
                     borderRadius: '18px 24px 24px 18px',
                     display: 'inline-block',
-                    boxShadow: '0 4px 18px rgba(0, 92, 253, 0.4)'
+                    boxShadow: '0 4px 18px rgba(2, 41, 176, 0.4)'
                   }}
                 >
                   PARTNER & VENDOR PORTAL
@@ -527,13 +589,13 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                     padding: '0.6rem 1.5rem',
                     borderRadius: '50px',
                     border: 'none',
-                    background: activeFormTab === 'vendor' ? 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)' : 'transparent',
+                    background: activeFormTab === 'vendor' ? 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)' : 'transparent',
                     color: activeFormTab === 'vendor' ? '#ffffff' : '#64748b',
                     fontWeight: 700,
                     fontSize: '0.9rem',
                     cursor: 'pointer',
                     transition: 'all 0.25s ease',
-                    boxShadow: activeFormTab === 'vendor' ? '0 4px 15px rgba(0, 92, 253, 0.4)' : 'none'
+                    boxShadow: activeFormTab === 'vendor' ? '0 4px 15px rgba(2, 41, 176, 0.4)' : 'none'
                   }}
                 >
                   Vendor Information Update
@@ -545,13 +607,13 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                     padding: '0.6rem 1.5rem',
                     borderRadius: '50px',
                     border: 'none',
-                    background: activeFormTab === 'enquiry' ? 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)' : 'transparent',
+                    background: activeFormTab === 'enquiry' ? 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)' : 'transparent',
                     color: activeFormTab === 'enquiry' ? '#ffffff' : '#64748b',
                     fontWeight: 700,
                     fontSize: '0.9rem',
                     cursor: 'pointer',
                     transition: 'all 0.25s ease',
-                    boxShadow: activeFormTab === 'enquiry' ? '0 4px 15px rgba(0, 92, 253, 0.4)' : 'none'
+                    boxShadow: activeFormTab === 'enquiry' ? '0 4px 15px rgba(2, 41, 176, 0.4)' : 'none'
                   }}
                 >
                   General Partner Enquiry
@@ -573,7 +635,7 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                       href="https://forms.cloud.microsoft/pages/responsepage.aspx?id=iVI1_x5y102mY6_sYqudVMhxEyRJlKlOrNk-G3hIjphUN0VDRFVRQzRMRlNISk9NRVJSRUtXNTZRWC4u&route=shorturl"
                       target="_blank"
                       rel="noopener noreferrer"
-                      style={{ color: '#005CFD', fontSize: '0.85rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.35rem', textDecoration: 'none' }}
+                      style={{ color: 'rgb(2, 41, 176)', fontSize: '0.85rem', fontWeight: 700, display: 'inline-flex', alignItems: 'center', gap: '0.35rem', textDecoration: 'none' }}
                     >
                       Open in Microsoft Forms <ExternalLink size={14} />
                     </a>
@@ -608,13 +670,13 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                       onClick={() => setVendorFormSubmitted(false)}
                       style={{
                         padding: '0.85rem 2.5rem',
-                        background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)',
+                        background: 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)',
                         color: '#ffffff',
                         fontWeight: 800,
                         borderRadius: '50px',
                         border: 'none',
                         cursor: 'pointer',
-                        boxShadow: '0 4px 18px rgba(0, 92, 253, 0.4)'
+                        boxShadow: '0 4px 18px rgba(2, 41, 176, 0.4)'
                       }}
                     >
                       Submit Another Country Response
@@ -716,7 +778,7 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                               value={mode}
                               checked={(vendorData.modesOfHiring || []).includes(mode)}
                               onChange={handleVendorInputChange}
-                              style={{ width: '18px', height: '18px', accentColor: '#005CFD', cursor: 'pointer' }}
+                              style={{ width: '18px', height: '18px', accentColor: 'rgb(2, 41, 176)', cursor: 'pointer' }}
                             />
                             <span>{mode}</span>
                           </label>
@@ -857,14 +919,14 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                         disabled={loading}
                         style={{
                           padding: '1rem 4rem',
-                          background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)',
+                          background: 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)',
                           color: '#ffffff',
                           fontWeight: 800,
                           fontSize: '1.05rem',
                           borderRadius: '50px',
                           border: 'none',
                           cursor: loading ? 'not-allowed' : 'pointer',
-                          boxShadow: '0 8px 25px rgba(0, 92, 253, 0.45)',
+                          boxShadow: '0 8px 25px rgba(2, 41, 176, 0.45)',
                           transition: 'all 0.25s ease'
                         }}
                       >
@@ -899,7 +961,7 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                     </p>
                     <button
                       onClick={() => setFormSubmitted(false)}
-                      style={{ padding: '0.85rem 2.25rem', background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)', color: '#ffffff', fontWeight: 800, borderRadius: '50px', border: 'none', cursor: 'pointer', boxShadow: '0 4px 15px rgba(0, 92, 253, 0.4)' }}
+                      style={{ padding: '0.85rem 2.25rem', background: 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)', color: '#ffffff', fontWeight: 800, borderRadius: '50px', border: 'none', cursor: 'pointer', boxShadow: '0 4px 15px rgba(2, 41, 176, 0.4)' }}
                     >
                       Send Another Enquiry
                     </button>
@@ -1020,14 +1082,14 @@ export const PartnersPage = ({ onNavHome, onNavAbout, onNavCareers, onNavPartner
                         disabled={loading}
                         style={{
                           padding: '1rem 3.5rem',
-                          background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)',
+                          background: 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)',
                           color: '#ffffff',
                           fontWeight: 800,
                           fontSize: '1.05rem',
                           borderRadius: '50px',
                           border: 'none',
                           cursor: loading ? 'not-allowed' : 'pointer',
-                          boxShadow: '0 8px 25px rgba(0, 92, 253, 0.45)',
+                          boxShadow: '0 8px 25px rgba(2, 41, 176, 0.45)',
                           transition: 'all 0.25s ease'
                         }}
                       >

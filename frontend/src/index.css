@@ -1,40 +1,48 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap');
 
 :root {
-  /* Brand Gradient (Emerald + Cyan + Blue) Theme */
-  --vebhor-primary-purple: #06b6d4;
-  --vebhor-indigo-blue: #0284c7;
+  /* Brand Gradient (Royal Sapphire Blue) Theme Based on Logo */
+  --brand-gradient: linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%);
+  --brand-primary: rgb(2, 41, 176);
+  --brand-accent: rgb(40, 129, 251);
+  --brand-shadow: 0 4px 18px rgba(2, 41, 176, 0.4);
+  --brand-shadow-lg: 0 10px 25px rgba(2, 41, 176, 0.35);
+
+  --vebhor-primary-purple: rgb(2, 41, 176);
+  --vebhor-indigo-blue: rgb(40, 129, 251);
   --vebhor-lavender-gray: #e2e8f0;
   --vebhor-slate: #f8fafc;
-  --vebhor-neon-mint: #0284c7;
+  --vebhor-neon-mint: rgb(40, 129, 251);
   --vebhor-navy-dark: #0f172a;
 
-  --ncs-royal-purple: #06b6d4;
-  --ncs-indigo-blue: #0284c7;
+  --ncs-royal-purple: rgb(2, 41, 176);
+  --ncs-indigo-blue: rgb(40, 129, 251);
   --ncs-lavender-gray: #e2e8f0;
   --ncs-slate: #f8fafc;
-  --ncs-neon-mint: #0284c7;
+  --ncs-neon-mint: rgb(40, 129, 251);
 
   --ncs-navy: #0f172a;
-  --ncs-blue: #0284c7;
-  --ncs-cyan: #06b6d4;
+  --ncs-blue: rgb(2, 41, 176);
+  --ncs-cyan: rgb(40, 129, 251);
   --ncs-dark-slate: #0f172a;
   --ncs-light-bg: #ffffff;
   --ncs-card-bg: #ffffff;
   --ncs-border: #e2e8f0;
 
   --text-dark: #0f172a;
-  --text-muted: #64748b;
+  --text-muted: rgb(100, 116, 139);
   --text-light: #0f172a;
 
-  --font-heading: 'Outfit', sans-serif;
-  --font-body: 'Plus Jakarta Sans', sans-serif;
+  --font-heading: 'Archivo', sans-serif;
+  --font-body: 'Archivo', sans-serif;
+  --bs-body-font-family: 'Archivo', sans-serif;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: 'Archivo', sans-serif;
 }
 
 html,
@@ -45,6 +53,7 @@ body,
   overflow-x: clip !important;
   position: relative;
   background-color: #ffffff;
+  font-family: 'Archivo', sans-serif;
 }
 
 html {
@@ -54,7 +63,7 @@ html {
 body {
   background-color: #ffffff;
   color: var(--text-dark);
-  font-family: var(--font-body);
+  font-family: 'Archivo', sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
 }
@@ -66,7 +75,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-heading);
+  font-family: 'Archivo', sans-serif;
   letter-spacing: -0.025em;
   color: #0f172a;
 }
@@ -141,24 +150,25 @@ h6 {
 
 /* Mobile Toggle & Mobile Drawer - STRICTLY HIDDEN ON DESKTOP */
 .mobile-nav-toggle {
-  display: none;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: none !important;
+  background: #f8fafc;
+  border: 1.5px solid #e2e8f0;
   border-radius: 8px;
-  color: #ffffff;
+  color: #0f172a;
   cursor: pointer;
   padding: 0.45rem;
   min-width: 42px;
   min-height: 42px;
   align-items: center;
   justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   transition: all 0.2s ease;
 }
 
 .mobile-nav-toggle:hover,
 .mobile-nav-toggle:active {
-  background: rgba(255, 255, 255, 0.25);
-  border-color: rgba(255, 255, 255, 0.4);
+  background: #e2e8f0;
+  border-color: #cbd5e1;
 }
 
 .nav-search-btn {
@@ -528,7 +538,7 @@ h6 {
 
 .nav-link-item:hover,
 .nav-link-item.active {
-  color: #005CFD !important;
+  color: rgb(2, 41, 176) !important;
 }
 
 .nav-link-item::after {
@@ -538,7 +548,7 @@ h6 {
   left: 0;
   width: 0%;
   height: 2.5px;
-  background: linear-gradient(135deg, #005CFD 0%, #019CFE 100%);
+  background: linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%);
   border-radius: 2px;
   transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -551,7 +561,7 @@ h6 {
 /* Active page: Permanent full underline line */
 .nav-link-item.active::after {
   width: 100%;
-  background: linear-gradient(135deg, #005CFD 0%, #019CFE 100%);
+  background: linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%);
 }
 
 .nav-link-item.active {
@@ -619,8 +629,8 @@ h6 {
 
 .partner-logo-card:hover {
   background: #ffffff;
-  border-color: #005CFD;
-  box-shadow: 0 12px 28px rgba(0, 92, 253, 0.15), 0 4px 12px rgba(0, 0, 0, 0.04);
+  border-color: rgb(2, 41, 176);
+  box-shadow: 0 12px 28px rgba(2, 41, 176, 0.15), 0 4px 12px rgba(0, 0, 0, 0.04);
   transform: translateY(-4px) scale(1.04);
 }
 
@@ -733,7 +743,7 @@ h6 {
   width: 100%;
   height: 100%;
   min-height: 340px;
-  background-image: url("/images/team_collaboration.jpg");
+  background-image: url("/images/career_banner_cta_v2.png");
   background-size: cover;
   background-position: center;
   clip-path: polygon(0 0, 100% 0, 75% 100%, 0 100%);
@@ -840,7 +850,7 @@ h6 {
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #005CFD 0%, #019CFE 100%);
+  background: linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1082,7 +1092,7 @@ h6 {
   width: 600px;
   height: 600px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 92, 253, 0.35) 0%, rgba(56, 189, 248, 0.25) 45%, transparent 70%);
+  background: radial-gradient(circle, rgba(2, 41, 176, 0.35) 0%, rgba(56, 189, 248, 0.25) 45%, transparent 70%);
   pointer-events: none;
   z-index: 2;
   filter: blur(45px);
@@ -1139,7 +1149,7 @@ h6 {
   font-size: 0.84rem;
   font-weight: 700;
   letter-spacing: 0.05em;
-  box-shadow: 0 0 25px rgba(0, 92, 253, 0.4), 0 8px 24px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 25px rgba(2, 41, 176, 0.4), 0 8px 24px rgba(0, 0, 0, 0.6);
   z-index: 2;
   pointer-events: none;
   animation: badgeFloat 4s ease-in-out infinite;
@@ -1368,7 +1378,7 @@ h6 {
 
 .about-mission-card:hover {
   transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 25px 50px rgba(6, 13, 31, 0.5), 0 0 35px rgba(0, 92, 253, 0.4) !important;
+  box-shadow: 0 25px 50px rgba(6, 13, 31, 0.5), 0 0 35px rgba(2, 41, 176, 0.4) !important;
 }
 
 .about-vision-card {
@@ -1416,7 +1426,7 @@ h6 {
 
 .job-filter-pill:hover,
 .job-filter-pill.active {
-  background: linear-gradient(135deg, #005CFD 0%, #019CFE 100%);
+  background: linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%);
   color: #ffffff;
   box-shadow: 0 0 16px rgba(6, 182, 212, 0.5);
   transform: translateY(-2px);
@@ -1436,9 +1446,49 @@ h6 {
 }
 
 .job-apply-btn:hover {
-  background: linear-gradient(135deg, #005CFD 0%, #019CFE 100%);
+  background: linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%);
   box-shadow: 0 0 18px rgba(6, 182, 212, 0.5);
   transform: scale(1.05);
+}
+
+@media (max-width: 900px) {
+  .signature-hero-banner-section {
+    flex-direction: column !important;
+    padding: 3.5rem 1.25rem 2.5rem 1.25rem !important;
+    min-height: auto !important;
+    display: flex !important;
+    gap: 2rem !important;
+  }
+
+  .signature-hero-banner-section .career-banner-visual-clip {
+    position: relative !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    min-width: 100% !important;
+    height: 240px !important;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 90%, 0% 100%) !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    display: block !important;
+    opacity: 1 !important;
+    order: 2 !important;
+    z-index: 2 !important;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  .signature-hero-banner-section .career-banner-visual-clip img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+  }
+
+  .signature-hero-banner-section > div:not(.career-banner-visual-clip) {
+    order: 1 !important;
+    width: 100% !important;
+  }
 }
 
 /* ==========================================================================
@@ -3492,7 +3542,7 @@ RESPONSIVE
   text-shadow: 0 0 12px rgba(85, 230, 193, 0.4);
 }
 
-/* Get in Touch CTA Glow & Shimmer */
+/* Get in Touch CTA Button Hover */
 .navbar-touch-btn {
   position: relative;
   overflow: hidden;
@@ -3512,9 +3562,9 @@ RESPONSIVE
 }
 
 .navbar-touch-btn:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 8px 26px rgba(16, 185, 129, 0.6) !important;
-  filter: brightness(1.08);
+  background: linear-gradient(135deg, #2881fb 0%, #0099ff 100%) !important;
+  transform: translateY(-2px);
+  box-shadow: none !important;
 }
 
 .navbar-touch-btn:hover::after {
@@ -3522,9 +3572,9 @@ RESPONSIVE
 }
 
 .btn-ncs-primary:hover {
+  background: linear-gradient(135deg, rgb(40, 129, 251) 0%, rgb(2, 41, 176) 100%) !important;
   transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(124, 58, 237, 0.6) !important;
-  filter: brightness(1.1);
+  box-shadow: none !important;
 }
 
 /* Smooth Tab Transition Animations */

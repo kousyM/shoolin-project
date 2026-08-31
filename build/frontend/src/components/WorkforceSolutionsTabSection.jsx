@@ -2,14 +2,14 @@ import React, { useState } from 'react';
 import { ArrowRight, Sparkles, MessageSquare, Users } from 'lucide-react';
 
 export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
-  const [selectedServiceId, setSelectedServiceId] = useState('outcome');
+  const [selectedServiceId, setSelectedServiceId] = useState('offshore');
 
   const servicesList = [
     {
-      id: 'outcome',
-      title: 'Outcome Delivery',
-      tag: 'GLOBAL DELIVERY CENTRES',
-      heading: 'From Overseas Centres to Outcome-Based Delivery',
+      id: 'offshore',
+      title: 'Facilities & Support',
+      tag: 'OFFSHORE DEVELOPMENT CENTRE',
+      heading: 'Offshore Development Centre: Facilities & Support',
       description: 'We help organisations move beyond traditional offshore delivery models by building high-performing global teams focused on measurable business outcomes. From capability design and team setup to delivery governance and continuous optimisation, we create scalable models that combine global talent, technology, and local expertise to deliver greater agility, efficiency, and business value.',
       imageUrl: '/images/service_outcome_delivery.jpg',
       stat: '99.4% SLA Delivery'
@@ -34,9 +34,9 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
     },
     {
       id: 'bpm',
-      title: 'BPM & Ops',
-      tag: 'PROCESS AUTOMATION & BPM',
-      heading: 'Streamlining Operations for Scalable Productivity',
+      title: 'Business Process Management & Operations',
+      tag: 'BPM & OPS',
+      heading: 'BPM & Ops: Business Process Management & Operations',
       description: 'Optimise business processes through intelligent workflow automation, robotic process automation (RPA), and enterprise governance frameworks. We eliminate operational bottlenecks, reduce costs, and elevate overall performance across all departments.',
       imageUrl: '/images/service_bpm_ops.jpg',
       stat: '40% Cost Optimization'
@@ -79,8 +79,8 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
     },
     {
       id: 'hrsupport',
-      title: 'HR Support',
-      tag: 'PEOPLE & HR ADVISORY',
+      title: 'HR Services & Experience',
+      tag: 'HR SERVICES & EXPERIENCE',
       heading: 'Strategic HR Services & Employee Experience',
       description: 'Elevate employee retention and organizational culture with customized HR advisory, performance management systems, local benefit benchmarking, and transparent HR operations across all regions.',
       imageUrl: '/images/service_hr_support.jpg',
@@ -91,41 +91,36 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
   const activeService = servicesList.find((s) => s.id === selectedServiceId) || servicesList[0];
 
   return (
-    <section id="services" style={{ backgroundColor: '#F8FAFC', padding: '5.5rem 1.5rem 5rem 1.5rem', fontFamily: "var(--bs-body-font-family), 'Plus Jakarta Sans', sans-serif", position: 'relative', overflow: 'hidden', borderBottom: '1px solid #E2E8F0' }}>
+    <section id="services" style={{ backgroundColor: '#F8FAFC', padding: '3.25rem 1.5rem 4.5rem 1.5rem', fontFamily: "var(--bs-body-font-family), 'Plus Jakarta Sans', sans-serif", position: 'relative', overflow: 'hidden', borderBottom: '1px solid #E2E8F0' }}>
       {/* Subtle Ambient Radial Light */}
       <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: '1000px', height: '400px', background: 'radial-gradient(ellipse at 50% 0%, rgba(37, 99, 235, 0.06) 0%, transparent 70%)', pointerEvents: 'none' }} />
 
       <div style={{ maxWidth: '1340px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
 
-        {/* 1. SECTION HEADER MATCHING USER SCREENSHOT EXACTLY */}
+        {/* 1. SECTION HEADER */}
         <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-          {/* Top Pill Tag */}
-          <div style={{ display: 'inline-flex', alignItems: 'center', fontSize: '0.88rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1.25rem' }}>
-            <span
-              style={{
-                background: 'linear-gradient(135deg, #0070f3 0%, #0099ff 100%)',
-                color: '#ffffff',
-                padding: '0.45rem 1.8rem',
-                borderRadius: '50px',
-                boxShadow: '0 4px 18px rgba(0, 112, 243, 0.45)'
-              }}
-            >
-              OUR SERVICES
-            </span>
-          </div>
-
-          {/* Heading Line 1 */}
+          {/* Main Heading with Highlighted Quality Engineering & Processing */}
           <h2
             style={{
               fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
+              fontSize: 'clamp(1.45rem, 2.3vw, 1.95rem)',
               fontWeight: 800,
               color: '#0f172a',
               letterSpacing: '-0.02em',
-              marginBottom: '0.75rem',
-              lineHeight: 1.25
+              marginBottom: '0.65rem',
+              lineHeight: 1.3
             }}
           >
-            Quality Engineering & Processing that powers your growth
+            <span
+              style={{
+                background: 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent'
+              }}
+            >
+              Quality Engineering & Processing:
+            </span>{' '}
+            Empower your growth
           </h2>
 
           {/* Subheading Line 2 */}
@@ -173,15 +168,15 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
                   onMouseEnter={() => setSelectedServiceId(service.id)}
                   onClick={() => setSelectedServiceId(service.id)}
                   style={{
-                    backgroundColor: '#ffffff',
-                    border: isSelected ? '1.5px solid #6C5CE7' : '1px solid #E2E8F0',
-                    borderLeft: isSelected ? '4px solid #6C5CE7' : '1px solid #E2E8F0',
+                    backgroundColor: isSelected ? '#f8faff' : '#ffffff',
+                    border: isSelected ? '1.5px solid rgb(40, 129, 251)' : '1px solid #E2E8F0',
+                    borderLeft: isSelected ? '4px solid rgb(40, 129, 251)' : '1px solid #E2E8F0',
                     borderRadius: '10px',
                     padding: '0.65rem 0.95rem',
                     cursor: 'pointer',
                     transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
                     boxShadow: isSelected
-                      ? '0 10px 20px -3px rgba(108, 92, 231, 0.16), 0 4px 6px -2px rgba(108, 92, 231, 0.08)'
+                      ? '0 10px 24px -3px rgba(40, 129, 251, 0.22), 0 4px 6px -2px rgba(40, 129, 251, 0.12)'
                       : '0 4px 6px -1px rgba(0, 0, 0, 0.03), 0 2px 4px -2px rgba(0, 0, 0, 0.03)',
                     transform: isSelected ? 'translateX(4px)' : 'translateX(0)',
                     display: 'flex',
@@ -191,7 +186,7 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
                   }}
                 >
                   <div style={{ overflow: 'hidden' }}>
-                    <span style={{ fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', color: isSelected ? '#6C5CE7' : '#94A3B8', display: 'block', marginBottom: '0.1rem', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
+                    <span style={{ fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.06em', color: isSelected ? 'rgb(40, 129, 251)' : '#94A3B8', display: 'block', marginBottom: '0.1rem', whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
                       {service.tag}
                     </span>
                     <h3 style={{ fontSize: '0.92rem', fontWeight: isSelected ? 700 : 600, color: isSelected ? '#0F172A' : '#334155', margin: 0, whiteSpace: 'nowrap', textOverflow: 'ellipsis', overflow: 'hidden' }}>
@@ -204,7 +199,7 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
                       width: '24px',
                       height: '24px',
                       borderRadius: '50%',
-                      backgroundColor: isSelected ? '#6C5CE7' : '#F1F5F9',
+                      background: isSelected ? 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)' : '#F1F5F9',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -289,7 +284,7 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
 
             {/* Dynamic Content: Original Paragraph */}
             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <span style={{ fontSize: '0.76rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#6C5CE7', backgroundColor: '#EDE9FE', padding: '0.25rem 0.8rem', borderRadius: '6px', display: 'inline-block', marginBottom: '0.75rem', width: 'fit-content' }}>
+              <span style={{ fontSize: '0.76rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'rgb(2, 41, 176)', backgroundColor: '#EFF6FF', padding: '0.25rem 0.8rem', borderRadius: '6px', display: 'inline-block', marginBottom: '0.75rem', width: 'fit-content' }}>
                 {activeService.tag}
               </span>
 
@@ -331,12 +326,12 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-4px)';
-                e.currentTarget.style.boxShadow = '0 16px 36px rgba(0, 92, 253, 0.12)';
-                e.currentTarget.style.borderColor = '#005CFD';
+                e.currentTarget.style.boxShadow = '0 16px 36px rgba(2, 41, 176, 0.16)';
+                e.currentTarget.style.borderColor = 'rgb(40, 129, 251)';
                 const circle = e.currentTarget.querySelector('.card-circle-btn');
                 if (circle) {
                   circle.style.transform = 'scale(1.15) translateX(3px)';
-                  circle.style.backgroundColor = '#005CFD';
+                  circle.style.background = 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)';
                   circle.style.color = '#ffffff';
                 }
               }}
@@ -347,13 +342,13 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
                 const circle = e.currentTarget.querySelector('.card-circle-btn');
                 if (circle) {
                   circle.style.transform = 'scale(1) translateX(0)';
-                  circle.style.backgroundColor = '#f1f5f9';
+                  circle.style.background = '#f1f5f9';
                   circle.style.color = '#0f172a';
                 }
               }}
             >
               <div>
-                <div style={{ width: '42px', height: '42px', borderRadius: '10px', backgroundColor: '#eff6ff', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#005CFD', marginBottom: '1.25rem' }}>
+                <div style={{ width: '42px', height: '42px', borderRadius: '10px', backgroundColor: '#eff6ff', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgb(2, 41, 176)', marginBottom: '1.25rem' }}>
                   <MessageSquare size={20} />
                 </div>
                 <h4 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '1.35rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.5rem' }}>
@@ -365,7 +360,7 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1.5rem' }}>
-                <span style={{ fontSize: '0.88rem', fontWeight: 700, color: '#005CFD' }}>Contact Us</span>
+                <span style={{ fontSize: '0.88rem', fontWeight: 700, color: 'rgb(2, 41, 176)' }}>Contact Us</span>
                 <div
                   className="card-circle-btn"
                   style={{
@@ -413,12 +408,12 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-4px)';
-                e.currentTarget.style.boxShadow = '0 16px 36px rgba(124, 58, 237, 0.12)';
-                e.currentTarget.style.borderColor = '#7c3aed';
+                e.currentTarget.style.boxShadow = '0 16px 36px rgba(2, 41, 176, 0.16)';
+                e.currentTarget.style.borderColor = 'rgb(40, 129, 251)';
                 const circle = e.currentTarget.querySelector('.card-circle-btn-2');
                 if (circle) {
                   circle.style.transform = 'scale(1.15) translateX(3px)';
-                  circle.style.backgroundColor = '#7c3aed';
+                  circle.style.background = 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)';
                   circle.style.color = '#ffffff';
                 }
               }}
@@ -429,13 +424,13 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
                 const circle = e.currentTarget.querySelector('.card-circle-btn-2');
                 if (circle) {
                   circle.style.transform = 'scale(1) translateX(0)';
-                  circle.style.backgroundColor = '#f1f5f9';
+                  circle.style.background = '#f1f5f9';
                   circle.style.color = '#0f172a';
                 }
               }}
             >
               <div>
-                <div style={{ width: '42px', height: '42px', borderRadius: '10px', backgroundColor: '#f5f3ff', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#7c3aed', marginBottom: '1.25rem' }}>
+                <div style={{ width: '42px', height: '42px', borderRadius: '10px', backgroundColor: '#eff6ff', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgb(2, 41, 176)', marginBottom: '1.25rem' }}>
                   <Users size={20} />
                 </div>
                 <h4 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '1.35rem', fontWeight: 700, color: '#0f172a', marginBottom: '0.5rem' }}>
@@ -447,7 +442,7 @@ export const WorkforceSolutionsTabSection = ({ onNavCareers }) => {
               </div>
 
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: '1.5rem' }}>
-                <span style={{ fontSize: '0.88rem', fontWeight: 700, color: '#7c3aed' }}>Explore Careers</span>
+                <span style={{ fontSize: '0.88rem', fontWeight: 700, color: 'rgb(2, 41, 176)' }}>Explore Careers</span>
                 <div
                   className="card-circle-btn-2"
                   style={{

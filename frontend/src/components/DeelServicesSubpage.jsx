@@ -130,10 +130,10 @@ export const DeelServicesSubpage = ({ onOpenContactPage }) => {
                   padding: '0.65rem 0.85rem',
                   fontSize: '0.88rem',
                   fontWeight: isActive ? 700 : 500,
-                  color: isActive ? '#0284c7' : '#64748b',
+                  color: isActive ? 'rgb(2, 41, 176)' : '#64748b',
                   border: 'none',
-                  borderBottom: isActive ? '3px solid #0284c7' : '3px solid transparent',
-                  backgroundColor: isActive ? '#f0f9ff' : 'transparent',
+                  borderBottom: isActive ? '3px solid rgb(2, 41, 176)' : '3px solid transparent',
+                  backgroundColor: isActive ? '#eff6ff' : 'transparent',
                   borderRadius: '6px 6px 0 0',
                   cursor: 'pointer',
                   whiteSpace: 'nowrap',
@@ -161,7 +161,7 @@ export const DeelServicesSubpage = ({ onOpenContactPage }) => {
             boxShadow: '0 6px 20px rgba(0,0,0,0.02)'
           }}
         >
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: '#0284c7', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1rem' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', color: 'rgb(2, 41, 176)', fontSize: '0.8rem', fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '1rem' }}>
             <IconComp size={16} />
             <span>{activeService.heroTag}</span>
           </div>

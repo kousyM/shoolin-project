@@ -171,16 +171,26 @@ export const JobDetailPage = ({ jobId, onBackToCareers, onApplyJob, onSelectOthe
                 onClick={() => onApplyJob(job.id)}
                 style={{
                   width: '100%',
-                  backgroundColor: '#002b49',
+                  background: 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)',
                   color: '#ffffff',
-                  fontSize: '1.1rem',
-                  fontWeight: 700,
+                  fontSize: '1.05rem',
+                  fontWeight: 800,
                   padding: '0.9rem 1.5rem',
-                  borderRadius: '4px',
+                  borderRadius: '50px',
                   border: 'none',
                   cursor: 'pointer',
                   marginBottom: '0.75rem',
-                  textAlign: 'center'
+                  textAlign: 'center',
+                  boxShadow: '0 4px 18px rgba(2, 41, 176, 0.4)',
+                  transition: 'all 0.25s ease'
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-2px)';
+                  e.currentTarget.style.boxShadow = '0 8px 25px rgba(2, 41, 176, 0.6)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 4px 18px rgba(2, 41, 176, 0.4)';
                 }}
               >
                 I'm interested

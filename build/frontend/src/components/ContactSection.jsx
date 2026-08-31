@@ -118,7 +118,7 @@ export const ContactSection = ({
             left: '10%',
             right: '10%',
             height: '3px',
-            background: 'linear-gradient(90deg, transparent 0%, #005CFD 30%, #019CFE 70%, transparent 100%)',
+            background: 'linear-gradient(90deg, transparent 0%, rgb(2, 41, 176) 30%, rgb(40, 129, 251) 70%, transparent 100%)',
             borderRadius: '3px'
           }}
         />
@@ -139,12 +139,10 @@ export const ContactSection = ({
             Get answers to your{' '}
             <span
               style={{
-                background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)',
-                color: '#ffffff',
-                padding: '0.2rem 1.15rem',
-                borderRadius: '14px 22px 22px 14px',
-                display: 'inline-block',
-                boxShadow: '0 4px 18px rgba(0, 92, 253, 0.45)'
+                background: 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                display: 'inline-block'
               }}
             >
               questions
@@ -192,8 +190,8 @@ export const ContactSection = ({
                     transition: 'all 0.25s ease'
                   }}
                   onFocus={(e) => {
-                    e.currentTarget.style.borderColor = '#005CFD';
-                    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(0, 92, 253, 0.15)';
+                    e.currentTarget.style.borderColor = 'rgb(2, 41, 176)';
+                    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(2, 41, 176, 0.15)';
                     e.currentTarget.style.backgroundColor = '#ffffff';
                   }}
                   onBlur={(e) => {
@@ -226,8 +224,8 @@ export const ContactSection = ({
                     transition: 'all 0.25s ease'
                   }}
                   onFocus={(e) => {
-                    e.currentTarget.style.borderColor = '#005CFD';
-                    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(0, 92, 253, 0.15)';
+                    e.currentTarget.style.borderColor = 'rgb(2, 41, 176)';
+                    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(2, 41, 176, 0.15)';
                     e.currentTarget.style.backgroundColor = '#ffffff';
                   }}
                   onBlur={(e) => {
@@ -265,8 +263,8 @@ export const ContactSection = ({
                     transition: 'all 0.25s ease'
                   }}
                   onFocus={(e) => {
-                    e.currentTarget.style.borderColor = '#005CFD';
-                    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(0, 92, 253, 0.15)';
+                    e.currentTarget.style.borderColor = 'rgb(2, 41, 176)';
+                    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(2, 41, 176, 0.15)';
                     e.currentTarget.style.backgroundColor = '#ffffff';
                   }}
                   onBlur={(e) => {
@@ -299,8 +297,8 @@ export const ContactSection = ({
                     transition: 'all 0.25s ease'
                   }}
                   onFocus={(e) => {
-                    e.currentTarget.style.borderColor = '#005CFD';
-                    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(0, 92, 253, 0.15)';
+                    e.currentTarget.style.borderColor = 'rgb(2, 41, 176)';
+                    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(2, 41, 176, 0.15)';
                     e.currentTarget.style.backgroundColor = '#ffffff';
                   }}
                   onBlur={(e) => {
@@ -337,8 +335,8 @@ export const ContactSection = ({
                     transition: 'all 0.25s ease'
                   }}
                   onFocus={(e) => {
-                    e.currentTarget.style.borderColor = '#005CFD';
-                    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(0, 92, 253, 0.15)';
+                    e.currentTarget.style.borderColor = 'rgb(2, 41, 176)';
+                    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(2, 41, 176, 0.15)';
                     e.currentTarget.style.backgroundColor = '#ffffff';
                   }}
                   onBlur={(e) => {
@@ -370,8 +368,8 @@ export const ContactSection = ({
                     transition: 'all 0.25s ease'
                   }}
                   onFocus={(e) => {
-                    e.currentTarget.style.borderColor = '#005CFD';
-                    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(0, 92, 253, 0.15)';
+                    e.currentTarget.style.borderColor = 'rgb(2, 41, 176)';
+                    e.currentTarget.style.boxShadow = '0 0 0 3px rgba(2, 41, 176, 0.15)';
                     e.currentTarget.style.backgroundColor = '#ffffff';
                   }}
                   onBlur={(e) => {
@@ -416,8 +414,8 @@ export const ContactSection = ({
                   transition: 'all 0.25s ease'
                 }}
                 onFocus={(e) => {
-                  e.currentTarget.style.borderColor = '#005CFD';
-                  e.currentTarget.style.boxShadow = '0 0 0 3px rgba(0, 92, 253, 0.15)';
+                  e.currentTarget.style.borderColor = 'rgb(2, 41, 176)';
+                  e.currentTarget.style.boxShadow = '0 0 0 3px rgba(2, 41, 176, 0.15)';
                   e.currentTarget.style.backgroundColor = '#ffffff';
                 }}
                 onBlur={(e) => {
@@ -454,8 +452,8 @@ export const ContactSection = ({
                   transition: 'all 0.25s ease'
                 }}
                 onFocus={(e) => {
-                  e.currentTarget.style.borderColor = '#005CFD';
-                  e.currentTarget.style.boxShadow = '0 0 0 3px rgba(0, 92, 253, 0.15)';
+                  e.currentTarget.style.borderColor = 'rgb(2, 41, 176)';
+                  e.currentTarget.style.boxShadow = '0 0 0 3px rgba(2, 41, 176, 0.15)';
                   e.currentTarget.style.backgroundColor = '#ffffff';
                 }}
                 onBlur={(e) => {
@@ -474,7 +472,7 @@ export const ContactSection = ({
                 name="agree"
                 checked={formData.agree}
                 onChange={handleChange}
-                style={{ width: '18px', height: '18px', cursor: 'pointer', accentColor: '#005CFD' }}
+                style={{ width: '18px', height: '18px', cursor: 'pointer', accentColor: 'rgb(2, 41, 176)' }}
               />
               <label htmlFor="agree" style={{ fontSize: '0.92rem', color: '#64748b', cursor: 'pointer' }}>
                 I agree to the Privacy Policy and terms.
@@ -488,14 +486,14 @@ export const ContactSection = ({
                 disabled={loading}
                 style={{
                   padding: '0.95rem 2.8rem',
-                  background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)',
+                  background: 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)',
                   color: '#ffffff',
                   fontWeight: 700,
                   fontSize: '1.05rem',
                   borderRadius: '10px',
                   border: 'none',
                   cursor: loading ? 'not-allowed' : 'pointer',
-                  boxShadow: '0 8px 24px rgba(0, 92, 253, 0.45)',
+                  boxShadow: '0 8px 24px rgba(2, 41, 176, 0.45)',
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.65rem',
@@ -504,13 +502,13 @@ export const ContactSection = ({
                 onMouseEnter={(e) => {
                   if (!loading) {
                     e.currentTarget.style.transform = 'translateY(-3px)';
-                    e.currentTarget.style.boxShadow = '0 12px 30px rgba(0, 92, 253, 0.65)';
+                    e.currentTarget.style.boxShadow = '0 14px 34px rgba(2, 41, 176, 0.65)';
                   }
                 }}
                 onMouseLeave={(e) => {
                   if (!loading) {
                     e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 92, 253, 0.45)';
+                    e.currentTarget.style.boxShadow = '0 8px 24px rgba(2, 41, 176, 0.45)';
                   }
                 }}
               >

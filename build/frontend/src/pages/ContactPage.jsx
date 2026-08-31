@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import ContactSection from '../components/ContactSection';
-import { MapPin, Phone, Mail, Globe, Building2, Sparkles } from 'lucide-react';
+import { MapPin, Phone, Mail, Globe, Building2, Sparkles, ArrowRight, Plus, Minus } from 'lucide-react';
 
 export default function ContactPage({
   onBackHome,
@@ -16,46 +16,105 @@ export default function ContactPage({
   isAdminLoggedIn,
   onAdminLogout
 }) {
-  // Offices Data matching the Home Page Global Presence
+  const [hoveredCardIndex, setHoveredCardIndex] = useState(2); // Singapore active by default matching reference
+  const [activeAccordion, setActiveAccordion] = useState(null); // Closed by default when page opens
+
+  const accordionItems = [
+    {
+      id: 'request-service',
+      title: 'Request for Service',
+      description: 'Get in touch to learn more about our solutions and services tailored to help enterprises Scale at Speed.',
+      buttons: [
+        {
+          label: 'REQUEST FOR SERVICES',
+          action: () => {
+            document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      ]
+    },
+    {
+      id: 'join-vebhor',
+      title: 'Join Vebhor',
+      description: 'Discover exciting career opportunities and apply now through our dedicated career portal.',
+      buttons: [
+        {
+          label: 'EXPLORE CAREERS',
+          action: () => {
+            if (onNavCareers) {
+              onNavCareers();
+              setTimeout(() => {
+                const el = document.getElementById('post-resume-form');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }, 150);
+            }
+          }
+        },
+        {
+          label: 'APPLY NOW',
+          action: () => {
+            if (onNavCareers) {
+              onNavCareers();
+              setTimeout(() => {
+                const el = document.getElementById('post-resume-form');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }, 150);
+            }
+          }
+        }
+      ]
+    },
+    {
+      id: 'vendor-registration',
+      title: 'Vendor Registration',
+      description: 'Be part of our expansive and trusted supplier network.',
+      buttons: [
+        {
+          label: 'SUBMIT A PROPOSAL',
+          action: () => {
+            if (onNavPartners) {
+              onNavPartners('vendor');
+              setTimeout(() => {
+                const el = document.getElementById('vendor-registration-form');
+                if (el) el.scrollIntoView({ behavior: 'smooth' });
+              }, 150);
+            }
+          }
+        }
+      ]
+    }
+  ];
+
+  // Offices Data matching the User's Reference Image
   const officeLocations = [
     {
       country: 'AUSTRALIA',
-      region: 'Headquarters & APAC Hub',
-      address: 'Sydney & Melbourne, Australia',
-      description: 'Enterprise workforce solutions, EOR, and executive search across Australia.',
       badge: 'TOP CLASS SERVICES',
+      description: 'We collaborate with many government and private firms to offer the best job opportunities across Australia.',
       imageUrl: '/images/country_sydney.jpg'
     },
     {
       country: 'NEW ZEALAND',
-      region: 'Oceania Hub',
-      address: 'Auckland & Wellington, New Zealand',
-      description: 'Collaborating with government and private enterprise firms across New Zealand.',
       badge: 'TOP CLASS SERVICES',
+      description: 'We collaborate with many government and private firms to offer the best job opportunities across New Zealand.',
       imageUrl: '/images/country_melbourne.jpg'
     },
     {
       country: 'SINGAPORE',
-      region: 'Southeast Asia Hub',
-      address: 'Marina Bay / Central, Singapore',
-      description: 'Cross-border mobility, digital experience, and regional talent operations.',
       badge: 'TOP CLASS SERVICES',
+      description: 'We are soon offering job opportunities from the government and private firms across Singapore.',
       imageUrl: '/images/country_singapore.jpg'
     },
     {
       country: 'INDIA',
-      region: 'Global Capability Centres (GCC)',
-      address: 'Bangalore & NCR, India',
-      description: 'High-performing technology delivery teams and scalable capability centres.',
       badge: 'TOP CLASS SERVICES',
+      description: 'We collaborate with many government and private firms to offer the best job opportunities across India.',
       imageUrl: '/images/country_india.jpg'
     },
     {
       country: 'EUROPE',
-      region: 'EMEA Enterprise Hub',
-      address: 'London & European Metros',
-      description: 'Comprehensive workforce management, payroll compliance, and mobility across Europe.',
       badge: 'TOP CLASS SERVICES',
+      description: 'We are now happily providing workforce & enterprise solutions across Europe.',
       imageUrl: '/images/country_brisbane.jpg'
     }
   ];
@@ -79,53 +138,227 @@ export default function ContactPage({
       />
 
       <main>
-        {/* HERO BANNER WITH CLEAN LIGHT OVERLAY */}
+        {/* ============================================================ */}
+        {/* 1. HERO BANNER: CONTACT US (SIGNATURE LINES & ANGLED CUTOUT) */}
+        {/* ============================================================ */}
         <section
+          className="signature-hero-banner-section"
           style={{
             position: 'relative',
-            backgroundColor: '#ffffff',
-            backgroundImage: `linear-gradient(180deg, rgba(255, 255, 255, 0.92) 0%, rgba(248, 250, 252, 0.98) 100%), url('/images/slider_3.jpg')`,
+            backgroundColor: '#f6f4ed',
+            backgroundImage: `url('/images/career_lines_bg.png')`,
             backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            color: '#0f172a',
-            padding: '7rem 2rem 5rem',
-            minHeight: '360px',
+            backgroundPosition: 'left center',
+            padding: '5.5rem 2rem 5rem 2rem',
+            minHeight: '480px',
             display: 'flex',
             alignItems: 'center',
+            textAlign: 'left',
+            overflow: 'hidden',
             borderBottom: '1px solid #e2e8f0'
           }}
         >
-          <div style={{ maxWidth: '1280px', margin: '0 auto', width: '100%', textAlign: 'center' }}>
-            <div
+          {/* Angled Cutout Contact Photo Container */}
+          <div
+            className="career-banner-visual-clip"
+            style={{
+              position: 'absolute',
+              right: 0,
+              top: 0,
+              bottom: 0,
+              width: '52%',
+              minWidth: '380px',
+              clipPath: 'polygon(18% 0%, 100% 0%, 100% 68%, 0% 100%)',
+              overflow: 'hidden',
+              zIndex: 1
+            }}
+          >
+            <img
+              src="/images/contact_banner_v2.jpeg"
+              alt="Get in touch"
               style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.4rem',
-                color: '#ffffff',
-                background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)',
-                padding: '0.4rem 1.1rem',
-                borderRadius: '50px',
-                fontSize: '0.82rem',
-                fontWeight: 800,
-                textTransform: 'uppercase',
-                letterSpacing: '0.12em',
-                marginBottom: '1.25rem',
-                boxShadow: '0 4px 14px rgba(0, 92, 253, 0.4)'
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center 20%'
               }}
-            >
-              <Sparkles size={14} />
-              <span>LET'S CONNECT</span>
+            />
+          </div>
+
+          <div style={{ maxWidth: '1280px', width: '100%', margin: '0 auto', position: 'relative', zIndex: 3 }}>
+            <div style={{ maxWidth: '640px' }}>
+
+              {/* Blue Capsule Badge */}
+              <div style={{ marginBottom: '1.1rem' }}>
+                <span
+                  style={{
+                    fontSize: '0.8rem',
+                    fontWeight: 800,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.12em',
+                    color: '#ffffff',
+                    background: 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)',
+                    padding: '0.35rem 1.25rem',
+                    borderRadius: '50px',
+                    display: 'inline-block',
+                    boxShadow: '0 4px 14px rgba(2, 41, 176, 0.25)'
+                  }}
+                >
+                  LET'S CONNECT
+                </span>
+              </div>
+
+              <h1
+                style={{
+                  fontFamily: "'Outfit', sans-serif",
+                  fontSize: 'clamp(1.75rem, 3.2vw, 2.45rem)',
+                  fontWeight: 800,
+                  color: '#0a1128',
+                  marginBottom: '0.85rem',
+                  letterSpacing: '-0.02em',
+                  lineHeight: 1.2
+                }}
+              >
+                Get in touch with our team
+              </h1>
+              <p
+                style={{
+                  fontSize: 'clamp(0.98rem, 1.2vw, 1.12rem)',
+                  color: '#334155',
+                  fontWeight: 450,
+                  margin: 0,
+                  lineHeight: 1.65,
+                  maxWidth: '560px'
+                }}
+              >
+                Whether you are scaling global teams, seeking immigration support, or exploring enterprise solutions, we are here to help.
+              </p>
             </div>
-            <h1 style={{ fontFamily: "'Outfit', sans-serif", fontSize: 'clamp(2.5rem, 5vw, 3.8rem)', fontWeight: 800, color: '#0f172a', marginBottom: '1rem', letterSpacing: '-0.02em', lineHeight: 1.2 }}>
-              Get in touch with our team
-            </h1>
-            <p style={{ fontSize: '1.2rem', color: '#64748b', fontWeight: 400, maxWidth: '640px', margin: '0 auto', lineHeight: 1.6 }}>
-              Whether you are scaling global teams, seeking immigration support, or exploring enterprise solutions, we are here to help.
-            </p>
           </div>
         </section>
 
-        {/* PRIMARY CONTACT FORM SECTION */}
+        {/* 2. ACCORDION / DIRECTORY SECTION (REFER IMAGES 2, 3, 4) */}
+        <section
+          style={{
+            backgroundColor: '#f6f5f0',
+            padding: '5rem 2rem',
+            borderBottom: '1px solid #e2ddd3'
+          }}
+        >
+          <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
+            {accordionItems.map((item, idx) => {
+              const isOpen = activeAccordion === idx;
+              return (
+                <div
+                  key={item.id}
+                  style={{
+                    borderTop: '1px solid #cfc8ba',
+                    borderBottom: idx === accordionItems.length - 1 ? '1px solid #cfc8ba' : 'none',
+                    padding: '2.2rem 0',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
+                  <div
+                    onClick={() => setActiveAccordion(prev => prev === idx ? null : idx)}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      cursor: 'pointer',
+                      userSelect: 'none'
+                    }}
+                  >
+                    <h2
+                      style={{
+                        fontFamily: "'Outfit', sans-serif",
+                        fontSize: 'clamp(1.6rem, 2.6vw, 2rem)',
+                        fontWeight: 600,
+                        color: '#111827',
+                        margin: 0,
+                        letterSpacing: '-0.01em'
+                      }}
+                    >
+                      {item.title}
+                    </h2>
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        width: '40px',
+                        height: '40px',
+                        color: '#111827',
+                        cursor: 'pointer'
+                      }}
+                    >
+                      {isOpen ? <Minus size={30} strokeWidth={1.5} /> : <Plus size={30} strokeWidth={1.5} />}
+                    </div>
+                  </div>
+
+                  {/* Accordion Expandable Content */}
+                  {isOpen && (
+                    <div
+                      style={{
+                        marginTop: '1.5rem',
+                        paddingRight: '2rem',
+                        animation: 'fadeIn 0.3s ease'
+                      }}
+                    >
+                      <p
+                        style={{
+                          fontSize: '1.08rem',
+                          color: '#334155',
+                          lineHeight: 1.65,
+                          maxWidth: '850px',
+                          margin: '0 0 1.85rem 0'
+                        }}
+                      >
+                        {item.description}
+                      </p>
+
+                      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
+                        {item.buttons.map((btn, bIdx) => (
+                          <button
+                            key={bIdx}
+                            onClick={btn.action}
+                            style={{
+                              background: 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)',
+                              color: '#ffffff',
+                              border: 'none',
+                              padding: '0.95rem 1.95rem',
+                              fontSize: '0.82rem',
+                              fontWeight: 800,
+                              letterSpacing: '0.09em',
+                              textTransform: 'uppercase',
+                              cursor: 'pointer',
+                              borderRadius: '4px',
+                              boxShadow: '0 4px 16px rgba(2, 41, 176, 0.35)',
+                              transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
+                            }}
+                            onMouseEnter={(e) => {
+                              e.currentTarget.style.transform = 'translateY(-2px)';
+                              e.currentTarget.style.boxShadow = '0 8px 24px rgba(2, 41, 176, 0.5)';
+                              e.currentTarget.style.filter = 'brightness(1.1)';
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.style.transform = 'translateY(0)';
+                              e.currentTarget.style.boxShadow = '0 4px 16px rgba(2, 41, 176, 0.35)';
+                              e.currentTarget.style.filter = 'brightness(1)';
+                            }}
+                          >
+                            {btn.label}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* 3. PRIMARY CONTACT FORM SECTION */}
         <div style={{ backgroundColor: '#ffffff' }}>
           <ContactSection
             title="Send us an Enquiry"
@@ -133,31 +366,11 @@ export default function ContactPage({
           />
         </div>
 
-        {/* GLOBAL OFFICES / HUBS SECTION (MATCHING HOME PAGE) */}
-        <section style={{ backgroundColor: '#f8fafc', color: '#0f172a', padding: '5.5rem 1.5rem 6.5rem', position: 'relative', borderTop: '1px solid #e2e8f0', borderBottom: '1px solid #e2e8f0' }}>
+        {/* 4. GLOBAL OFFICES / HUBS SECTION (MATCHING HOME PAGE) */}
+        <section style={{ backgroundColor: '#f8fafc', color: '#0f172a', padding: '4rem 1.5rem 5.5rem', position: 'relative', borderTop: '1px solid #e2e8f0', borderBottom: '1px solid #e2e8f0' }}>
           <div style={{ maxWidth: '1280px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
-            <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-              <div
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.4rem',
-                  color: '#ffffff',
-                  background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)',
-                  padding: '0.35rem 1rem',
-                  borderRadius: '50px',
-                  fontSize: '0.8rem',
-                  fontWeight: 800,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.1em',
-                  marginBottom: '0.85rem',
-                  boxShadow: '0 4px 14px rgba(0, 92, 253, 0.4)'
-                }}
-              >
-                <Globe size={14} />
-                <span>GLOBAL PRESENCE</span>
-              </div>
-              <h2 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '2.6rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.02em', marginBottom: '0.85rem' }}>
+            <div style={{ textAlign: 'center', marginBottom: '2.75rem' }}>
+              <h2 style={{ fontFamily: "'Outfit', sans-serif", fontSize: '2.6rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.02em', margin: '0 0 0.85rem 0' }}>
                 Our Global Offices & Hubs
               </h2>
               <p style={{ fontSize: '1.05rem', color: '#64748b', maxWidth: '620px', margin: '0 auto', lineHeight: 1.6 }}>
@@ -165,174 +378,121 @@ export default function ContactPage({
               </p>
             </div>
 
-            {/* 5 Global Hub Cards Grid */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(230px, 1fr))', gap: '1.5rem' }}>
-              {officeLocations.map((office, idx) => (
-                <div
-                  key={idx}
-                  style={{
-                    backgroundColor: '#ffffff',
-                    border: '1.5px solid #e2e8f0',
-                    borderRadius: '20px',
-                    padding: '2rem 1.6rem',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
-                    boxShadow: '0 4px 16px rgba(0, 0, 0, 0.04)',
-                    transition: 'all 0.3s ease',
-                    position: 'relative',
-                    overflow: 'hidden'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.transform = 'translateY(-6px)';
-                    e.currentTarget.style.borderColor = '#005CFD';
-                    e.currentTarget.style.boxShadow = '0 12px 28px rgba(0, 92, 253, 0.12)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    e.currentTarget.style.borderColor = '#e2e8f0';
-                    e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.04)';
-                  }}
-                >
-                  <div>
-                    {/* Top Region Badge */}
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
+            {/* 5 Country Presence Cards matching reference image */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.25rem' }}>
+              {officeLocations.map((office, idx) => {
+                const isSelected = hoveredCardIndex === idx;
+                return (
+                  <div
+                    key={idx}
+                    onMouseEnter={() => setHoveredCardIndex(idx)}
+                    onClick={() => setHoveredCardIndex(idx)}
+                    style={{
+                      minHeight: '400px',
+                      borderRadius: '22px',
+                      position: 'relative',
+                      overflow: 'hidden',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between',
+                      padding: '2.2rem 1.4rem 1.6rem 1.4rem',
+                      backgroundImage: `url(${office.imageUrl})`,
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      border: isSelected ? '2.5px solid rgb(40, 129, 251)' : '1px solid rgba(255, 255, 255, 0.12)',
+                      boxShadow: isSelected
+                        ? '0 20px 42px rgba(2, 41, 176, 0.45)'
+                        : '0 8px 24px rgba(0, 0, 0, 0.12)',
+                      transform: isSelected ? 'translateY(-8px) scale(1.02)' : 'translateY(0) scale(1)',
+                      transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+                      cursor: 'pointer'
+                    }}
+                  >
+                    {/* Background Gradient Overlay */}
+                    <div
+                      style={{
+                        position: 'absolute',
+                        inset: 0,
+                        background: isSelected
+                          ? 'linear-gradient(180deg, rgba(2, 41, 176, 0.82) 0%, rgba(40, 129, 251, 0.52) 45%, rgba(2, 41, 176, 0.96) 100%)'
+                          : 'linear-gradient(180deg, rgba(15, 23, 42, 0.55) 0%, rgba(15, 23, 42, 0.15) 35%, rgba(15, 23, 42, 0.92) 100%)',
+                        zIndex: 1,
+                        transition: 'background 0.4s ease'
+                      }}
+                    />
+
+                    {/* Card Content Top */}
+                    <div style={{ position: 'relative', zIndex: 2 }}>
                       <span
                         style={{
                           fontSize: '0.72rem',
-                          fontWeight: 800,
-                          color: '#005CFD',
-                          backgroundColor: '#eff6ff',
-                          border: '1px solid #bfdbfe',
-                          padding: '0.25rem 0.75rem',
-                          borderRadius: '50px',
-                          letterSpacing: '0.05em'
+                          fontWeight: 700,
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.12em',
+                          color: isSelected ? '#dbeafe' : 'rgba(255, 255, 255, 0.75)',
+                          display: 'block',
+                          marginBottom: '0.5rem',
+                          transition: 'color 0.3s ease'
                         }}
                       >
                         {office.badge}
                       </span>
-                      <Globe size={18} style={{ color: '#64748b' }} />
+                      <h3
+                        style={{
+                          fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
+                          fontSize: '1.65rem',
+                          fontWeight: 800,
+                          color: '#ffffff',
+                          textTransform: 'uppercase',
+                          letterSpacing: '0.02em',
+                          margin: 0,
+                          textShadow: '0 2px 8px rgba(0, 0, 0, 0.7)'
+                        }}
+                      >
+                        {office.country}
+                      </h3>
                     </div>
 
-                    <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.4rem', letterSpacing: '-0.01em' }}>
-                      {office.country}
-                    </h3>
+                    {/* Card Content Bottom */}
+                    <div style={{ position: 'relative', zIndex: 2 }}>
+                      <p
+                        style={{
+                          fontSize: '0.88rem',
+                          color: '#f8fafc',
+                          lineHeight: 1.55,
+                          margin: '0 0 1.25rem 0',
+                          fontWeight: 400,
+                          textShadow: '0 1px 6px rgba(0, 0, 0, 0.85)'
+                        }}
+                      >
+                        {office.description}
+                      </p>
 
-                    <div style={{ fontSize: '0.85rem', fontWeight: 600, color: '#005CFD', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                      <MapPin size={14} style={{ flexShrink: 0 }} />
-                      <span>{office.address}</span>
+                      {/* Bottom Right Arrow Button */}
+                      <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                        <div
+                          style={{
+                            width: '36px',
+                            height: '36px',
+                            borderRadius: '50%',
+                            background: isSelected ? 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)' : 'rgba(15, 23, 42, 0.9)',
+                            color: '#ffffff',
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                            border: isSelected ? 'none' : '1px solid rgba(255, 255, 255, 0.2)',
+                            boxShadow: isSelected ? '0 4px 14px rgba(40, 129, 251, 0.65)' : '0 2px 8px rgba(0, 0, 0, 0.3)',
+                            transform: isSelected ? 'scale(1.1)' : 'scale(1)',
+                            transition: 'all 0.3s ease'
+                          }}
+                        >
+                          <ArrowRight size={16} />
+                        </div>
+                      </div>
                     </div>
-
-                    <p style={{ fontSize: '0.9rem', color: '#64748b', lineHeight: 1.6, margin: 0 }}>
-                      {office.description}
-                    </p>
                   </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* PHONE, EMAIL & SOCIAL MEDIA BAR */}
-        <section style={{ backgroundColor: '#f8fafc', padding: '0 1.5rem 6rem' }}>
-          <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
-            <div
-              style={{
-                backgroundColor: '#ffffff',
-                border: '1.5px solid #e2e8f0',
-                color: '#0f172a',
-                padding: '2.5rem 3rem',
-                borderRadius: '24px',
-                display: 'flex',
-                flexWrap: 'wrap',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                gap: '1.75rem',
-                boxShadow: '0 10px 30px rgba(0, 0, 0, 0.04)'
-              }}
-            >
-              <div>
-                <span style={{ fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#005CFD', display: 'block', marginBottom: '0.4rem' }}>
-                  DIRECT CHANNELS
-                </span>
-                <h3 style={{ fontSize: '1.45rem', fontWeight: 800, color: '#0f172a', margin: 0 }}>
-                  Phone, Email & Social Media
-                </h3>
-              </div>
-
-              <div style={{ display: 'flex', alignItems: 'center', gap: '2rem', flexWrap: 'wrap', color: '#0f172a', fontSize: '1rem', fontWeight: 600 }}>
-                {/* Phone */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                  <div style={{ width: '36px', height: '36px', borderRadius: '50%', backgroundColor: '#eff6ff', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#005CFD', border: '1px solid #bfdbfe' }}>
-                    <Phone size={18} />
-                  </div>
-                  <a href="tel:+61466048975" style={{ color: '#0f172a', textDecoration: 'none', transition: 'color 0.2s ease', fontWeight: 700 }} onMouseEnter={(e) => e.currentTarget.style.color = '#005CFD'} onMouseLeave={(e) => e.currentTarget.style.color = '#0f172a'}>
-                    +61 466 048 975
-                  </a>
-                </div>
-
-                <span style={{ color: '#cbd5e1' }}>|</span>
-
-                {/* Email */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-                  <div style={{ width: '36px', height: '36px', borderRadius: '50%', backgroundColor: '#eff6ff', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#005CFD', border: '1px solid #bfdbfe' }}>
-                    <Mail size={18} />
-                  </div>
-                  <a href="mailto:info@vebhor.com" style={{ color: '#0f172a', textDecoration: 'none', transition: 'color 0.2s ease', fontWeight: 700 }} onMouseEnter={(e) => e.currentTarget.style.color = '#005CFD'} onMouseLeave={(e) => e.currentTarget.style.color = '#0f172a'}>
-                    info@vebhor.com
-                  </a>
-                </div>
-
-                <span style={{ color: '#cbd5e1' }}>|</span>
-
-                {/* Social Icons */}
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                  {/* LinkedIn */}
-                  <a
-                    href="https://www.linkedin.com/company/vebhor/?viewAsMember=true"
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{ width: '36px', height: '36px', borderRadius: '50%', backgroundColor: '#ffffff', border: '1px solid #e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#005CFD', textDecoration: 'none', transition: 'all 0.2s ease', boxShadow: '0 2px 6px rgba(0,0,0,0.04)' }}
-                    aria-label="LinkedIn"
-                    onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#005CFD'; e.currentTarget.style.color = '#ffffff'; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#ffffff'; e.currentTarget.style.color = '#005CFD'; }}
-                  >
-                    <span style={{ fontWeight: 900, fontSize: '0.85rem' }}>in</span>
-                  </a>
-
-                  {/* Instagram */}
-                  <a
-                    href="https://www.instagram.com/vebhor_aus/"
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{ width: '36px', height: '36px', borderRadius: '50%', backgroundColor: '#ffffff', border: '1px solid #e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ec4899', textDecoration: 'none', transition: 'all 0.2s ease', boxShadow: '0 2px 6px rgba(0,0,0,0.04)' }}
-                    aria-label="Instagram"
-                    onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#ec4899'; e.currentTarget.style.color = '#ffffff'; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#ffffff'; e.currentTarget.style.color = '#ec4899'; }}
-                  >
-                    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                      <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                      <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                    </svg>
-                  </a>
-
-                  {/* Facebook */}
-                  <a
-                    href="https://www.facebook.com/profile.php?id=61593392762903&sk=directory_personal_details"
-                    target="_blank"
-                    rel="noreferrer"
-                    style={{ width: '36px', height: '36px', borderRadius: '50%', backgroundColor: '#ffffff', border: '1px solid #e2e8f0', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#1877f2', textDecoration: 'none', transition: 'all 0.2s ease', boxShadow: '0 2px 6px rgba(0,0,0,0.04)' }}
-                    aria-label="Facebook"
-                    onMouseEnter={(e) => { e.currentTarget.style.backgroundColor = '#1877f2'; e.currentTarget.style.color = '#ffffff'; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.backgroundColor = '#ffffff'; e.currentTarget.style.color = '#1877f2'; }}
-                  >
-                    <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H7.5v-3H10V9.5C10 7.01 11.49 5.63 13.78 5.63c1.09 0 2.23.19 2.23.19v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.77l-.44 3h-2.33v6.8c4.56-.93 8-4.96 8-9.8z" />
-                    </svg>
-                  </a>
-                </div>
-              </div>
+                );
+              })}
             </div>
           </div>
         </section>

@@ -17,8 +17,8 @@ import {
   Globe
 } from 'lucide-react';
 
-const BRAND_GRADIENT = 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)';
-const BRAND_SHADOW = '0 4px 18px rgba(0, 92, 253, 0.4)';
+const BRAND_GRADIENT = 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)';
+const BRAND_SHADOW = '0 4px 18px rgba(2, 41, 176, 0.42)';
 
 export const AboutPage = ({
   onNavHome,
@@ -103,186 +103,242 @@ export const AboutPage = ({
       <main style={{ paddingTop: 0, marginTop: 0 }}>
 
         {/* ============================================================ */}
-        {/* 1. TOP HERO BANNER */}
+        {/* 1. HERO BANNER: ABOUT US (SIGNATURE LINES & ANGLED CUTOUT) */}
         {/* ============================================================ */}
         <section
           ref={heroRef}
+          className="signature-hero-banner-section"
           style={{
             position: 'relative',
-            backgroundColor: '#0f172a',
-            backgroundImage: `url('/images/nature_banner_3.jpg?v=2026')`,
+            backgroundColor: '#f6f4ed',
+            backgroundImage: `url('/images/career_lines_bg.png')`,
             backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            color: '#ffffff',
-            padding: '7.5rem 2rem 6.5rem 2rem',
+            backgroundPosition: 'left center',
+            padding: '5.5rem 2rem 5rem 2rem',
+            minHeight: '480px',
+            display: 'flex',
+            alignItems: 'center',
             textAlign: 'left',
             overflow: 'hidden',
             borderBottom: '1px solid #e2e8f0'
           }}
         >
-          <div style={{ maxWidth: '1200px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
-
-            {/* Tag Badge with Brand Gradient */}
-            <div
+          {/* Angled Cutout Architecture Photo Container */}
+          <div
+            className="career-banner-visual-clip"
+            style={{
+              position: 'absolute',
+              right: 0,
+              top: 0,
+              bottom: 0,
+              width: '52%',
+              minWidth: '380px',
+              clipPath: 'polygon(18% 0%, 100% 0%, 100% 68%, 0% 100%)',
+              overflow: 'hidden',
+              zIndex: 1
+            }}
+          >
+            <img
+              src="/images/about_hero_v2.png"
+              alt="About Vebhor"
               style={{
-                opacity: heroVisible ? 1 : 0,
-                transform: heroVisible ? 'translateY(0)' : 'translateY(-20px)',
-                transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s',
-                marginBottom: '1.25rem'
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center 35%'
               }}
-            >
-              <span
+            />
+          </div>
+
+          <div style={{ maxWidth: '1280px', width: '100%', margin: '0 auto', position: 'relative', zIndex: 3 }}>
+            <div style={{ maxWidth: '540px' }}>
+
+              {/* Blue Capsule Badge */}
+              <div style={{ marginBottom: '1.1rem' }}>
+                <span
+                  style={{
+                    fontSize: '0.8rem',
+                    fontWeight: 800,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.12em',
+                    color: '#ffffff',
+                    background: BRAND_GRADIENT,
+                    padding: '0.35rem 1.25rem',
+                    borderRadius: '50px',
+                    display: 'inline-block',
+                    boxShadow: '0 4px 14px rgba(2, 41, 176, 0.25)'
+                  }}
+                >
+                  VEBHOR
+                </span>
+              </div>
+
+              {/* Title */}
+              <h1
                 style={{
-                  fontSize: '0.82rem',
+                  fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
+                  fontSize: 'clamp(1.75rem, 3.2vw, 2.45rem)',
                   fontWeight: 800,
-                  textTransform: 'uppercase',
-                  letterSpacing: '0.14em',
-                  color: '#ffffff',
-                  background: BRAND_GRADIENT,
-                  padding: '0.4rem 1.4rem',
-                  borderRadius: '18px 24px 24px 18px',
-                  display: 'inline-block',
-                  boxShadow: BRAND_SHADOW
+                  color: '#0a1128',
+                  marginBottom: '0.85rem',
+                  lineHeight: 1.2,
+                  letterSpacing: '-0.02em',
+                  opacity: heroVisible ? 1 : 0,
+                  transform: heroVisible ? 'translateX(0)' : 'translateX(-30px)',
+                  transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s'
                 }}
               >
-                ABOUT VEBHOR
-              </span>
-            </div>
+                About Us
+              </h1>
 
-            {/* Updated Banner Heading */}
-            <h1
-              style={{
-                fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
-                fontSize: 'clamp(2.2rem, 4.5vw, 3.6rem)',
-                fontWeight: 800,
-                color: '#ffffff',
-                marginBottom: '1.5rem',
-                lineHeight: 1.18,
-                letterSpacing: '-0.02em',
-                textAlign: 'left',
-                maxWidth: '920px',
-                textShadow: '0 2px 14px rgba(0, 0, 0, 0.75), 0 1px 4px rgba(0, 0, 0, 0.9)',
-                opacity: heroVisible ? 1 : 0,
-                transform: heroVisible ? 'translateX(0)' : 'translateX(-30px)',
-                transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s'
-              }}
-            >
-              Vebhor, your local partner for Workforce Services & Solutions.
-            </h1>
-
-            {/* Opening Paragraph */}
-            <p
-              style={{
-                fontSize: '1.22rem',
-                color: '#f8fafc',
-                lineHeight: 1.75,
-                maxWidth: '860px',
-                margin: '0 0 2.5rem 0',
-                textShadow: '0 1px 8px rgba(0, 0, 0, 0.8), 0 2px 14px rgba(0, 0, 0, 0.6)',
-                fontWeight: 400,
-                opacity: heroVisible ? 1 : 0,
-                transform: heroVisible ? 'translateY(0)' : 'translateY(20px)',
-                transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.35s'
-              }}
-            >
-              Vebhor was built on a simple belief: workforce operations shouldn’t be complicated. For years, enterprises struggled with fragmented payroll systems, inconsistent contractor management, and global mobility processes that slowed growth instead of enabling it. We saw an opportunity to change that.
-            </p>
-
-            {/* Quick Action CTAs */}
-            <div
-              style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: '1rem',
-                opacity: heroVisible ? 1 : 0,
-                transform: heroVisible ? 'translateY(0)' : 'translateY(20px)',
-                transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s'
-              }}
-            >
-              <button
-                onClick={() => {
-                  const el = document.getElementById('our-evolution-section');
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
-                }}
+              {/* Existing Content / Subtitle */}
+              <p
                 style={{
-                  padding: '0.85rem 2.2rem',
-                  background: BRAND_GRADIENT,
-                  color: '#ffffff',
-                  fontSize: '0.95rem',
-                  fontWeight: 700,
-                  borderRadius: '50px',
-                  border: 'none',
-                  cursor: 'pointer',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  boxShadow: '0 6px 20px rgba(0, 0, 0, 0.4)',
-                  transition: 'all 0.25s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 8px 25px rgba(6, 182, 212, 0.7)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.4)';
+                  fontSize: 'clamp(0.98rem, 1.2vw, 1.12rem)',
+                  color: '#334155',
+                  marginBottom: '2rem',
+                  lineHeight: 1.6,
+                  fontWeight: 450,
+                  opacity: heroVisible ? 1 : 0,
+                  transform: heroVisible ? 'translateX(0)' : 'translateX(-20px)',
+                  transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.35s'
                 }}
               >
-                <span>Our Evolution</span>
-                <ArrowRight size={18} />
-              </button>
+                Vebhor, your local partner for Workforce Services & Solutions.
+              </p>
 
-              <button
-                onClick={onNavPartners}
+              {/* Quick Action CTAs */}
+              <div
                 style={{
-                  padding: '0.85rem 2.2rem',
-                  backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                  color: '#0f172a',
-                  fontSize: '0.95rem',
-                  fontWeight: 700,
-                  borderRadius: '50px',
-                  border: '1px solid rgba(255, 255, 255, 0.8)',
-                  cursor: 'pointer',
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '0.5rem',
-                  boxShadow: '0 6px 20px rgba(0, 0, 0, 0.25)',
-                  backdropFilter: 'blur(8px)',
-                  transition: 'all 0.25s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = '#ffffff';
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.35)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = 'rgba(255, 255, 255, 0.95)';
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 0, 0, 0.25)';
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  gap: '1rem',
+                  opacity: heroVisible ? 1 : 0,
+                  transform: heroVisible ? 'translateY(0)' : 'translateY(20px)',
+                  transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s'
                 }}
               >
-                <span>Meet Our Partners</span>
-              </button>
-            </div>
+                <button
+                  onClick={() => {
+                    const el = document.getElementById('our-evolution-section');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  style={{
+                    padding: '0.85rem 2.2rem',
+                    background: BRAND_GRADIENT,
+                    color: '#ffffff',
+                    fontSize: '0.95rem',
+                    fontWeight: 700,
+                    borderRadius: '50px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    boxShadow: '0 6px 20px rgba(2, 41, 176, 0.35)',
+                    transition: 'all 0.25s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 8px 25px rgba(40, 129, 251, 0.55)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(2, 41, 176, 0.35)';
+                  }}
+                >
+                  <span>Our Evolution</span>
+                  <ArrowRight size={18} />
+                </button>
 
+                <button
+                  onClick={onNavPartners}
+                  style={{
+                    padding: '0.85rem 2.2rem',
+                    backgroundColor: '#ffffff',
+                    color: '#0f172a',
+                    fontSize: '0.95rem',
+                    fontWeight: 700,
+                    borderRadius: '50px',
+                    border: '1.5px solid #cbd5e1',
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    boxShadow: '0 4px 14px rgba(0, 0, 0, 0.05)',
+                    transition: 'all 0.25s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#f8fafc';
+                    e.currentTarget.style.borderColor = '#94a3b8';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = '#ffffff';
+                    e.currentTarget.style.borderColor = '#cbd5e1';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                  }}
+                >
+                  <span>Meet Our Partners</span>
+                </button>
+              </div>
+
+            </div>
           </div>
         </section>
 
         {/* ============================================================ */}
-        {/* 2. OUR EVOLUTION & TRANSFORMATION (ELEGANT 2-COLUMN CARDS) */}
+        {/* 2. ABOUT US NARRATIVE & PURPOSE: OUR MISSION & VISION */}
         {/* ============================================================ */}
         <section
           id="our-evolution-section"
           ref={evolutionRef}
           style={{
             backgroundColor: '#ffffff',
-            padding: '6rem 2rem',
+            padding: '5rem 2rem 5.5rem 2rem',
+            position: 'relative',
+            overflow: 'hidden',
             borderBottom: '1px solid #e2e8f0'
           }}
         >
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <div style={{ maxWidth: '1180px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
 
-            <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+            {/* Narrative Paragraph */}
+            <div
+              style={{
+                maxWidth: '1000px',
+                margin: '0 auto 3.5rem auto',
+                opacity: evolutionVisible ? 1 : 0,
+                transform: evolutionVisible ? 'translateY(0)' : 'translateY(25px)',
+                transition: 'all 0.85s cubic-bezier(0.16, 1, 0.3, 1)'
+              }}
+            >
+              <p
+                style={{
+                  fontFamily: "var(--bs-body-font-family), 'Plus Jakarta Sans', sans-serif",
+                  fontSize: 'clamp(1.1rem, 1.7vw, 1.28rem)',
+                  fontWeight: 400,
+                  color: 'rgb(30, 41, 59)',
+                  lineHeight: 1.85,
+                  textAlign: 'justify',
+                  margin: '0px',
+                  letterSpacing: '-0.01em'
+                }}
+              >
+                Vebhor is a forward‑looking workforce and digital solutions partner dedicated to helping organisations grow and operate with strength. We blend strategic thinking, modern digital capabilities, and proven industry processes to deliver services that support sustainable scaling and operational excellence. Our purpose is to enable enterprises, teams, and communities to rise—creating equal opportunities, future‑ready capabilities, and lasting value.
+              </p>
+            </div>
+
+            {/* PURPOSE Badge & Heading */}
+            <div
+              style={{
+                textAlign: 'center',
+                marginBottom: '3rem',
+                opacity: evolutionVisible ? 1 : 0,
+                transform: evolutionVisible ? 'translateY(0)' : 'translateY(-20px)',
+                transition: 'all 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.15s'
+              }}
+            >
               <span
                 style={{
                   fontSize: '0.82rem',
@@ -294,128 +350,79 @@ export const AboutPage = ({
                   padding: '0.4rem 1.4rem',
                   borderRadius: '18px 24px 24px 18px',
                   display: 'inline-block',
-                  marginBottom: '1rem',
+                  marginBottom: '1.25rem',
                   boxShadow: BRAND_SHADOW
                 }}
               >
-                OUR JOURNEY & CAPABILITIES
+                PURPOSE
               </span>
               <h2
                 style={{
                   fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
-                  fontSize: '2.5rem',
+                  fontSize: '2.6rem',
                   fontWeight: 800,
                   color: '#0f172a',
                   letterSpacing: '-0.02em',
                   margin: 0
                 }}
               >
-                Built to Power How Modern Businesses Scale
+                Our Mission & Vision
               </h2>
             </div>
 
-            {/* 2 Structured Cards for Narrative Paragraphs 2 & 3 */}
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))',
-                gap: '2rem',
-                opacity: evolutionVisible ? 1 : 0,
-                transform: evolutionVisible ? 'translateY(0)' : 'translateY(30px)',
-                transition: 'all 0.85s cubic-bezier(0.16, 1, 0.3, 1)'
-              }}
-            >
-              {/* Card 1: Evolution */}
+            {/* Mission & Vision 2-Column Cards */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '2.5rem' }}>
+
+              {/* Mission Card */}
               <div
                 style={{
                   backgroundColor: '#f8fafc',
-                  border: '1.5px solid #e2e8f0',
+                  color: '#0f172a',
+                  padding: '3.5rem 2.8rem',
                   borderRadius: '24px',
-                  padding: '3rem 2.5rem',
-                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.03)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  transition: 'all 0.3s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-4px)';
-                  e.currentTarget.style.borderColor = '#06b6d4';
-                  e.currentTarget.style.boxShadow = '0 16px 35px rgba(6, 182, 212, 0.15)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.borderColor = '#e2e8f0';
-                  e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.03)';
+                  border: '1.5px solid #e2e8f0',
+                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.04)',
+                  opacity: evolutionVisible ? 1 : 0,
+                  transform: evolutionVisible ? 'translateX(0)' : 'translateX(-30px)',
+                  transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.25s'
                 }}
               >
-                <div
-                  style={{
-                    width: '52px',
-                    height: '52px',
-                    borderRadius: '14px',
-                    backgroundColor: 'rgba(6, 182, 212, 0.12)',
-                    color: '#0284c7',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginBottom: '1.5rem'
-                  }}
-                >
-                  <Cpu size={26} />
+                <div style={{ width: '56px', height: '56px', backgroundColor: '#f0fdf4', border: '1.5px solid #bbf7d0', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.75rem', color: '#16a34a' }}>
+                  <Target size={30} />
                 </div>
-                <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#0f172a', marginBottom: '1rem', lineHeight: 1.3 }}>
-                  Next‑Generation Payroll & Workforce Solutions
+                <h3 style={{ fontSize: '1.85rem', fontWeight: 800, color: '#0f172a', marginBottom: '1rem' }}>
+                  Our Mission
                 </h3>
-                <p style={{ fontSize: '1.05rem', color: '#475569', lineHeight: 1.8, margin: 0 }}>
-                  What began as a specialised workforce services practice has evolved into a next‑generation Payroll and Workforce Solutions company—powered by technology, strengthened by process, and guided by a deep understanding of how modern businesses scale. As organisations expanded across borders and industries, we grew with them, building capabilities that make global workforce management seamless, compliant, and predictable.
+                <p style={{ fontSize: '1.15rem', color: '#64748b', lineHeight: 1.7, margin: 0, fontWeight: 400 }}>
+                  To empower organisations with workforce solutions that are simple, compliant, and built for growth.
                 </p>
               </div>
 
-              {/* Card 2: Transformation */}
+              {/* Vision Card */}
               <div
                 style={{
                   backgroundColor: '#f8fafc',
-                  border: '1.5px solid #e2e8f0',
+                  color: '#0f172a',
+                  padding: '3.5rem 2.8rem',
                   borderRadius: '24px',
-                  padding: '3rem 2.5rem',
-                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.03)',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  transition: 'all 0.3s ease'
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-4px)';
-                  e.currentTarget.style.borderColor = '#10b981';
-                  e.currentTarget.style.boxShadow = '0 16px 35px rgba(16, 185, 129, 0.15)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.borderColor = '#e2e8f0';
-                  e.currentTarget.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.03)';
+                  border: '1.5px solid #e2e8f0',
+                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.04)',
+                  opacity: evolutionVisible ? 1 : 0,
+                  transform: evolutionVisible ? 'translateX(0)' : 'translateX(30px)',
+                  transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.35s'
                 }}
               >
-                <div
-                  style={{
-                    width: '52px',
-                    height: '52px',
-                    borderRadius: '14px',
-                    backgroundColor: 'rgba(16, 185, 129, 0.12)',
-                    color: '#10b981',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginBottom: '1.5rem'
-                  }}
-                >
-                  <Zap size={26} />
+                <div style={{ width: '56px', height: '56px', backgroundColor: '#eff6ff', border: '1.5px solid #bfdbfe', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.75rem', color: 'rgb(2, 41, 176)' }}>
+                  <Eye size={30} />
                 </div>
-                <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: '#0f172a', marginBottom: '1rem', lineHeight: 1.3 }}>
-                  Smarter, AI‑Enabled Operations
+                <h3 style={{ fontSize: '1.85rem', fontWeight: 800, color: '#0f172a', marginBottom: '1rem' }}>
+                  Our Vision
                 </h3>
-                <p style={{ fontSize: '1.05rem', color: '#475569', lineHeight: 1.8, margin: 0 }}>
-                  Our transformation into Vebhor reflects this journey. It represents a shift toward smarter, AI‑enabled operations; toward solutions that anticipate challenges rather than react to them; and toward a partner ecosystem designed to support enterprises wherever they operate.
+                <p style={{ fontSize: '1.15rem', color: '#64748b', lineHeight: 1.7, margin: 0, fontWeight: 400 }}>
+                  To become the most trusted mid‑size workforce consultancy—where technology, people, and operations come together to help businesses scale globally.
                 </p>
               </div>
+
             </div>
 
           </div>
@@ -455,7 +462,7 @@ export const AboutPage = ({
                   fontWeight: 800,
                   textTransform: 'uppercase',
                   letterSpacing: '0.14em',
-                  color: '#005CFD',
+                  color: 'rgb(2, 41, 176)',
                   display: 'inline-block',
                   marginBottom: '1rem'
                 }}
@@ -530,8 +537,8 @@ export const AboutPage = ({
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-5px)';
-                    e.currentTarget.style.borderColor = '#005CFD';
-                    e.currentTarget.style.boxShadow = '0 12px 28px rgba(0, 92, 253, 0.12)';
+                    e.currentTarget.style.borderColor = 'rgb(2, 41, 176)';
+                    e.currentTarget.style.boxShadow = '0 12px 28px rgba(2, 41, 176, 0.12)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = 'translateY(0)';
@@ -541,7 +548,7 @@ export const AboutPage = ({
                 >
                   <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.85rem' }}>
                     <CheckCircle2 size={18} style={{ color: '#16a34a', flexShrink: 0 }} />
-                    <span style={{ fontSize: '0.78rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#005CFD' }}>
+                    <span style={{ fontSize: '0.78rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'rgb(2, 41, 176)' }}>
                       {item.tag}
                     </span>
                   </div>
@@ -564,12 +571,17 @@ export const AboutPage = ({
         <section
           ref={deliverRef}
           style={{
+            position: 'relative',
             backgroundColor: '#f8fafc',
+            backgroundImage: `url('/images/what_we_deliver_bg.jpg?v=2026')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
             padding: '6rem 2rem 5.5rem 2rem',
-            borderBottom: '1px solid #e2e8f0'
+            borderBottom: '1px solid #e2e8f0',
+            overflow: 'hidden'
           }}
         >
-          <div style={{ maxWidth: '1180px', margin: '0 auto' }}>
+          <div style={{ maxWidth: '1180px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
             <div
               style={{
                 textAlign: 'center',
@@ -582,7 +594,7 @@ export const AboutPage = ({
               <span style={{ fontSize: '0.82rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#ffffff', background: BRAND_GRADIENT, padding: '0.4rem 1.4rem', borderRadius: '18px 24px 24px 18px', display: 'inline-block', marginBottom: '1.25rem', boxShadow: BRAND_SHADOW }}>
                 WHAT WE DELIVER
               </span>
-              <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.5rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.02em', marginBottom: '1rem' }}>
+              <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.5rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.02em', marginBottom: '1rem', textShadow: '0 1px 4px rgba(255, 255, 255, 0.8)' }}>
                 We help organisations:
               </h2>
             </div>
@@ -606,11 +618,12 @@ export const AboutPage = ({
                       display: 'flex',
                       alignItems: 'center',
                       gap: '1rem',
-                      backgroundColor: '#ffffff',
+                      backgroundColor: 'rgba(255, 255, 255, 0.94)',
+                      backdropFilter: 'blur(10px)',
                       padding: '1.4rem 1.6rem',
-                      borderRadius: '14px',
-                      border: '1.5px solid #e2e8f0',
-                      boxShadow: '0 4px 14px rgba(0,0,0,0.03)',
+                      borderRadius: '16px',
+                      border: '1.5px solid rgba(226, 232, 240, 0.9)',
+                      boxShadow: '0 6px 20px rgba(0, 0, 0, 0.04)',
                       opacity: deliverVisible ? 1 : 0,
                       transform: deliverVisible ? 'translate(0, 0)' : isEven ? 'translateX(-40px)' : 'translateX(40px)',
                       transition: `opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.08}s, transform 0.75s cubic-bezier(0.16, 1, 0.3, 1) ${idx * 0.08}s`
@@ -625,12 +638,13 @@ export const AboutPage = ({
 
             <div
               style={{
-                backgroundColor: '#ffffff',
+                backgroundColor: 'rgba(255, 255, 255, 0.94)',
+                backdropFilter: 'blur(10px)',
                 padding: '1.6rem 2.2rem',
-                borderRadius: '14px',
+                borderRadius: '16px',
                 textAlign: 'center',
-                border: '1.5px solid #e2e8f0',
-                boxShadow: '0 4px 20px rgba(0, 0, 0, 0.03)',
+                border: '1.5px solid rgba(226, 232, 240, 0.9)',
+                boxShadow: '0 6px 20px rgba(0, 0, 0, 0.04)',
                 opacity: deliverVisible ? 1 : 0,
                 transform: deliverVisible ? 'translateY(0)' : 'translateY(30px)',
                 transition: 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.6s'
@@ -685,7 +699,7 @@ export const AboutPage = ({
                 <p style={{ fontSize: '1.1rem', color: '#475569', lineHeight: 1.75, fontWeight: 400, margin: 0 }}>
                   It is the thread that connects our past to our future, guiding us as we grow, evolve, and build relationships grounded in trust. Our Code of Conduct is the compass that keeps us aligned—ensuring that no matter where we operate or who we work with, we act with transparency, respect, and responsibility.
                 </p>
-                <p style={{ fontSize: '1.12rem', color: '#005CFD', lineHeight: 1.8, fontWeight: 700, margin: '0.5rem 0 0 0', letterSpacing: '0.01em' }}>
+                <p style={{ fontSize: '1.12rem', color: 'rgb(2, 41, 176)', lineHeight: 1.8, fontWeight: 700, margin: '0.5rem 0 0 0', letterSpacing: '0.01em' }}>
                   This is who we are.<br />
                   This is how we lead.<br />
                   This is the Vebhor way.
@@ -723,8 +737,8 @@ export const AboutPage = ({
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-4px)';
-                    e.currentTarget.style.borderColor = '#005CFD';
-                    e.currentTarget.style.boxShadow = '0 12px 28px rgba(0, 92, 253, 0.12)';
+                    e.currentTarget.style.borderColor = 'rgb(2, 41, 176)';
+                    e.currentTarget.style.boxShadow = '0 12px 28px rgba(2, 41, 176, 0.12)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = 'translateY(0)';
@@ -837,93 +851,6 @@ export const AboutPage = ({
               </p>
             </div>
 
-          </div>
-        </section>
-
-        {/* ============================================================ */}
-        {/* 7. OUR MISSION & VISION */}
-        {/* ============================================================ */}
-        <section
-          ref={missionRef}
-          style={{
-            backgroundColor: '#f8fafc',
-            padding: '6rem 2rem 6.5rem 2rem',
-            position: 'relative',
-            overflow: 'hidden',
-            borderTop: '1px solid #e2e8f0'
-          }}
-        >
-          <div style={{ maxWidth: '1180px', margin: '0 auto', position: 'relative', zIndex: 2 }}>
-            <div
-              style={{
-                textAlign: 'center',
-                marginBottom: '3.5rem',
-                opacity: missionVisible ? 1 : 0,
-                transform: missionVisible ? 'translateY(0)' : 'translateY(-30px)',
-                transition: 'all 0.85s cubic-bezier(0.16, 1, 0.3, 1)'
-              }}
-            >
-              <span style={{ fontSize: '0.82rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#ffffff', background: BRAND_GRADIENT, padding: '0.4rem 1.4rem', borderRadius: '18px 24px 24px 18px', display: 'inline-block', marginBottom: '1.25rem', boxShadow: BRAND_SHADOW }}>
-                PURPOSE
-              </span>
-              <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.6rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.02em', margin: 0 }}>
-                Our Mission & Vision
-              </h2>
-            </div>
-
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))', gap: '2.5rem' }}>
-
-              {/* Mission Card */}
-              <div
-                style={{
-                  backgroundColor: '#ffffff',
-                  color: '#0f172a',
-                  padding: '3.5rem 2.8rem',
-                  borderRadius: '24px',
-                  border: '1.5px solid #e2e8f0',
-                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.04)',
-                  opacity: missionVisible ? 1 : 0,
-                  transform: missionVisible ? 'translateX(0)' : 'translateX(-40px)',
-                  transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1)'
-                }}
-              >
-                <div style={{ width: '56px', height: '56px', backgroundColor: '#f0fdf4', border: '1.5px solid #bbf7d0', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.75rem', color: '#16a34a' }}>
-                  <Target size={30} />
-                </div>
-                <h3 style={{ fontSize: '1.85rem', fontWeight: 800, color: '#0f172a', marginBottom: '1rem' }}>
-                  Our Mission
-                </h3>
-                <p style={{ fontSize: '1.15rem', color: '#64748b', lineHeight: 1.7, margin: 0, fontWeight: 400 }}>
-                  To empower organisations with workforce solutions that are simple, compliant, and built for growth.
-                </p>
-              </div>
-
-              {/* Vision Card */}
-              <div
-                style={{
-                  backgroundColor: '#ffffff',
-                  color: '#0f172a',
-                  padding: '3.5rem 2.8rem',
-                  borderRadius: '24px',
-                  border: '1.5px solid #e2e8f0',
-                  boxShadow: '0 10px 30px rgba(0, 0, 0, 0.04)',
-                  opacity: missionVisible ? 1 : 0,
-                  transform: missionVisible ? 'translateX(0)' : 'translateX(40px)',
-                  transition: 'all 0.9s cubic-bezier(0.16, 1, 0.3, 1)'
-                }}
-              >
-                <div style={{ width: '56px', height: '56px', backgroundColor: '#eff6ff', border: '1.5px solid #bfdbfe', borderRadius: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.75rem', color: '#005CFD' }}>
-                  <Eye size={30} />
-                </div>
-                <h3 style={{ fontSize: '1.85rem', fontWeight: 800, color: '#0f172a', marginBottom: '1rem' }}>
-                  Our Vision
-                </h3>
-                <p style={{ fontSize: '1.15rem', color: '#64748b', lineHeight: 1.7, margin: 0, fontWeight: 400 }}>
-                  To become the most trusted mid‑size workforce consultancy—where technology, people, and operations come together to help businesses scale globally.
-                </p>
-              </div>
-
-            </div>
           </div>
         </section>
 

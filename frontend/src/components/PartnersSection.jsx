@@ -13,22 +13,26 @@ export const PartnersSection = ({ onNavPartners }) => {
   const marqueeList = [...partners, ...partners, ...partners, ...partners];
 
   return (
-    <section style={{ backgroundColor: '#ffffff', padding: '5.5rem 1.5rem 5rem 1.5rem', position: 'relative', overflow: 'hidden', borderTop: '1px solid #e2e8f0' }}>
+    <section style={{ backgroundColor: '#ffffff', padding: '3.75rem 1.5rem 4.5rem 1.5rem', position: 'relative', overflow: 'hidden', borderTop: '1px solid #e2e8f0' }}>
       <div style={{ maxWidth: '1280px', margin: '0 auto', textAlign: 'center' }}>
-        
-        {/* Eyebrow Tag */}
-        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', color: '#ffffff', background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)', padding: '0.35rem 1.25rem', borderRadius: '50px', fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: '1.25rem', boxShadow: '0 4px 16px rgba(0, 92, 253, 0.45)' }}>
-          <Sparkles size={14} color="#ffffff" />
-          <span>STRATEGIC ALLIANCES</span>
-        </div>
 
         {/* Section Header */}
-        <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.6rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.02em', marginBottom: '1rem', lineHeight: 1.2 }}>
-          Meet our partners
+        <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.6rem', fontWeight: 800, color: '#0f172a', letterSpacing: '-0.02em', margin: '0 0 0.85rem 0', lineHeight: 1.2 }}>
+          Meet our{' '}
+          <span
+            style={{
+              background: 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              display: 'inline-block'
+            }}
+          >
+            Partners
+          </span>
         </h2>
 
         {/* Subtitle */}
-        <p style={{ fontSize: '1.1rem', color: '#64748b', maxWidth: '780px', margin: '0 auto 3rem auto', lineHeight: 1.6, fontWeight: 400 }}>
+        <p style={{ fontSize: '1.1rem', color: '#64748b', maxWidth: '780px', margin: '0 auto 2.5rem auto', lineHeight: 1.6, fontWeight: 400 }}>
           Partnering with world-leading technology innovators, cloud platforms, and global enterprise ecosystems to accelerate your business.
         </p>
 
@@ -87,10 +91,10 @@ export const PartnersSection = ({ onNavPartners }) => {
               transition: 'all 0.3s ease'
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#005CFD';
-              e.currentTarget.style.borderColor = '#005CFD';
+              e.currentTarget.style.background = 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)';
+              e.currentTarget.style.borderColor = 'rgb(40, 129, 251)';
               e.currentTarget.style.color = '#ffffff';
-              e.currentTarget.style.boxShadow = '0 6px 20px rgba(0, 92, 253, 0.3)';
+              e.currentTarget.style.boxShadow = '0 6px 20px rgba(2, 41, 176, 0.4)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.backgroundColor = '#ffffff';

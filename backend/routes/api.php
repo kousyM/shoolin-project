@@ -33,6 +33,7 @@ Route::get('/jobs', [JobController::class, 'index']);
 Route::get('/jobs/{id}', [JobController::class, 'show']);
 Route::post('/jobs/{id}/apply', [JobApplicationController::class, 'apply']);
 Route::post('/eoi', [JobApplicationController::class, 'eoi']);
+Route::post('/register-resume', [JobApplicationController::class, 'registerResume']);
 
 // Admin Authentication & Job Management Routes
 Route::post('/admin/login', [JobController::class, 'adminLogin']);

@@ -12,6 +12,7 @@ backend/public/storage
 
 # Logs & OS
 *.log
+*.zip
 .DS_Store
 Thumbs.db
 .vscode/

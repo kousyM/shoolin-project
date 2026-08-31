@@ -47,34 +47,168 @@ const IndividualsServicesPage = ({
       />
 
       <main>
-        {/* 2. Hero Banner */}
+        {/* 2. Hero Banner (Signature Lines & Angled Cutout) */}
         <section
+          className="signature-hero-banner-section"
           style={{
             position: 'relative',
-            backgroundColor: '#ffffff',
-            color: '#0f172a',
-            padding: '7rem 2rem 5rem',
-            backgroundImage: 'linear-gradient(180deg, rgba(255, 255, 255, 0.94) 0%, rgba(248, 250, 252, 0.98) 100%), url("/images/nature_banner_1.jpg?v=2026")',
+            backgroundColor: '#f6f4ed',
+            backgroundImage: `url('/images/career_lines_bg.png')`,
             backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            backgroundPosition: 'left center',
+            padding: '5.5rem 2rem 5rem 2rem',
+            minHeight: '480px',
+            display: 'flex',
+            alignItems: 'center',
+            textAlign: 'left',
+            overflow: 'hidden',
             borderBottom: '1px solid #e2e8f0'
           }}
         >
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', backgroundColor: '#f0fdf4', border: '1px solid #bbf7d0', padding: '0.4rem 1rem', borderRadius: '30px', marginBottom: '1.5rem' }}>
-              <Users size={16} color="#16a34a" />
-              <span style={{ fontSize: '0.85rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#16a34a' }}>
-                For Individuals & Families
-              </span>
+          {/* Angled Cutout Individuals Photo Container */}
+          <div
+            className="career-banner-visual-clip"
+            style={{
+              position: 'absolute',
+              right: 0,
+              top: 0,
+              bottom: 0,
+              width: '52%',
+              minWidth: '380px',
+              clipPath: 'polygon(18% 0%, 100% 0%, 100% 68%, 0% 100%)',
+              overflow: 'hidden',
+              zIndex: 1
+            }}
+          >
+            <img
+              src="/images/individuals_hero.jpg"
+              alt="Immigration for Individuals"
+              style={{
+                width: '100%',
+                height: '100%',
+                objectFit: 'cover',
+                objectPosition: 'center 20%'
+              }}
+            />
+          </div>
+
+          <div style={{ maxWidth: '1280px', width: '100%', margin: '0 auto', position: 'relative', zIndex: 3 }}>
+            <div style={{ maxWidth: '580px' }}>
+
+              {/* Blue Capsule Badge */}
+              <div style={{ marginBottom: '1.1rem' }}>
+                <span
+                  style={{
+                    fontSize: '0.8rem',
+                    fontWeight: 800,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.12em',
+                    color: '#ffffff',
+                    background: 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)',
+                    padding: '0.35rem 1.25rem',
+                    borderRadius: '50px',
+                    display: 'inline-block',
+                    boxShadow: '0 4px 14px rgba(2, 41, 176, 0.25)'
+                  }}
+                >
+                  FOR INDIVIDUALS
+                </span>
+              </div>
+
+              <h1
+                style={{
+                  fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
+                  fontSize: 'clamp(1.75rem, 3vw, 2.35rem)',
+                  fontWeight: 800,
+                  color: '#0a1128',
+                  lineHeight: 1.2,
+                  marginBottom: '0.85rem',
+                  letterSpacing: '-0.02em'
+                }}
+              >
+                Immigration & Global Talent Solutions
+              </h1>
+
+              <p
+                style={{
+                  fontSize: 'clamp(0.98rem, 1.2vw, 1.12rem)',
+                  color: '#334155',
+                  lineHeight: 1.65,
+                  margin: '0 0 2rem 0',
+                  fontWeight: 450
+                }}
+              >
+                Vebhor helps individuals, professionals, and families navigate the complexities of global visas, work permits, residency, and citizenship worldwide.
+              </p>
+
+              {/* Action Buttons */}
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'center' }}>
+                <button
+                  onClick={() => {
+                    const el = document.getElementById('immigration-solutions-section');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }}
+                  style={{
+                    padding: '0.85rem 2.2rem',
+                    background: 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)',
+                    color: '#ffffff',
+                    fontSize: '0.95rem',
+                    fontWeight: 700,
+                    borderRadius: '50px',
+                    border: 'none',
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    boxShadow: '0 6px 20px rgba(2, 41, 176, 0.35)',
+                    transition: 'all 0.25s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 8px 25px rgba(40, 129, 251, 0.55)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 6px 20px rgba(2, 41, 176, 0.35)';
+                  }}
+                >
+                  <span>Explore Pathways</span>
+                  <ArrowRight size={18} />
+                </button>
+
+                <button
+                  onClick={onOpenContactPage}
+                  style={{
+                    padding: '0.85rem 2.2rem',
+                    backgroundColor: '#ffffff',
+                    color: '#0f172a',
+                    fontSize: '0.95rem',
+                    fontWeight: 700,
+                    borderRadius: '50px',
+                    border: '1.5px solid #cbd5e1',
+                    cursor: 'pointer',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.5rem',
+                    boxShadow: '0 4px 14px rgba(0, 0, 0, 0.05)',
+                    transition: 'all 0.25s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#f8fafc';
+                    e.currentTarget.style.borderColor = '#94a3b8';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = '#ffffff';
+                    e.currentTarget.style.borderColor = '#cbd5e1';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                  }}
+                >
+                  <span>Get in Touch</span>
+                </button>
+              </div>
+
             </div>
-
-            <h1 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '3.2rem', fontWeight: 800, color: '#0f172a', lineHeight: 1.15, marginBottom: '1.5rem', maxWidth: '850px' }}>
-              Immigration Services for Individuals and Families
-            </h1>
-
-            <p style={{ fontSize: '1.2rem', color: '#64748b', lineHeight: 1.7, maxWidth: '800px', margin: 0 }}>
-              Vebhor helps individuals and families navigate the complexities of immigration, residency and citizenship worldwide.
-            </p>
           </div>
         </section>
 
@@ -92,7 +226,7 @@ const IndividualsServicesPage = ({
                 boxShadow: '0 10px 30px rgba(0, 0, 0, 0.04)'
               }}
             >
-              <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.5rem', fontWeight: 800, color: '#005CFD', marginBottom: '1.25rem', lineHeight: 1.2 }}>
+              <h2 style={{ fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif", fontSize: '2.5rem', fontWeight: 800, color: 'rgb(2, 41, 176)', marginBottom: '1.25rem', lineHeight: 1.2 }}>
                 Global Immigration & Residency Guidance
               </h2>
 
@@ -115,12 +249,12 @@ const IndividualsServicesPage = ({
                     textTransform: 'uppercase',
                     letterSpacing: '0.12em',
                     color: '#ffffff',
-                    background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)',
+                    background: 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)',
                     padding: '0.4rem 1.4rem',
                     borderRadius: '18px 24px 24px 18px',
                     display: 'inline-block',
                     marginBottom: '1rem',
-                    boxShadow: '0 4px 14px rgba(0, 92, 253, 0.4)'
+                    boxShadow: '0 4px 14px rgba(2, 41, 176, 0.4)'
                   }}
                 >
                   PATHWAYS & MOBILITY
@@ -146,8 +280,8 @@ const IndividualsServicesPage = ({
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-6px)';
-                    e.currentTarget.style.borderColor = '#005CFD';
-                    e.currentTarget.style.boxShadow = '0 12px 28px rgba(0, 92, 253, 0.12)';
+                    e.currentTarget.style.borderColor = 'rgb(2, 41, 176)';
+                    e.currentTarget.style.boxShadow = '0 12px 28px rgba(2, 41, 176, 0.12)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = 'translateY(0)';
@@ -155,7 +289,7 @@ const IndividualsServicesPage = ({
                     e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.04)';
                   }}
                 >
-                  <div style={{ width: '52px', height: '52px', borderRadius: '14px', backgroundColor: '#eff6ff', color: '#005CFD', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.35rem' }}>
+                  <div style={{ width: '52px', height: '52px', borderRadius: '14px', backgroundColor: '#eff6ff', color: 'rgb(2, 41, 176)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.35rem' }}>
                     <Compass size={28} />
                   </div>
                   <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.65rem', lineHeight: 1.3 }}>
@@ -174,7 +308,7 @@ const IndividualsServicesPage = ({
                       'Retirees & Independently Wealthy'
                     ].map((item, idx) => (
                       <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', fontSize: '0.88rem', fontWeight: 600, color: '#1e293b' }}>
-                        <CheckCircle2 size={15} style={{ color: '#005CFD', flexShrink: 0 }} />
+                        <CheckCircle2 size={15} style={{ color: 'rgb(2, 41, 176)', flexShrink: 0 }} />
                         <span>{item}</span>
                       </div>
                     ))}
@@ -195,8 +329,8 @@ const IndividualsServicesPage = ({
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-6px)';
-                    e.currentTarget.style.borderColor = '#005CFD';
-                    e.currentTarget.style.boxShadow = '0 12px 28px rgba(0, 92, 253, 0.12)';
+                    e.currentTarget.style.borderColor = 'rgb(2, 41, 176)';
+                    e.currentTarget.style.boxShadow = '0 12px 28px rgba(2, 41, 176, 0.12)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = 'translateY(0)';
@@ -204,7 +338,7 @@ const IndividualsServicesPage = ({
                     e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.04)';
                   }}
                 >
-                  <div style={{ width: '52px', height: '52px', borderRadius: '14px', backgroundColor: '#eff6ff', color: '#005CFD', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.35rem' }}>
+                  <div style={{ width: '52px', height: '52px', borderRadius: '14px', backgroundColor: '#eff6ff', color: 'rgb(2, 41, 176)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.35rem' }}>
                     <Clock size={28} />
                   </div>
                   <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.65rem', lineHeight: 1.3 }}>
@@ -221,7 +355,7 @@ const IndividualsServicesPage = ({
                       'Temporary Residence Permits'
                     ].map((item, idx) => (
                       <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', fontSize: '0.88rem', fontWeight: 600, color: '#1e293b' }}>
-                        <CheckCircle2 size={15} style={{ color: '#005CFD', flexShrink: 0 }} />
+                        <CheckCircle2 size={15} style={{ color: 'rgb(2, 41, 176)', flexShrink: 0 }} />
                         <span>{item}</span>
                       </div>
                     ))}
@@ -242,8 +376,8 @@ const IndividualsServicesPage = ({
                   }}
                   onMouseEnter={(e) => {
                     e.currentTarget.style.transform = 'translateY(-6px)';
-                    e.currentTarget.style.borderColor = '#16a34a';
-                    e.currentTarget.style.boxShadow = '0 12px 28px rgba(22, 163, 74, 0.12)';
+                    e.currentTarget.style.borderColor = 'rgb(40, 129, 251)';
+                    e.currentTarget.style.boxShadow = '0 12px 28px rgba(2, 41, 176, 0.16)';
                   }}
                   onMouseLeave={(e) => {
                     e.currentTarget.style.transform = 'translateY(0)';
@@ -251,7 +385,7 @@ const IndividualsServicesPage = ({
                     e.currentTarget.style.boxShadow = '0 4px 16px rgba(0, 0, 0, 0.04)';
                   }}
                 >
-                  <div style={{ width: '52px', height: '52px', borderRadius: '14px', backgroundColor: '#f0fdf4', color: '#16a34a', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.35rem' }}>
+                  <div style={{ width: '52px', height: '52px', borderRadius: '14px', backgroundColor: '#eff6ff', color: 'rgb(2, 41, 176)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.35rem' }}>
                     <Users size={28} />
                   </div>
                   <h3 style={{ fontSize: '1.2rem', fontWeight: 800, color: '#0f172a', marginBottom: '0.65rem', lineHeight: 1.3 }}>
@@ -267,7 +401,7 @@ const IndividualsServicesPage = ({
                       'Extended Family Members'
                     ].map((item, idx) => (
                       <div key={idx} style={{ display: 'flex', alignItems: 'center', gap: '0.55rem', fontSize: '0.88rem', fontWeight: 600, color: '#1e293b' }}>
-                        <CheckCircle2 size={15} style={{ color: '#16a34a', flexShrink: 0 }} />
+                        <CheckCircle2 size={15} style={{ color: 'rgb(2, 41, 176)', flexShrink: 0 }} />
                         <span>{item}</span>
                       </div>
                     ))}

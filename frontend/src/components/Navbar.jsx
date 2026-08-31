@@ -66,9 +66,9 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
             style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.75rem' }}
           >
             <img
-              src="/logo_icon.png?v=2026"
+              src="/logo_icon.png?v=2026_vb"
               alt="Vebhor"
-              style={{ height: '55px', width: 'auto', objectFit: 'contain' }}
+              style={{ height: '48px', width: 'auto', objectFit: 'contain' }}
               onError={(e) => { e.currentTarget.style.display = 'none'; }}
             />
             <span
@@ -200,28 +200,34 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
                 alignItems: 'center',
                 gap: '0.5rem',
                 padding: '0.62rem 1.4rem',
-                background: 'linear-gradient(135deg, rgb(215 124 27) 0%, rgb(40 31 16) 100%)',
+                background: 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)',
                 color: '#ffffff',
                 border: 'none',
                 borderRadius: '50px',
                 fontSize: '0.92rem',
                 fontWeight: 700,
                 cursor: 'pointer',
-                boxShadow: '0 4px 18px rgba(215, 124, 27, 0.35)',
-                transition: 'all 0.25s ease'
+                boxShadow: 'none',
+                transition: 'all 0.3s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'linear-gradient(135deg, #2881fb 0%, #0099ff 100%)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)';
               }}
             >
               <span>Get In Touch</span>
               <ArrowRight size={16} />
             </button>
 
-            {/* Mobile Hamburger Toggle (3 Lines) - Prominent, Tapable & Centered */}
+            {/* Mobile Hamburger Toggle (3 Lines) - Mobile ONLY */}
             <button
               className="mobile-nav-toggle"
               onClick={() => setMobileMenuOpen(true)}
               aria-label="Open navigation menu"
             >
-              <Menu size={22} color="#ffffff" strokeWidth={2.4} />
+              <Menu size={24} color="#0f172a" strokeWidth={2.5} />
             </button>
           </div>
         </div>
@@ -250,9 +256,9 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
                 style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.65rem' }}
               >
                 <img
-                  src="/logo_icon.png?v=2026"
+                  src="/logo_icon.png?v=2026_vb"
                   alt="Vebhor"
-                  style={{ height: '55px', width: 'auto', objectFit: 'contain' }}
+                  style={{ height: '44px', width: 'auto', objectFit: 'contain' }}
                   onError={(e) => { e.currentTarget.style.display = 'none'; }}
                 />
                 <span style={{ fontFamily: "'Cinzel', 'Outfit', sans-serif", fontWeight: 800, fontSize: '1.5rem', letterSpacing: '0.04em', color: '#000000', textTransform: 'uppercase' }}>
@@ -352,7 +358,7 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
                     style={{ color: '#0f172a', background: 'none', border: 'none', fontSize: '1.35rem', fontWeight: 800, cursor: 'pointer', textAlign: 'left', padding: 0, width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
                   >
                     <span>Careers</span>
-                    <ArrowRight size={20} color="#005CFD" />
+                    <ArrowRight size={20} color="rgb(2, 41, 176)" />
                   </button>
                 </li>
 
@@ -363,7 +369,7 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
                       setMobileMenuOpen(false);
                       if (onNavChallengeUs) onNavChallengeUs();
                     }}
-                    style={{ color: '#005CFD', background: 'none', border: 'none', fontSize: '1.35rem', fontWeight: 800, cursor: 'pointer', textAlign: 'left', padding: 0, width: '100%' }}
+                    style={{ color: 'rgb(2, 41, 176)', background: 'none', border: 'none', fontSize: '1.35rem', fontWeight: 800, cursor: 'pointer', textAlign: 'left', padding: 0, width: '100%' }}
                   >
                     Visa
                   </button>
@@ -390,10 +396,11 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
                     setMobileMenuOpen(false);
                     if (onOpenContactPage) onOpenContactPage();
                   }}
+                  className="navbar-touch-btn"
                   style={{
                     width: '100%',
                     padding: '0.85rem 1.25rem',
-                    background: 'linear-gradient(135deg, rgb(215, 124, 27) 0%, rgb(40, 31, 16) 100%)',
+                    background: 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)',
                     color: '#ffffff',
                     border: 'none',
                     borderRadius: '50px',
@@ -404,7 +411,14 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
                     alignItems: 'center',
                     justifyContent: 'center',
                     gap: '0.5rem',
-                    boxShadow: '0 4px 18px rgba(215, 124, 27, 0.35)'
+                    boxShadow: 'none',
+                    transition: 'all 0.3s ease'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'linear-gradient(135deg, #2881fb 0%, #0099ff 100%)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)';
                   }}
                 >
                   <span>Get In Touch</span>
@@ -416,11 +430,11 @@ export const Navbar = ({ activePage = 'home', onOpenContactPage, onNavHome, onNa
             {/* Bottom Footer Section */}
             <div style={{ paddingTop: '1.25rem', borderTop: '1px solid #e2e8f0', marginTop: '0.5rem', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
               <span style={{ fontSize: '0.82rem', color: '#64748b', fontWeight: 600 }}>Get in touch</span>
-              <a href="tel:+61466048975" style={{ color: '#005CFD', fontSize: '0.92rem', textDecoration: 'none', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+              <a href="tel:+61466048975" style={{ color: 'rgb(2, 41, 176)', fontSize: '0.92rem', textDecoration: 'none', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
                 <Phone size={16} />
                 <span>+61 466 048 975</span>
               </a>
-              <a href="mailto:info@vebhor.com" style={{ color: '#005CFD', fontSize: '0.92rem', textDecoration: 'none', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
+              <a href="mailto:info@vebhor.com" style={{ color: 'rgb(2, 41, 176)', fontSize: '0.92rem', textDecoration: 'none', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}>
                 <Mail size={16} />
                 <span>info@vebhor.com</span>
               </a>

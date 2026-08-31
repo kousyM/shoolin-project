@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { ArrowRight } from 'lucide-react';
 
 export const GetStartedStepper = ({ onOpenContact }) => {
@@ -70,7 +70,7 @@ export const GetStartedStepper = ({ onOpenContact }) => {
       ref={sectionRef}
       style={{
         backgroundColor: '#ffffff',
-        padding: '5.5rem 1.5rem 5rem 1.5rem',
+        padding: '2rem 1.5rem 5rem 1.5rem',
         fontFamily: "var(--bs-body-font-family), 'Plus Jakarta Sans', sans-serif"
       }}
     >
@@ -79,11 +79,11 @@ export const GetStartedStepper = ({ onOpenContact }) => {
           maxWidth: '1240px',
           margin: '0 auto',
           textAlign: 'center',
-          backgroundColor: '#FAF7FF',
-          border: '1.5px solid #EFE6FD',
+          backgroundColor: '#F8FAFC',
+          border: '1.5px solid #E2E8F0',
           borderRadius: '24px',
           padding: '4.5rem 3.5rem 4rem 3.5rem',
-          boxShadow: '0 16px 45px rgba(108, 92, 231, 0.07)',
+          boxShadow: '0 16px 45px rgba(2, 41, 176, 0.05)',
           position: 'relative',
           overflow: 'hidden',
           opacity: isVisible ? 1 : 0,
@@ -100,7 +100,7 @@ export const GetStartedStepper = ({ onOpenContact }) => {
             transform: 'translateX(-50%)',
             width: '600px',
             height: '250px',
-            background: 'radial-gradient(circle, rgba(124, 58, 237, 0.1) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(2, 41, 176, 0.08) 0%, transparent 70%)',
             pointerEvents: 'none'
           }}
         />
@@ -110,14 +110,14 @@ export const GetStartedStepper = ({ onOpenContact }) => {
           style={{
             fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
             fontSize: 'clamp(2rem, 3.5vw, 2.75rem)',
-            fontWeight: 700,
+            fontWeight: 800,
             lineHeight: 1.25,
             marginBottom: '3.5rem',
             color: '#172033',
             letterSpacing: '-0.02em'
           }}
         >
-          <span style={{ background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontWeight: 800 }}>Get started in 1 hour</span> with Vebhor’s<br />
+          <span style={{ background: 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', fontWeight: 800 }}>Get started in 1 hour</span> with Vebhor’s<br />
           <span style={{ color: '#172033' }}>Payroll & Workforce Services</span>
         </h2>
 
@@ -150,11 +150,11 @@ export const GetStartedStepper = ({ onOpenContact }) => {
               left: '12%',
               width: `calc(${progressLineWidth} * 0.76)`,
               height: '4px',
-              background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)',
+              background: 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)',
               borderRadius: '4px',
               zIndex: 2,
               transition: 'width 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
-              boxShadow: '0 0 12px rgba(6, 182, 212, 0.6)'
+              boxShadow: '0 0 12px rgba(40, 129, 251, 0.6)'
             }}
           />
 
@@ -190,9 +190,9 @@ export const GetStartedStepper = ({ onOpenContact }) => {
                       width: '42px',
                       height: '42px',
                       borderRadius: '50%',
-                      border: isPastOrActive ? '2.5px solid #06b6d4' : '2px solid #BAE6FD',
-                      background: isPastOrActive ? 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)' : '#ffffff',
-                      color: isPastOrActive ? '#ffffff' : '#0284c7',
+                      border: isPastOrActive ? '2.5px solid rgb(40, 129, 251)' : '2px solid #BAE6FD',
+                      background: isPastOrActive ? 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)' : '#ffffff',
+                      color: isPastOrActive ? '#ffffff' : 'rgb(2, 41, 176)',
                       fontWeight: 800,
                       fontSize: '1rem',
                       display: 'flex',
@@ -200,9 +200,9 @@ export const GetStartedStepper = ({ onOpenContact }) => {
                       justifyContent: 'center',
                       marginBottom: '1.5rem',
                       boxShadow: isCurrent
-                        ? '0 0 0 7px rgba(6, 182, 212, 0.25), 0 8px 24px rgba(0, 92, 253, 0.45)'
+                        ? '0 0 0 7px rgba(40, 129, 251, 0.25), 0 8px 24px rgba(2, 41, 176, 0.45)'
                         : isPastOrActive
-                        ? '0 4px 14px rgba(6, 182, 212, 0.3)'
+                        ? '0 4px 14px rgba(2, 41, 176, 0.3)'
                         : '0 2px 8px rgba(0, 0, 0, 0.04)',
                       transition: 'all 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
                       transform: isCurrent ? 'scale(1.18)' : 'scale(1)'
@@ -215,11 +215,12 @@ export const GetStartedStepper = ({ onOpenContact }) => {
                   <h3
                     style={{
                       fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
-                      fontSize: '1.2rem',
-                      fontWeight: isCurrent ? 800 : 700,
-                      color: isCurrent ? '#0284c7' : '#172033',
+                      fontSize: '1.18rem',
+                      fontWeight: 700,
+                      color: isCurrent ? '#000000' : '#1e293b',
                       marginBottom: '0.65rem',
-                      transition: 'color 0.4s ease'
+                      letterSpacing: '-0.01em',
+                      lineHeight: 1.3
                     }}
                   >
                     {step.title}
@@ -228,13 +229,11 @@ export const GetStartedStepper = ({ onOpenContact }) => {
                   {/* Step Description */}
                   <p
                     style={{
-                      fontSize: '0.9rem',
-                      color: isCurrent ? '#334155' : '#64748b',
+                      fontSize: '0.92rem',
+                      color: isCurrent ? '#0f172a' : '#64748b',
                       lineHeight: 1.6,
                       margin: 0,
-                      fontWeight: isCurrent ? 500 : 400,
-                      maxWidth: '260px',
-                      transition: 'color 0.4s ease'
+                      maxWidth: '240px'
                     }}
                   >
                     {step.description}
@@ -245,8 +244,8 @@ export const GetStartedStepper = ({ onOpenContact }) => {
           </div>
         </div>
 
-        {/* 3. Primary Call-to-Action Button */}
-        <div>
+        {/* 3. Bottom CTA Action Button */}
+        <div style={{ textAlign: 'center' }}>
           <a
             href="#contact"
             onClick={(e) => {
@@ -259,23 +258,23 @@ export const GetStartedStepper = ({ onOpenContact }) => {
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.65rem',
-              background: 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)',
+              background: 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)',
               color: '#ffffff',
               fontWeight: 700,
               fontSize: '1rem',
               padding: '0.9rem 2.4rem',
               borderRadius: '8px',
               textDecoration: 'none',
-              boxShadow: '0 8px 24px rgba(0, 92, 253, 0.4)',
+              boxShadow: '0 8px 24px rgba(2, 41, 176, 0.4)',
               transition: 'all 0.3s cubic-bezier(0.16, 1, 0.3, 1)'
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = 'translateY(-3px)';
-              e.currentTarget.style.boxShadow = '0 12px 30px rgba(6, 182, 212, 0.55)';
+              e.currentTarget.style.boxShadow = '0 12px 30px rgba(2, 41, 176, 0.6)';
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = 'translateY(0)';
-              e.currentTarget.style.boxShadow = '0 8px 24px rgba(0, 92, 253, 0.4)';
+              e.currentTarget.style.boxShadow = '0 8px 24px rgba(2, 41, 176, 0.4)';
             }}
           >
             <span>Start Now</span>

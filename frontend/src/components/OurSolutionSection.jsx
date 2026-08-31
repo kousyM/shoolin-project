@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ShieldCheck, Lock, Globe, Zap, Layers, Check } from 'lucide-react';
+import { ShieldCheck, Lock, Globe, Zap, Layers, Check, ArrowRight } from 'lucide-react';
 
-const BRAND_GRADIENT = 'linear-gradient(135deg, #005CFD 0%, #019CFE 100%)';
-const BRAND_SHADOW = '0 4px 16px rgba(0, 92, 253, 0.45)';
+const BRAND_GRADIENT = 'linear-gradient(135deg, rgb(2, 41, 176) 0%, rgb(40, 129, 251) 100%)';
 
 export const OurSolutionSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -32,57 +31,57 @@ export const OurSolutionSection = () => {
   const solutionCards = [
     {
       id: 'compliance',
+      category: 'Compliance & Risk',
       title: 'Global Payroll Compliance',
       description: 'Stay compliant across markets with locally informed payroll expertise. Vebhor manages evolving payroll regulations, statutory requirements, tax obligations, and reporting, helping ensure your workforce is paid accurately and on time while reducing compliance risk and administrative complexity.',
+      image: '/images/insights_security.jpg',
       icon: ShieldCheck,
-      badgeBg: 'rgba(16, 185, 129, 0.15)',
-      iconColor: '#10b981',
-      initialTransform: 'translate3d(-80px, -40px, 0)' // Top-Left entrance
+      initialTransform: 'translate3d(-50px, -30px, 0)'
     },
     {
       id: 'global-payroll',
+      category: 'Global Expansion',
       title: 'Global Payroll',
       description: 'Simplify payroll across borders with accurate, compliant, and scalable global payroll solutions. Vebhor manages payroll processing, statutory requirements, tax obligations, and local compliance, helping you pay your workforce accurately and on time while reducing administrative complexity.',
+      image: '/images/service_eor.jpg',
       icon: Globe,
-      badgeBg: 'rgba(6, 182, 212, 0.15)',
-      iconColor: '#06b6d4',
-      initialTransform: 'translate3d(0, -80px, 0)' // Top-Down entrance
+      initialTransform: 'translate3d(0, -50px, 0)'
     },
     {
       id: 'consolidate',
+      category: 'Vendor Ecosystem',
       title: 'Consolidate Multiple Vendors',
       description: 'Simplify your workforce operations by bringing recruitment, contractor management, payroll, compliance, and workforce services under one trusted partner. Vebhor helps reduce vendor complexity, streamline processes, improve visibility, and create a more consistent workforce experience across markets.',
+      image: '/images/service_vendor_consolidation.jpg',
       icon: Layers,
-      badgeBg: 'rgba(59, 130, 246, 0.15)',
-      iconColor: '#3b82f6',
-      initialTransform: 'translate3d(80px, -40px, 0)' // Top-Right entrance
+      initialTransform: 'translate3d(50px, -30px, 0)'
     },
     {
       id: 'onboarding',
+      category: 'Rapid Onboarding',
       title: 'Seamless Onboarding',
       description: 'With Vebhor Payroll’s Partner & Contractor onboarding application, teams can activate payroll and compliance instantly—no heavy integrations, no delays. Just connect, configure, and go.',
+      image: '/images/service_outcome_delivery.jpg',
       icon: Zap,
-      badgeBg: 'rgba(16, 185, 129, 0.15)',
-      iconColor: '#10b981',
-      initialTransform: 'translate3d(-80px, 50px, 0)' // Bottom-Left entrance
+      initialTransform: 'translate3d(-50px, 30px, 0)'
     },
     {
       id: 'screening',
+      category: 'Background Verification',
       title: 'Effortless Background Checks',
       description: 'Automated verification for every new hire, powered by our trusted screening partner. Background checks run in parallel with onboarding, so your team can hire faster without compromising compliance.',
+      image: '/images/team_collaboration.jpg',
       icon: Check,
-      badgeBg: 'rgba(217, 119, 6, 0.15)',
-      iconColor: '#f59e0b',
-      initialTransform: 'translate3d(0, 80px, 0)' // Bottom-Up entrance
+      initialTransform: 'translate3d(0, 50px, 0)'
     },
     {
       id: 'security',
+      category: 'Enterprise Security',
       title: 'Solid International Security',
       description: 'Protect your team, data, and intellectual property with robust global compliance, ISO 27001 certified practices, and secure solutions that integrate seamlessly across your workflows.',
+      image: '/images/hero_cyber_network.jpg',
       icon: Lock,
-      badgeBg: 'rgba(225, 29, 72, 0.15)',
-      iconColor: '#f43f5e',
-      initialTransform: 'translate3d(80px, 50px, 0)' // Bottom-Right entrance
+      initialTransform: 'translate3d(50px, 30px, 0)'
     }
   ];
 
@@ -91,25 +90,24 @@ export const OurSolutionSection = () => {
       ref={sectionRef}
       id="our-solution"
       style={{
-        padding: '5.5rem 1.5rem 6rem 1.5rem',
-        fontFamily: "var(--bs-body-font-family), 'Plus Jakarta Sans', sans-serif",
+        padding: '3.5rem 1.5rem 2.5rem 1.5rem',
+        fontFamily: '"Archivo", sans-serif',
         position: 'relative',
         overflow: 'hidden',
-        borderTop: '1px solid rgba(255, 255, 255, 0.06)'
+        backgroundColor: '#f6f4ed'
       }}
     >
-      {/* Background Soft Glow Light */}
+      {/* Light Warm Geometric Wireframe Background Pattern */}
       <div
         style={{
           position: 'absolute',
-          top: '-80px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: '900px',
-          height: '500px',
-          background: 'radial-gradient(ellipse at center, rgba(6, 182, 212, 0.18) 0%, rgba(16, 185, 129, 0.1) 40%, transparent 70%)',
-          pointerEvents: 'none',
-          filter: 'blur(30px)'
+          inset: 0,
+          backgroundImage: 'url(/images/services_grid_bg.png)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          filter: 'invert(1)',
+          opacity: 0.09,
+          pointerEvents: 'none'
         }}
       />
 
@@ -119,52 +117,44 @@ export const OurSolutionSection = () => {
         <div
           style={{
             textAlign: 'center',
-            marginBottom: '3.5rem',
+            marginBottom: '3rem',
             opacity: isVisible ? 1 : 0,
             transform: isVisible ? 'translateY(0)' : 'translateY(-30px)',
             transition: 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)'
           }}
         >
-          {/* Eyebrow Tag in Brand Gradient Capsule */}
-          <div style={{ display: 'inline-flex', alignItems: 'center', fontSize: '0.8rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.12em', marginBottom: '1rem' }}>
-            <span style={{ background: BRAND_GRADIENT, color: '#ffffff', padding: '0.3rem 1.25rem', borderRadius: '18px 24px 24px 18px', boxShadow: BRAND_SHADOW }}>
-              OUR SOLUTIONS
-            </span>
-          </div>
-
-          {/* Refined Proportional Main Title */}
+          {/* Clean Main Title */}
           <h2
             style={{
-              fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
-              fontSize: 'clamp(1.35rem, 2.3vw, 1.85rem)',
-              fontWeight: 700,
+              fontFamily: '"Archivo", sans-serif',
+              fontSize: 'clamp(1.5rem, 2.6vw, 2.2rem)',
+              fontWeight: 800,
               color: '#0f172a',
-              letterSpacing: '-0.01em',
-              marginBottom: '0.75rem',
-              lineHeight: 1.35
+              letterSpacing: '-0.02em',
+              margin: '0 0 0.75rem 0',
+              lineHeight: 1.3
             }}
           >
             Global Workforce Solutions,{' '}
             <span
               style={{
                 background: BRAND_GRADIENT,
-                color: '#ffffff',
-                padding: '0.15rem 0.95rem',
-                borderRadius: '12px 18px 18px 12px',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
                 display: 'inline-block',
-                boxShadow: '0 4px 14px rgba(0, 92, 253, 0.4)'
+                fontFamily: '"Archivo", sans-serif'
               }}
             >
               Built Around Your Business
             </span>
           </h2>
 
-          <p style={{ fontSize: '0.98rem', color: '#475569', maxWidth: '720px', margin: '0 auto', lineHeight: 1.55, fontWeight: 400 }}>
+          <p style={{ fontSize: '1.05rem', color: 'rgb(100, 116, 139)', maxWidth: '750px', margin: '0 auto', lineHeight: 1.6, fontWeight: 400, fontFamily: '"Archivo", sans-serif' }}>
             Hire Faster. Manage Smarter. Pay Global Teams with Confidence & Compliance.
           </p>
         </div>
 
-        {/* 2. 6 DIRECTIONAL ENTRANCE CARDS */}
+        {/* 2. CLEAN WHITE CARDS WITH CONTENT */}
         <div
           style={{
             display: 'grid',
@@ -178,60 +168,98 @@ export const OurSolutionSection = () => {
             return (
               <div
                 key={card.id}
-                className="solution-dark-card"
                 style={{
+                  position: 'relative',
+                  borderRadius: '16px',
+                  backgroundColor: '#ffffff',
+                  padding: '2.2rem 2rem',
+                  cursor: 'pointer',
+                  border: '1.5px solid #e8e8e8',
+                  boxShadow: '0 4px 20px rgba(0, 0, 0, 0.04)',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  minHeight: '340px',
                   opacity: isVisible ? 1 : 0,
                   transform: isVisible ? 'translate3d(0, 0, 0)' : card.initialTransform,
-                  transition: `opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + idx * 0.08}s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + idx * 0.08}s, background-color 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease`
+                  transition: `opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + idx * 0.08}s, transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) ${0.1 + idx * 0.08}s, border-color 0.3s ease, box-shadow 0.3s ease`
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-6px)';
+                  e.currentTarget.style.borderColor = 'rgb(40, 129, 251)';
+                  e.currentTarget.style.boxShadow = '0 18px 36px rgba(2, 41, 176, 0.12)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.borderColor = '#e8e8e8';
+                  e.currentTarget.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.04)';
                 }}
               >
-                {/* ICON BADGE */}
-                <div
-                  className="solution-card-icon"
-                  style={{
-                    width: '52px',
-                    height: '52px',
-                    borderRadius: '14px',
-                    backgroundColor: card.badgeBg,
-                    border: '1px solid rgba(255, 255, 255, 0.08)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    color: card.iconColor,
-                    marginBottom: '1.35rem',
-                    boxShadow: `0 4px 14px ${card.badgeBg}`
-                  }}
-                >
-                  <IconComp size={26} />
+                <div>
+                  {/* Top Icon and Category Pill */}
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.5rem' }}>
+                    <div
+                      style={{
+                        width: '50px',
+                        height: '50px',
+                        borderRadius: '14px',
+                        backgroundColor: '#eff6ff',
+                        border: '1px solid #bfdbfe',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        color: 'rgb(2, 41, 176)'
+                      }}
+                    >
+                      <IconComp size={24} />
+                    </div>
+                    <span
+                      style={{
+                        fontSize: '0.76rem',
+                        fontWeight: 700,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.06em',
+                        color: 'rgb(100, 116, 139)',
+                        backgroundColor: '#f1f5f9',
+                        padding: '0.35rem 0.8rem',
+                        borderRadius: '6px',
+                        fontFamily: '"Archivo", sans-serif'
+                      }}
+                    >
+                      {card.category}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h3
+                    style={{
+                      fontFamily: '"Archivo", sans-serif',
+                      fontSize: '1.3rem',
+                      fontWeight: 800,
+                      color: '#0f172a',
+                      lineHeight: 1.35,
+                      marginBottom: '0.85rem'
+                    }}
+                  >
+                    {card.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p
+                    style={{
+                      fontSize: '0.94rem',
+                      color: 'rgb(100, 116, 139)',
+                      lineHeight: 1.65,
+                      textAlign: 'left',
+                      wordSpacing: 'normal',
+                      margin: 0,
+                      fontWeight: 400,
+                      fontFamily: '"Archivo", sans-serif'
+                    }}
+                  >
+                    {card.description}
+                  </p>
                 </div>
-
-                {/* TITLE */}
-                <h3
-                  style={{
-                    fontFamily: "var(--bs-body-font-family), 'Outfit', sans-serif",
-                    fontSize: '1.25rem',
-                    fontWeight: 700,
-                    color: '#ffffff',
-                    marginBottom: '0.85rem',
-                    letterSpacing: '-0.01em',
-                    lineHeight: 1.3
-                  }}
-                >
-                  {card.title}
-                </h3>
-
-                {/* DESCRIPTION */}
-                <p
-                  style={{
-                    fontSize: '0.92rem',
-                    color: '#94a3b8',
-                    lineHeight: 1.65,
-                    fontWeight: 400,
-                    margin: 0
-                  }}
-                >
-                  {card.description}
-                </p>
               </div>
             );
           })}
